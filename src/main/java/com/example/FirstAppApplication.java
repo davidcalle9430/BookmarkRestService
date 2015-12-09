@@ -13,6 +13,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import entities.Account;
 import entities.Booking;
@@ -22,11 +25,12 @@ import repositories.BookingRepository;
 import repositories.BookmarkRepository;
 
 @SpringBootApplication
-@EntityScan(basePackages = {"entities","restcontrollers"})
+@EntityScan(basePackages = {"entities","restcontrollers","web"})
 @EnableJpaRepositories(basePackages={"repositories"})
 @EnableAutoConfiguration
 @Configuration
-@ComponentScan(basePackages={"com.example","restcontrollers"})
+@ComponentScan(basePackages={"com.example","restcontrollers","web"})
+@EnableWebMvc
 public class FirstAppApplication {
 	@Autowired
 	BookingRepository bookingRepository;
@@ -34,6 +38,19 @@ public class FirstAppApplication {
         SpringApplication.run(FirstAppApplication.class, args);
         
     }
+}
+
+@Configuration
+class StaticResourceConfiguration extends WebMvcConfigurerAdapter {
+
+private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
+        "classpath:/META-INF/resources/", "classpath:/resources/",
+        "classpath:/static/", "classpath:/public/" };
+
+@Override
+public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    registry.addResourceHandler("/static/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
+}
 }
 @Component
 class BookingCommandLineRunner implements CommandLineRunner{
