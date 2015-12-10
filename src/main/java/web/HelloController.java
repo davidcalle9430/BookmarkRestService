@@ -15,7 +15,10 @@ public class HelloController {
 	
 	@Autowired
 	private BookmarkRepository bookmarkRepository;
-	
+	@RequestMapping("/login")
+	public String greting(){
+		return "login";
+	}
 	@RequestMapping("/greeting/")
 	public String greting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model){
 		model.addAttribute("name", name);

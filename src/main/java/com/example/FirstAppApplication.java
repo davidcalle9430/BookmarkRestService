@@ -2,6 +2,8 @@ package com.example;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,12 +11,28 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.orm.jpa.EntityScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.acls.domain.GrantedAuthoritySid;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import entities.Account;
@@ -91,4 +109,60 @@ class BookingCommandLineRunner implements CommandLineRunner{
 	@Autowired
 	BookmarkRepository bookmarkRepository;
 	
+}
+@Configuration
+class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter{
+	@Autowired
+	private AccountRepository accountRepository;
+	
+	@Override
+	  public void init(AuthenticationManagerBuilder auth) throws Exception {
+	    auth.userDetailsService(userDetailsService());
+	  }
+	
+	@Bean
+	public UserDetailsService userDetailsService(){
+		return new UserDetailsService() {
+			
+			@Override
+			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+				Optional<Account> account = accountRepository.findByUsername(username);
+				if(account.isPresent()){
+					List<GrantedAuthority> roles = AuthorityUtils.createAuthorityList("ADMIN");
+					return new User(account.get().getUsername(), account.get().getPassword(), roles);
+				}else{
+					throw new UsernameNotFoundException("Username not found");
+				}
+			}
+		};
+	}
+}
+@EnableWebSecurity
+@Configuration
+class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+ 
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+	  http
+      .authorizeRequests()
+          .anyRequest().authenticated()
+          .and()
+      .formLogin()
+          .loginPage("/login")
+          .permitAll().and()
+      .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");;
+  }
+  
+}
+
+
+@EnableWebMvc
+@ComponentScan("org.springframework.security.samples.mvc")
+class WebMvcConfiguration extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/login").setViewName("login.html");
+        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+    }
 }
