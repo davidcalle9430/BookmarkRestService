@@ -16,9 +16,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.security.acls.domain.GrantedAuthoritySid;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -49,6 +49,7 @@ import repositories.BookmarkRepository;
 @Configuration
 @ComponentScan(basePackages={"com.example","restcontrollers","web"})
 @EnableWebMvc
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class FirstAppApplication {
 	@Autowired
 	BookingRepository bookingRepository;
@@ -128,8 +129,8 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter{
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 				Optional<Account> account = accountRepository.findByUsername(username);
 				if(account.isPresent()){
-					List<GrantedAuthority> roles = AuthorityUtils.createAuthorityList("ADMIN");
-					return new User(account.get().getUsername(), account.get().getPassword(), roles);
+					List<GrantedAuthority> roles = AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_ADMIND");
+					return new User(username, account.get().getPassword(), true, true, true, true, roles );
 				}else{
 					throw new UsernameNotFoundException("Username not found");
 				}
