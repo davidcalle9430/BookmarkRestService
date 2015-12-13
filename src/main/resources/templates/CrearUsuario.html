@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear Usuario</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href ="/static/css/report.css"/>
+    <link rel="stylesheet" href="/static/css/report.css" />
+	<link rel="stylesheet" href="/static/foundation-6/css/foundation.min.css" />
+	<link rel="stylesheet" href="/static/css/main.css"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta charset="utf-8"/>
+</head>
+<body>
+	<div class="title-bar" data-responsive-toggle="main-menu"
+		data-hide-for="medium">
+		<button class="menu-icon" type="button" data-toggle=""></button>
+		<div class="title-bar-title">Men&uacute;</div>
+	</div>
+	<div class="top-bar" id="main-menu">
+		<div class="top-bar-left">
+			<ul class="dropdown menu" data-dropdown-menu="">
+				<li class="menu-text">SIDIC - Impordisa</li>
+			</ul>
+		</div>
+		<div class="top-bar-right">
+			<ul class="menu vertical medium-horizontal"
+				data-responsive-menu="drilldown medium-dropdown">
+				<li class="has-submenu"><a href="#">Usuarios</a>
+					<ul class="submenu menu vertical" data-submenu="">
+						<li><a href="/Usuarios/">Ver Todos los Usuarios</a></li>
+						<li><a href="/CrearUsuario/">Agregar Usuario</a></li>
+					</ul></li>
+				<li><a href="#">Reportes</a></li>
+				<li><a href="#">Configuración</a></li>
+				<li><a href="/logout">Cerrar Sesión</a></li>
+			</ul>
+		</div>
+	</div>
+
+
+	<!--  Inicio Contenido Página  -->
+    <form th:object="${user}" method="post" th:action="@{/CrearUsuario/}">
+    	<label> Nombre de Usuario<input type="text" 	th:field="*{username}" placeholder="Nombre de Usuario"></input></label>
+    	<label> Contraseña<input type="password" 	th:field="*{password}" placeholder="Nombre de Usuario"></input></label>
+    	<button type="submit" class="button expanded">Crear Usuario</button>
+    </form>
+	<!--  Fin Contenido Página  -->
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="/static/foundation-6/js/foundation.min.js" ></script>
+	<script src="/static/foundation-6/js/app.js"></script>
+	<script	src="/static/foundation-6/js/vendor/what-input.min.js"></script>
+	
+	
+	
+</body>
+</html>

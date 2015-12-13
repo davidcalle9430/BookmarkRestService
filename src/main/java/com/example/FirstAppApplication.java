@@ -20,6 +20,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.GrantedAuthority;
@@ -142,6 +143,13 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter{
 @Configuration
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
+	
+  @Override
+  public void configure(WebSecurity web) throws Exception {
+	 web.ignoring().antMatchers("/static/css/**");
+	 web.ignoring().antMatchers("/static/js/**");
+	 web.ignoring().antMatchers("/static/foundation-6/**");
+  }
   @Override
   protected void configure(HttpSecurity http) throws Exception {
 	  http
@@ -151,7 +159,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .formLogin()
           .loginPage("/login")
           .permitAll().and()
-      .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");;
+      .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
   }
   
 }
