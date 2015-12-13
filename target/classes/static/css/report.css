@@ -26,5 +26,8 @@ th {
     p{
         display: none;
     }
+    .no-print{
+    	display: none;
+    }
 
 }

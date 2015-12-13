@@ -32,7 +32,7 @@ body {
 		display: none !important;
 	}
 	.formulario {
-		margin-top: 7%;
+		margin-top: 4%;
 		padding: 5%;
 	}
 }
@@ -44,42 +44,30 @@ body {
 	.menu:first-child {
 		border-left: none;
 	}
-	.menu
-	 
-	li
-	:not
-	 
-	(
-	:last-child
-	 
-	)
-	{
-	border-right
-	:
-	 
-	1
-	px
-	 
-	solid
-	 
-	#4e4e4e
-	;
-	
-	
-}
+	.menu li :not ( :last-child ) {
+		border-right:1px solid #4e4e4e;
+	}
 
 .formulario {
-	margin-top: 7%;
+	margin-top: 4%;
 	padding: 5%;
 }
 
 }
+
+.formulario {
+	margin-top: 4%;
+	padding: 5%;
+}
+
 .dropdown.menu .submenu {
 	border: none;
 }
-.log-in-form{
+
+.log-in-form {
 	padding: 4%;
 }
+
 .dropdown.menu .is-dropdown-submenu-parent.is-right-arrow>a::after {
 	border-color: #fff transparent transparent;
 }
@@ -90,9 +78,4 @@ body {
 
 .js-drilldown-back::before {
 	border-color: transparent #fff transparent transparent;
-}
-
-.formulario {
-	margin-top: 7%;
-	padding: 5%;
 }

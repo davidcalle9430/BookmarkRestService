@@ -10,18 +10,18 @@
 	<meta charset="utf-8"/>
 </head>
 <body>
-<div class="title-bar" data-responsive-toggle="main-menu"
+<div class="title-bar no-print" data-responsive-toggle="main-menu"
 		data-hide-for="medium">
 		<button class="menu-icon" type="button" data-toggle=""></button>
 		<div class="title-bar-title">Men&uacute;</div>
 	</div>
-	<div class="top-bar" id="main-menu">
+	<div class="top-bar no-print" id="main-menu">
 		<div class="top-bar-left">
 			<ul class="dropdown menu" data-dropdown-menu="">
 				<li class="menu-text">SIDIC - Impordisa</li>
 			</ul>
 		</div>
-		<div class="top-bar-right">
+		<div class="top-bar-right no-print">
 			<ul class="menu vertical medium-horizontal"
 				data-responsive-menu="drilldown medium-dropdown">
 				<li class="has-submenu"><a href="#">Usuarios</a>
@@ -45,11 +45,11 @@
     		<tr>
     			<td th:text ="${user.username}"> </td>
     			<td th:text ="${user.id}"> </td>
-    			<td><a> Editar Usuario</a></td>
+    			<td><a th:href="|/EditarUsuario/?username=${user.username}|"> Editar Usuario</a></td>
     			<td><a> Eliminar Usuario</a></td>
     		</tr>
     	</th:block>
-    </table>
+    </table>	
     
     <!--  Fin  Contenido Página  -->
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
