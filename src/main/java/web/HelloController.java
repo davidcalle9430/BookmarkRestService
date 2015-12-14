@@ -20,7 +20,7 @@ public class HelloController {
 	public String greting(){
 		return "login";
 	}
-	@PreAuthorize("hasRole('ROLE_ADMIN3') or hasRole('WOASD') ")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('WOASD') ")
 	@RequestMapping("/greeting/")
 	public String greting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model){
 		model.addAttribute("name", name);

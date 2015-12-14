@@ -36,14 +36,15 @@
 		</div>
 	</div>
 	<!--  Inicio Contenido Página  -->
-    <h1 th:text = "${account.id}" ></h1>
     <div class="row formulario">
   	<div class="medium-6 medium-centered large-6 large-centered columns">
   		<form th:object="${account}" method="post" th:action="@{/EditarUsuario/}">
   			<label for="username">Nombre de Usuario</label> <input type="text" id="username" th:field="*{username}" th:value="${account.username}" />
   			<label for="password">Contraseña</label> <input type="password" id="password" th:field="*{password}" th:value="${account.password}" />
   			<input type="hidden" th:field="*{id}"/>
-  			<!-- Acá Falta el rol que tiene ese usuario -->
+  			<label> Rol<select th:field="*{role}">
+  				<option th:each="role : ${roles}"  th:value="${role}"  th:text="${role.role}"></option>
+			</select></label>
   			<button type="submit" class="button expanded">Editar con nuevos valores</button>
   		</form>
   	</div>

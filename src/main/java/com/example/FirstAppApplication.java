@@ -36,12 +36,15 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+
 import entities.Account;
 import entities.Booking;
 import entities.Bookmark;
+import entities.Role;
 import repositories.AccountRepository;
 import repositories.BookingRepository;
 import repositories.BookmarkRepository;
+import repositories.RoleRepository;
 
 @SpringBootApplication
 @EntityScan(basePackages = {"entities","restcontrollers","web"})
@@ -81,12 +84,20 @@ class BookingCommandLineRunner implements CommandLineRunner{
 		Booking second = new Booking("Hunger Games");
 		this.bookingRepository.save(second);
 		
-		
+		Arrays.asList("ROLE_ADMIN,ROLE_EMPLEADO,ROLE_LECTURA".split(","))
+		.forEach( role -> {
+			Role newRole = new Role(role);
+			roleRepository.save(newRole);
+		});
+		Role role = roleRepository.findOne("ROLE_EMPLEADO");
+		System.out.println("ROL: " + role.getRole());
 		Arrays.asList(
 				"jhoeller,dsyer,pwebb,ogierke,rwinch,mfisher,mpollack,jlong,davidcalle9430,armandochindoy".split(","))
 				.forEach(
 						a -> {
-							Account account = accountRepository.save(new Account(a,"password"));
+							Account newAccount = new Account(a,"password");
+							newAccount.setRole(role);
+							Account account = accountRepository.save(newAccount);
 							bookmarkRepository.save( new Bookmark(account,"http://bookmark.com/1/" + a, "Great Movie" ) );
 							bookmarkRepository.save( new Bookmark(account, "http://bookmark.com/2/" + a, "Learn SpringBoot" ) );
 							bookmarkRepository.save( new Bookmark(account, "http://bookmark.com/3/" + a, "The Hunger Games" ) );
@@ -102,8 +113,9 @@ class BookingCommandLineRunner implements CommandLineRunner{
 			}
 		}
 		
-		
 	}
+	@Autowired
+	RoleRepository roleRepository;
 	@Autowired
 	BookingRepository bookingRepository;
 	@Autowired
@@ -130,7 +142,7 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter{
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 				Optional<Account> account = accountRepository.findByUsername(username);
 				if(account.isPresent()){
-					List<GrantedAuthority> roles = AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_ADMIND");
+					List<GrantedAuthority> roles = AuthorityUtils.createAuthorityList(account.get().getRole().getRole());
 					return new User(username, account.get().getPassword(), true, true, true, true, roles );
 				}else{
 					throw new UsernameNotFoundException("Username not found");

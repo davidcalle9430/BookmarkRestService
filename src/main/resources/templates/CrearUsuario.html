@@ -39,11 +39,19 @@
 
 
 	<!--  Inicio Contenido Página  -->
+	<div class="row formulario">
+  	<div class="medium-8 medium-centered large-8 large-centered columns">
     <form th:object="${user}" method="post" th:action="@{/CrearUsuario/}">
     	<label> Nombre de Usuario<input type="text" 	th:field="*{username}" placeholder="Nombre de Usuario"></input></label>
     	<label> Contraseña<input type="password" 	th:field="*{password}" placeholder="Nombre de Usuario"></input></label>
+    	<label> Rol<select th:field="*{role}">
+  			<option th:each="role : ${roles}"  th:value="${role}"  th:text="${role.role}"></option>
+		</select>
+		</label>
     	<button type="submit" class="button expanded">Crear Usuario</button>
     </form>
+    </div>
+    </div>
 	<!--  Fin Contenido Página  -->
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="/static/foundation-6/js/foundation.min.js" ></script>

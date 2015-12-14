@@ -1,6 +1,7 @@
 package entities;
 
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ public class Bookmark {
 	@GeneratedValue
 	private Long id;
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne(	)
 	private Account account;
 	private String uri;
 	private String description;

@@ -2,10 +2,13 @@ package entities;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,7 +21,20 @@ public class Account {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@OneToMany(mappedBy="account")
+	@ManyToOne(	fetch = FetchType.EAGER )
+	private Role role;
+	
+	
+	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	@OneToMany(mappedBy="account", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private Set<Bookmark> bookmarks;
 	
 	
@@ -59,7 +75,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [username=" + username + ", password=" + password + ", id=" + id+ "]";
+		return "Account [username=" + username + ", password=" + password + ", id=" + id + " role=" +  role.getRole()+"]";
 	}
 	
 	
