@@ -1,46 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Editar Usuario</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="/static/css/report.css" />
-	<link rel="stylesheet" href="/static/foundation-6/css/foundation.min.css" />
-	<link rel="stylesheet" href="/static/css/main.css"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<meta charset="utf-8"/>
+<head th:replace="header :: header">
+<title>Todos los Usuarios</title>
 </head>
-<body>
-<div class="title-bar no-print" data-responsive-toggle="main-menu"
-		data-hide-for="medium">
-		<button class="menu-icon" type="button" data-toggle=""></button>
-		<div class="title-bar-title">Men&uacute;</div>
-	</div>
-	<div class="top-bar no-print" id="main-menu">
-		<div class="top-bar-left">
-			<ul class="dropdown menu" data-dropdown-menu="">
-				<li class="menu-text">SIDIC - Impordisa</li>
-			</ul>
-		</div>
-		<div class="top-bar-right no-print">
-			<ul class="menu vertical medium-horizontal"
-				data-responsive-menu="drilldown medium-dropdown">
-				<li class="has-submenu"><a href="#">Usuarios</a>
-					<ul class="submenu menu vertical" data-submenu="">
-						<li><a href="/Usuarios/">Ver Todos los Usuarios</a></li>
-						<li><a href="/CrearUsuario/">Agregar Usuario</a></li>
-					</ul></li>
-				<li><a href="#">Reportes</a></li>
-				<li><a href="#">Configuración</a></li>
-				<li><a href="/logout">Cerrar Sesión</a></li>
-			</ul>
-		</div>
-	</div>
-	<!--  Inicio Contenido Página  -->
+<body class="main-form">
+	<nav th:replace="nav :: nav"></nav>
+	<!--  Inicio Contenido P�gina  -->
     <div class="row formulario">
   	<div class="medium-6 medium-centered large-6 large-centered columns">
   		<form th:object="${account}" method="post" th:action="@{/EditarUsuario/}">
   			<label for="username">Nombre de Usuario</label> <input type="text" id="username" th:field="*{username}" th:value="${account.username}" />
-  			<label for="password">Contraseña</label> <input type="password" id="password" th:field="*{password}" th:value="${account.password}" />
+  			<label for="password">Contrase&ntilde;a</label> <input type="password" id="password" th:field="*{password}" th:value="${account.password}" />
   			<input type="hidden" th:field="*{id}"/>
   			<label> Rol<select th:field="*{role}">
   				<option th:each="role : ${roles}"  th:value="${role}"  th:text="${role.role}"></option>
@@ -49,12 +19,6 @@
   		</form>
   	</div>
   	</div>
-    
-    
-    <!--  Fin  Contenido Página  -->
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="/static/foundation-6/js/foundation.min.js" ></script>
-<script src="/static/foundation-6/js/app.js"></script>
-<script	src="/static/foundation-6/js/vendor/what-input.min.js"></script>
+    <footer th:replace="footer :: footer"></footer>
 </body>
 </html>
