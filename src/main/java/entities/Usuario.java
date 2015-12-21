@@ -1,50 +1,66 @@
 package entities;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.annotation.JsonIgnore;
+/**
+* Entidad Usuario
+* Clase encargada de reprentar los usuarios
+*
+* @author  David Calle
+* @version 1.0
+* @since   2015-12-14
+*/
 @Entity
-public class Account {
+public class Usuario {
+	
+	/**
+     * Nombre de usuario, debe ser único en la base de datos
+     */
 	@Column(unique = true)
 	private String username;
+	/**
+     * contraseña, no enviada al serializar 
+     */
 	@JsonIgnore
 	private String password;
+	/**
+     * identificador autoincrementar del usuario
+     */
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	/**
+     * Rol del usuario en la aplicación
+     */
 	@ManyToOne(	fetch = FetchType.EAGER )
-	private Role role;
+	private Rol role;
 	
 	
 	
-	public Role getRole() {
+	public Rol getRole() {
 		return role;
 	}
 
-	public void setRole(Role role) {
+	public void setRole(Rol role) {
 		this.role = role;
 	}
 
-	@OneToMany(mappedBy="account", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private Set<Bookmark> bookmarks;
 	
 	
-	public Account(String username, String password) {
+	public Usuario(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
 	}
 	
-	public Account() {
+	public Usuario() {
 		super();
 	}
 
@@ -66,12 +82,7 @@ public class Account {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Set<Bookmark> getBookmarks() {
-		return bookmarks;
-	}
-	public void setBookmarks(Set<Bookmark> bookmarks) {
-		this.bookmarks = bookmarks;
-	}
+
 
 	@Override
 	public String toString() {

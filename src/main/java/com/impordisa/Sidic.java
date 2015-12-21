@@ -1,4 +1,4 @@
-package com.example;
+package com.impordisa;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -37,102 +37,122 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 
-import entities.Account;
-import entities.Booking;
-import entities.Bookmark;
-import entities.Role;
+import entities.Usuario;
+import entities.Rol;
 import repositories.AccountRepository;
-import repositories.BookingRepository;
-import repositories.BookmarkRepository;
 import repositories.RoleRepository;
-
+/**
+* Clase encargade de arrancar la aplicación haciendo un escan de los componentes que necesita
+* Encargadad e cargar la configuración de la aplicación
+*
+* @author  David Calle
+* @version 1.0
+* @since   2015-12-14
+*/
 @SpringBootApplication
 @EntityScan(basePackages = {"entities","restcontrollers","web"})
 @EnableJpaRepositories(basePackages={"repositories"})
 @EnableAutoConfiguration
 @Configuration
-@ComponentScan(basePackages={"com.example","restcontrollers","web"})
+@ComponentScan(basePackages={"com.impordisa","restcontrollers","web"})
 @EnableWebMvc
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
-public class FirstAppApplication {
-	@Autowired
-	BookingRepository bookingRepository;
+public class Sidic {
     public static void main(String[] args) {
-        SpringApplication.run(FirstAppApplication.class, args);
-        
+        SpringApplication.run(Sidic.class, args);
     }
 }
+
+/**
+* Manejador de recursos estáticos
+* Clase encargada de configurar cómo se manejan los archivos estáticos
+*
+* @author  David Calle
+* @version 1.0
+* @since   2015-12-14
+*/
 
 @Configuration
 class StaticResourceConfiguration extends WebMvcConfigurerAdapter {
 
-private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
+	private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
         "classpath:/META-INF/resources/", "classpath:/resources/",
         "classpath:/static/", "classpath:/public/" };
-
-@Override
-public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    registry.addResourceHandler("/static/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/static/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
+	}
 }
+
+/**
+* Clase encargada de la configuración de spring MVC
+*
+* @author  David Calle
+* @version 1.0
+* @since   2015-12-14
+*/
+@ComponentScan("org.springframework.security.samples.mvc")
+@Configuration
+@EnableWebMvc
+class WebMvcConfiguration extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/login").setViewName("login");
+        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+    }
 }
 @Component
 class BookingCommandLineRunner implements CommandLineRunner{
 	@Override
 	public void run(String... arg0) throws Exception {
-		Booking booking = new Booking("Harry Potter");
-		this.bookingRepository.save(booking);
-		Booking second = new Booking("Hunger Games");
-		this.bookingRepository.save(second);
 		
 		Arrays.asList("ROLE_ADMIN,ROLE_EMPLEADO,ROLE_LECTURA".split(","))
 		.forEach( role -> {
-			Role newRole = new Role(role);
+			Rol newRole = new Rol(role);
 			roleRepository.save(newRole);
 		});
-		Role role = roleRepository.findOne("ROLE_EMPLEADO");
-		System.out.println("ROL: " + role.getRole());
+		Rol role = roleRepository.findOne("ROLE_EMPLEADO");
 		Arrays.asList(
 				"jhoeller,dsyer,pwebb,ogierke,rwinch,mfisher,mpollack,jlong,davidcalle9430,armandochindoy".split(","))
 				.forEach(
 						a -> {
-							Account newAccount = new Account(a,"password");
+							Usuario newAccount = new Usuario(a,"password");
 							newAccount.setRole(role);
-							Account account = accountRepository.save(newAccount);
-							bookmarkRepository.save( new Bookmark(account,"http://bookmark.com/1/" + a, "Great Movie" ) );
-							bookmarkRepository.save( new Bookmark(account, "http://bookmark.com/2/" + a, "Learn SpringBoot" ) );
-							bookmarkRepository.save( new Bookmark(account, "http://bookmark.com/3/" + a, "The Hunger Games" ) );
-							bookmarkRepository.save( new Bookmark(account, "http://bookmark.com/4/" + a, "Xenoblade Chronicles X walkthrough" ) );
-						}
+							accountRepository.save(newAccount);
+						}		
 						);
-		Collection<Account> accounts = accountRepository.findAll();
-		for (Account account : accounts) {
+		Collection<Usuario> accounts = accountRepository.findAll();
+		for (Usuario account : accounts) {
 			System.out.println(account.toString());
-			Collection<Bookmark> bookmarks = bookmarkRepository.findByAccountUsername(account.getUsername());
-			for (Bookmark bookmark : bookmarks) {
-				System.out.println("    "+ bookmark.toString());
-			}
 		}
 		
 	}
 	@Autowired
 	RoleRepository roleRepository;
 	@Autowired
-	BookingRepository bookingRepository;
-	@Autowired
 	AccountRepository accountRepository;
-	@Autowired
-	BookmarkRepository bookmarkRepository;
 	
 }
+
+/**
+* Web Security Configuration
+* Clase encargada de configurar la seguridad web de la aplicación
+*
+* @author  David Calle
+* @version 1.0
+* @since   2015-12-14
+*/
+
 @Configuration
 class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter{
 	@Autowired
 	private AccountRepository accountRepository;
 	
 	@Override
-	  public void init(AuthenticationManagerBuilder auth) throws Exception {
+	public void init(AuthenticationManagerBuilder auth) throws Exception {
 	    auth.userDetailsService(userDetailsService());
-	  }
+	 }
 	
 	@Bean
 	public UserDetailsService userDetailsService(){
@@ -140,7 +160,7 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter{
 			
 			@Override
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-				Optional<Account> account = accountRepository.findByUsername(username);
+				Optional<Usuario> account = accountRepository.findByUsername(username);
 				if(account.isPresent()){
 					List<GrantedAuthority> roles = AuthorityUtils.createAuthorityList(account.get().getRole().getRole());
 					return new User(username, account.get().getPassword(), true, true, true, true, roles );
@@ -151,11 +171,18 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter{
 		};
 	}
 }
+
+/**
+* Configración adicional de seguridad
+* Clase encargada de quitarle la seguridad a los archivos estáticos
+*
+* @author  David Calle
+* @version 1.0
+* @since   2015-12-14
+*/
 @EnableWebSecurity
 @Configuration
-class WebSecurityConfig extends WebSecurityConfigurerAdapter {
- 
-	
+class WebSecurityConfig extends WebSecurityConfigurerAdapter {	
   @Override
   public void configure(WebSecurity web) throws Exception {
 	 web.ignoring().antMatchers("/static/css/**");
@@ -177,13 +204,3 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 }
 
 
-@EnableWebMvc
-@ComponentScan("org.springframework.security.samples.mvc")
-class WebMvcConfiguration extends WebMvcConfigurerAdapter {
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("login.html");
-        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
-    }
-}

@@ -36,14 +36,13 @@
 		</div>
 	</div>
 	<!--  Inicio Contenido Página  -->
-    <h1 th:text = "${account.id}" ></h1>
     <div class="row formulario">
   	<div class="medium-6 medium-centered large-6 large-centered columns">
   		<form th:object="${account}" method="post" th:action="@{/EliminarUsuario/}">
-  			<label for="username">Nombre de Usuario</label> <input type="text" id="username" th:field="*{username}" th:value="${account.username}" />
+			<label for="username">Nombre de Usuario</label> <input type="text" id="username" th:field="*{username}" th:value="${account.username}" />
   			<label for="password">Contraseña</label> <input type="password" id="password" th:field="*{password}" th:value="${account.password}" />
-  			<input type="hidden" th:field="*{id}"/>
-  			<!-- Acá Falta el rol que tiene ese usuario -->
+  			<label for="password"> id <input type="text" th:field="*{id}"  th:value="${account.id}" /> </label>
+  			<label for="password"> Rol <input type="text" disabled="" th:field="*{role}"  th:value="${account.role}"/></label>
   			<button type="submit" class="button expanded">Borrar Usuario</button>
   		</form>
   	</div>

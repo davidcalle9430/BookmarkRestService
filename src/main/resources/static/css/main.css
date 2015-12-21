@@ -79,3 +79,13 @@ body {
 .js-drilldown-back::before {
 	border-color: transparent #fff transparent transparent;
 }
+
+.table-content{
+	color: black;
+}
+.table-content a{
+	color: blue;
+}
+.main-form{
+	background-color: white;
+}
