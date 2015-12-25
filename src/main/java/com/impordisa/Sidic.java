@@ -1,7 +1,6 @@
 package com.impordisa;
 
-import java.util.Arrays;
-import java.util.Collection;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -38,8 +37,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 
 import entities.Usuario;
-import entities.Rol;
 import repositories.AccountRepository;
+import repositories.EmpresaRepository;
 import repositories.RoleRepository;
 /**
 * Clase encargade de arrancar la aplicación haciendo un escan de los componentes que necesita
@@ -50,7 +49,7 @@ import repositories.RoleRepository;
 * @since   2015-12-14
 */
 @SpringBootApplication
-@EntityScan(basePackages = {"entities","restcontrollers","web"})
+@EntityScan(basePackages = {"entities","restcontrollers","web","sidic.entities"})
 @EnableJpaRepositories(basePackages={"repositories"})
 @EnableAutoConfiguration
 @Configuration
@@ -106,28 +105,11 @@ class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 class BookingCommandLineRunner implements CommandLineRunner{
 	@Override
 	public void run(String... arg0) throws Exception {
-		
-		Arrays.asList("ROLE_ADMIN,ROLE_EMPLEADO,ROLE_LECTURA".split(","))
-		.forEach( role -> {
-			Rol newRole = new Rol(role);
-			roleRepository.save(newRole);
-		});
-		Rol role = roleRepository.findOne("ROLE_EMPLEADO");
-		Arrays.asList(
-				"jhoeller,dsyer,pwebb,ogierke,rwinch,mfisher,mpollack,jlong,davidcalle9430,armandochindoy".split(","))
-				.forEach(
-						a -> {
-							Usuario newAccount = new Usuario(a,"password");
-							newAccount.setRole(role);
-							accountRepository.save(newAccount);
-						}		
-						);
-		Collection<Usuario> accounts = accountRepository.findAll();
-		for (Usuario account : accounts) {
-			System.out.println(account.toString());
-		}
-		
 	}
+	
+	
+	@Autowired
+	EmpresaRepository empresaRepository;
 	@Autowired
 	RoleRepository roleRepository;
 	@Autowired

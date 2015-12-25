@@ -43,7 +43,19 @@ public class Usuario {
 	private Rol role;
 	
 	
+	@ManyToOne(	fetch = FetchType.EAGER )
+	private Empresa empresa;
 	
+	
+	
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
 	public Rol getRole() {
 		return role;
 	}
