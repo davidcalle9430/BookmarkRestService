@@ -105,6 +105,7 @@ class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 class BookingCommandLineRunner implements CommandLineRunner{
 	@Override
 	public void run(String... arg0) throws Exception {
+		System.gc();
 	}
 	
 	

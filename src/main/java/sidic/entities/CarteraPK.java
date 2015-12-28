@@ -26,29 +26,29 @@ public class CarteraPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Basic(optional = false)
     @Column(nullable = false, name="CODIGO")
-    private double codigo;
+    private Long codigo;
     @Basic(optional = false)
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     @Basic(optional = false)
     @Column(nullable = false)
-    private double factura;
+    private Long factura;
 
     public CarteraPK() {
     }
 
-    public CarteraPK(double codigo, Date fecha, double factura) {
+    public CarteraPK(Long codigo, Date fecha, Long factura) {
         this.codigo = codigo;
         this.fecha = fecha;
         this.factura = factura;
     }
 
-    public double getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(double codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
@@ -64,16 +64,16 @@ public class CarteraPK implements Serializable {
         return factura;
     }
 
-    public void setFactura(double factura) {
+    public void setFactura(Long factura) {
         this.factura = factura;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) codigo;
+        hash += (long) codigo;
         hash += (fecha != null ? fecha.hashCode() : 0);
-        hash += (int) factura;
+        hash += (long) factura;
         return hash;
     }
 

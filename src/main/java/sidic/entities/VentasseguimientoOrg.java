@@ -6,21 +6,20 @@
 package sidic.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author david
  */
 @Entity
-@Table(name = "ventasseguimiento_org")
-@XmlRootElement
+@Table(name = "vo")
 @NamedQueries({
     @NamedQuery(name = "VentasseguimientoOrg.findAll", query = "SELECT v FROM VentasseguimientoOrg v"),
     @NamedQuery(name = "VentasseguimientoOrg.findByCliente", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.cliente = :cliente"),
@@ -31,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "VentasseguimientoOrg.findByValorNeto", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.valorNeto = :valorNeto"),
     @NamedQuery(name = "VentasseguimientoOrg.findByCostoIM", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.costoIM = :costoIM"),
     @NamedQuery(name = "VentasseguimientoOrg.findByCostoJM", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.costoJM = :costoJM"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByUtilidadBrutaIm", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.utilidadBrutaIm = :utilidadBrutaIm"),
+    @NamedQuery(name = "VentasseguimientoOrg.findByutilidadBrutaIm", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.utilidadBrutaIm = :utilidadBrutaIm"),
     @NamedQuery(name = "VentasseguimientoOrg.findByUtilidadBrutaJM", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.utilidadBrutaJM = :utilidadBrutaJM"),
     @NamedQuery(name = "VentasseguimientoOrg.findByFletes", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.fletes = :fletes"),
     @NamedQuery(name = "VentasseguimientoOrg.findByAcarreosAlpasarImpordisa", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.acarreosAlpasarImpordisa = :acarreosAlpasarImpordisa"),
@@ -62,10 +61,10 @@ public class VentasseguimientoOrg implements Serializable {
     private Double costoIM;
     @Column(precision = 22)
     private Double costoJM;
-    @Column(precision = 22)
-    private Double utilidadBrutaIm;
-    @Column(precision = 22)
-    private Double utilidadBrutaJM;
+    @Column(precision = 22, name="utilidadBrutaIm")
+    public Float utilidadBrutaIm;
+    @Column(precision = 22, name="utilidadBrutaJM")
+    public Double utilidadBrutaJM;
     @Column(precision = 22)
     private Double fletes;
     @Column(name = "Acarreos_Alpasar_Impordisa", precision = 22)
@@ -91,8 +90,7 @@ public class VentasseguimientoOrg implements Serializable {
     @Column(length = 1)
     private String estado;
 
-    public VentasseguimientoOrg() {
-    }
+    public VentasseguimientoOrg() {}
 
     public VentasseguimientoOrg(VentasseguimientoOrgPK ventasseguimientoOrgPK) {
         this.ventasseguimientoOrgPK = ventasseguimientoOrgPK;
@@ -158,11 +156,11 @@ public class VentasseguimientoOrg implements Serializable {
         this.costoJM = costoJM;
     }
 
-    public Double getUtilidadBrutaIm() {
+    public Float getutilidadBrutaIm() {
         return utilidadBrutaIm;
     }
 
-    public void setUtilidadBrutaIm(Double utilidadBrutaIm) {
+    public void setutilidadBrutaIm(Float utilidadBrutaIm) {
         this.utilidadBrutaIm = utilidadBrutaIm;
     }
 

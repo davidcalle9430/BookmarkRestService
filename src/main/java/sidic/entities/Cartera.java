@@ -18,6 +18,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author david
@@ -116,9 +118,12 @@ public class Cartera implements Serializable {
     private Double dias;
     @Column(precision = 22)
     private Double porcentaje;
+    
+    @JsonIgnore
     @JoinColumn(name = "CODIGO", referencedColumnName = "CODIGO", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Clientes clientes;
+    @JsonIgnore
     @JoinColumn(name = "VENDEDOR", referencedColumnName = "CODIGO")
     @ManyToOne
     private Vendedor vendedor;
@@ -130,7 +135,7 @@ public class Cartera implements Serializable {
         this.carteraPK = carteraPK;
     }
 
-    public Cartera(double codigo, Date fecha, double factura) {
+    public Cartera(Long codigo, Date fecha, Long factura) {
         this.carteraPK = new CarteraPK(codigo, fecha, factura);
     }
 
