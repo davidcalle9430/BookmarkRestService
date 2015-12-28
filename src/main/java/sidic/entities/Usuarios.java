@@ -22,6 +22,9 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author david
@@ -51,19 +54,25 @@ public class Usuarios implements Serializable {
     private Integer diasalerta;
     @Column(name = "indicador_nuevo")
     private Integer indicadorNuevo;
+    @JsonIgnore
     @Column(length = 12)
     private String password;
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechapassword;
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
+    @JsonIgnore
     @JoinColumn(name = "Empresa", referencedColumnName = "Empresa", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Empresas empresas;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<Opciones> opcionesList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<Menus> menusList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<Niveles> nivelesList;
 

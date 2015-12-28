@@ -40,6 +40,7 @@ import entities.Usuario;
 import repositories.AccountRepository;
 import repositories.EmpresaRepository;
 import repositories.RoleRepository;
+import repositories.UsuarioRepository;
 /**
 * Clase encargade de arrancar la aplicación haciendo un escan de los componentes que necesita
 * Encargadad e cargar la configuración de la aplicación
@@ -131,6 +132,8 @@ class BookingCommandLineRunner implements CommandLineRunner{
 class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter{
 	@Autowired
 	private AccountRepository accountRepository;
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 	
 	@Override
 	public void init(AuthenticationManagerBuilder auth) throws Exception {
