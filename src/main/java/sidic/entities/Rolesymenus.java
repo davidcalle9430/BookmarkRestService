@@ -54,7 +54,7 @@ public class Rolesymenus implements Serializable {
         this.rolesymenusPK = rolesymenusPK;
     }
 
-    public Rolesymenus(int empresa, double rol, String menu) {
+    public Rolesymenus(int empresa, Long rol, String menu) {
         this.rolesymenusPK = new RolesymenusPK(empresa, rol, menu);
     }
 

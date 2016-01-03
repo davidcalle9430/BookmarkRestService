@@ -26,7 +26,7 @@ public class RolesymenusPK implements Serializable {
     private int empresa;
     @Basic(optional = false)
     @Column(nullable = false)
-    private double rol;
+    private Long rol;
     @Basic(optional = false)
     @Column(nullable = false, length = 50)
     private String menu;
@@ -34,7 +34,7 @@ public class RolesymenusPK implements Serializable {
     public RolesymenusPK() {
     }
 
-    public RolesymenusPK(int empresa, double rol, String menu) {
+    public RolesymenusPK(int empresa, Long rol, String menu) {
         this.empresa = empresa;
         this.rol = rol;
         this.menu = menu;
@@ -48,11 +48,11 @@ public class RolesymenusPK implements Serializable {
         this.empresa = empresa;
     }
 
-    public double getRol() {
+    public Long getRol() {
         return rol;
     }
 
-    public void setRol(double rol) {
+    public void setRol(Long rol) {
         this.rol = rol;
     }
 
@@ -68,7 +68,7 @@ public class RolesymenusPK implements Serializable {
     public int hashCode() {
         int hash = 0;
         hash += (int) empresa;
-        hash += (int) rol;
+        hash += (long) rol;
         hash += (menu != null ? menu.hashCode() : 0);
         return hash;
     }

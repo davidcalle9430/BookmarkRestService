@@ -39,7 +39,7 @@ public class Rolessss implements Serializable {
         this.rolessssPK = rolessssPK;
     }
 
-    public Rolessss(int empresa, double codigo) {
+    public Rolessss(int empresa, Long codigo) {
         this.rolessssPK = new RolessssPK(empresa, codigo);
     }
 

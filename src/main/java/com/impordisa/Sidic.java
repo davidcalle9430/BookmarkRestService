@@ -1,8 +1,16 @@
 package com.impordisa;
 
 
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,7 +20,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -25,23 +32,29 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 
-import entities.Usuario;
 import repositories.AccountRepository;
 import repositories.EmpresaRepository;
 import repositories.RoleRepository;
+import repositories.RolesRepository;
+import repositories.RolesYMenusRepository;
 import repositories.UsuarioRepository;
+import sidic.entities.Rolessss;
+import sidic.entities.Rolesymenus;
+import sidic.entities.Usuarios;
 /**
 * Clase encargade de arrancar la aplicación haciendo un escan de los componentes que necesita
 * Encargadad e cargar la configuración de la aplicación
@@ -132,10 +145,11 @@ class BookingCommandLineRunner implements CommandLineRunner{
 @Configuration
 class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter{
 	@Autowired
-	private AccountRepository accountRepository;
-	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+	@Autowired
+	private RolesYMenusRepository rolesYMenusRepository;
+	@Autowired
+	private RolesRepository rolesRepository;
 	@Override
 	public void init(AuthenticationManagerBuilder auth) throws Exception {
 	    auth.userDetailsService(userDetailsService());
@@ -147,12 +161,25 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter{
 			
 			@Override
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-				Optional<Usuario> account = accountRepository.findByUsername(username);
-				if(account.isPresent()){
-					List<GrantedAuthority> roles = AuthorityUtils.createAuthorityList(account.get().getRole().getRole());
-					return new User(username, account.get().getPassword(), true, true, true, true, roles );
+				Usuarios usuario =  null;
+				try{
+				 usuario = usuarioRepository.findOneByUsuariosPK_Usuario(username).get();
+				}catch(Exception e){
+					throw new UsernameNotFoundException("El usuario " + username + " No existe");
+				}
+				if(usuario != null){
+					List<Rolesymenus> rolesUsuario = rolesYMenusRepository.findAllByUsuario(username);
+					System.out.println(rolesUsuario);
+					Set<String> roles = new HashSet<>();
+					rolesUsuario.forEach( rol -> {
+						Rolessss rolActual = rolesRepository.findOneByRolessssPK_codigo(rol.getRolesymenusPK().getRol());
+						roles.add(rolActual.getNombre());
+					});
+					String[] arregloDeRoles = new String[roles.size()];
+					List<GrantedAuthority> rolesSeguridad = AuthorityUtils.createAuthorityList(roles.toArray(arregloDeRoles));
+					return new User(username, usuario.getPassword() , true, true, true, true, rolesSeguridad );
 				}else{
-					throw new UsernameNotFoundException("Username not found");
+					throw new UsernameNotFoundException("Nombre de Usuario no Encontrado");
 				}
 			}
 		};
@@ -188,6 +215,33 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
   }
   
+}
+
+/* Filtro encargado de la seguridad extra de la aplicación */
+@Configuration
+class RequestFilter extends OncePerRequestFilter {
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	@Autowired
+	private RolesYMenusRepository rolesYMenusRepository;
+	
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    	HttpSession session = request.getSession();
+    	SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+    	if (sci != null) {
+            UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
+            Usuarios elected = usuarioRepository.findOneByUsuariosPK_Usuario(cud.getUsername()).get();
+            System.out.println("Sesión de " + elected.getUsuariosPK().getUsuario() + " petición a " + request.getRequestURI());
+            List<Rolesymenus> rolesXMenus = rolesYMenusRepository.findAllByUsuario(elected.getUsuariosPK().getUsuario());
+            System.out.println("Opciones posibles:");
+            for (Rolesymenus rolymenu : rolesXMenus) {
+				System.out.println("  " + rolymenu.getMenus().getMenusPK().getMenu());
+			}
+    	}
+    	filterChain.doFilter(request, response);
+	}
+
 }
 
 

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -117,7 +117,7 @@ public class UsuarioController {
 	   * @param model conjunto de atributos que se le pasan a la vista
 	   * @return String retorna el nombre de la vista asociada.
 	   */
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('WOASD') ")
+	//@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('WOASD') ")
 	@RequestMapping(value = "/EliminarUsuario/", method = RequestMethod.GET)
 	public String selectUserToDelete(@RequestParam String username, Model model) {
 		Optional<Usuario> oAccount = accountRepository.findByUsername(username);

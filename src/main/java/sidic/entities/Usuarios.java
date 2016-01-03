@@ -54,12 +54,13 @@ public class Usuarios implements Serializable {
     private Integer diasalerta;
     @Column(name = "indicador_nuevo")
     private Integer indicadorNuevo;
-    @JsonIgnore
+    //	@JsonIgnore
     @Column(length = 12)
     private String password;
     @JsonFormat(pattern="yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechapassword;
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     @JsonIgnore

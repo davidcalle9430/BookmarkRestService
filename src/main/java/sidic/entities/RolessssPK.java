@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.GeneratedValue;
 
 /**
  *
@@ -24,14 +25,15 @@ public class RolessssPK implements Serializable {
 	@Basic(optional = false)
     @Column(nullable = false)
     private int empresa;
+	@GeneratedValue
     @Basic(optional = false)
     @Column(nullable = false)
-    private double codigo;
+    private Long codigo;
 
     public RolessssPK() {
     }
 
-    public RolessssPK(int empresa, double codigo) {
+    public RolessssPK(int empresa, Long codigo) {
         this.empresa = empresa;
         this.codigo = codigo;
     }
@@ -48,7 +50,7 @@ public class RolessssPK implements Serializable {
         return codigo;
     }
 
-    public void setCodigo(double codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
@@ -56,7 +58,7 @@ public class RolessssPK implements Serializable {
     public int hashCode() {
         int hash = 0;
         hash += (int) empresa;
-        hash += (int) codigo;
+        hash += (long) codigo;
         return hash;
     }
 
