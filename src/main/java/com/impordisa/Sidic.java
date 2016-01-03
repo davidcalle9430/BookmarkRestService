@@ -163,7 +163,7 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter{
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 				Usuarios usuario =  null;
 				try{
-				 usuario = usuarioRepository.findOneByUsuariosPK_Usuario(username).get();
+				 usuario = usuarioRepository.findOneByUsuario(username).get();
 				}catch(Exception e){
 					throw new UsernameNotFoundException("El usuario " + username + " No existe");
 				}
@@ -213,6 +213,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
           .loginPage("/login")
           .permitAll().and()
       .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
+	  http.csrf().disable();
   }
   
 }
@@ -231,13 +232,8 @@ class RequestFilter extends OncePerRequestFilter {
     	SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
     	if (sci != null) {
             UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
-            Usuarios elected = usuarioRepository.findOneByUsuariosPK_Usuario(cud.getUsername()).get();
-            System.out.println("Sesión de " + elected.getUsuariosPK().getUsuario() + " petición a " + request.getRequestURI());
-            List<Rolesymenus> rolesXMenus = rolesYMenusRepository.findAllByUsuario(elected.getUsuariosPK().getUsuario());
-            System.out.println("Opciones posibles:");
-            for (Rolesymenus rolymenu : rolesXMenus) {
-				System.out.println("  " + rolymenu.getMenus().getMenusPK().getMenu());
-			}
+            Usuarios elected = usuarioRepository.findOneByUsuario(cud.getUsername()).get();
+            //List<Rolesymenus> rolesXMenus = rolesYMenusRepository.findAllByUsuario(elected.getUsuario());
     	}
     	filterChain.doFilter(request, response);
 	}

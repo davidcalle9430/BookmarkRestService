@@ -8,10 +8,13 @@ package sidic.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -33,8 +36,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u"),
-    @NamedQuery(name = "Usuarios.findByEmpresa", query = "SELECT u FROM Usuarios u WHERE u.usuariosPK.empresa = :empresa"),
-    @NamedQuery(name = "Usuarios.findByUsuario", query = "SELECT u FROM Usuarios u WHERE u.usuariosPK.usuario = :usuario"),
+    //@NamedQuery(name = "Usuarios.findByEmpresa", query = "SELECT u FROM Usuarios u WHERE u.usuariosPK.empresa = :empresa"),
+    //@NamedQuery(name = "Usuarios.findByUsuario", query = "SELECT u FROM Usuarios u WHERE u.usuariosPK.usuario = :usuario"),
     @NamedQuery(name = "Usuarios.findByNivel", query = "SELECT u FROM Usuarios u WHERE u.nivel = :nivel"),
     @NamedQuery(name = "Usuarios.findByActivado", query = "SELECT u FROM Usuarios u WHERE u.activado = :activado"),
     @NamedQuery(name = "Usuarios.findByMaxdias", query = "SELECT u FROM Usuarios u WHERE u.maxdias = :maxdias"),
@@ -43,11 +46,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
     @NamedQuery(name = "Usuarios.findByPassword", query = "SELECT u FROM Usuarios u WHERE u.password = :password"),
     @NamedQuery(name = "Usuarios.findByFechapassword", query = "SELECT u FROM Usuarios u WHERE u.fechapassword = :fechapassword"),
     @NamedQuery(name = "Usuarios.findByFecha", query = "SELECT u FROM Usuarios u WHERE u.fecha = :fecha")})
+@IdClass(UsuariosPK.class)
 public class Usuarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected UsuariosPK usuariosPK;
+    //@EmbeddedId
+    //protected UsuariosPK usuariosPK;
+    @Id
+    @Basic(optional = false)
+    @Column(nullable = false,name="Empresa")
+    private int empresa;
+    @Id
+    @Basic(optional = false)
+    @Column(nullable = false, length = 50)
+    private String usuario;
     private Integer nivel;
     private Integer activado;
     private Integer maxdias;
@@ -79,23 +91,21 @@ public class Usuarios implements Serializable {
 
     public Usuarios() {
     }
+    public int getEmpresa() {
+  		return empresa;
+  	}
 
-    public Usuarios(UsuariosPK usuariosPK) {
-        this.usuariosPK = usuariosPK;
-    }
+  	public void setEmpresa(int empresa) {
+  		this.empresa = empresa;
+  	}
 
-    public Usuarios(int empresa, String usuario) {
-        this.usuariosPK = new UsuariosPK(empresa, usuario);
-    }
+  	public String getUsuario() {
+  		return usuario;
+  	}
 
-    public UsuariosPK getUsuariosPK() {
-        return usuariosPK;
-    }
-
-    public void setUsuariosPK(UsuariosPK usuariosPK) {
-        this.usuariosPK = usuariosPK;
-    }
-
+  	public void setUsuario(String usuario) {
+  		this.usuario = usuario;
+  	}
     public Integer getNivel() {
         return nivel;
     }
@@ -198,7 +208,7 @@ public class Usuarios implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (usuariosPK != null ? usuariosPK.hashCode() : 0);
+     //   hash += (usuariosPK != null ? usuariosPK.hashCode() : 0);
         return hash;
     }
 
@@ -209,15 +219,17 @@ public class Usuarios implements Serializable {
             return false;
         }
         Usuarios other = (Usuarios) object;
-        if ((this.usuariosPK == null && other.usuariosPK != null) || (this.usuariosPK != null && !this.usuariosPK.equals(other.usuariosPK))) {
-            return false;
-        }
+     //   if ((this.usuariosPK == null && other.usuariosPK != null) || (this.usuariosPK != null && !this.usuariosPK.equals(other.usuariosPK))) {
+    //      return false;
+      //  }
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "sidic.entities.Usuarios[ usuariosPK=" + usuariosPK + " ]";
-    }
+	@Override
+	public String toString() {
+		return "Usuarios [empresa=" + empresa + ", usuario=" + usuario + ", nivel=" + nivel + "]";
+	}
+
+    
     
 }

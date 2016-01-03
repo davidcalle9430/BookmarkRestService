@@ -102,6 +102,14 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        <dependency>
+        	<groupId>ch.qos.logback</groupId>
+        	<artifactId>logback-access</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>ch.qos.logback</groupId>
+        	<artifactId>logback-access</artifactId>
+        </dependency>
 	</dependencies>
 
 	<build>

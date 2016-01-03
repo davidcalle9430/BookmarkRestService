@@ -8,5 +8,5 @@ import sidic.entities.Usuarios;
 import sidic.entities.UsuariosPK;
 
 public interface UsuarioRepository extends JpaRepository<Usuarios, UsuariosPK>{
-	public Optional<Usuarios> findOneByUsuariosPK_Usuario(String usuario);
+	public Optional<Usuarios> findOneByUsuario(String usuario);
 }

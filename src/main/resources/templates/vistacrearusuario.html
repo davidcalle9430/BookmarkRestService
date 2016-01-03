@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+<title>Crear Usuario</title>
+</head>
+<body>
+	<nav th:replace="nav :: nav"></nav>
+	<div class="loader"></div>
+	<div class="row formulario fondo">
+  	<div class="medium-6 medium-centered large-6 large-centered columns">
+		<form name="forma fondo"  method="post">
+			<div class="row column log-in-form">
+				<h4 class="text-center">Crea un nuevo usuario</h4>
+				<label for="usuario">Nombre de Usuario</label> <input type="text" id="username" name="usuario" /> 
+				<label for="password">Contrase&ntilde;a</label> <input type="password" id="password" name="password" />
+				<label for="nivel">Nivel</label> <input type="text" id="nivel" name="nivel" />
+				<label for="activado">Activado</label> <input type="text" id="activado" name="activado" />
+				<label for="maxdias">Max D&iacute;as</label> <input type="text" id="maxdias" name="maxdias" />
+				<label for="diasalerta">D&iacute;as Alerta</label> <input type="text" id="diasalerta" name="diasalerta" />
+				<div class="form-actions">
+					<button type="submit" class="button expanded">Crear Usuario</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	</div>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/crearusuario.js"></script>
+</body>
+</html>

@@ -140,4 +140,10 @@ public class UsuarioController {
 		accountRepository.delete(account);
 		return new RedirectView("/Usuarios/");
 	}
+	
+	
+	@RequestMapping(value = "/configuracion/crearusuario/", method = RequestMethod.GET)
+	public String vistaCrearUsuario(){
+		return "vistacrearusuario";
+	}
 }
