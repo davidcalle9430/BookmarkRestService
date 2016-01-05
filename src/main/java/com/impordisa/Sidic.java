@@ -10,7 +10,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -21,8 +20,14 @@ import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.Ordered;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.core.convert.support.ConfigurableConversionService;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
+import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -32,7 +37,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -45,13 +49,11 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-
-import repositories.AccountRepository;
-import repositories.EmpresaRepository;
-import repositories.RoleRepository;
+import converters.UsuarioPKConverter;
 import repositories.RolesRepository;
 import repositories.RolesYMenusRepository;
 import repositories.UsuarioRepository;
+import sidic.entities.Clientes;
 import sidic.entities.Rolessss;
 import sidic.entities.Rolesymenus;
 import sidic.entities.Usuarios;
@@ -64,13 +66,11 @@ import sidic.entities.Usuarios;
 * @since   2015-12-14
 */
 @SpringBootApplication
-@EntityScan(basePackages = {"entities","restcontrollers","web","sidic.entities"})
+@EntityScan(basePackages = {"entities","sidic.entities"})
 @EnableJpaRepositories(basePackages={"repositories"})
-@EnableAutoConfiguration
-@Configuration
 @ComponentScan(basePackages={"com.impordisa","restcontrollers","web"})
-@EnableWebMvc
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
+@EnableAutoConfiguration
 public class Sidic {
     public static void main(String[] args) {
         SpringApplication.run(Sidic.class, args);
@@ -94,7 +94,7 @@ class StaticResourceConfiguration extends WebMvcConfigurerAdapter {
         "classpath:/static/", "classpath:/public/" };
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/static/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
+		registry.addResourceHandler("/static/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS).setCachePeriod(0);
 	}
 }
 
@@ -122,15 +122,6 @@ class BookingCommandLineRunner implements CommandLineRunner{
 	public void run(String... arg0) throws Exception {
 		System.gc();
 	}
-	
-	
-	@Autowired
-	EmpresaRepository empresaRepository;
-	@Autowired
-	RoleRepository roleRepository;
-	@Autowired
-	AccountRepository accountRepository;
-	
 }
 
 /**
@@ -218,6 +209,31 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   
 }
 
+@Configuration
+class CustomRestMvcConfiguration {
+
+	
+  @Bean
+  public RepositoryRestConfigurer repositoryRestConfigurer() {
+
+    return new RepositoryRestConfigurerAdapter() {
+      @Override
+      public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+        config.setBasePath("/api");
+        config.exposeIdsFor(Usuarios.class);
+        config.exposeIdsFor(Clientes.class);
+      }
+      @Override
+      public void configureConversionService(ConfigurableConversionService conversionService) {
+    		super.configureConversionService(conversionService);
+    		UsuarioPKConverter usuarioPKConverter = new UsuarioPKConverter();
+    	    conversionService.addConverter(usuarioPKConverter);
+      }
+      
+    };
+  }
+}
+
 /* Filtro encargado de la seguridad extra de la aplicación */
 @Configuration
 class RequestFilter extends OncePerRequestFilter {
@@ -228,13 +244,17 @@ class RequestFilter extends OncePerRequestFilter {
 	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-    	HttpSession session = request.getSession();
-    	SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
-    	if (sci != null) {
-            UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
-            Usuarios elected = usuarioRepository.findOneByUsuario(cud.getUsername()).get();
-            //List<Rolesymenus> rolesXMenus = rolesYMenusRepository.findAllByUsuario(elected.getUsuario());
+    	//HttpSession session = request.getSession();
+    	//SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+    	String URI = request.getRequestURI();
+    	if(URI.matches("(.)*/api/(.)*")){
+    		System.out.println("hace un request a api");
     	}
+    	//if (sci != null) {
+            //UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
+           // Usuarios elected = usuarioRepository.findOneByUsuario(cud.getUsername()).get();
+            //List<Rolesymenus> rolesXMenus = rolesYMenusRepository.findAllByUsuario(elected.getUsuario());
+    	//}
     	filterChain.doFilter(request, response);
 	}
 

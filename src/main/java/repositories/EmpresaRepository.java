@@ -2,8 +2,8 @@ package repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import entities.Empresa;
+import sidic.entities.Empresas;
 
-public interface EmpresaRepository extends JpaRepository<Empresa, Long>{
+public interface EmpresaRepository extends JpaRepository<Empresas, Integer>{
 
 }

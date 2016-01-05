@@ -60,6 +60,7 @@ public class Usuarios implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false, length = 50)
     private String usuario;
+    
     private Integer nivel;
     private Integer activado;
     private Integer maxdias;
@@ -69,10 +70,10 @@ public class Usuarios implements Serializable {
     //	@JsonIgnore
     @Column(length = 12)
     private String password;
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat( pattern="yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechapassword;
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat( pattern="yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     @JsonIgnore
@@ -219,17 +220,16 @@ public class Usuarios implements Serializable {
             return false;
         }
         Usuarios other = (Usuarios) object;
-     //   if ((this.usuariosPK == null && other.usuariosPK != null) || (this.usuariosPK != null && !this.usuariosPK.equals(other.usuariosPK))) {
-    //      return false;
-      //  }
-        return true;
+        return other.getUsuario().equals(usuario);
     }
-
 	@Override
 	public String toString() {
-		return "Usuarios [empresa=" + empresa + ", usuario=" + usuario + ", nivel=" + nivel + "]";
+		return "Usuarios [empresa=" + empresa + ", usuario=" + usuario + ", nivel=" + nivel + ", activado=" + activado
+				+ ", maxdias=" + maxdias + ", diasalerta=" + diasalerta + ", indicadorNuevo=" + indicadorNuevo
+				+ ", password=" + password + ", fechapassword=" + fechapassword + ", fecha=" + fecha + "]";
 	}
 
+    
     
     
 }

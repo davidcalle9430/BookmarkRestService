@@ -67,7 +67,7 @@ public class Clientes implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(nullable = false, precision = 22)
-    private Double codigo;
+    private Long codigo;
     @Column(length = 70)
     private String razsoc;
     @Column(length = 70)
@@ -146,15 +146,15 @@ public class Clientes implements Serializable {
     public Clientes() {
     }
 
-    public Clientes(Double codigo) {
+    public Clientes(Long codigo) {
         this.codigo = codigo;
     }
 
-    public Double getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Double codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 

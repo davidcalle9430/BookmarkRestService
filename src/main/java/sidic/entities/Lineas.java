@@ -38,7 +38,7 @@ public class Lineas implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(nullable = false, precision = 22)
-    private Double linea;
+    private Long linea;
     @Column(precision = 22)
     private Double rango1;
     @Column(precision = 22)
@@ -55,15 +55,15 @@ public class Lineas implements Serializable {
     public Lineas() {
     }
 
-    public Lineas(Double linea) {
+    public Lineas(Long linea) {
         this.linea = linea;
     }
 
-    public Double getLinea() {
+    public Long getLinea() {
         return linea;
     }
 
-    public void setLinea(Double linea) {
+    public void setLinea(Long linea) {
         this.linea = linea;
     }
 

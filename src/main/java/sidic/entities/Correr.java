@@ -39,7 +39,7 @@ public class Correr implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(nullable = false, precision = 22)
-    private Double codigo;
+    private Long codigo;
     @Column(length = 30)
     private String nombre;
     @Temporal(TemporalType.TIMESTAMP)
@@ -53,20 +53,20 @@ public class Correr implements Serializable {
     public Correr() {
     }
 
-    public Correr(Double codigo) {
+    public Correr(Long codigo) {
         this.codigo = codigo;
     }
 
-    public Correr(Double codigo, boolean iva) {
+    public Correr(Long codigo, boolean iva) {
         this.codigo = codigo;
         this.iva = iva;
     }
 
-    public Double getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Double codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
