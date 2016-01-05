@@ -25,11 +25,11 @@ public class UsuariosController {
 	}
 	@RequestMapping(value="/api/usuarios/{usuario}/", produces ="application/json", method = RequestMethod.GET)
 	public Usuarios darUsuario(@PathVariable String usuario){
-		return usuarioRepository.findOneByUsuario(usuario).orElseGet(null);
+		return usuarioRepository.findOneByUsuario(usuario);
 	}
 	@RequestMapping(value="/api/usuarios/{usuario}/", produces="application/json", method = RequestMethod.PUT)
 	public ResponseEntity<?> editarUsuario(@RequestBody Usuarios usuario){
-		Usuarios seleccionado = usuarioRepository.findOneByUsuario(usuario.getUsuario()).get();
+		Usuarios seleccionado = usuarioRepository.findOneByUsuario(usuario.getUsuario());
 		if( usuario.getPassword()  == null || usuario.getPassword().length() < 1 ){
 			usuario.setPassword(seleccionado.getPassword());
 		}

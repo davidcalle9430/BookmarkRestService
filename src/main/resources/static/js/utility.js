@@ -25,5 +25,11 @@ $.ajaxSetup({
 	    withCredentials: true
 	  }
 });
-
-
+/**
+ * Da el valor de llave con nombre name de los parámetros GET de la URL
+ * Obtenido de http://stackoverflow.com/questions/831030/how-to-get-get-request-parameters-in-javascript  usuario Rafael
+ */
+function get(name){
+	   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+	      return decodeURIComponent(name[1]);
+	}

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body>
+	<nav th:replace="nav :: nav"></nav>
+	<div class="row formulario fondo">
+  	<div class="medium-6 medium-centered large-6 large-centered columns frm-container">
+		<form name="forma fondo"  method="put">
+			<div class="row column log-in-form">
+				<h4 class="text-center">Editar Usuario</h4>
+				<label for="usuario">Nombre de Usuario</label> <input type="text" id="usuario" name="usuario" /> 
+				<label for="password">Contrase&ntilde;a</label> <input type="password" id="password" name="password" />
+				<label for="nivel">Nivel</label> <input type="text" id="nivel" name="nivel" />
+				<label for="activado">Activado</label> <input type="text" id="activado" name="activado" />
+				<label for="maxdias">Max D&iacute;as</label> <input type="text" id="maxdias" name="maxdias" />
+				<label for="diasalerta">D&iacute;as Alerta</label> <input type="text" id="diasalerta" name="diasalerta" />
+				<label for="indicadorNuevo">Indicador Nuevo</label> <input type="text" id="indicadorNuevo" name="indicadorNuevo" />
+				<label for="fechapassword">Fecha Contrase&ntilde;a</label> <input placeholder="yyyy-MM-dd" type="text"  id="fechapassword" name="fechapassword" />
+				<label for="fecha">Fecha</label> <input type="text" id="fecha" name="fecha"  placeholder="yyyy-MM-dd" />
+				<input type="hidden" name="empresa" />
+				<div class="form-actions">
+					<button type="submit" class="button expanded">Editar Usuario</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	</div>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/editarusuario.js"></script>
+
+</body>
+</html>

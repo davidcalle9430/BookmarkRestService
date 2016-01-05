@@ -20,6 +20,8 @@ import org.springframework.web.servlet.view.RedirectView;
 * @version 1.0
 * @since   2015-12-14
 */
+
+import ch.qos.logback.access.pattern.RequestMethodConverter;
 @Controller
 public class UsuarioController {
 	
@@ -30,5 +32,9 @@ public class UsuarioController {
 	@RequestMapping(value = "/configuracion/usuarios/", method = RequestMethod.GET)
 	public String verTodosLosUsuarios(){
 		return "vistausuarios";
+	}
+	@RequestMapping(value="/configuracion/editarusuario/", method = RequestMethod.GET)
+	public String editarUsuario(){
+		return "vistaeditarusuario";
 	}
 }

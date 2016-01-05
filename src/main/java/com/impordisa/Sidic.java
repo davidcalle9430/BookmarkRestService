@@ -49,11 +49,13 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import converters.ClassFinder;
 import converters.UsuarioPKConverter;
 import repositories.RolesRepository;
 import repositories.RolesYMenusRepository;
 import repositories.UsuarioRepository;
 import sidic.entities.Clientes;
+import sidic.entities.Opciones;
 import sidic.entities.Rolessss;
 import sidic.entities.Rolesymenus;
 import sidic.entities.Usuarios;
@@ -154,7 +156,7 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter{
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 				Usuarios usuario =  null;
 				try{
-				 usuario = usuarioRepository.findOneByUsuario(username).get();
+				 usuario = usuarioRepository.findOneByUsuario(username);
 				}catch(Exception e){
 					throw new UsernameNotFoundException("El usuario " + username + " No existe");
 				}
@@ -220,8 +222,12 @@ class CustomRestMvcConfiguration {
       @Override
       public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
         config.setBasePath("/api");
-        config.exposeIdsFor(Usuarios.class);
-        config.exposeIdsFor(Clientes.class);
+        List<Class<?>> classes = ClassFinder.find("sidic.entities");
+        for (Class<?> class1 : classes) {
+			config.exposeIdsFor(class1);
+		}
+        config.exposeIdsFor(Usuarios.class); config.exposeIdsFor(Clientes.class);
+        config.exposeIdsFor(Opciones.class);
       }
       @Override
       public void configureConversionService(ConfigurableConversionService conversionService) {
