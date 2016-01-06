@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,24 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "tlistadocarteradiscr")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Tlistadocarteradiscr.findAll", query = "SELECT t FROM Tlistadocarteradiscr t"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findByCodigo", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.codigo = :codigo"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findByRazsoc", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.razsoc = :razsoc"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findByCiudad", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.ciudad = :ciudad"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findByNotad", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.notad = :notad"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findByNotac", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.notac = :notac"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findBySaldo", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.saldo = :saldo"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findByFecha", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.fecha = :fecha"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findBySemitot", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.semitot = :semitot"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findByTiempo", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.tiempo = :tiempo"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findByAc0", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.ac0 = :ac0"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findByAc30", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.ac30 = :ac30"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findByAc45", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.ac45 = :ac45"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findByAc60", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.ac60 = :ac60"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findByAc75", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.ac75 = :ac75"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findByAc90", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.ac90 = :ac90"),
-    @NamedQuery(name = "Tlistadocarteradiscr.findById", query = "SELECT t FROM Tlistadocarteradiscr t WHERE t.id = :id")})
 public class Tlistadocarteradiscr implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -10,8 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -20,18 +18,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Remision.findAll", query = "SELECT r FROM Remision r"),
-    @NamedQuery(name = "Remision.findByCodigo", query = "SELECT r FROM Remision r WHERE r.codigo = :codigo"),
-    @NamedQuery(name = "Remision.findByNombre", query = "SELECT r FROM Remision r WHERE r.nombre = :nombre"),
-    @NamedQuery(name = "Remision.findByReferencia", query = "SELECT r FROM Remision r WHERE r.referencia = :referencia"),
-    @NamedQuery(name = "Remision.findByDescuen", query = "SELECT r FROM Remision r WHERE r.descuen = :descuen"),
-    @NamedQuery(name = "Remision.findByPrecio", query = "SELECT r FROM Remision r WHERE r.precio = :precio"),
-    @NamedQuery(name = "Remision.findByCantidad", query = "SELECT r FROM Remision r WHERE r.cantidad = :cantidad"),
-    @NamedQuery(name = "Remision.findByModelo", query = "SELECT r FROM Remision r WHERE r.modelo = :modelo"),
-    @NamedQuery(name = "Remision.findByMarca", query = "SELECT r FROM Remision r WHERE r.marca = :marca"),
-    @NamedQuery(name = "Remision.findByRemision", query = "SELECT r FROM Remision r WHERE r.remision = :remision"),
-    @NamedQuery(name = "Remision.findByConsec", query = "SELECT r FROM Remision r WHERE r.consec = :consec")})
 public class Remision implements Serializable {
 
     private static final long serialVersionUID = 1L;

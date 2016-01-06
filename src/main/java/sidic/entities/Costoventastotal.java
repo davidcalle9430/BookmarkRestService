@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,15 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "costoventastotal")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Costoventastotal.findAll", query = "SELECT c FROM Costoventastotal c"),
-    @NamedQuery(name = "Costoventastotal.findByFechai", query = "SELECT c FROM Costoventastotal c WHERE c.fechai = :fechai"),
-    @NamedQuery(name = "Costoventastotal.findByFechaf", query = "SELECT c FROM Costoventastotal c WHERE c.fechaf = :fechaf"),
-    @NamedQuery(name = "Costoventastotal.findByNombre", query = "SELECT c FROM Costoventastotal c WHERE c.nombre = :nombre"),
-    @NamedQuery(name = "Costoventastotal.findBySumaDeCANTIDAD", query = "SELECT c FROM Costoventastotal c WHERE c.sumaDeCANTIDAD = :sumaDeCANTIDAD"),
-    @NamedQuery(name = "Costoventastotal.findBySumaDeCOSTOPROIM", query = "SELECT c FROM Costoventastotal c WHERE c.sumaDeCOSTOPROIM = :sumaDeCOSTOPROIM"),
-    @NamedQuery(name = "Costoventastotal.findBySumaDecostvent", query = "SELECT c FROM Costoventastotal c WHERE c.sumaDecostvent = :sumaDecostvent"),
-    @NamedQuery(name = "Costoventastotal.findById", query = "SELECT c FROM Costoventastotal c WHERE c.id = :id")})
 public class Costoventastotal implements Serializable {
 
     private static final long serialVersionUID = 1L;

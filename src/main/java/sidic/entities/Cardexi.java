@@ -11,8 +11,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,16 +23,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "cardexi")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Cardexi.findAll", query = "SELECT c FROM Cardexi c"),
-    @NamedQuery(name = "Cardexi.findByConsec", query = "SELECT c FROM Cardexi c WHERE c.consec = :consec"),
-    @NamedQuery(name = "Cardexi.findByCodigo", query = "SELECT c FROM Cardexi c WHERE c.codigo = :codigo"),
-    @NamedQuery(name = "Cardexi.findByFecha", query = "SELECT c FROM Cardexi c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "Cardexi.findByTipo", query = "SELECT c FROM Cardexi c WHERE c.tipo = :tipo"),
-    @NamedQuery(name = "Cardexi.findByDocumento", query = "SELECT c FROM Cardexi c WHERE c.documento = :documento"),
-    @NamedQuery(name = "Cardexi.findByCantidad", query = "SELECT c FROM Cardexi c WHERE c.cantidad = :cantidad"),
-    @NamedQuery(name = "Cardexi.findByNdoc", query = "SELECT c FROM Cardexi c WHERE c.ndoc = :ndoc"),
-    @NamedQuery(name = "Cardexi.findBySaldo", query = "SELECT c FROM Cardexi c WHERE c.saldo = :saldo")})
 public class Cardexi implements Serializable {
 
     private static final long serialVersionUID = 1L;

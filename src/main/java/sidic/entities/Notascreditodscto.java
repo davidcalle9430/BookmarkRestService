@@ -9,8 +9,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -19,17 +17,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Notascreditodscto.findAll", query = "SELECT n FROM Notascreditodscto n"),
-    @NamedQuery(name = "Notascreditodscto.findByNrorecibocaja", query = "SELECT n FROM Notascreditodscto n WHERE n.notascreditodsctoPK.nrorecibocaja = :nrorecibocaja"),
-    @NamedQuery(name = "Notascreditodscto.findByCliente", query = "SELECT n FROM Notascreditodscto n WHERE n.notascreditodsctoPK.cliente = :cliente"),
-    @NamedQuery(name = "Notascreditodscto.findByFactura", query = "SELECT n FROM Notascreditodscto n WHERE n.notascreditodsctoPK.factura = :factura"),
-    @NamedQuery(name = "Notascreditodscto.findByVlrnc", query = "SELECT n FROM Notascreditodscto n WHERE n.vlrnc = :vlrnc"),
-    @NamedQuery(name = "Notascreditodscto.findByVlriva", query = "SELECT n FROM Notascreditodscto n WHERE n.vlriva = :vlriva"),
-    @NamedQuery(name = "Notascreditodscto.findByCausal", query = "SELECT n FROM Notascreditodscto n WHERE n.causal = :causal"),
-    @NamedQuery(name = "Notascreditodscto.findByNc", query = "SELECT n FROM Notascreditodscto n WHERE n.nc = :nc"),
-    @NamedQuery(name = "Notascreditodscto.findByUsuario", query = "SELECT n FROM Notascreditodscto n WHERE n.usuario = :usuario"),
-    @NamedQuery(name = "Notascreditodscto.findByDescripcion", query = "SELECT n FROM Notascreditodscto n WHERE n.descripcion = :descripcion")})
 public class Notascreditodscto implements Serializable {
 
     private static final long serialVersionUID = 1L;

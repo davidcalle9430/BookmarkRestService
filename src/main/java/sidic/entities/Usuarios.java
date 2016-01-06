@@ -18,8 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,18 +33,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u"),
-    //@NamedQuery(name = "Usuarios.findByEmpresa", query = "SELECT u FROM Usuarios u WHERE u.usuariosPK.empresa = :empresa"),
-    //@NamedQuery(name = "Usuarios.findByUsuario", query = "SELECT u FROM Usuarios u WHERE u.usuariosPK.usuario = :usuario"),
-    @NamedQuery(name = "Usuarios.findByNivel", query = "SELECT u FROM Usuarios u WHERE u.nivel = :nivel"),
-    @NamedQuery(name = "Usuarios.findByActivado", query = "SELECT u FROM Usuarios u WHERE u.activado = :activado"),
-    @NamedQuery(name = "Usuarios.findByMaxdias", query = "SELECT u FROM Usuarios u WHERE u.maxdias = :maxdias"),
-    @NamedQuery(name = "Usuarios.findByDiasalerta", query = "SELECT u FROM Usuarios u WHERE u.diasalerta = :diasalerta"),
-    @NamedQuery(name = "Usuarios.findByIndicadorNuevo", query = "SELECT u FROM Usuarios u WHERE u.indicadorNuevo = :indicadorNuevo"),
-    @NamedQuery(name = "Usuarios.findByPassword", query = "SELECT u FROM Usuarios u WHERE u.password = :password"),
-    @NamedQuery(name = "Usuarios.findByFechapassword", query = "SELECT u FROM Usuarios u WHERE u.fechapassword = :fechapassword"),
-    @NamedQuery(name = "Usuarios.findByFecha", query = "SELECT u FROM Usuarios u WHERE u.fecha = :fecha")})
 @IdClass(UsuariosPK.class)
 public class Usuarios implements Serializable {
 

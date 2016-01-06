@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,19 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "ventasclientes")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Ventasclientes.findAll", query = "SELECT v FROM Ventasclientes v"),
-    @NamedQuery(name = "Ventasclientes.findByCliente", query = "SELECT v FROM Ventasclientes v WHERE v.cliente = :cliente"),
-    @NamedQuery(name = "Ventasclientes.findByRazsoc", query = "SELECT v FROM Ventasclientes v WHERE v.razsoc = :razsoc"),
-    @NamedQuery(name = "Ventasclientes.findByClientesCiudad", query = "SELECT v FROM Ventasclientes v WHERE v.clientesCiudad = :clientesCiudad"),
-    @NamedQuery(name = "Ventasclientes.findByCiudadesCiudad", query = "SELECT v FROM Ventasclientes v WHERE v.ciudadesCiudad = :ciudadesCiudad"),
-    @NamedQuery(name = "Ventasclientes.findByFecha", query = "SELECT v FROM Ventasclientes v WHERE v.fecha = :fecha"),
-    @NamedQuery(name = "Ventasclientes.findByCodcorr", query = "SELECT v FROM Ventasclientes v WHERE v.codcorr = :codcorr"),
-    @NamedQuery(name = "Ventasclientes.findByNombre", query = "SELECT v FROM Ventasclientes v WHERE v.nombre = :nombre"),
-    @NamedQuery(name = "Ventasclientes.findByLinea", query = "SELECT v FROM Ventasclientes v WHERE v.linea = :linea"),
-    @NamedQuery(name = "Ventasclientes.findByDescripcion", query = "SELECT v FROM Ventasclientes v WHERE v.descripcion = :descripcion"),
-    @NamedQuery(name = "Ventasclientes.findByValreal", query = "SELECT v FROM Ventasclientes v WHERE v.valreal = :valreal"),
-    @NamedQuery(name = "Ventasclientes.findById", query = "SELECT v FROM Ventasclientes v WHERE v.id = :id")})
 public class Ventasclientes implements Serializable {
 
     private static final long serialVersionUID = 1L;

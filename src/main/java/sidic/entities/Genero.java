@@ -10,8 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -20,19 +18,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Genero.findAll", query = "SELECT g FROM Genero g"),
-    @NamedQuery(name = "Genero.findByCodigo", query = "SELECT g FROM Genero g WHERE g.codigo = :codigo"),
-    @NamedQuery(name = "Genero.findByNombre", query = "SELECT g FROM Genero g WHERE g.nombre = :nombre"),
-    @NamedQuery(name = "Genero.findByUltcod", query = "SELECT g FROM Genero g WHERE g.ultcod = :ultcod"),
-    @NamedQuery(name = "Genero.findByCantdisp", query = "SELECT g FROM Genero g WHERE g.cantdisp = :cantdisp"),
-    @NamedQuery(name = "Genero.findByCantdispjm", query = "SELECT g FROM Genero g WHERE g.cantdispjm = :cantdispjm"),
-    @NamedQuery(name = "Genero.findByCantdispf", query = "SELECT g FROM Genero g WHERE g.cantdispf = :cantdispf"),
-    @NamedQuery(name = "Genero.findByPorcprec", query = "SELECT g FROM Genero g WHERE g.porcprec = :porcprec"),
-    @NamedQuery(name = "Genero.findByCostprom", query = "SELECT g FROM Genero g WHERE g.costprom = :costprom"),
-    @NamedQuery(name = "Genero.findByNombrei", query = "SELECT g FROM Genero g WHERE g.nombrei = :nombrei"),
-    @NamedQuery(name = "Genero.findByTipart", query = "SELECT g FROM Genero g WHERE g.tipart = :tipart"),
-    @NamedQuery(name = "Genero.findByIva", query = "SELECT g FROM Genero g WHERE g.iva = :iva")})
 public class Genero implements Serializable {
 
     private static final long serialVersionUID = 1L;

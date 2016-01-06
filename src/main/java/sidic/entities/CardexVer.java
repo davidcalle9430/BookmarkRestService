@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,18 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "cardex_ver")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "CardexVer.findAll", query = "SELECT c FROM CardexVer c"),
-    @NamedQuery(name = "CardexVer.findByConsec", query = "SELECT c FROM CardexVer c WHERE c.consec = :consec"),
-    @NamedQuery(name = "CardexVer.findByCodigo", query = "SELECT c FROM CardexVer c WHERE c.codigo = :codigo"),
-    @NamedQuery(name = "CardexVer.findByFecha", query = "SELECT c FROM CardexVer c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "CardexVer.findByTipo", query = "SELECT c FROM CardexVer c WHERE c.tipo = :tipo"),
-    @NamedQuery(name = "CardexVer.findByDocumento", query = "SELECT c FROM CardexVer c WHERE c.documento = :documento"),
-    @NamedQuery(name = "CardexVer.findByCantidad", query = "SELECT c FROM CardexVer c WHERE c.cantidad = :cantidad"),
-    @NamedQuery(name = "CardexVer.findByNdoc", query = "SELECT c FROM CardexVer c WHERE c.ndoc = :ndoc"),
-    @NamedQuery(name = "CardexVer.findBySaldo", query = "SELECT c FROM CardexVer c WHERE c.saldo = :saldo"),
-    @NamedQuery(name = "CardexVer.findBySaldoreal", query = "SELECT c FROM CardexVer c WHERE c.saldoreal = :saldoreal"),
-    @NamedQuery(name = "CardexVer.findByDiferencia", query = "SELECT c FROM CardexVer c WHERE c.diferencia = :diferencia")})
 public class CardexVer implements Serializable {
 
     private static final long serialVersionUID = 1L;

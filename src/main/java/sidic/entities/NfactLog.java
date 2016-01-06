@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,42 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "nfact_log")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "NfactLog.findAll", query = "SELECT n FROM NfactLog n"),
-    @NamedQuery(name = "NfactLog.findByFactiva", query = "SELECT n FROM NfactLog n WHERE n.factiva = :factiva"),
-    @NamedQuery(name = "NfactLog.findByFactsiniva", query = "SELECT n FROM NfactLog n WHERE n.factsiniva = :factsiniva"),
-    @NamedQuery(name = "NfactLog.findByAcumiva", query = "SELECT n FROM NfactLog n WHERE n.acumiva = :acumiva"),
-    @NamedQuery(name = "NfactLog.findByAcumsiniva", query = "SELECT n FROM NfactLog n WHERE n.acumsiniva = :acumsiniva"),
-    @NamedQuery(name = "NfactLog.findByMes", query = "SELECT n FROM NfactLog n WHERE n.mes = :mes"),
-    @NamedQuery(name = "NfactLog.findByAno", query = "SELECT n FROM NfactLog n WHERE n.ano = :ano"),
-    @NamedQuery(name = "NfactLog.findByAnocopia", query = "SELECT n FROM NfactLog n WHERE n.anocopia = :anocopia"),
-    @NamedQuery(name = "NfactLog.findByClave", query = "SELECT n FROM NfactLog n WHERE n.clave = :clave"),
-    @NamedQuery(name = "NfactLog.findByClavec", query = "SELECT n FROM NfactLog n WHERE n.clavec = :clavec"),
-    @NamedQuery(name = "NfactLog.findByPorcprec", query = "SELECT n FROM NfactLog n WHERE n.porcprec = :porcprec"),
-    @NamedQuery(name = "NfactLog.findByJmqcl", query = "SELECT n FROM NfactLog n WHERE n.jmqcl = :jmqcl"),
-    @NamedQuery(name = "NfactLog.findByFeccorlven", query = "SELECT n FROM NfactLog n WHERE n.feccorlven = :feccorlven"),
-    @NamedQuery(name = "NfactLog.findByPorcfactur", query = "SELECT n FROM NfactLog n WHERE n.porcfactur = :porcfactur"),
-    @NamedQuery(name = "NfactLog.findByValret", query = "SELECT n FROM NfactLog n WHERE n.valret = :valret"),
-    @NamedQuery(name = "NfactLog.findByRemision", query = "SELECT n FROM NfactLog n WHERE n.remision = :remision"),
-    @NamedQuery(name = "NfactLog.findByFechisto", query = "SELECT n FROM NfactLog n WHERE n.fechisto = :fechisto"),
-    @NamedQuery(name = "NfactLog.findByPedido", query = "SELECT n FROM NfactLog n WHERE n.pedido = :pedido"),
-    @NamedQuery(name = "NfactLog.findByPorcfacmas", query = "SELECT n FROM NfactLog n WHERE n.porcfacmas = :porcfacmas"),
-    @NamedQuery(name = "NfactLog.findByIva", query = "SELECT n FROM NfactLog n WHERE n.iva = :iva"),
-    @NamedQuery(name = "NfactLog.findByPorcplus", query = "SELECT n FROM NfactLog n WHERE n.porcplus = :porcplus"),
-    @NamedQuery(name = "NfactLog.findByRecibocaja", query = "SELECT n FROM NfactLog n WHERE n.recibocaja = :recibocaja"),
-    @NamedQuery(name = "NfactLog.findByNc", query = "SELECT n FROM NfactLog n WHERE n.nc = :nc"),
-    @NamedQuery(name = "NfactLog.findByNd", query = "SELECT n FROM NfactLog n WHERE n.nd = :nd"),
-    @NamedQuery(name = "NfactLog.findByCuenta1", query = "SELECT n FROM NfactLog n WHERE n.cuenta1 = :cuenta1"),
-    @NamedQuery(name = "NfactLog.findByCuenta2", query = "SELECT n FROM NfactLog n WHERE n.cuenta2 = :cuenta2"),
-    @NamedQuery(name = "NfactLog.findByFACtPROVEEDORES", query = "SELECT n FROM NfactLog n WHERE n.fACtPROVEEDORES = :fACtPROVEEDORES"),
-    @NamedQuery(name = "NfactLog.findByNuevoformato", query = "SELECT n FROM NfactLog n WHERE n.nuevoformato = :nuevoformato"),
-    @NamedQuery(name = "NfactLog.findByAaaaseguimiento", query = "SELECT n FROM NfactLog n WHERE n.aaaaseguimiento = :aaaaseguimiento"),
-    @NamedQuery(name = "NfactLog.findByUsuario", query = "SELECT n FROM NfactLog n WHERE n.usuario = :usuario"),
-    @NamedQuery(name = "NfactLog.findByFecha", query = "SELECT n FROM NfactLog n WHERE n.fecha = :fecha"),
-    @NamedQuery(name = "NfactLog.findByTerminal", query = "SELECT n FROM NfactLog n WHERE n.terminal = :terminal"),
-    @NamedQuery(name = "NfactLog.findByRegistro", query = "SELECT n FROM NfactLog n WHERE n.registro = :registro"),
-    @NamedQuery(name = "NfactLog.findByFacturaEnproceso", query = "SELECT n FROM NfactLog n WHERE n.facturaEnproceso = :facturaEnproceso"),
-    @NamedQuery(name = "NfactLog.findById", query = "SELECT n FROM NfactLog n WHERE n.id = :id")})
 public class NfactLog implements Serializable {
 
     private static final long serialVersionUID = 1L;

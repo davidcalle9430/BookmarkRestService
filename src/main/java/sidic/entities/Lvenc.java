@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,22 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "lvenc")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Lvenc.findAll", query = "SELECT l FROM Lvenc l"),
-    @NamedQuery(name = "Lvenc.findByTipo", query = "SELECT l FROM Lvenc l WHERE l.tipo = :tipo"),
-    @NamedQuery(name = "Lvenc.findByFechapago", query = "SELECT l FROM Lvenc l WHERE l.fechapago = :fechapago"),
-    @NamedQuery(name = "Lvenc.findByFecha", query = "SELECT l FROM Lvenc l WHERE l.fecha = :fecha"),
-    @NamedQuery(name = "Lvenc.findByDias", query = "SELECT l FROM Lvenc l WHERE l.dias = :dias"),
-    @NamedQuery(name = "Lvenc.findByVendedorCodigo", query = "SELECT l FROM Lvenc l WHERE l.vendedorCodigo = :vendedorCodigo"),
-    @NamedQuery(name = "Lvenc.findByNombre", query = "SELECT l FROM Lvenc l WHERE l.nombre = :nombre"),
-    @NamedQuery(name = "Lvenc.findByCarteraCodigo", query = "SELECT l FROM Lvenc l WHERE l.carteraCodigo = :carteraCodigo"),
-    @NamedQuery(name = "Lvenc.findByFactura", query = "SELECT l FROM Lvenc l WHERE l.factura = :factura"),
-    @NamedQuery(name = "Lvenc.findByTipfact", query = "SELECT l FROM Lvenc l WHERE l.tipfact = :tipfact"),
-    @NamedQuery(name = "Lvenc.findByFpago", query = "SELECT l FROM Lvenc l WHERE l.fpago = :fpago"),
-    @NamedQuery(name = "Lvenc.findBySubtot", query = "SELECT l FROM Lvenc l WHERE l.subtot = :subtot"),
-    @NamedQuery(name = "Lvenc.findByDescontada", query = "SELECT l FROM Lvenc l WHERE l.descontada = :descontada"),
-    @NamedQuery(name = "Lvenc.findByVMasDe", query = "SELECT l FROM Lvenc l WHERE l.vMasDe = :vMasDe"),
-    @NamedQuery(name = "Lvenc.findById", query = "SELECT l FROM Lvenc l WHERE l.id = :id")})
 public class Lvenc implements Serializable {
 
     private static final long serialVersionUID = 1L;

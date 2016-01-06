@@ -11,8 +11,6 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -21,13 +19,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Tipooperacionbases.findAll", query = "SELECT t FROM Tipooperacionbases t"),
-    @NamedQuery(name = "Tipooperacionbases.findByTipooperacion", query = "SELECT t FROM Tipooperacionbases t WHERE t.tipooperacionbasesPK.tipooperacion = :tipooperacion"),
-    @NamedQuery(name = "Tipooperacionbases.findByImpuesto", query = "SELECT t FROM Tipooperacionbases t WHERE t.tipooperacionbasesPK.impuesto = :impuesto"),
-    @NamedQuery(name = "Tipooperacionbases.findByBase", query = "SELECT t FROM Tipooperacionbases t WHERE t.base = :base"),
-    @NamedQuery(name = "Tipooperacionbases.findByPorcentaje", query = "SELECT t FROM Tipooperacionbases t WHERE t.porcentaje = :porcentaje"),
-    @NamedQuery(name = "Tipooperacionbases.findByTipo", query = "SELECT t FROM Tipooperacionbases t WHERE t.tipo = :tipo")})
 public class Tipooperacionbases implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,17 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "nd_dian")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "NdDian.findAll", query = "SELECT n FROM NdDian n"),
-    @NamedQuery(name = "NdDian.findByNrorecibocaja", query = "SELECT n FROM NdDian n WHERE n.nrorecibocaja = :nrorecibocaja"),
-    @NamedQuery(name = "NdDian.findByFactura", query = "SELECT n FROM NdDian n WHERE n.factura = :factura"),
-    @NamedQuery(name = "NdDian.findByVlrnd", query = "SELECT n FROM NdDian n WHERE n.vlrnd = :vlrnd"),
-    @NamedQuery(name = "NdDian.findByVlriva", query = "SELECT n FROM NdDian n WHERE n.vlriva = :vlriva"),
-    @NamedQuery(name = "NdDian.findByCausal", query = "SELECT n FROM NdDian n WHERE n.causal = :causal"),
-    @NamedQuery(name = "NdDian.findByFecha", query = "SELECT n FROM NdDian n WHERE n.fecha = :fecha"),
-    @NamedQuery(name = "NdDian.findByNd", query = "SELECT n FROM NdDian n WHERE n.nd = :nd"),
-    @NamedQuery(name = "NdDian.findByValornd", query = "SELECT n FROM NdDian n WHERE n.valornd = :valornd"),
-    @NamedQuery(name = "NdDian.findById", query = "SELECT n FROM NdDian n WHERE n.id = :id")})
 public class NdDian implements Serializable {
 
     private static final long serialVersionUID = 1L;

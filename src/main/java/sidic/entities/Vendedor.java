@@ -11,8 +11,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -23,17 +21,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Vendedor.findAll", query = "SELECT v FROM Vendedor v"),
-    @NamedQuery(name = "Vendedor.findByCodigo", query = "SELECT v FROM Vendedor v WHERE v.codigo = :codigo"),
-    @NamedQuery(name = "Vendedor.findByNombre", query = "SELECT v FROM Vendedor v WHERE v.nombre = :nombre"),
-    @NamedQuery(name = "Vendedor.findByTipo", query = "SELECT v FROM Vendedor v WHERE v.tipo = :tipo"),
-    @NamedQuery(name = "Vendedor.findByDireccion", query = "SELECT v FROM Vendedor v WHERE v.direccion = :direccion"),
-    @NamedQuery(name = "Vendedor.findByTelefonos", query = "SELECT v FROM Vendedor v WHERE v.telefonos = :telefonos"),
-    @NamedQuery(name = "Vendedor.findByObservaci1", query = "SELECT v FROM Vendedor v WHERE v.observaci1 = :observaci1"),
-    @NamedQuery(name = "Vendedor.findByObservaci2", query = "SELECT v FROM Vendedor v WHERE v.observaci2 = :observaci2"),
-    @NamedQuery(name = "Vendedor.findByObservaci3", query = "SELECT v FROM Vendedor v WHERE v.observaci3 = :observaci3"),
-    @NamedQuery(name = "Vendedor.findByIdentifica", query = "SELECT v FROM Vendedor v WHERE v.identifica = :identifica")})
 public class Vendedor implements Serializable {
 
     private static final long serialVersionUID = 1L;

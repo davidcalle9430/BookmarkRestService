@@ -11,8 +11,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,17 +23,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "cartera_dian")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "CarteraDian.findAll", query = "SELECT c FROM CarteraDian c"),
-    @NamedQuery(name = "CarteraDian.findByCodigo", query = "SELECT c FROM CarteraDian c WHERE c.codigo = :codigo"),
-    @NamedQuery(name = "CarteraDian.findByFecha", query = "SELECT c FROM CarteraDian c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "CarteraDian.findByVenta", query = "SELECT c FROM CarteraDian c WHERE c.venta = :venta"),
-    @NamedQuery(name = "CarteraDian.findByFactura", query = "SELECT c FROM CarteraDian c WHERE c.factura = :factura"),
-    @NamedQuery(name = "CarteraDian.findByTotal", query = "SELECT c FROM CarteraDian c WHERE c.total = :total"),
-    @NamedQuery(name = "CarteraDian.findByDscto", query = "SELECT c FROM CarteraDian c WHERE c.dscto = :dscto"),
-    @NamedQuery(name = "CarteraDian.findByFletes", query = "SELECT c FROM CarteraDian c WHERE c.fletes = :fletes"),
-    @NamedQuery(name = "CarteraDian.findByOtros", query = "SELECT c FROM CarteraDian c WHERE c.otros = :otros"),
-    @NamedQuery(name = "CarteraDian.findByIva", query = "SELECT c FROM CarteraDian c WHERE c.iva = :iva")})
 public class CarteraDian implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,20 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "t_old")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "TOld.findAll", query = "SELECT t FROM TOld t"),
-    @NamedQuery(name = "TOld.findByCodigo", query = "SELECT t FROM TOld t WHERE t.codigo = :codigo"),
-    @NamedQuery(name = "TOld.findByTipo", query = "SELECT t FROM TOld t WHERE t.tipo = :tipo"),
-    @NamedQuery(name = "TOld.findByVendedor", query = "SELECT t FROM TOld t WHERE t.vendedor = :vendedor"),
-    @NamedQuery(name = "TOld.findByNombre", query = "SELECT t FROM TOld t WHERE t.nombre = :nombre"),
-    @NamedQuery(name = "TOld.findByFecha", query = "SELECT t FROM TOld t WHERE t.fecha = :fecha"),
-    @NamedQuery(name = "TOld.findByFechapago", query = "SELECT t FROM TOld t WHERE t.fechapago = :fechapago"),
-    @NamedQuery(name = "TOld.findBySubtot", query = "SELECT t FROM TOld t WHERE t.subtot = :subtot"),
-    @NamedQuery(name = "TOld.findByTipopago", query = "SELECT t FROM TOld t WHERE t.tipopago = :tipopago"),
-    @NamedQuery(name = "TOld.findByFct", query = "SELECT t FROM TOld t WHERE t.fct = :fct"),
-    @NamedQuery(name = "TOld.findByTipf", query = "SELECT t FROM TOld t WHERE t.tipf = :tipf"),
-    @NamedQuery(name = "TOld.findByLinea", query = "SELECT t FROM TOld t WHERE t.linea = :linea"),
-    @NamedQuery(name = "TOld.findById", query = "SELECT t FROM TOld t WHERE t.id = :id")})
 public class TOld implements Serializable {
 
     private static final long serialVersionUID = 1L;

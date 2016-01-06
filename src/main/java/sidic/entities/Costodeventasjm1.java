@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,19 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "costodeventasjm1")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Costodeventasjm1.findAll", query = "SELECT c FROM Costodeventasjm1 c"),
-    @NamedQuery(name = "Costodeventasjm1.findByFechai", query = "SELECT c FROM Costodeventasjm1 c WHERE c.fechai = :fechai"),
-    @NamedQuery(name = "Costodeventasjm1.findByFechaf", query = "SELECT c FROM Costodeventasjm1 c WHERE c.fechaf = :fechaf"),
-    @NamedQuery(name = "Costodeventasjm1.findByLinea", query = "SELECT c FROM Costodeventasjm1 c WHERE c.linea = :linea"),
-    @NamedQuery(name = "Costodeventasjm1.findByFecha", query = "SELECT c FROM Costodeventasjm1 c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "Costodeventasjm1.findByCodigo", query = "SELECT c FROM Costodeventasjm1 c WHERE c.codigo = :codigo"),
-    @NamedQuery(name = "Costodeventasjm1.findByNombre", query = "SELECT c FROM Costodeventasjm1 c WHERE c.nombre = :nombre"),
-    @NamedQuery(name = "Costodeventasjm1.findByReferencia", query = "SELECT c FROM Costodeventasjm1 c WHERE c.referencia = :referencia"),
-    @NamedQuery(name = "Costodeventasjm1.findByCantidad", query = "SELECT c FROM Costodeventasjm1 c WHERE c.cantidad = :cantidad"),
-    @NamedQuery(name = "Costodeventasjm1.findByCostopro", query = "SELECT c FROM Costodeventasjm1 c WHERE c.costopro = :costopro"),
-    @NamedQuery(name = "Costodeventasjm1.findByCostvent", query = "SELECT c FROM Costodeventasjm1 c WHERE c.costvent = :costvent"),
-    @NamedQuery(name = "Costodeventasjm1.findById", query = "SELECT c FROM Costodeventasjm1 c WHERE c.id = :id")})
 public class Costodeventasjm1 implements Serializable {
 
     private static final long serialVersionUID = 1L;

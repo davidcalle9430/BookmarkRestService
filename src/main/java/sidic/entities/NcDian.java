@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,14 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "nc_dian")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "NcDian.findAll", query = "SELECT n FROM NcDian n"),
-    @NamedQuery(name = "NcDian.findByNrorecibocaja", query = "SELECT n FROM NcDian n WHERE n.nrorecibocaja = :nrorecibocaja"),
-    @NamedQuery(name = "NcDian.findByFecha", query = "SELECT n FROM NcDian n WHERE n.fecha = :fecha"),
-    @NamedQuery(name = "NcDian.findByNc", query = "SELECT n FROM NcDian n WHERE n.nc = :nc"),
-    @NamedQuery(name = "NcDian.findByFactura", query = "SELECT n FROM NcDian n WHERE n.factura = :factura"),
-    @NamedQuery(name = "NcDian.findByCodigo", query = "SELECT n FROM NcDian n WHERE n.codigo = :codigo"),
-    @NamedQuery(name = "NcDian.findById", query = "SELECT n FROM NcDian n WHERE n.id = :id")})
 public class NcDian implements Serializable {
 
     private static final long serialVersionUID = 1L;

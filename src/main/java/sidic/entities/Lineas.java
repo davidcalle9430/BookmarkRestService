@@ -11,8 +11,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -23,14 +21,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Lineas.findAll", query = "SELECT l FROM Lineas l"),
-    @NamedQuery(name = "Lineas.findByLinea", query = "SELECT l FROM Lineas l WHERE l.linea = :linea"),
-    @NamedQuery(name = "Lineas.findByRango1", query = "SELECT l FROM Lineas l WHERE l.rango1 = :rango1"),
-    @NamedQuery(name = "Lineas.findByRango2", query = "SELECT l FROM Lineas l WHERE l.rango2 = :rango2"),
-    @NamedQuery(name = "Lineas.findByEstado", query = "SELECT l FROM Lineas l WHERE l.estado = :estado"),
-    @NamedQuery(name = "Lineas.findByDescripcion", query = "SELECT l FROM Lineas l WHERE l.descripcion = :descripcion"),
-    @NamedQuery(name = "Lineas.findByPermiterefespecial", query = "SELECT l FROM Lineas l WHERE l.permiterefespecial = :permiterefespecial")})
 public class Lineas implements Serializable {
 
     private static final long serialVersionUID = 1L;

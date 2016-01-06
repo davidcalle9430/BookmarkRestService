@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,20 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "t_new")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "TNew.findAll", query = "SELECT t FROM TNew t"),
-    @NamedQuery(name = "TNew.findByCodigo", query = "SELECT t FROM TNew t WHERE t.codigo = :codigo"),
-    @NamedQuery(name = "TNew.findByTipo", query = "SELECT t FROM TNew t WHERE t.tipo = :tipo"),
-    @NamedQuery(name = "TNew.findByVendedor", query = "SELECT t FROM TNew t WHERE t.vendedor = :vendedor"),
-    @NamedQuery(name = "TNew.findByNombre", query = "SELECT t FROM TNew t WHERE t.nombre = :nombre"),
-    @NamedQuery(name = "TNew.findByFecha", query = "SELECT t FROM TNew t WHERE t.fecha = :fecha"),
-    @NamedQuery(name = "TNew.findByFechapago", query = "SELECT t FROM TNew t WHERE t.fechapago = :fechapago"),
-    @NamedQuery(name = "TNew.findBySubtot", query = "SELECT t FROM TNew t WHERE t.subtot = :subtot"),
-    @NamedQuery(name = "TNew.findByTipopago", query = "SELECT t FROM TNew t WHERE t.tipopago = :tipopago"),
-    @NamedQuery(name = "TNew.findByFct", query = "SELECT t FROM TNew t WHERE t.fct = :fct"),
-    @NamedQuery(name = "TNew.findByTipf", query = "SELECT t FROM TNew t WHERE t.tipf = :tipf"),
-    @NamedQuery(name = "TNew.findByLinea", query = "SELECT t FROM TNew t WHERE t.linea = :linea"),
-    @NamedQuery(name = "TNew.findById", query = "SELECT t FROM TNew t WHERE t.id = :id")})
 public class TNew implements Serializable {
 
     private static final long serialVersionUID = 1L;

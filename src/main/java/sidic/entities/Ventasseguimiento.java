@@ -9,8 +9,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -19,34 +17,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Ventasseguimiento.findAll", query = "SELECT v FROM Ventasseguimiento v"),
-    @NamedQuery(name = "Ventasseguimiento.findByCliente", query = "SELECT v FROM Ventasseguimiento v WHERE v.cliente = :cliente"),
-    @NamedQuery(name = "Ventasseguimiento.findByFactura", query = "SELECT v FROM Ventasseguimiento v WHERE v.ventasseguimientoPK.factura = :factura"),
-    @NamedQuery(name = "Ventasseguimiento.findByMes", query = "SELECT v FROM Ventasseguimiento v WHERE v.mes = :mes"),
-    @NamedQuery(name = "Ventasseguimiento.findByCodigo", query = "SELECT v FROM Ventasseguimiento v WHERE v.ventasseguimientoPK.codigo = :codigo"),
-    @NamedQuery(name = "Ventasseguimiento.findByCantidad", query = "SELECT v FROM Ventasseguimiento v WHERE v.cantidad = :cantidad"),
-    @NamedQuery(name = "Ventasseguimiento.findByValorNeto", query = "SELECT v FROM Ventasseguimiento v WHERE v.valorNeto = :valorNeto"),
-    @NamedQuery(name = "Ventasseguimiento.findByCostoIM", query = "SELECT v FROM Ventasseguimiento v WHERE v.costoIM = :costoIM"),
-    @NamedQuery(name = "Ventasseguimiento.findByCostoJM", query = "SELECT v FROM Ventasseguimiento v WHERE v.costoJM = :costoJM"),
-    @NamedQuery(name = "Ventasseguimiento.findByUtilidadBrutaIm", query = "SELECT v FROM Ventasseguimiento v WHERE v.utilidadBrutaIm = :utilidadBrutaIm"),
-    @NamedQuery(name = "Ventasseguimiento.findByUtilidadBrutaJM", query = "SELECT v FROM Ventasseguimiento v WHERE v.utilidadBrutaJM = :utilidadBrutaJM"),
-    @NamedQuery(name = "Ventasseguimiento.findByFletes", query = "SELECT v FROM Ventasseguimiento v WHERE v.fletes = :fletes"),
-    @NamedQuery(name = "Ventasseguimiento.findByAcarreosAlpasarImpordisa", query = "SELECT v FROM Ventasseguimiento v WHERE v.acarreosAlpasarImpordisa = :acarreosAlpasarImpordisa"),
-    @NamedQuery(name = "Ventasseguimiento.findByAcarreosImpordisaCliente", query = "SELECT v FROM Ventasseguimiento v WHERE v.acarreosImpordisaCliente = :acarreosImpordisaCliente"),
-    @NamedQuery(name = "Ventasseguimiento.findByBodegaje", query = "SELECT v FROM Ventasseguimiento v WHERE v.bodegaje = :bodegaje"),
-    @NamedQuery(name = "Ventasseguimiento.findByLogisticaAlpasar", query = "SELECT v FROM Ventasseguimiento v WHERE v.logisticaAlpasar = :logisticaAlpasar"),
-    @NamedQuery(name = "Ventasseguimiento.findByVarios", query = "SELECT v FROM Ventasseguimiento v WHERE v.varios = :varios"),
-    @NamedQuery(name = "Ventasseguimiento.findByDetalle", query = "SELECT v FROM Ventasseguimiento v WHERE v.detalle = :detalle"),
-    @NamedQuery(name = "Ventasseguimiento.findByConcepto7", query = "SELECT v FROM Ventasseguimiento v WHERE v.concepto7 = :concepto7"),
-    @NamedQuery(name = "Ventasseguimiento.findByConcepto8", query = "SELECT v FROM Ventasseguimiento v WHERE v.concepto8 = :concepto8"),
-    @NamedQuery(name = "Ventasseguimiento.findByConcepto9", query = "SELECT v FROM Ventasseguimiento v WHERE v.concepto9 = :concepto9"),
-    @NamedQuery(name = "Ventasseguimiento.findByConcepto10", query = "SELECT v FROM Ventasseguimiento v WHERE v.concepto10 = :concepto10"),
-    @NamedQuery(name = "Ventasseguimiento.findByEstado", query = "SELECT v FROM Ventasseguimiento v WHERE v.estado = :estado"),
-    @NamedQuery(name = "Ventasseguimiento.findByCodigoi", query = "SELECT v FROM Ventasseguimiento v WHERE v.codigoi = :codigoi"),
-    @NamedQuery(name = "Ventasseguimiento.findByCodigof", query = "SELECT v FROM Ventasseguimiento v WHERE v.codigof = :codigof"),
-    @NamedQuery(name = "Ventasseguimiento.findByAaaa", query = "SELECT v FROM Ventasseguimiento v WHERE v.aaaa = :aaaa"),
-    @NamedQuery(name = "Ventasseguimiento.findByAafact", query = "SELECT v FROM Ventasseguimiento v WHERE v.aafact = :aafact")})
 public class Ventasseguimiento implements Serializable {
 
     private static final long serialVersionUID = 1L;

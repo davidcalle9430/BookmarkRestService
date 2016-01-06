@@ -15,8 +15,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,12 +27,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Menus.findAll", query = "SELECT m FROM Menus m"),
-    @NamedQuery(name = "Menus.findByEmpresa", query = "SELECT m FROM Menus m WHERE m.menusPK.empresa = :empresa"),
-    @NamedQuery(name = "Menus.findByMenu", query = "SELECT m FROM Menus m WHERE m.menusPK.menu = :menu"),
-    @NamedQuery(name = "Menus.findByDescripcion", query = "SELECT m FROM Menus m WHERE m.descripcion = :descripcion"),
-    @NamedQuery(name = "Menus.findByFecha", query = "SELECT m FROM Menus m WHERE m.fecha = :fecha")})
 public class Menus implements Serializable {
 
     private static final long serialVersionUID = 1L;

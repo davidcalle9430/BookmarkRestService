@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -24,24 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "lprecios")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Lprecios.findAll", query = "SELECT l FROM Lprecios l"),
-    @NamedQuery(name = "Lprecios.findByCodpre", query = "SELECT l FROM Lprecios l WHERE l.codpre = :codpre"),
-    @NamedQuery(name = "Lprecios.findByNompre", query = "SELECT l FROM Lprecios l WHERE l.nompre = :nompre"),
-    @NamedQuery(name = "Lprecios.findByMod1pre", query = "SELECT l FROM Lprecios l WHERE l.mod1pre = :mod1pre"),
-    @NamedQuery(name = "Lprecios.findByMod2pre", query = "SELECT l FROM Lprecios l WHERE l.mod2pre = :mod2pre"),
-    @NamedQuery(name = "Lprecios.findByMod3pre", query = "SELECT l FROM Lprecios l WHERE l.mod3pre = :mod3pre"),
-    @NamedQuery(name = "Lprecios.findByRefpre", query = "SELECT l FROM Lprecios l WHERE l.refpre = :refpre"),
-    @NamedQuery(name = "Lprecios.findByUsopre", query = "SELECT l FROM Lprecios l WHERE l.usopre = :usopre"),
-    @NamedQuery(name = "Lprecios.findByMarpre", query = "SELECT l FROM Lprecios l WHERE l.marpre = :marpre"),
-    @NamedQuery(name = "Lprecios.findByProcpre", query = "SELECT l FROM Lprecios l WHERE l.procpre = :procpre"),
-    @NamedQuery(name = "Lprecios.findByCantpre", query = "SELECT l FROM Lprecios l WHERE l.cantpre = :cantpre"),
-    @NamedQuery(name = "Lprecios.findByPrepre", query = "SELECT l FROM Lprecios l WHERE l.prepre = :prepre"),
-    @NamedQuery(name = "Lprecios.findByAstpre", query = "SELECT l FROM Lprecios l WHERE l.astpre = :astpre"),
-    @NamedQuery(name = "Lprecios.findByCodvpre", query = "SELECT l FROM Lprecios l WHERE l.codvpre = :codvpre"),
-    @NamedQuery(name = "Lprecios.findByTipart", query = "SELECT l FROM Lprecios l WHERE l.tipart = :tipart"),
-    @NamedQuery(name = "Lprecios.findByLinea", query = "SELECT l FROM Lprecios l WHERE l.linea = :linea"),
-    @NamedQuery(name = "Lprecios.findById", query = "SELECT l FROM Lprecios l WHERE l.id = :id")})
 public class Lprecios implements Serializable {
 
     private static final long serialVersionUID = 1L;

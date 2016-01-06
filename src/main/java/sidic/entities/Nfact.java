@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,38 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "nfact")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Nfact.findAll", query = "SELECT n FROM Nfact n"),
-    @NamedQuery(name = "Nfact.findByFactiva", query = "SELECT n FROM Nfact n WHERE n.factiva = :factiva"),
-    @NamedQuery(name = "Nfact.findByFactsiniva", query = "SELECT n FROM Nfact n WHERE n.factsiniva = :factsiniva"),
-    @NamedQuery(name = "Nfact.findByAcumiva", query = "SELECT n FROM Nfact n WHERE n.acumiva = :acumiva"),
-    @NamedQuery(name = "Nfact.findByAcumsiniva", query = "SELECT n FROM Nfact n WHERE n.acumsiniva = :acumsiniva"),
-    @NamedQuery(name = "Nfact.findByMes", query = "SELECT n FROM Nfact n WHERE n.mes = :mes"),
-    @NamedQuery(name = "Nfact.findByAno", query = "SELECT n FROM Nfact n WHERE n.ano = :ano"),
-    @NamedQuery(name = "Nfact.findByAnocopia", query = "SELECT n FROM Nfact n WHERE n.anocopia = :anocopia"),
-    @NamedQuery(name = "Nfact.findByClave", query = "SELECT n FROM Nfact n WHERE n.clave = :clave"),
-    @NamedQuery(name = "Nfact.findByClavec", query = "SELECT n FROM Nfact n WHERE n.clavec = :clavec"),
-    @NamedQuery(name = "Nfact.findByPorcprec", query = "SELECT n FROM Nfact n WHERE n.porcprec = :porcprec"),
-    @NamedQuery(name = "Nfact.findByJmqcl", query = "SELECT n FROM Nfact n WHERE n.jmqcl = :jmqcl"),
-    @NamedQuery(name = "Nfact.findByFeccorlven", query = "SELECT n FROM Nfact n WHERE n.feccorlven = :feccorlven"),
-    @NamedQuery(name = "Nfact.findByPorcfactur", query = "SELECT n FROM Nfact n WHERE n.porcfactur = :porcfactur"),
-    @NamedQuery(name = "Nfact.findByValret", query = "SELECT n FROM Nfact n WHERE n.valret = :valret"),
-    @NamedQuery(name = "Nfact.findByRemision", query = "SELECT n FROM Nfact n WHERE n.remision = :remision"),
-    @NamedQuery(name = "Nfact.findByFechisto", query = "SELECT n FROM Nfact n WHERE n.fechisto = :fechisto"),
-    @NamedQuery(name = "Nfact.findByPedido", query = "SELECT n FROM Nfact n WHERE n.pedido = :pedido"),
-    @NamedQuery(name = "Nfact.findByPorcfacmas", query = "SELECT n FROM Nfact n WHERE n.porcfacmas = :porcfacmas"),
-    @NamedQuery(name = "Nfact.findByIva", query = "SELECT n FROM Nfact n WHERE n.iva = :iva"),
-    @NamedQuery(name = "Nfact.findByPorcplus", query = "SELECT n FROM Nfact n WHERE n.porcplus = :porcplus"),
-    @NamedQuery(name = "Nfact.findByRecibocaja", query = "SELECT n FROM Nfact n WHERE n.recibocaja = :recibocaja"),
-    @NamedQuery(name = "Nfact.findByNc", query = "SELECT n FROM Nfact n WHERE n.nc = :nc"),
-    @NamedQuery(name = "Nfact.findByNd", query = "SELECT n FROM Nfact n WHERE n.nd = :nd"),
-    @NamedQuery(name = "Nfact.findByCuenta1", query = "SELECT n FROM Nfact n WHERE n.cuenta1 = :cuenta1"),
-    @NamedQuery(name = "Nfact.findByCuenta2", query = "SELECT n FROM Nfact n WHERE n.cuenta2 = :cuenta2"),
-    @NamedQuery(name = "Nfact.findByFACtPROVEEDORES", query = "SELECT n FROM Nfact n WHERE n.fACtPROVEEDORES = :fACtPROVEEDORES"),
-    @NamedQuery(name = "Nfact.findByNuevoformato", query = "SELECT n FROM Nfact n WHERE n.nuevoformato = :nuevoformato"),
-    @NamedQuery(name = "Nfact.findByAaaaseguimiento", query = "SELECT n FROM Nfact n WHERE n.aaaaseguimiento = :aaaaseguimiento"),
-    @NamedQuery(name = "Nfact.findByFacturaEnproceso", query = "SELECT n FROM Nfact n WHERE n.facturaEnproceso = :facturaEnproceso"),
-    @NamedQuery(name = "Nfact.findById", query = "SELECT n FROM Nfact n WHERE n.id = :id")})
 public class Nfact implements Serializable {
 
     private static final long serialVersionUID = 1L;

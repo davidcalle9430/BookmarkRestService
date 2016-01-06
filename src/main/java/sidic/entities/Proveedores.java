@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,14 +23,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Proveedores.findAll", query = "SELECT p FROM Proveedores p"),
-    @NamedQuery(name = "Proveedores.findByIdentificacion", query = "SELECT p FROM Proveedores p WHERE p.identificacion = :identificacion"),
-    @NamedQuery(name = "Proveedores.findByNombre", query = "SELECT p FROM Proveedores p WHERE p.nombre = :nombre"),
-    @NamedQuery(name = "Proveedores.findByDireccion", query = "SELECT p FROM Proveedores p WHERE p.direccion = :direccion"),
-    @NamedQuery(name = "Proveedores.findByTelefono", query = "SELECT p FROM Proveedores p WHERE p.telefono = :telefono"),
-    @NamedQuery(name = "Proveedores.findByFechamod", query = "SELECT p FROM Proveedores p WHERE p.fechamod = :fechamod"),
-    @NamedQuery(name = "Proveedores.findByUsuario", query = "SELECT p FROM Proveedores p WHERE p.usuario = :usuario")})
 public class Proveedores implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -10,8 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -22,13 +20,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "clientes_ocacionales")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "ClientesOcacionales.findAll", query = "SELECT c FROM ClientesOcacionales c"),
-    @NamedQuery(name = "ClientesOcacionales.findByFactura", query = "SELECT c FROM ClientesOcacionales c WHERE c.factura = :factura"),
-    @NamedQuery(name = "ClientesOcacionales.findByNombre", query = "SELECT c FROM ClientesOcacionales c WHERE c.nombre = :nombre"),
-    @NamedQuery(name = "ClientesOcacionales.findByNit", query = "SELECT c FROM ClientesOcacionales c WHERE c.nit = :nit"),
-    @NamedQuery(name = "ClientesOcacionales.findByDireccion", query = "SELECT c FROM ClientesOcacionales c WHERE c.direccion = :direccion"),
-    @NamedQuery(name = "ClientesOcacionales.findByCiudad", query = "SELECT c FROM ClientesOcacionales c WHERE c.ciudad = :ciudad")})
 public class ClientesOcacionales implements Serializable {
 
     private static final long serialVersionUID = 1L;

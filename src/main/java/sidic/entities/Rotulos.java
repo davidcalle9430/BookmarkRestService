@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -24,13 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "rotulos")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Rotulos.findAll", query = "SELECT r FROM Rotulos r"),
-    @NamedQuery(name = "Rotulos.findByNota", query = "SELECT r FROM Rotulos r WHERE r.nota = :nota"),
-    @NamedQuery(name = "Rotulos.findByRazsoc", query = "SELECT r FROM Rotulos r WHERE r.razsoc = :razsoc"),
-    @NamedQuery(name = "Rotulos.findByDireccion", query = "SELECT r FROM Rotulos r WHERE r.direccion = :direccion"),
-    @NamedQuery(name = "Rotulos.findByCiudad", query = "SELECT r FROM Rotulos r WHERE r.ciudad = :ciudad"),
-    @NamedQuery(name = "Rotulos.findById", query = "SELECT r FROM Rotulos r WHERE r.id = :id")})
 public class Rotulos implements Serializable {
 
     private static final long serialVersionUID = 1L;

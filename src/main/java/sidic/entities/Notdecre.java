@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,20 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "notdecre")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Notdecre.findAll", query = "SELECT n FROM Notdecre n"),
-    @NamedQuery(name = "Notdecre.findByFecha", query = "SELECT n FROM Notdecre n WHERE n.fecha = :fecha"),
-    @NamedQuery(name = "Notdecre.findByCliente", query = "SELECT n FROM Notdecre n WHERE n.cliente = :cliente"),
-    @NamedQuery(name = "Notdecre.findByFactura", query = "SELECT n FROM Notdecre n WHERE n.factura = :factura"),
-    @NamedQuery(name = "Notdecre.findByValDeb", query = "SELECT n FROM Notdecre n WHERE n.valDeb = :valDeb"),
-    @NamedQuery(name = "Notdecre.findByValCre", query = "SELECT n FROM Notdecre n WHERE n.valCre = :valCre"),
-    @NamedQuery(name = "Notdecre.findByIva", query = "SELECT n FROM Notdecre n WHERE n.iva = :iva"),
-    @NamedQuery(name = "Notdecre.findByCantidad", query = "SELECT n FROM Notdecre n WHERE n.cantidad = :cantidad"),
-    @NamedQuery(name = "Notdecre.findByCodigo", query = "SELECT n FROM Notdecre n WHERE n.codigo = :codigo"),
-    @NamedQuery(name = "Notdecre.findByPrecio", query = "SELECT n FROM Notdecre n WHERE n.precio = :precio"),
-    @NamedQuery(name = "Notdecre.findByDescue", query = "SELECT n FROM Notdecre n WHERE n.descue = :descue"),
-    @NamedQuery(name = "Notdecre.findByCausal", query = "SELECT n FROM Notdecre n WHERE n.causal = :causal"),
-    @NamedQuery(name = "Notdecre.findById", query = "SELECT n FROM Notdecre n WHERE n.id = :id")})
 public class Notdecre implements Serializable {
 
     private static final long serialVersionUID = 1L;

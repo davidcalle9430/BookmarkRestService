@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -24,12 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Opciones.findAll", query = "SELECT o FROM Opciones o"),
-    @NamedQuery(name = "Opciones.findByEmpresa", query = "SELECT o FROM Opciones o WHERE o.opcionesPK.empresa = :empresa"),
-    @NamedQuery(name = "Opciones.findByNivel", query = "SELECT o FROM Opciones o WHERE o.opcionesPK.nivel = :nivel"),
-    @NamedQuery(name = "Opciones.findByMenu", query = "SELECT o FROM Opciones o WHERE o.opcionesPK.menu = :menu"),
-    @NamedQuery(name = "Opciones.findByFecha", query = "SELECT o FROM Opciones o WHERE o.fecha = :fecha")})
 public class Opciones implements Serializable {
 
     private static final long serialVersionUID = 1L;

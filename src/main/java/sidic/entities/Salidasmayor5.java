@@ -11,8 +11,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,16 +23,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "salidasmayor5")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Salidasmayor5.findAll", query = "SELECT s FROM Salidasmayor5 s"),
-    @NamedQuery(name = "Salidasmayor5.findByConsec", query = "SELECT s FROM Salidasmayor5 s WHERE s.consec = :consec"),
-    @NamedQuery(name = "Salidasmayor5.findByCodigo", query = "SELECT s FROM Salidasmayor5 s WHERE s.codigo = :codigo"),
-    @NamedQuery(name = "Salidasmayor5.findByFecha", query = "SELECT s FROM Salidasmayor5 s WHERE s.fecha = :fecha"),
-    @NamedQuery(name = "Salidasmayor5.findByTipo", query = "SELECT s FROM Salidasmayor5 s WHERE s.tipo = :tipo"),
-    @NamedQuery(name = "Salidasmayor5.findByDocumento", query = "SELECT s FROM Salidasmayor5 s WHERE s.documento = :documento"),
-    @NamedQuery(name = "Salidasmayor5.findByCantidad", query = "SELECT s FROM Salidasmayor5 s WHERE s.cantidad = :cantidad"),
-    @NamedQuery(name = "Salidasmayor5.findByNdoc", query = "SELECT s FROM Salidasmayor5 s WHERE s.ndoc = :ndoc"),
-    @NamedQuery(name = "Salidasmayor5.findBySaldo", query = "SELECT s FROM Salidasmayor5 s WHERE s.saldo = :saldo")})
 public class Salidasmayor5 implements Serializable {
 
     private static final long serialVersionUID = 1L;

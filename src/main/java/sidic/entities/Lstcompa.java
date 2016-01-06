@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -24,11 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "lstcompa")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Lstcompa.findAll", query = "SELECT l FROM Lstcompa l"),
-    @NamedQuery(name = "Lstcompa.findByCodigo", query = "SELECT l FROM Lstcompa l WHERE l.codigo = :codigo"),
-    @NamedQuery(name = "Lstcompa.findByNombre", query = "SELECT l FROM Lstcompa l WHERE l.nombre = :nombre"),
-    @NamedQuery(name = "Lstcompa.findByCantidad", query = "SELECT l FROM Lstcompa l WHERE l.cantidad = :cantidad")})
 public class Lstcompa implements Serializable {
 
     private static final long serialVersionUID = 1L;

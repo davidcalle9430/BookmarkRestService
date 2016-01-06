@@ -10,8 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -22,18 +20,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "cotizac")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Cotizac.findAll", query = "SELECT c FROM Cotizac c"),
-    @NamedQuery(name = "Cotizac.findByCodigo", query = "SELECT c FROM Cotizac c WHERE c.codigo = :codigo"),
-    @NamedQuery(name = "Cotizac.findByNombre", query = "SELECT c FROM Cotizac c WHERE c.nombre = :nombre"),
-    @NamedQuery(name = "Cotizac.findByReferencia", query = "SELECT c FROM Cotizac c WHERE c.referencia = :referencia"),
-    @NamedQuery(name = "Cotizac.findByDescuen", query = "SELECT c FROM Cotizac c WHERE c.descuen = :descuen"),
-    @NamedQuery(name = "Cotizac.findByPrecio", query = "SELECT c FROM Cotizac c WHERE c.precio = :precio"),
-    @NamedQuery(name = "Cotizac.findByCantidad", query = "SELECT c FROM Cotizac c WHERE c.cantidad = :cantidad"),
-    @NamedQuery(name = "Cotizac.findByModelo", query = "SELECT c FROM Cotizac c WHERE c.modelo = :modelo"),
-    @NamedQuery(name = "Cotizac.findByMarca", query = "SELECT c FROM Cotizac c WHERE c.marca = :marca"),
-    @NamedQuery(name = "Cotizac.findByRemision", query = "SELECT c FROM Cotizac c WHERE c.remision = :remision"),
-    @NamedQuery(name = "Cotizac.findByCostprom", query = "SELECT c FROM Cotizac c WHERE c.costprom = :costprom")})
 public class Cotizac implements Serializable {
 
     private static final long serialVersionUID = 1L;

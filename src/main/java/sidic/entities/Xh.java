@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,17 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "xh")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Xh.findAll", query = "SELECT x FROM Xh x"),
-    @NamedQuery(name = "Xh.findByCardexCodigo", query = "SELECT x FROM Xh x WHERE x.cardexCodigo = :cardexCodigo"),
-    @NamedQuery(name = "Xh.findByVendedor", query = "SELECT x FROM Xh x WHERE x.vendedor = :vendedor"),
-    @NamedQuery(name = "Xh.findByCarteraCodigo", query = "SELECT x FROM Xh x WHERE x.carteraCodigo = :carteraCodigo"),
-    @NamedQuery(name = "Xh.findByFecha", query = "SELECT x FROM Xh x WHERE x.fecha = :fecha"),
-    @NamedQuery(name = "Xh.findByModelo1", query = "SELECT x FROM Xh x WHERE x.modelo1 = :modelo1"),
-    @NamedQuery(name = "Xh.findByReferencia", query = "SELECT x FROM Xh x WHERE x.referencia = :referencia"),
-    @NamedQuery(name = "Xh.findByCant", query = "SELECT x FROM Xh x WHERE x.cant = :cant"),
-    @NamedQuery(name = "Xh.findByPrecio", query = "SELECT x FROM Xh x WHERE x.precio = :precio"),
-    @NamedQuery(name = "Xh.findById", query = "SELECT x FROM Xh x WHERE x.id = :id")})
 public class Xh implements Serializable {
 
     private static final long serialVersionUID = 1L;

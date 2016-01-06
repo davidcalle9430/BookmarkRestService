@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,29 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "revisar")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Revisar.findAll", query = "SELECT r FROM Revisar r"),
-    @NamedQuery(name = "Revisar.findByCodigo", query = "SELECT r FROM Revisar r WHERE r.codigo = :codigo"),
-    @NamedQuery(name = "Revisar.findByFecha", query = "SELECT r FROM Revisar r WHERE r.fecha = :fecha"),
-    @NamedQuery(name = "Revisar.findByProductos", query = "SELECT r FROM Revisar r WHERE r.productos = :productos"),
-    @NamedQuery(name = "Revisar.findByFpago", query = "SELECT r FROM Revisar r WHERE r.fpago = :fpago"),
-    @NamedQuery(name = "Revisar.findByValor", query = "SELECT r FROM Revisar r WHERE r.valor = :valor"),
-    @NamedQuery(name = "Revisar.findByFactura", query = "SELECT r FROM Revisar r WHERE r.factura = :factura"),
-    @NamedQuery(name = "Revisar.findByNotad", query = "SELECT r FROM Revisar r WHERE r.notad = :notad"),
-    @NamedQuery(name = "Revisar.findByNotac", query = "SELECT r FROM Revisar r WHERE r.notac = :notac"),
-    @NamedQuery(name = "Revisar.findByObservac", query = "SELECT r FROM Revisar r WHERE r.observac = :observac"),
-    @NamedQuery(name = "Revisar.findByFechapago", query = "SELECT r FROM Revisar r WHERE r.fechapago = :fechapago"),
-    @NamedQuery(name = "Revisar.findByDescontada", query = "SELECT r FROM Revisar r WHERE r.descontada = :descontada"),
-    @NamedQuery(name = "Revisar.findByVendedor", query = "SELECT r FROM Revisar r WHERE r.vendedor = :vendedor"),
-    @NamedQuery(name = "Revisar.findBySaldo", query = "SELECT r FROM Revisar r WHERE r.saldo = :saldo"),
-    @NamedQuery(name = "Revisar.findBySubtot", query = "SELECT r FROM Revisar r WHERE r.subtot = :subtot"),
-    @NamedQuery(name = "Revisar.findByAceites", query = "SELECT r FROM Revisar r WHERE r.aceites = :aceites"),
-    @NamedQuery(name = "Revisar.findByCorreria", query = "SELECT r FROM Revisar r WHERE r.correria = :correria"),
-    @NamedQuery(name = "Revisar.findByLinea", query = "SELECT r FROM Revisar r WHERE r.linea = :linea"),
-    @NamedQuery(name = "Revisar.findByZona", query = "SELECT r FROM Revisar r WHERE r.zona = :zona"),
-    @NamedQuery(name = "Revisar.findByCiudad", query = "SELECT r FROM Revisar r WHERE r.ciudad = :ciudad"),
-    @NamedQuery(name = "Revisar.findByExpr1", query = "SELECT r FROM Revisar r WHERE r.expr1 = :expr1"),
-    @NamedQuery(name = "Revisar.findById", query = "SELECT r FROM Revisar r WHERE r.id = :id")})
 public class Revisar implements Serializable {
 
     private static final long serialVersionUID = 1L;

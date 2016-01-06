@@ -15,8 +15,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,12 +27,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Niveles.findAll", query = "SELECT n FROM Niveles n"),
-    @NamedQuery(name = "Niveles.findByEmpresa", query = "SELECT n FROM Niveles n WHERE n.nivelesPK.empresa = :empresa"),
-    @NamedQuery(name = "Niveles.findByNivel", query = "SELECT n FROM Niveles n WHERE n.nivelesPK.nivel = :nivel"),
-    @NamedQuery(name = "Niveles.findByDescripcion", query = "SELECT n FROM Niveles n WHERE n.descripcion = :descripcion"),
-    @NamedQuery(name = "Niveles.findByFecha", query = "SELECT n FROM Niveles n WHERE n.fecha = :fecha")})
 public class Niveles implements Serializable {
 
     private static final long serialVersionUID = 1L;

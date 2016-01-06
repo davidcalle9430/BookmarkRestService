@@ -9,8 +9,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -19,25 +17,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Notascredito.findAll", query = "SELECT n FROM Notascredito n"),
-    @NamedQuery(name = "Notascredito.findByNrorecibocaja", query = "SELECT n FROM Notascredito n WHERE n.notascreditoPK.nrorecibocaja = :nrorecibocaja"),
-    @NamedQuery(name = "Notascredito.findByCliente", query = "SELECT n FROM Notascredito n WHERE n.notascreditoPK.cliente = :cliente"),
-    @NamedQuery(name = "Notascredito.findByFactura", query = "SELECT n FROM Notascredito n WHERE n.notascreditoPK.factura = :factura"),
-    @NamedQuery(name = "Notascredito.findByArticulo", query = "SELECT n FROM Notascredito n WHERE n.notascreditoPK.articulo = :articulo"),
-    @NamedQuery(name = "Notascredito.findByNombre", query = "SELECT n FROM Notascredito n WHERE n.nombre = :nombre"),
-    @NamedQuery(name = "Notascredito.findByReferencia", query = "SELECT n FROM Notascredito n WHERE n.referencia = :referencia"),
-    @NamedQuery(name = "Notascredito.findByModelo", query = "SELECT n FROM Notascredito n WHERE n.modelo = :modelo"),
-    @NamedQuery(name = "Notascredito.findByMarca", query = "SELECT n FROM Notascredito n WHERE n.marca = :marca"),
-    @NamedQuery(name = "Notascredito.findByCantidad", query = "SELECT n FROM Notascredito n WHERE n.cantidad = :cantidad"),
-    @NamedQuery(name = "Notascredito.findByValorunitario", query = "SELECT n FROM Notascredito n WHERE n.valorunitario = :valorunitario"),
-    @NamedQuery(name = "Notascredito.findByPorcdscto", query = "SELECT n FROM Notascredito n WHERE n.porcdscto = :porcdscto"),
-    @NamedQuery(name = "Notascredito.findByPorciva", query = "SELECT n FROM Notascredito n WHERE n.porciva = :porciva"),
-    @NamedQuery(name = "Notascredito.findByValortotal", query = "SELECT n FROM Notascredito n WHERE n.valortotal = :valortotal"),
-    @NamedQuery(name = "Notascredito.findByUsuario", query = "SELECT n FROM Notascredito n WHERE n.usuario = :usuario"),
-    @NamedQuery(name = "Notascredito.findByNc", query = "SELECT n FROM Notascredito n WHERE n.notascreditoPK.nc = :nc"),
-    @NamedQuery(name = "Notascredito.findByDescripcion", query = "SELECT n FROM Notascredito n WHERE n.descripcion = :descripcion"),
-    @NamedQuery(name = "Notascredito.findBySecuencia", query = "SELECT n FROM Notascredito n WHERE n.notascreditoPK.secuencia = :secuencia")})
 public class Notascredito implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -9,8 +9,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -19,20 +17,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Notasdebito.findAll", query = "SELECT n FROM Notasdebito n"),
-    @NamedQuery(name = "Notasdebito.findByNrorecibocaja", query = "SELECT n FROM Notasdebito n WHERE n.notasdebitoPK.nrorecibocaja = :nrorecibocaja"),
-    @NamedQuery(name = "Notasdebito.findByCliente", query = "SELECT n FROM Notasdebito n WHERE n.notasdebitoPK.cliente = :cliente"),
-    @NamedQuery(name = "Notasdebito.findByFactura", query = "SELECT n FROM Notasdebito n WHERE n.notasdebitoPK.factura = :factura"),
-    @NamedQuery(name = "Notasdebito.findByVlrnd", query = "SELECT n FROM Notasdebito n WHERE n.vlrnd = :vlrnd"),
-    @NamedQuery(name = "Notasdebito.findByVlriva", query = "SELECT n FROM Notasdebito n WHERE n.vlriva = :vlriva"),
-    @NamedQuery(name = "Notasdebito.findByCausal", query = "SELECT n FROM Notasdebito n WHERE n.causal = :causal"),
-    @NamedQuery(name = "Notasdebito.findByNd", query = "SELECT n FROM Notasdebito n WHERE n.nd = :nd"),
-    @NamedQuery(name = "Notasdebito.findByUsuario", query = "SELECT n FROM Notasdebito n WHERE n.notasdebitoPK.usuario = :usuario"),
-    @NamedQuery(name = "Notasdebito.findByCartera", query = "SELECT n FROM Notasdebito n WHERE n.cartera = :cartera"),
-    @NamedQuery(name = "Notasdebito.findByReportevtas", query = "SELECT n FROM Notasdebito n WHERE n.reportevtas = :reportevtas"),
-    @NamedQuery(name = "Notasdebito.findByAcumvtas", query = "SELECT n FROM Notasdebito n WHERE n.acumvtas = :acumvtas"),
-    @NamedQuery(name = "Notasdebito.findByDescripcion", query = "SELECT n FROM Notasdebito n WHERE n.descripcion = :descripcion")})
 public class Notasdebito implements Serializable {
 
     private static final long serialVersionUID = 1L;

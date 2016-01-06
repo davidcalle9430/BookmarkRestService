@@ -1,17 +1,10 @@
 package web;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.view.RedirectView;
+
 /**
 * Controlador del usuario
 * Clase encargada de crear, elminar, actualizar y eliminar usuarios
@@ -20,8 +13,6 @@ import org.springframework.web.servlet.view.RedirectView;
 * @version 1.0
 * @since   2015-12-14
 */
-
-import ch.qos.logback.access.pattern.RequestMethodConverter;
 @Controller
 public class UsuarioController {
 	

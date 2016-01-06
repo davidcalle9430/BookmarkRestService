@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,28 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "venthist")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Venthist.findAll", query = "SELECT v FROM Venthist v"),
-    @NamedQuery(name = "Venthist.findByCiudad", query = "SELECT v FROM Venthist v WHERE v.ciudad = :ciudad"),
-    @NamedQuery(name = "Venthist.findByCodcorr", query = "SELECT v FROM Venthist v WHERE v.codcorr = :codcorr"),
-    @NamedQuery(name = "Venthist.findByCliente", query = "SELECT v FROM Venthist v WHERE v.cliente = :cliente"),
-    @NamedQuery(name = "Venthist.findByPrecio", query = "SELECT v FROM Venthist v WHERE v.precio = :precio"),
-    @NamedQuery(name = "Venthist.findByFactura", query = "SELECT v FROM Venthist v WHERE v.factura = :factura"),
-    @NamedQuery(name = "Venthist.findByCantidad", query = "SELECT v FROM Venthist v WHERE v.cantidad = :cantidad"),
-    @NamedQuery(name = "Venthist.findByCodigo", query = "SELECT v FROM Venthist v WHERE v.codigo = :codigo"),
-    @NamedQuery(name = "Venthist.findByCostoimp", query = "SELECT v FROM Venthist v WHERE v.costoimp = :costoimp"),
-    @NamedQuery(name = "Venthist.findByCostojm", query = "SELECT v FROM Venthist v WHERE v.costojm = :costojm"),
-    @NamedQuery(name = "Venthist.findByCostopro", query = "SELECT v FROM Venthist v WHERE v.costopro = :costopro"),
-    @NamedQuery(name = "Venthist.findByCostoproim", query = "SELECT v FROM Venthist v WHERE v.costoproim = :costoproim"),
-    @NamedQuery(name = "Venthist.findByDevolimp", query = "SELECT v FROM Venthist v WHERE v.devolimp = :devolimp"),
-    @NamedQuery(name = "Venthist.findByDevoljm", query = "SELECT v FROM Venthist v WHERE v.devoljm = :devoljm"),
-    @NamedQuery(name = "Venthist.findByValord", query = "SELECT v FROM Venthist v WHERE v.valord = :valord"),
-    @NamedQuery(name = "Venthist.findByValorc", query = "SELECT v FROM Venthist v WHERE v.valorc = :valorc"),
-    @NamedQuery(name = "Venthist.findByLinea", query = "SELECT v FROM Venthist v WHERE v.linea = :linea"),
-    @NamedQuery(name = "Venthist.findByFecha", query = "SELECT v FROM Venthist v WHERE v.fecha = :fecha"),
-    @NamedQuery(name = "Venthist.findByDescue", query = "SELECT v FROM Venthist v WHERE v.descue = :descue"),
-    @NamedQuery(name = "Venthist.findByImojm", query = "SELECT v FROM Venthist v WHERE v.imojm = :imojm"),
-    @NamedQuery(name = "Venthist.findById", query = "SELECT v FROM Venthist v WHERE v.id = :id")})
 public class Venthist implements Serializable {
 
     private static final long serialVersionUID = 1L;

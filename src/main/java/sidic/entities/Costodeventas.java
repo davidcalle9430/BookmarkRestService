@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,19 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "costodeventas")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Costodeventas.findAll", query = "SELECT c FROM Costodeventas c"),
-    @NamedQuery(name = "Costodeventas.findByFechai", query = "SELECT c FROM Costodeventas c WHERE c.fechai = :fechai"),
-    @NamedQuery(name = "Costodeventas.findByFechaf", query = "SELECT c FROM Costodeventas c WHERE c.fechaf = :fechaf"),
-    @NamedQuery(name = "Costodeventas.findByLinea", query = "SELECT c FROM Costodeventas c WHERE c.linea = :linea"),
-    @NamedQuery(name = "Costodeventas.findByFecha", query = "SELECT c FROM Costodeventas c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "Costodeventas.findByCodigo", query = "SELECT c FROM Costodeventas c WHERE c.codigo = :codigo"),
-    @NamedQuery(name = "Costodeventas.findByNombre", query = "SELECT c FROM Costodeventas c WHERE c.nombre = :nombre"),
-    @NamedQuery(name = "Costodeventas.findByReferencia", query = "SELECT c FROM Costodeventas c WHERE c.referencia = :referencia"),
-    @NamedQuery(name = "Costodeventas.findByCantidad", query = "SELECT c FROM Costodeventas c WHERE c.cantidad = :cantidad"),
-    @NamedQuery(name = "Costodeventas.findByCostoproim", query = "SELECT c FROM Costodeventas c WHERE c.costoproim = :costoproim"),
-    @NamedQuery(name = "Costodeventas.findByCostvent", query = "SELECT c FROM Costodeventas c WHERE c.costvent = :costvent"),
-    @NamedQuery(name = "Costodeventas.findById", query = "SELECT c FROM Costodeventas c WHERE c.id = :id")})
 public class Costodeventas implements Serializable {
 
     private static final long serialVersionUID = 1L;

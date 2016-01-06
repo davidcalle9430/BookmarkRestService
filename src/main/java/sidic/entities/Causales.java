@@ -10,8 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -20,13 +18,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Causales.findAll", query = "SELECT c FROM Causales c"),
-    @NamedQuery(name = "Causales.findByCodigo", query = "SELECT c FROM Causales c WHERE c.codigo = :codigo"),
-    @NamedQuery(name = "Causales.findByNombre", query = "SELECT c FROM Causales c WHERE c.nombre = :nombre"),
-    @NamedQuery(name = "Causales.findByTipo", query = "SELECT c FROM Causales c WHERE c.tipo = :tipo"),
-    @NamedQuery(name = "Causales.findByListar", query = "SELECT c FROM Causales c WHERE c.listar = :listar"),
-    @NamedQuery(name = "Causales.findByImpresion", query = "SELECT c FROM Causales c WHERE c.impresion = :impresion")})
 public class Causales implements Serializable {
 
     private static final long serialVersionUID = 1L;

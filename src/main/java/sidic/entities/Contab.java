@@ -10,8 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -20,17 +18,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Contab.findAll", query = "SELECT c FROM Contab c"),
-    @NamedQuery(name = "Contab.findByCliente", query = "SELECT c FROM Contab c WHERE c.cliente = :cliente"),
-    @NamedQuery(name = "Contab.findByNit", query = "SELECT c FROM Contab c WHERE c.nit = :nit"),
-    @NamedQuery(name = "Contab.findByCc", query = "SELECT c FROM Contab c WHERE c.cc = :cc"),
-    @NamedQuery(name = "Contab.findByDireccion", query = "SELECT c FROM Contab c WHERE c.direccion = :direccion"),
-    @NamedQuery(name = "Contab.findByTelefono", query = "SELECT c FROM Contab c WHERE c.telefono = :telefono"),
-    @NamedQuery(name = "Contab.findByNombre", query = "SELECT c FROM Contab c WHERE c.nombre = :nombre"),
-    @NamedQuery(name = "Contab.findByValor", query = "SELECT c FROM Contab c WHERE c.valor = :valor"),
-    @NamedQuery(name = "Contab.findByNcr", query = "SELECT c FROM Contab c WHERE c.ncr = :ncr"),
-    @NamedQuery(name = "Contab.findByNdb", query = "SELECT c FROM Contab c WHERE c.ndb = :ndb")})
 public class Contab implements Serializable {
 
     private static final long serialVersionUID = 1L;

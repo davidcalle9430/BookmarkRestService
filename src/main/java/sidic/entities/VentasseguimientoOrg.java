@@ -10,8 +10,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -20,30 +18,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "vo")
-@NamedQueries({
-    @NamedQuery(name = "VentasseguimientoOrg.findAll", query = "SELECT v FROM VentasseguimientoOrg v"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByCliente", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.cliente = :cliente"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByFactura", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.ventasseguimientoOrgPK.factura = :factura"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByMes", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.mes = :mes"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByCodigo", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.ventasseguimientoOrgPK.codigo = :codigo"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByCantidad", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.cantidad = :cantidad"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByValorNeto", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.valorNeto = :valorNeto"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByCostoIM", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.costoIM = :costoIM"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByCostoJM", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.costoJM = :costoJM"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByutilidadBrutaIm", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.utilidadBrutaIm = :utilidadBrutaIm"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByUtilidadBrutaJM", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.utilidadBrutaJM = :utilidadBrutaJM"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByFletes", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.fletes = :fletes"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByAcarreosAlpasarImpordisa", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.acarreosAlpasarImpordisa = :acarreosAlpasarImpordisa"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByAcarreosImpordisaCliente", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.acarreosImpordisaCliente = :acarreosImpordisaCliente"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByBodegaje", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.bodegaje = :bodegaje"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByLogisticaAlpasar", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.logisticaAlpasar = :logisticaAlpasar"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByVarios", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.varios = :varios"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByDetalle", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.detalle = :detalle"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByConcepto7", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.concepto7 = :concepto7"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByConcepto8", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.concepto8 = :concepto8"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByConcepto9", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.concepto9 = :concepto9"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByConcepto10", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.concepto10 = :concepto10"),
-    @NamedQuery(name = "VentasseguimientoOrg.findByEstado", query = "SELECT v FROM VentasseguimientoOrg v WHERE v.estado = :estado")})
 public class VentasseguimientoOrg implements Serializable {
 
     private static final long serialVersionUID = 1L;

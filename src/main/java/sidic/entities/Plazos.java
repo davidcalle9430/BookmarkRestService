@@ -10,8 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -20,11 +18,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Plazos.findAll", query = "SELECT p FROM Plazos p"),
-    @NamedQuery(name = "Plazos.findByForma", query = "SELECT p FROM Plazos p WHERE p.forma = :forma"),
-    @NamedQuery(name = "Plazos.findByDescripcion", query = "SELECT p FROM Plazos p WHERE p.descripcion = :descripcion"),
-    @NamedQuery(name = "Plazos.findByTipo", query = "SELECT p FROM Plazos p WHERE p.tipo = :tipo")})
 public class Plazos implements Serializable {
 
     private static final long serialVersionUID = 1L;

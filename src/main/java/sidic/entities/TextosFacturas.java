@@ -10,8 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -22,14 +20,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "textos_facturas")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "TextosFacturas.findAll", query = "SELECT t FROM TextosFacturas t"),
-    @NamedQuery(name = "TextosFacturas.findByCodigo", query = "SELECT t FROM TextosFacturas t WHERE t.codigo = :codigo"),
-    @NamedQuery(name = "TextosFacturas.findByTexto1", query = "SELECT t FROM TextosFacturas t WHERE t.texto1 = :texto1"),
-    @NamedQuery(name = "TextosFacturas.findByTexto2", query = "SELECT t FROM TextosFacturas t WHERE t.texto2 = :texto2"),
-    @NamedQuery(name = "TextosFacturas.findByTexto3", query = "SELECT t FROM TextosFacturas t WHERE t.texto3 = :texto3"),
-    @NamedQuery(name = "TextosFacturas.findByDias", query = "SELECT t FROM TextosFacturas t WHERE t.dias = :dias"),
-    @NamedQuery(name = "TextosFacturas.findByPorcentaje", query = "SELECT t FROM TextosFacturas t WHERE t.porcentaje = :porcentaje")})
 public class TextosFacturas implements Serializable {
 
     private static final long serialVersionUID = 1L;

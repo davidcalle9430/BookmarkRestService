@@ -20,9 +20,7 @@ import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.Ordered;
-import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.support.ConfigurableConversionService;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -86,8 +84,8 @@ public class Sidic {
 }
 
 /**
- * Manejador de recursos estáticos Clase encargada de configurar cómo se
- * manejan los archivos estáticos
+ * Manejador de recursos estáticos Clase encargada de configurar cómo se manejan
+ * los archivos estáticos
  *
  * @author David Calle
  * @version 1.0
@@ -170,7 +168,6 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 				}
 				if (usuario != null) {
 					List<Rolesymenus> rolesUsuario = rolesYMenusRepository.findAllByUsuario(username);
-					System.out.println(rolesUsuario);
 					Set<String> roles = new HashSet<>();
 					rolesUsuario.forEach(rol -> {
 						Rolessss rolActual = rolesRepository
@@ -230,9 +227,6 @@ class CustomRestMvcConfiguration {
 				for (Class<?> class1 : classes) {
 					config.exposeIdsFor(class1);
 				}
-				config.exposeIdsFor(Usuarios.class);
-				config.exposeIdsFor(Clientes.class);
-				config.exposeIdsFor(Opciones.class);
 			}
 
 			@Override
@@ -257,12 +251,12 @@ class RequestFilter extends OncePerRequestFilter {
 	private MenusRepository menusRepository;
 
 	public boolean validarPermiso(String URI, Usuarios usuario) {
-		return true;/*
-		String nombreMenu = URI.split("/")[1]; // se parte la url en trozos y se obtiene el primer valor
+		// return true;
+		String nombreMenu = URI.split("/")[1]; // se parte la url en trozos y se
+												// obtiene el primer valor
 		Menus menu = menusRepository.findOneByMenusPK_menu(nombreMenu);
 		String reggex = "(.)*" + menu.getMenusPK().getMenu() + "(.)*";
-		if (URI.matches(reggex)) { // a final de cuentas, un rol viene siendo lo
-									// mismo que un nivel
+		if (URI.matches(reggex)) { // a final de cuentas, un rol viene siendo lo // mismo que un nivel
 			List<Rolesymenus> rolXmenu = rolesYMenusRepository.findAllByRolesymenusPK_Menu(menu.getMenusPK().getMenu());
 			for (Rolesymenus rolymenu : rolXmenu) {
 				List<Niveles> niveles = usuario.getNivelesList();
@@ -275,7 +269,7 @@ class RequestFilter extends OncePerRequestFilter {
 			}
 			return false;
 		}
-		return false;*/
+		return false;
 	}
 
 	@Override
@@ -284,17 +278,21 @@ class RequestFilter extends OncePerRequestFilter {
 		HttpSession session = request.getSession();
 		SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		String URI = request.getRequestURI();
-		boolean esApi = URI.matches("(.)*/api/(.)*|/static/(.)*");
-		if (sci != null) {
-			UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
-			Usuarios elected = usuarioRepository.findOneByUsuario(cud.getUsername());
-			boolean permitido = false;
-			if (!esApi) {
-				permitido = validarPermiso(URI, elected);
+		String nombreMenu = URI.split("/")[1];
+		boolean esApi = nombreMenu.equals("api") || nombreMenu.equals("static"); // se busca que no haga request a archivos estàticos ni al api
+		if (!esApi) {
+			if (sci != null) {
+				UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
+				Usuarios elected = usuarioRepository.findOneByUsuario(cud.getUsername());
+				boolean permitido = false;
+				if (!esApi) {
+					permitido = validarPermiso(URI, elected);
+				}
+				if (!(esApi || permitido)) {
+					throw new ServletException("Su rol no tiene permitido ver este mensaje");
+				}
 			}
-			if (!(esApi || permitido)) {
-				throw new ServletException("Su rol no tiene permitido ver este mensaje");
-			}
+
 		}
 		filterChain.doFilter(request, response);
 	}

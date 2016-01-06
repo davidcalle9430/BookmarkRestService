@@ -9,8 +9,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -21,25 +19,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "notascredito_tmp")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "NotascreditoTmp.findAll", query = "SELECT n FROM NotascreditoTmp n"),
-    @NamedQuery(name = "NotascreditoTmp.findByNrorecibocaja", query = "SELECT n FROM NotascreditoTmp n WHERE n.notascreditoTmpPK.nrorecibocaja = :nrorecibocaja"),
-    @NamedQuery(name = "NotascreditoTmp.findByCliente", query = "SELECT n FROM NotascreditoTmp n WHERE n.notascreditoTmpPK.cliente = :cliente"),
-    @NamedQuery(name = "NotascreditoTmp.findByFactura", query = "SELECT n FROM NotascreditoTmp n WHERE n.notascreditoTmpPK.factura = :factura"),
-    @NamedQuery(name = "NotascreditoTmp.findByArticulo", query = "SELECT n FROM NotascreditoTmp n WHERE n.notascreditoTmpPK.articulo = :articulo"),
-    @NamedQuery(name = "NotascreditoTmp.findByNombre", query = "SELECT n FROM NotascreditoTmp n WHERE n.nombre = :nombre"),
-    @NamedQuery(name = "NotascreditoTmp.findByReferencia", query = "SELECT n FROM NotascreditoTmp n WHERE n.referencia = :referencia"),
-    @NamedQuery(name = "NotascreditoTmp.findByModelo", query = "SELECT n FROM NotascreditoTmp n WHERE n.modelo = :modelo"),
-    @NamedQuery(name = "NotascreditoTmp.findByMarca", query = "SELECT n FROM NotascreditoTmp n WHERE n.marca = :marca"),
-    @NamedQuery(name = "NotascreditoTmp.findByCantidad", query = "SELECT n FROM NotascreditoTmp n WHERE n.cantidad = :cantidad"),
-    @NamedQuery(name = "NotascreditoTmp.findByValorunitario", query = "SELECT n FROM NotascreditoTmp n WHERE n.valorunitario = :valorunitario"),
-    @NamedQuery(name = "NotascreditoTmp.findByPorcdscto", query = "SELECT n FROM NotascreditoTmp n WHERE n.porcdscto = :porcdscto"),
-    @NamedQuery(name = "NotascreditoTmp.findByPorciva", query = "SELECT n FROM NotascreditoTmp n WHERE n.porciva = :porciva"),
-    @NamedQuery(name = "NotascreditoTmp.findByValortotal", query = "SELECT n FROM NotascreditoTmp n WHERE n.valortotal = :valortotal"),
-    @NamedQuery(name = "NotascreditoTmp.findByUsuario", query = "SELECT n FROM NotascreditoTmp n WHERE n.notascreditoTmpPK.usuario = :usuario"),
-    @NamedQuery(name = "NotascreditoTmp.findByNc", query = "SELECT n FROM NotascreditoTmp n WHERE n.notascreditoTmpPK.nc = :nc"),
-    @NamedQuery(name = "NotascreditoTmp.findByDescripcion", query = "SELECT n FROM NotascreditoTmp n WHERE n.descripcion = :descripcion"),
-    @NamedQuery(name = "NotascreditoTmp.findBySecuencia", query = "SELECT n FROM NotascreditoTmp n WHERE n.notascreditoTmpPK.secuencia = :secuencia")})
 public class NotascreditoTmp implements Serializable {
 
     private static final long serialVersionUID = 1L;

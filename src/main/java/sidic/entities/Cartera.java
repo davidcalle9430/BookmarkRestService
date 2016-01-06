@@ -12,8 +12,6 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -26,40 +24,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Cartera.findAll", query = "SELECT c FROM Cartera c"),
-    @NamedQuery(name = "Cartera.findByCodigo", query = "SELECT c FROM Cartera c WHERE c.carteraPK.codigo = :codigo"),
-    @NamedQuery(name = "Cartera.findByFecha", query = "SELECT c FROM Cartera c WHERE c.carteraPK.fecha = :fecha"),
-    @NamedQuery(name = "Cartera.findByProductos", query = "SELECT c FROM Cartera c WHERE c.productos = :productos"),
-    @NamedQuery(name = "Cartera.findByFpago", query = "SELECT c FROM Cartera c WHERE c.fpago = :fpago"),
-    @NamedQuery(name = "Cartera.findByValor", query = "SELECT c FROM Cartera c WHERE c.valor = :valor"),
-    @NamedQuery(name = "Cartera.findByFactura", query = "SELECT c FROM Cartera c WHERE c.carteraPK.factura = :factura"),
-    @NamedQuery(name = "Cartera.findByNotad", query = "SELECT c FROM Cartera c WHERE c.notad = :notad"),
-    @NamedQuery(name = "Cartera.findByNotac", query = "SELECT c FROM Cartera c WHERE c.notac = :notac"),
-    @NamedQuery(name = "Cartera.findByObservac", query = "SELECT c FROM Cartera c WHERE c.observac = :observac"),
-    @NamedQuery(name = "Cartera.findByFechapago", query = "SELECT c FROM Cartera c WHERE c.fechapago = :fechapago"),
-    @NamedQuery(name = "Cartera.findByDescontada", query = "SELECT c FROM Cartera c WHERE c.descontada = :descontada"),
-    @NamedQuery(name = "Cartera.findBySaldo", query = "SELECT c FROM Cartera c WHERE c.saldo = :saldo"),
-    @NamedQuery(name = "Cartera.findBySubtot", query = "SELECT c FROM Cartera c WHERE c.subtot = :subtot"),
-    @NamedQuery(name = "Cartera.findByAceites", query = "SELECT c FROM Cartera c WHERE c.aceites = :aceites"),
-    @NamedQuery(name = "Cartera.findByCorreria", query = "SELECT c FROM Cartera c WHERE c.correria = :correria"),
-    @NamedQuery(name = "Cartera.findByLinea", query = "SELECT c FROM Cartera c WHERE c.linea = :linea"),
-    @NamedQuery(name = "Cartera.findByZona", query = "SELECT c FROM Cartera c WHERE c.zona = :zona"),
-    @NamedQuery(name = "Cartera.findByCiudad", query = "SELECT c FROM Cartera c WHERE c.ciudad = :ciudad"),
-    @NamedQuery(name = "Cartera.findByC1", query = "SELECT c FROM Cartera c WHERE c.c1 = :c1"),
-    @NamedQuery(name = "Cartera.findByC2", query = "SELECT c FROM Cartera c WHERE c.c2 = :c2"),
-    @NamedQuery(name = "Cartera.findByC3", query = "SELECT c FROM Cartera c WHERE c.c3 = :c3"),
-    @NamedQuery(name = "Cartera.findByC4", query = "SELECT c FROM Cartera c WHERE c.c4 = :c4"),
-    @NamedQuery(name = "Cartera.findByC5", query = "SELECT c FROM Cartera c WHERE c.c5 = :c5"),
-    @NamedQuery(name = "Cartera.findByC6", query = "SELECT c FROM Cartera c WHERE c.c6 = :c6"),
-    @NamedQuery(name = "Cartera.findByTotal", query = "SELECT c FROM Cartera c WHERE c.total = :total"),
-    @NamedQuery(name = "Cartera.findByDscto", query = "SELECT c FROM Cartera c WHERE c.dscto = :dscto"),
-    @NamedQuery(name = "Cartera.findByFletes", query = "SELECT c FROM Cartera c WHERE c.fletes = :fletes"),
-    @NamedQuery(name = "Cartera.findByOtros", query = "SELECT c FROM Cartera c WHERE c.otros = :otros"),
-    @NamedQuery(name = "Cartera.findByIva", query = "SELECT c FROM Cartera c WHERE c.iva = :iva"),
-    @NamedQuery(name = "Cartera.findByCodtexto", query = "SELECT c FROM Cartera c WHERE c.codtexto = :codtexto"),
-    @NamedQuery(name = "Cartera.findByDias", query = "SELECT c FROM Cartera c WHERE c.dias = :dias"),
-    @NamedQuery(name = "Cartera.findByPorcentaje", query = "SELECT c FROM Cartera c WHERE c.porcentaje = :porcentaje")})
 public class Cartera implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -10,8 +10,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,19 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "recuperacartera_tmp")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "RecuperacarteraTmp.findAll", query = "SELECT r FROM RecuperacarteraTmp r"),
-    @NamedQuery(name = "RecuperacarteraTmp.findByNrorecibocaja", query = "SELECT r FROM RecuperacarteraTmp r WHERE r.recuperacarteraTmpPK.nrorecibocaja = :nrorecibocaja"),
-    @NamedQuery(name = "RecuperacarteraTmp.findByUsuario", query = "SELECT r FROM RecuperacarteraTmp r WHERE r.recuperacarteraTmpPK.usuario = :usuario"),
-    @NamedQuery(name = "RecuperacarteraTmp.findByCodigo", query = "SELECT r FROM RecuperacarteraTmp r WHERE r.recuperacarteraTmpPK.codigo = :codigo"),
-    @NamedQuery(name = "RecuperacarteraTmp.findByFecha", query = "SELECT r FROM RecuperacarteraTmp r WHERE r.recuperacarteraTmpPK.fecha = :fecha"),
-    @NamedQuery(name = "RecuperacarteraTmp.findByFactura", query = "SELECT r FROM RecuperacarteraTmp r WHERE r.recuperacarteraTmpPK.factura = :factura"),
-    @NamedQuery(name = "RecuperacarteraTmp.findByObservac", query = "SELECT r FROM RecuperacarteraTmp r WHERE r.observac = :observac"),
-    @NamedQuery(name = "RecuperacarteraTmp.findByFechapago", query = "SELECT r FROM RecuperacarteraTmp r WHERE r.fechapago = :fechapago"),
-    @NamedQuery(name = "RecuperacarteraTmp.findByValor", query = "SELECT r FROM RecuperacarteraTmp r WHERE r.valor = :valor"),
-    @NamedQuery(name = "RecuperacarteraTmp.findByVlrnc", query = "SELECT r FROM RecuperacarteraTmp r WHERE r.vlrnc = :vlrnc"),
-    @NamedQuery(name = "RecuperacarteraTmp.findByVlrnd", query = "SELECT r FROM RecuperacarteraTmp r WHERE r.vlrnd = :vlrnd"),
-    @NamedQuery(name = "RecuperacarteraTmp.findByOtroreccaja", query = "SELECT r FROM RecuperacarteraTmp r WHERE r.otroreccaja = :otroreccaja")})
 public class RecuperacarteraTmp implements Serializable {
 
     private static final long serialVersionUID = 1L;

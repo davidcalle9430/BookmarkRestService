@@ -10,8 +10,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -22,15 +20,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "valorizacion_inventario")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "ValorizacionInventario.findAll", query = "SELECT v FROM ValorizacionInventario v"),
-    @NamedQuery(name = "ValorizacionInventario.findByFecha", query = "SELECT v FROM ValorizacionInventario v WHERE v.valorizacionInventarioPK.fecha = :fecha"),
-    @NamedQuery(name = "ValorizacionInventario.findByTiporeg", query = "SELECT v FROM ValorizacionInventario v WHERE v.tiporeg = :tiporeg"),
-    @NamedQuery(name = "ValorizacionInventario.findByLinea", query = "SELECT v FROM ValorizacionInventario v WHERE v.valorizacionInventarioPK.linea = :linea"),
-    @NamedQuery(name = "ValorizacionInventario.findByNomlinea", query = "SELECT v FROM ValorizacionInventario v WHERE v.nomlinea = :nomlinea"),
-    @NamedQuery(name = "ValorizacionInventario.findByCodcorr", query = "SELECT v FROM ValorizacionInventario v WHERE v.codcorr = :codcorr"),
-    @NamedQuery(name = "ValorizacionInventario.findByNomcorr", query = "SELECT v FROM ValorizacionInventario v WHERE v.nomcorr = :nomcorr"),
-    @NamedQuery(name = "ValorizacionInventario.findByValor", query = "SELECT v FROM ValorizacionInventario v WHERE v.valor = :valor")})
 public class ValorizacionInventario implements Serializable {
 
     private static final long serialVersionUID = 1L;

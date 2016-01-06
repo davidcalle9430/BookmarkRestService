@@ -11,8 +11,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,16 +23,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "aaa")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Aaa.findAll", query = "SELECT a FROM Aaa a"),
-    @NamedQuery(name = "Aaa.findByConsec", query = "SELECT a FROM Aaa a WHERE a.consec = :consec"),
-    @NamedQuery(name = "Aaa.findByCodigo", query = "SELECT a FROM Aaa a WHERE a.codigo = :codigo"),
-    @NamedQuery(name = "Aaa.findByFecha", query = "SELECT a FROM Aaa a WHERE a.fecha = :fecha"),
-    @NamedQuery(name = "Aaa.findByTipo", query = "SELECT a FROM Aaa a WHERE a.tipo = :tipo"),
-    @NamedQuery(name = "Aaa.findByDocumento", query = "SELECT a FROM Aaa a WHERE a.documento = :documento"),
-    @NamedQuery(name = "Aaa.findByCantidad", query = "SELECT a FROM Aaa a WHERE a.cantidad = :cantidad"),
-    @NamedQuery(name = "Aaa.findByNdoc", query = "SELECT a FROM Aaa a WHERE a.ndoc = :ndoc"),
-    @NamedQuery(name = "Aaa.findBySaldo", query = "SELECT a FROM Aaa a WHERE a.saldo = :saldo")})
 public class Aaa implements Serializable {
 
     private static final long serialVersionUID = 1L;

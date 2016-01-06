@@ -10,8 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -22,11 +20,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "cost_reales")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "CostReales.findAll", query = "SELECT c FROM CostReales c"),
-    @NamedQuery(name = "CostReales.findByCodigo", query = "SELECT c FROM CostReales c WHERE c.codigo = :codigo"),
-    @NamedQuery(name = "CostReales.findByCostprom", query = "SELECT c FROM CostReales c WHERE c.costprom = :costprom"),
-    @NamedQuery(name = "CostReales.findByCostpromim", query = "SELECT c FROM CostReales c WHERE c.costpromim = :costpromim")})
 public class CostReales implements Serializable {
 
     private static final long serialVersionUID = 1L;

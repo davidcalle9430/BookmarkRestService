@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -24,18 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "t_discriminado")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "TDiscriminado.findAll", query = "SELECT t FROM TDiscriminado t"),
-    @NamedQuery(name = "TDiscriminado.findByCodigo", query = "SELECT t FROM TDiscriminado t WHERE t.codigo = :codigo"),
-    @NamedQuery(name = "TDiscriminado.findByRazsoc", query = "SELECT t FROM TDiscriminado t WHERE t.razsoc = :razsoc"),
-    @NamedQuery(name = "TDiscriminado.findByCiudad", query = "SELECT t FROM TDiscriminado t WHERE t.ciudad = :ciudad"),
-    @NamedQuery(name = "TDiscriminado.findByAc0", query = "SELECT t FROM TDiscriminado t WHERE t.ac0 = :ac0"),
-    @NamedQuery(name = "TDiscriminado.findByAc30", query = "SELECT t FROM TDiscriminado t WHERE t.ac30 = :ac30"),
-    @NamedQuery(name = "TDiscriminado.findByAc45", query = "SELECT t FROM TDiscriminado t WHERE t.ac45 = :ac45"),
-    @NamedQuery(name = "TDiscriminado.findByAc60", query = "SELECT t FROM TDiscriminado t WHERE t.ac60 = :ac60"),
-    @NamedQuery(name = "TDiscriminado.findByAc75", query = "SELECT t FROM TDiscriminado t WHERE t.ac75 = :ac75"),
-    @NamedQuery(name = "TDiscriminado.findByAc90", query = "SELECT t FROM TDiscriminado t WHERE t.ac90 = :ac90"),
-    @NamedQuery(name = "TDiscriminado.findByPag", query = "SELECT t FROM TDiscriminado t WHERE t.pag = :pag")})
 public class TDiscriminado implements Serializable {
 
     private static final long serialVersionUID = 1L;

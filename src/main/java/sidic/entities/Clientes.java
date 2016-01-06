@@ -15,8 +15,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,37 +27,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Clientes.findAll", query = "SELECT c FROM Clientes c"),
-    @NamedQuery(name = "Clientes.findByCodigo", query = "SELECT c FROM Clientes c WHERE c.codigo = :codigo"),
-    @NamedQuery(name = "Clientes.findByRazsoc", query = "SELECT c FROM Clientes c WHERE c.razsoc = :razsoc"),
-    @NamedQuery(name = "Clientes.findByDireccion", query = "SELECT c FROM Clientes c WHERE c.direccion = :direccion"),
-    @NamedQuery(name = "Clientes.findByTelefono", query = "SELECT c FROM Clientes c WHERE c.telefono = :telefono"),
-    @NamedQuery(name = "Clientes.findByProptario", query = "SELECT c FROM Clientes c WHERE c.proptario = :proptario"),
-    @NamedQuery(name = "Clientes.findByGerente", query = "SELECT c FROM Clientes c WHERE c.gerente = :gerente"),
-    @NamedQuery(name = "Clientes.findByNit", query = "SELECT c FROM Clientes c WHERE c.nit = :nit"),
-    @NamedQuery(name = "Clientes.findByCc", query = "SELECT c FROM Clientes c WHERE c.cc = :cc"),
-    @NamedQuery(name = "Clientes.findByPedidos", query = "SELECT c FROM Clientes c WHERE c.pedidos = :pedidos"),
-    @NamedQuery(name = "Clientes.findByCobros", query = "SELECT c FROM Clientes c WHERE c.cobros = :cobros"),
-    @NamedQuery(name = "Clientes.findByCupo", query = "SELECT c FROM Clientes c WHERE c.cupo = :cupo"),
-    @NamedQuery(name = "Clientes.findByFecha", query = "SELECT c FROM Clientes c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "Clientes.findByFechaing", query = "SELECT c FROM Clientes c WHERE c.fechaing = :fechaing"),
-    @NamedQuery(name = "Clientes.findByRotulo", query = "SELECT c FROM Clientes c WHERE c.rotulo = :rotulo"),
-    @NamedQuery(name = "Clientes.findByCamref", query = "SELECT c FROM Clientes c WHERE c.camref = :camref"),
-    @NamedQuery(name = "Clientes.findByIca", query = "SELECT c FROM Clientes c WHERE c.ica = :ica"),
-    @NamedQuery(name = "Clientes.findByPorcica", query = "SELECT c FROM Clientes c WHERE c.porcica = :porcica"),
-    @NamedQuery(name = "Clientes.findByActivo", query = "SELECT c FROM Clientes c WHERE c.activo = :activo"),
-    @NamedQuery(name = "Clientes.findByConsigna", query = "SELECT c FROM Clientes c WHERE c.consigna = :consigna"),
-    @NamedQuery(name = "Clientes.findByNombre1", query = "SELECT c FROM Clientes c WHERE c.nombre1 = :nombre1"),
-    @NamedQuery(name = "Clientes.findByNombre2", query = "SELECT c FROM Clientes c WHERE c.nombre2 = :nombre2"),
-    @NamedQuery(name = "Clientes.findByApellido1", query = "SELECT c FROM Clientes c WHERE c.apellido1 = :apellido1"),
-    @NamedQuery(name = "Clientes.findByApellido2", query = "SELECT c FROM Clientes c WHERE c.apellido2 = :apellido2"),
-    @NamedQuery(name = "Clientes.findBySucursales", query = "SELECT c FROM Clientes c WHERE c.sucursales = :sucursales"),
-    @NamedQuery(name = "Clientes.findByNitN", query = "SELECT c FROM Clientes c WHERE c.nitN = :nitN"),
-    @NamedQuery(name = "Clientes.findByDigitovNit", query = "SELECT c FROM Clientes c WHERE c.digitovNit = :digitovNit"),
-    @NamedQuery(name = "Clientes.findByIdvendedor", query = "SELECT c FROM Clientes c WHERE c.idvendedor = :idvendedor"),
-    @NamedQuery(name = "Clientes.findByNuevo", query = "SELECT c FROM Clientes c WHERE c.nuevo = :nuevo"),
-    @NamedQuery(name = "Clientes.findByFechamodif", query = "SELECT c FROM Clientes c WHERE c.fechamodif = :fechamodif")})
 public class Clientes implements Serializable {
 
     private static final long serialVersionUID = 1L;

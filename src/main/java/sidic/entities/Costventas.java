@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,15 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "costventas")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Costventas.findAll", query = "SELECT c FROM Costventas c"),
-    @NamedQuery(name = "Costventas.findByLinea", query = "SELECT c FROM Costventas c WHERE c.linea = :linea"),
-    @NamedQuery(name = "Costventas.findByFecha", query = "SELECT c FROM Costventas c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "Costventas.findByCodigo", query = "SELECT c FROM Costventas c WHERE c.codigo = :codigo"),
-    @NamedQuery(name = "Costventas.findByCantidad", query = "SELECT c FROM Costventas c WHERE c.cantidad = :cantidad"),
-    @NamedQuery(name = "Costventas.findByCostoproim", query = "SELECT c FROM Costventas c WHERE c.costoproim = :costoproim"),
-    @NamedQuery(name = "Costventas.findByCostvent", query = "SELECT c FROM Costventas c WHERE c.costvent = :costvent"),
-    @NamedQuery(name = "Costventas.findById", query = "SELECT c FROM Costventas c WHERE c.id = :id")})
 public class Costventas implements Serializable {
 
     private static final long serialVersionUID = 1L;

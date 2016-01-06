@@ -12,8 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -24,23 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Ctasproveedores.findAll", query = "SELECT c FROM Ctasproveedores c"),
-    @NamedQuery(name = "Ctasproveedores.findByConsec", query = "SELECT c FROM Ctasproveedores c WHERE c.consec = :consec"),
-    @NamedQuery(name = "Ctasproveedores.findByNrodocumento", query = "SELECT c FROM Ctasproveedores c WHERE c.nrodocumento = :nrodocumento"),
-    @NamedQuery(name = "Ctasproveedores.findByIdentificacion", query = "SELECT c FROM Ctasproveedores c WHERE c.identificacion = :identificacion"),
-    @NamedQuery(name = "Ctasproveedores.findByConcepto", query = "SELECT c FROM Ctasproveedores c WHERE c.concepto = :concepto"),
-    @NamedQuery(name = "Ctasproveedores.findByValor", query = "SELECT c FROM Ctasproveedores c WHERE c.valor = :valor"),
-    @NamedQuery(name = "Ctasproveedores.findByReterenta", query = "SELECT c FROM Ctasproveedores c WHERE c.reterenta = :reterenta"),
-    @NamedQuery(name = "Ctasproveedores.findByReteiva", query = "SELECT c FROM Ctasproveedores c WHERE c.reteiva = :reteiva"),
-    @NamedQuery(name = "Ctasproveedores.findByReteica", query = "SELECT c FROM Ctasproveedores c WHERE c.reteica = :reteica"),
-    @NamedQuery(name = "Ctasproveedores.findByNetoapagar", query = "SELECT c FROM Ctasproveedores c WHERE c.netoapagar = :netoapagar"),
-    @NamedQuery(name = "Ctasproveedores.findByImpuestoasumido", query = "SELECT c FROM Ctasproveedores c WHERE c.impuestoasumido = :impuestoasumido"),
-    @NamedQuery(name = "Ctasproveedores.findByFecha", query = "SELECT c FROM Ctasproveedores c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "Ctasproveedores.findByPorcrenta", query = "SELECT c FROM Ctasproveedores c WHERE c.porcrenta = :porcrenta"),
-    @NamedQuery(name = "Ctasproveedores.findByPorciva", query = "SELECT c FROM Ctasproveedores c WHERE c.porciva = :porciva"),
-    @NamedQuery(name = "Ctasproveedores.findByPorcica", query = "SELECT c FROM Ctasproveedores c WHERE c.porcica = :porcica"),
-    @NamedQuery(name = "Ctasproveedores.findByActividad", query = "SELECT c FROM Ctasproveedores c WHERE c.actividad = :actividad")})
 public class Ctasproveedores implements Serializable {
 
     private static final long serialVersionUID = 1L;

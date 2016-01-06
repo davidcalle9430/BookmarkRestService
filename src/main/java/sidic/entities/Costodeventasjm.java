@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,19 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "costodeventasjm")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Costodeventasjm.findAll", query = "SELECT c FROM Costodeventasjm c"),
-    @NamedQuery(name = "Costodeventasjm.findByFechai", query = "SELECT c FROM Costodeventasjm c WHERE c.fechai = :fechai"),
-    @NamedQuery(name = "Costodeventasjm.findByFechaf", query = "SELECT c FROM Costodeventasjm c WHERE c.fechaf = :fechaf"),
-    @NamedQuery(name = "Costodeventasjm.findByLinea", query = "SELECT c FROM Costodeventasjm c WHERE c.linea = :linea"),
-    @NamedQuery(name = "Costodeventasjm.findByFecha", query = "SELECT c FROM Costodeventasjm c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "Costodeventasjm.findByCodigo", query = "SELECT c FROM Costodeventasjm c WHERE c.codigo = :codigo"),
-    @NamedQuery(name = "Costodeventasjm.findByNombre", query = "SELECT c FROM Costodeventasjm c WHERE c.nombre = :nombre"),
-    @NamedQuery(name = "Costodeventasjm.findByReferencia", query = "SELECT c FROM Costodeventasjm c WHERE c.referencia = :referencia"),
-    @NamedQuery(name = "Costodeventasjm.findByCantidad", query = "SELECT c FROM Costodeventasjm c WHERE c.cantidad = :cantidad"),
-    @NamedQuery(name = "Costodeventasjm.findByCostopro", query = "SELECT c FROM Costodeventasjm c WHERE c.costopro = :costopro"),
-    @NamedQuery(name = "Costodeventasjm.findByCostvent", query = "SELECT c FROM Costodeventasjm c WHERE c.costvent = :costvent"),
-    @NamedQuery(name = "Costodeventasjm.findById", query = "SELECT c FROM Costodeventasjm c WHERE c.id = :id")})
 public class Costodeventasjm implements Serializable {
 
     private static final long serialVersionUID = 1L;

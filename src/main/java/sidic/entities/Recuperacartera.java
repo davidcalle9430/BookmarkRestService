@@ -10,8 +10,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -22,19 +20,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Recuperacartera.findAll", query = "SELECT r FROM Recuperacartera r"),
-    @NamedQuery(name = "Recuperacartera.findByNrorecibocaja", query = "SELECT r FROM Recuperacartera r WHERE r.recuperacarteraPK.nrorecibocaja = :nrorecibocaja"),
-    @NamedQuery(name = "Recuperacartera.findByUsuario", query = "SELECT r FROM Recuperacartera r WHERE r.recuperacarteraPK.usuario = :usuario"),
-    @NamedQuery(name = "Recuperacartera.findByCodigo", query = "SELECT r FROM Recuperacartera r WHERE r.recuperacarteraPK.codigo = :codigo"),
-    @NamedQuery(name = "Recuperacartera.findByFecha", query = "SELECT r FROM Recuperacartera r WHERE r.recuperacarteraPK.fecha = :fecha"),
-    @NamedQuery(name = "Recuperacartera.findByFactura", query = "SELECT r FROM Recuperacartera r WHERE r.recuperacarteraPK.factura = :factura"),
-    @NamedQuery(name = "Recuperacartera.findByObservac", query = "SELECT r FROM Recuperacartera r WHERE r.observac = :observac"),
-    @NamedQuery(name = "Recuperacartera.findByFechapago", query = "SELECT r FROM Recuperacartera r WHERE r.fechapago = :fechapago"),
-    @NamedQuery(name = "Recuperacartera.findByValor", query = "SELECT r FROM Recuperacartera r WHERE r.valor = :valor"),
-    @NamedQuery(name = "Recuperacartera.findByVlrnc", query = "SELECT r FROM Recuperacartera r WHERE r.vlrnc = :vlrnc"),
-    @NamedQuery(name = "Recuperacartera.findByVlrnd", query = "SELECT r FROM Recuperacartera r WHERE r.vlrnd = :vlrnd"),
-    @NamedQuery(name = "Recuperacartera.findByOtroreccaja", query = "SELECT r FROM Recuperacartera r WHERE r.otroreccaja = :otroreccaja")})
 public class Recuperacartera implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,24 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "t_carteradisc")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "TCarteradisc.findAll", query = "SELECT t FROM TCarteradisc t"),
-    @NamedQuery(name = "TCarteradisc.findByCodigo", query = "SELECT t FROM TCarteradisc t WHERE t.codigo = :codigo"),
-    @NamedQuery(name = "TCarteradisc.findByRazsoc", query = "SELECT t FROM TCarteradisc t WHERE t.razsoc = :razsoc"),
-    @NamedQuery(name = "TCarteradisc.findByCiudad", query = "SELECT t FROM TCarteradisc t WHERE t.ciudad = :ciudad"),
-    @NamedQuery(name = "TCarteradisc.findByNotad", query = "SELECT t FROM TCarteradisc t WHERE t.notad = :notad"),
-    @NamedQuery(name = "TCarteradisc.findByNotac", query = "SELECT t FROM TCarteradisc t WHERE t.notac = :notac"),
-    @NamedQuery(name = "TCarteradisc.findBySaldo", query = "SELECT t FROM TCarteradisc t WHERE t.saldo = :saldo"),
-    @NamedQuery(name = "TCarteradisc.findByFecha", query = "SELECT t FROM TCarteradisc t WHERE t.fecha = :fecha"),
-    @NamedQuery(name = "TCarteradisc.findBySemitot", query = "SELECT t FROM TCarteradisc t WHERE t.semitot = :semitot"),
-    @NamedQuery(name = "TCarteradisc.findByTiempo", query = "SELECT t FROM TCarteradisc t WHERE t.tiempo = :tiempo"),
-    @NamedQuery(name = "TCarteradisc.findByAc0", query = "SELECT t FROM TCarteradisc t WHERE t.ac0 = :ac0"),
-    @NamedQuery(name = "TCarteradisc.findByAc30", query = "SELECT t FROM TCarteradisc t WHERE t.ac30 = :ac30"),
-    @NamedQuery(name = "TCarteradisc.findByAc45", query = "SELECT t FROM TCarteradisc t WHERE t.ac45 = :ac45"),
-    @NamedQuery(name = "TCarteradisc.findByAc60", query = "SELECT t FROM TCarteradisc t WHERE t.ac60 = :ac60"),
-    @NamedQuery(name = "TCarteradisc.findByAc75", query = "SELECT t FROM TCarteradisc t WHERE t.ac75 = :ac75"),
-    @NamedQuery(name = "TCarteradisc.findByAc90", query = "SELECT t FROM TCarteradisc t WHERE t.ac90 = :ac90"),
-    @NamedQuery(name = "TCarteradisc.findById", query = "SELECT t FROM TCarteradisc t WHERE t.id = :id")})
 public class TCarteradisc implements Serializable {
 
     private static final long serialVersionUID = 1L;

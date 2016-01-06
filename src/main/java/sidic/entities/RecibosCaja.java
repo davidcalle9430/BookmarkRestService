@@ -11,8 +11,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,26 +23,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "recibos_caja")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "RecibosCaja.findAll", query = "SELECT r FROM RecibosCaja r"),
-    @NamedQuery(name = "RecibosCaja.findByNrorecibocaja", query = "SELECT r FROM RecibosCaja r WHERE r.nrorecibocaja = :nrorecibocaja"),
-    @NamedQuery(name = "RecibosCaja.findByFecha", query = "SELECT r FROM RecibosCaja r WHERE r.fecha = :fecha"),
-    @NamedQuery(name = "RecibosCaja.findByCliente", query = "SELECT r FROM RecibosCaja r WHERE r.cliente = :cliente"),
-    @NamedQuery(name = "RecibosCaja.findByValorrecibo", query = "SELECT r FROM RecibosCaja r WHERE r.valorrecibo = :valorrecibo"),
-    @NamedQuery(name = "RecibosCaja.findByNc", query = "SELECT r FROM RecibosCaja r WHERE r.nc = :nc"),
-    @NamedQuery(name = "RecibosCaja.findByPagadomas", query = "SELECT r FROM RecibosCaja r WHERE r.pagadomas = :pagadomas"),
-    @NamedQuery(name = "RecibosCaja.findByPagadomenos", query = "SELECT r FROM RecibosCaja r WHERE r.pagadomenos = :pagadomenos"),
-    @NamedQuery(name = "RecibosCaja.findByReteica", query = "SELECT r FROM RecibosCaja r WHERE r.reteica = :reteica"),
-    @NamedQuery(name = "RecibosCaja.findByReteiva", query = "SELECT r FROM RecibosCaja r WHERE r.reteiva = :reteiva"),
-    @NamedQuery(name = "RecibosCaja.findByRetefte", query = "SELECT r FROM RecibosCaja r WHERE r.retefte = :retefte"),
-    @NamedQuery(name = "RecibosCaja.findByTotal", query = "SELECT r FROM RecibosCaja r WHERE r.total = :total"),
-    @NamedQuery(name = "RecibosCaja.findByDescripcion", query = "SELECT r FROM RecibosCaja r WHERE r.descripcion = :descripcion"),
-    @NamedQuery(name = "RecibosCaja.findByNd", query = "SELECT r FROM RecibosCaja r WHERE r.nd = :nd"),
-    @NamedQuery(name = "RecibosCaja.findBySaldo", query = "SELECT r FROM RecibosCaja r WHERE r.saldo = :saldo"),
-    @NamedQuery(name = "RecibosCaja.findByRetcree", query = "SELECT r FROM RecibosCaja r WHERE r.retcree = :retcree"),
-    @NamedQuery(name = "RecibosCaja.findByTiporecibo", query = "SELECT r FROM RecibosCaja r WHERE r.tiporecibo = :tiporecibo"),
-    @NamedQuery(name = "RecibosCaja.findByNombre", query = "SELECT r FROM RecibosCaja r WHERE r.nombre = :nombre"),
-    @NamedQuery(name = "RecibosCaja.findByConcepto", query = "SELECT r FROM RecibosCaja r WHERE r.concepto = :concepto")})
 public class RecibosCaja implements Serializable {
 
     private static final long serialVersionUID = 1L;

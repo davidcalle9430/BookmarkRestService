@@ -9,8 +9,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -19,11 +17,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Rolessss.findAll", query = "SELECT r FROM Rolessss r"),
-    @NamedQuery(name = "Rolessss.findByEmpresa", query = "SELECT r FROM Rolessss r WHERE r.rolessssPK.empresa = :empresa"),
-    @NamedQuery(name = "Rolessss.findByCodigo", query = "SELECT r FROM Rolessss r WHERE r.rolessssPK.codigo = :codigo"),
-    @NamedQuery(name = "Rolessss.findByNombre", query = "SELECT r FROM Rolessss r WHERE r.nombre = :nombre")})
 public class Rolessss implements Serializable {
 
     private static final long serialVersionUID = 1L;

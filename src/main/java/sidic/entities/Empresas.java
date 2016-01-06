@@ -13,8 +13,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,18 +25,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Empresas.findAll", query = "SELECT e FROM Empresas e"),
-    @NamedQuery(name = "Empresas.findByEmpresa", query = "SELECT e FROM Empresas e WHERE e.empresa = :empresa"),
-    @NamedQuery(name = "Empresas.findByNombre", query = "SELECT e FROM Empresas e WHERE e.nombre = :nombre"),
-    @NamedQuery(name = "Empresas.findByNit", query = "SELECT e FROM Empresas e WHERE e.nit = :nit"),
-    @NamedQuery(name = "Empresas.findByDireccion", query = "SELECT e FROM Empresas e WHERE e.direccion = :direccion"),
-    @NamedQuery(name = "Empresas.findByTelefonos", query = "SELECT e FROM Empresas e WHERE e.telefonos = :telefonos"),
-    @NamedQuery(name = "Empresas.findByFax", query = "SELECT e FROM Empresas e WHERE e.fax = :fax"),
-    @NamedQuery(name = "Empresas.findByGerente", query = "SELECT e FROM Empresas e WHERE e.gerente = :gerente"),
-    @NamedQuery(name = "Empresas.findByRepresentante", query = "SELECT e FROM Empresas e WHERE e.representante = :representante"),
-    @NamedQuery(name = "Empresas.findByUsuario", query = "SELECT e FROM Empresas e WHERE e.usuario = :usuario"),
-    @NamedQuery(name = "Empresas.findByFecha", query = "SELECT e FROM Empresas e WHERE e.fecha = :fecha")})
 public class Empresas implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -11,8 +11,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -23,33 +21,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Articulo1.findAll", query = "SELECT a FROM Articulo1 a"),
-    @NamedQuery(name = "Articulo1.findByCodigo", query = "SELECT a FROM Articulo1 a WHERE a.codigo = :codigo"),
-    @NamedQuery(name = "Articulo1.findByReferencia", query = "SELECT a FROM Articulo1 a WHERE a.referencia = :referencia"),
-    @NamedQuery(name = "Articulo1.findByUso", query = "SELECT a FROM Articulo1 a WHERE a.uso = :uso"),
-    @NamedQuery(name = "Articulo1.findByModelo1", query = "SELECT a FROM Articulo1 a WHERE a.modelo1 = :modelo1"),
-    @NamedQuery(name = "Articulo1.findByModelo2", query = "SELECT a FROM Articulo1 a WHERE a.modelo2 = :modelo2"),
-    @NamedQuery(name = "Articulo1.findByModelo3", query = "SELECT a FROM Articulo1 a WHERE a.modelo3 = :modelo3"),
-    @NamedQuery(name = "Articulo1.findByMarca", query = "SELECT a FROM Articulo1 a WHERE a.marca = :marca"),
-    @NamedQuery(name = "Articulo1.findByPrecio", query = "SELECT a FROM Articulo1 a WHERE a.precio = :precio"),
-    @NamedQuery(name = "Articulo1.findByCantdisp", query = "SELECT a FROM Articulo1 a WHERE a.cantdisp = :cantdisp"),
-    @NamedQuery(name = "Articulo1.findByProcedenc", query = "SELECT a FROM Articulo1 a WHERE a.procedenc = :procedenc"),
-    @NamedQuery(name = "Articulo1.findByUltcostpr", query = "SELECT a FROM Articulo1 a WHERE a.ultcostpr = :ultcostpr"),
-    @NamedQuery(name = "Articulo1.findByCostprom", query = "SELECT a FROM Articulo1 a WHERE a.costprom = :costprom"),
-    @NamedQuery(name = "Articulo1.findByUltcostjm", query = "SELECT a FROM Articulo1 a WHERE a.ultcostjm = :ultcostjm"),
-    @NamedQuery(name = "Articulo1.findByCostjm", query = "SELECT a FROM Articulo1 a WHERE a.costjm = :costjm"),
-    @NamedQuery(name = "Articulo1.findByUltcomp", query = "SELECT a FROM Articulo1 a WHERE a.ultcomp = :ultcomp"),
-    @NamedQuery(name = "Articulo1.findByCosultcom", query = "SELECT a FROM Articulo1 a WHERE a.cosultcom = :cosultcom"),
-    @NamedQuery(name = "Articulo1.findByInvimppas", query = "SELECT a FROM Articulo1 a WHERE a.invimppas = :invimppas"),
-    @NamedQuery(name = "Articulo1.findByFecsaldado", query = "SELECT a FROM Articulo1 a WHERE a.fecsaldado = :fecsaldado"),
-    @NamedQuery(name = "Articulo1.findByFecultimp", query = "SELECT a FROM Articulo1 a WHERE a.fecultimp = :fecultimp"),
-    @NamedQuery(name = "Articulo1.findByInvimpante", query = "SELECT a FROM Articulo1 a WHERE a.invimpante = :invimpante"),
-    @NamedQuery(name = "Articulo1.findByFecanteimp", query = "SELECT a FROM Articulo1 a WHERE a.fecanteimp = :fecanteimp"),
-    @NamedQuery(name = "Articulo1.findByCostpromim", query = "SELECT a FROM Articulo1 a WHERE a.costpromim = :costpromim"),
-    @NamedQuery(name = "Articulo1.findByUltcosproi", query = "SELECT a FROM Articulo1 a WHERE a.ultcosproi = :ultcosproi"),
-    @NamedQuery(name = "Articulo1.findByModif", query = "SELECT a FROM Articulo1 a WHERE a.modif = :modif"),
-    @NamedQuery(name = "Articulo1.findByRefcorta", query = "SELECT a FROM Articulo1 a WHERE a.refcorta = :refcorta")})
 public class Articulo1 implements Serializable {
 
     private static final long serialVersionUID = 1L;

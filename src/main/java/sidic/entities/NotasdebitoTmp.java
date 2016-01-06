@@ -9,8 +9,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -21,20 +19,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "notasdebito_tmp")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "NotasdebitoTmp.findAll", query = "SELECT n FROM NotasdebitoTmp n"),
-    @NamedQuery(name = "NotasdebitoTmp.findByNrorecibocaja", query = "SELECT n FROM NotasdebitoTmp n WHERE n.notasdebitoTmpPK.nrorecibocaja = :nrorecibocaja"),
-    @NamedQuery(name = "NotasdebitoTmp.findByCliente", query = "SELECT n FROM NotasdebitoTmp n WHERE n.notasdebitoTmpPK.cliente = :cliente"),
-    @NamedQuery(name = "NotasdebitoTmp.findByFactura", query = "SELECT n FROM NotasdebitoTmp n WHERE n.notasdebitoTmpPK.factura = :factura"),
-    @NamedQuery(name = "NotasdebitoTmp.findByVlrnd", query = "SELECT n FROM NotasdebitoTmp n WHERE n.vlrnd = :vlrnd"),
-    @NamedQuery(name = "NotasdebitoTmp.findByVlriva", query = "SELECT n FROM NotasdebitoTmp n WHERE n.vlriva = :vlriva"),
-    @NamedQuery(name = "NotasdebitoTmp.findByCausal", query = "SELECT n FROM NotasdebitoTmp n WHERE n.causal = :causal"),
-    @NamedQuery(name = "NotasdebitoTmp.findByNd", query = "SELECT n FROM NotasdebitoTmp n WHERE n.nd = :nd"),
-    @NamedQuery(name = "NotasdebitoTmp.findByUsuario", query = "SELECT n FROM NotasdebitoTmp n WHERE n.notasdebitoTmpPK.usuario = :usuario"),
-    @NamedQuery(name = "NotasdebitoTmp.findByCartera", query = "SELECT n FROM NotasdebitoTmp n WHERE n.cartera = :cartera"),
-    @NamedQuery(name = "NotasdebitoTmp.findByReportevtas", query = "SELECT n FROM NotasdebitoTmp n WHERE n.reportevtas = :reportevtas"),
-    @NamedQuery(name = "NotasdebitoTmp.findByAcumvtas", query = "SELECT n FROM NotasdebitoTmp n WHERE n.acumvtas = :acumvtas"),
-    @NamedQuery(name = "NotasdebitoTmp.findByDescripcion", query = "SELECT n FROM NotasdebitoTmp n WHERE n.descripcion = :descripcion")})
 public class NotasdebitoTmp implements Serializable {
 
     private static final long serialVersionUID = 1L;

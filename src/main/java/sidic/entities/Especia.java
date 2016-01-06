@@ -11,8 +11,6 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -21,12 +19,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Especia.findAll", query = "SELECT e FROM Especia e"),
-    @NamedQuery(name = "Especia.findByCodigo", query = "SELECT e FROM Especia e WHERE e.especiaPK.codigo = :codigo"),
-    @NamedQuery(name = "Especia.findByArticulo", query = "SELECT e FROM Especia e WHERE e.especiaPK.articulo = :articulo"),
-    @NamedQuery(name = "Especia.findByReferencia", query = "SELECT e FROM Especia e WHERE e.referencia = :referencia"),
-    @NamedQuery(name = "Especia.findByPrecio", query = "SELECT e FROM Especia e WHERE e.precio = :precio")})
 public class Especia implements Serializable {
 
     private static final long serialVersionUID = 1L;

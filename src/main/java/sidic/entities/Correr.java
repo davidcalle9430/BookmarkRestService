@@ -12,8 +12,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,12 +24,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Correr.findAll", query = "SELECT c FROM Correr c"),
-    @NamedQuery(name = "Correr.findByCodigo", query = "SELECT c FROM Correr c WHERE c.codigo = :codigo"),
-    @NamedQuery(name = "Correr.findByNombre", query = "SELECT c FROM Correr c WHERE c.nombre = :nombre"),
-    @NamedQuery(name = "Correr.findByFecha", query = "SELECT c FROM Correr c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "Correr.findByIva", query = "SELECT c FROM Correr c WHERE c.iva = :iva")})
 public class Correr implements Serializable {
 
     private static final long serialVersionUID = 1L;

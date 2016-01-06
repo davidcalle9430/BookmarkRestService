@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,29 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "malos_h")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "MalosH.findAll", query = "SELECT m FROM MalosH m"),
-    @NamedQuery(name = "MalosH.findByCiudad", query = "SELECT m FROM MalosH m WHERE m.ciudad = :ciudad"),
-    @NamedQuery(name = "MalosH.findByCodcorr", query = "SELECT m FROM MalosH m WHERE m.codcorr = :codcorr"),
-    @NamedQuery(name = "MalosH.findByCliente", query = "SELECT m FROM MalosH m WHERE m.cliente = :cliente"),
-    @NamedQuery(name = "MalosH.findByPrecio", query = "SELECT m FROM MalosH m WHERE m.precio = :precio"),
-    @NamedQuery(name = "MalosH.findByFactura", query = "SELECT m FROM MalosH m WHERE m.factura = :factura"),
-    @NamedQuery(name = "MalosH.findByCantidad", query = "SELECT m FROM MalosH m WHERE m.cantidad = :cantidad"),
-    @NamedQuery(name = "MalosH.findByCodigo", query = "SELECT m FROM MalosH m WHERE m.codigo = :codigo"),
-    @NamedQuery(name = "MalosH.findByCostoimp", query = "SELECT m FROM MalosH m WHERE m.costoimp = :costoimp"),
-    @NamedQuery(name = "MalosH.findByCostojm", query = "SELECT m FROM MalosH m WHERE m.costojm = :costojm"),
-    @NamedQuery(name = "MalosH.findByCostopro", query = "SELECT m FROM MalosH m WHERE m.costopro = :costopro"),
-    @NamedQuery(name = "MalosH.findByCostoproim", query = "SELECT m FROM MalosH m WHERE m.costoproim = :costoproim"),
-    @NamedQuery(name = "MalosH.findByDevolimp", query = "SELECT m FROM MalosH m WHERE m.devolimp = :devolimp"),
-    @NamedQuery(name = "MalosH.findByDevoljm", query = "SELECT m FROM MalosH m WHERE m.devoljm = :devoljm"),
-    @NamedQuery(name = "MalosH.findByValord", query = "SELECT m FROM MalosH m WHERE m.valord = :valord"),
-    @NamedQuery(name = "MalosH.findByValorc", query = "SELECT m FROM MalosH m WHERE m.valorc = :valorc"),
-    @NamedQuery(name = "MalosH.findByLinea", query = "SELECT m FROM MalosH m WHERE m.linea = :linea"),
-    @NamedQuery(name = "MalosH.findByFecha", query = "SELECT m FROM MalosH m WHERE m.fecha = :fecha"),
-    @NamedQuery(name = "MalosH.findByDescue", query = "SELECT m FROM MalosH m WHERE m.descue = :descue"),
-    @NamedQuery(name = "MalosH.findByImojm", query = "SELECT m FROM MalosH m WHERE m.imojm = :imojm"),
-    @NamedQuery(name = "MalosH.findByFec", query = "SELECT m FROM MalosH m WHERE m.fec = :fec"),
-    @NamedQuery(name = "MalosH.findById", query = "SELECT m FROM MalosH m WHERE m.id = :id")})
 public class MalosH implements Serializable {
 
     private static final long serialVersionUID = 1L;

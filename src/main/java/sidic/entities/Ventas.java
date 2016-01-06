@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -24,18 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "ventas")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Ventas.findAll", query = "SELECT v FROM Ventas v"),
-    @NamedQuery(name = "Ventas.findByCiudad", query = "SELECT v FROM Ventas v WHERE v.ciudad = :ciudad"),
-    @NamedQuery(name = "Ventas.findByCodcorr", query = "SELECT v FROM Ventas v WHERE v.codcorr = :codcorr"),
-    @NamedQuery(name = "Ventas.findByCliente", query = "SELECT v FROM Ventas v WHERE v.cliente = :cliente"),
-    @NamedQuery(name = "Ventas.findByValor", query = "SELECT v FROM Ventas v WHERE v.valor = :valor"),
-    @NamedQuery(name = "Ventas.findByFactura", query = "SELECT v FROM Ventas v WHERE v.factura = :factura"),
-    @NamedQuery(name = "Ventas.findByCantidad", query = "SELECT v FROM Ventas v WHERE v.cantidad = :cantidad"),
-    @NamedQuery(name = "Ventas.findByValorDeb", query = "SELECT v FROM Ventas v WHERE v.valorDeb = :valorDeb"),
-    @NamedQuery(name = "Ventas.findByValorCre", query = "SELECT v FROM Ventas v WHERE v.valorCre = :valorCre"),
-    @NamedQuery(name = "Ventas.findByDescue", query = "SELECT v FROM Ventas v WHERE v.descue = :descue"),
-    @NamedQuery(name = "Ventas.findById", query = "SELECT v FROM Ventas v WHERE v.id = :id")})
 public class Ventas implements Serializable {
 
     private static final long serialVersionUID = 1L;

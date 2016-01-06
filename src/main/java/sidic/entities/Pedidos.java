@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -24,15 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "pedidos")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Pedidos.findAll", query = "SELECT p FROM Pedidos p"),
-    @NamedQuery(name = "Pedidos.findByCodigo", query = "SELECT p FROM Pedidos p WHERE p.codigo = :codigo"),
-    @NamedQuery(name = "Pedidos.findByNombre", query = "SELECT p FROM Pedidos p WHERE p.nombre = :nombre"),
-    @NamedQuery(name = "Pedidos.findByReferencia", query = "SELECT p FROM Pedidos p WHERE p.referencia = :referencia"),
-    @NamedQuery(name = "Pedidos.findByModelo", query = "SELECT p FROM Pedidos p WHERE p.modelo = :modelo"),
-    @NamedQuery(name = "Pedidos.findByCantidad", query = "SELECT p FROM Pedidos p WHERE p.cantidad = :cantidad"),
-    @NamedQuery(name = "Pedidos.findByNombreespa\u00f1ol", query = "SELECT p FROM Pedidos p WHERE p.nombreespa\u00f1ol = :nombreespa\u00f1ol"),
-    @NamedQuery(name = "Pedidos.findById", query = "SELECT p FROM Pedidos p WHERE p.id = :id")})
 public class Pedidos implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,8 +36,8 @@ public class Pedidos implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "CANTIDAD")
     private Double cantidad;
-    @Column(name = "NOMBREESPAÑOL")
-    private String nombreespañol;
+    @Column(name = "NOMBREESPAÃ‘OL")
+    private String nombreespaÃ±ol;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -102,12 +91,12 @@ public class Pedidos implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public String getNombreespañol() {
-        return nombreespañol;
+    public String getNombreespaÃ±ol() {
+        return nombreespaÃ±ol;
     }
 
-    public void setNombreespañol(String nombreespañol) {
-        this.nombreespañol = nombreespañol;
+    public void setNombreespaÃ±ol(String nombreespaÃ±ol) {
+        this.nombreespaÃ±ol = nombreespaÃ±ol;
     }
 
     public Integer getId() {

@@ -11,8 +11,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,35 +23,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "a_505")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "A505.findAll", query = "SELECT a FROM A505 a"),
-    @NamedQuery(name = "A505.findByCodigo", query = "SELECT a FROM A505 a WHERE a.codigo = :codigo"),
-    @NamedQuery(name = "A505.findByReferencia", query = "SELECT a FROM A505 a WHERE a.referencia = :referencia"),
-    @NamedQuery(name = "A505.findByUso", query = "SELECT a FROM A505 a WHERE a.uso = :uso"),
-    @NamedQuery(name = "A505.findByModelo1", query = "SELECT a FROM A505 a WHERE a.modelo1 = :modelo1"),
-    @NamedQuery(name = "A505.findByModelo2", query = "SELECT a FROM A505 a WHERE a.modelo2 = :modelo2"),
-    @NamedQuery(name = "A505.findByModelo3", query = "SELECT a FROM A505 a WHERE a.modelo3 = :modelo3"),
-    @NamedQuery(name = "A505.findByMarca", query = "SELECT a FROM A505 a WHERE a.marca = :marca"),
-    @NamedQuery(name = "A505.findByPrecio", query = "SELECT a FROM A505 a WHERE a.precio = :precio"),
-    @NamedQuery(name = "A505.findByCantdisp", query = "SELECT a FROM A505 a WHERE a.cantdisp = :cantdisp"),
-    @NamedQuery(name = "A505.findByProcedenc", query = "SELECT a FROM A505 a WHERE a.procedenc = :procedenc"),
-    @NamedQuery(name = "A505.findByUltcostpr", query = "SELECT a FROM A505 a WHERE a.ultcostpr = :ultcostpr"),
-    @NamedQuery(name = "A505.findByCostprom", query = "SELECT a FROM A505 a WHERE a.costprom = :costprom"),
-    @NamedQuery(name = "A505.findByUltcostjm", query = "SELECT a FROM A505 a WHERE a.ultcostjm = :ultcostjm"),
-    @NamedQuery(name = "A505.findByCostjm", query = "SELECT a FROM A505 a WHERE a.costjm = :costjm"),
-    @NamedQuery(name = "A505.findByUltcomp", query = "SELECT a FROM A505 a WHERE a.ultcomp = :ultcomp"),
-    @NamedQuery(name = "A505.findByCosultcom", query = "SELECT a FROM A505 a WHERE a.cosultcom = :cosultcom"),
-    @NamedQuery(name = "A505.findByInvimppas", query = "SELECT a FROM A505 a WHERE a.invimppas = :invimppas"),
-    @NamedQuery(name = "A505.findByFecsaldado", query = "SELECT a FROM A505 a WHERE a.fecsaldado = :fecsaldado"),
-    @NamedQuery(name = "A505.findByFecultimp", query = "SELECT a FROM A505 a WHERE a.fecultimp = :fecultimp"),
-    @NamedQuery(name = "A505.findByInvimpante", query = "SELECT a FROM A505 a WHERE a.invimpante = :invimpante"),
-    @NamedQuery(name = "A505.findByFecanteimp", query = "SELECT a FROM A505 a WHERE a.fecanteimp = :fecanteimp"),
-    @NamedQuery(name = "A505.findByCostpromim", query = "SELECT a FROM A505 a WHERE a.costpromim = :costpromim"),
-    @NamedQuery(name = "A505.findByUltcosproi", query = "SELECT a FROM A505 a WHERE a.ultcosproi = :ultcosproi"),
-    @NamedQuery(name = "A505.findByModif", query = "SELECT a FROM A505 a WHERE a.modif = :modif"),
-    @NamedQuery(name = "A505.findByRefcorta", query = "SELECT a FROM A505 a WHERE a.refcorta = :refcorta"),
-    @NamedQuery(name = "A505.findByRefvendedor", query = "SELECT a FROM A505 a WHERE a.refvendedor = :refvendedor"),
-    @NamedQuery(name = "A505.findByModelvendedor", query = "SELECT a FROM A505 a WHERE a.modelvendedor = :modelvendedor")})
 public class A505 implements Serializable {
 
     private static final long serialVersionUID = 1L;

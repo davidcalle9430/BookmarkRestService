@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -24,21 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "z_hojcli")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "ZHojcli.findAll", query = "SELECT z FROM ZHojcli z"),
-    @NamedQuery(name = "ZHojcli.findByCodigo", query = "SELECT z FROM ZHojcli z WHERE z.codigo = :codigo"),
-    @NamedQuery(name = "ZHojcli.findByRazsoc", query = "SELECT z FROM ZHojcli z WHERE z.razsoc = :razsoc"),
-    @NamedQuery(name = "ZHojcli.findByFec", query = "SELECT z FROM ZHojcli z WHERE z.fec = :fec"),
-    @NamedQuery(name = "ZHojcli.findByProductos", query = "SELECT z FROM ZHojcli z WHERE z.productos = :productos"),
-    @NamedQuery(name = "ZHojcli.findByC", query = "SELECT z FROM ZHojcli z WHERE z.c = :c"),
-    @NamedQuery(name = "ZHojcli.findByA", query = "SELECT z FROM ZHojcli z WHERE z.a = :a"),
-    @NamedQuery(name = "ZHojcli.findByValor", query = "SELECT z FROM ZHojcli z WHERE z.valor = :valor"),
-    @NamedQuery(name = "ZHojcli.findByFct", query = "SELECT z FROM ZHojcli z WHERE z.fct = :fct"),
-    @NamedQuery(name = "ZHojcli.findByTipf", query = "SELECT z FROM ZHojcli z WHERE z.tipf = :tipf"),
-    @NamedQuery(name = "ZHojcli.findByNotad", query = "SELECT z FROM ZHojcli z WHERE z.notad = :notad"),
-    @NamedQuery(name = "ZHojcli.findByNotac", query = "SELECT z FROM ZHojcli z WHERE z.notac = :notac"),
-    @NamedQuery(name = "ZHojcli.findByObservac", query = "SELECT z FROM ZHojcli z WHERE z.observac = :observac"),
-    @NamedQuery(name = "ZHojcli.findById", query = "SELECT z FROM ZHojcli z WHERE z.id = :id")})
 public class ZHojcli implements Serializable {
 
     private static final long serialVersionUID = 1L;

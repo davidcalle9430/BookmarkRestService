@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,13 +23,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Rolesymenus.findAll", query = "SELECT r FROM Rolesymenus r"),
-    @NamedQuery(name = "Rolesymenus.findByEmpresa", query = "SELECT r FROM Rolesymenus r WHERE r.rolesymenusPK.empresa = :empresa"),
-    @NamedQuery(name = "Rolesymenus.findByRol", query = "SELECT r FROM Rolesymenus r WHERE r.rolesymenusPK.rol = :rol"),
-    @NamedQuery(name = "Rolesymenus.findByMenu", query = "SELECT r FROM Rolesymenus r WHERE r.rolesymenusPK.menu = :menu"),
-    @NamedQuery(name = "Rolesymenus.findByUsuario", query = "SELECT r FROM Rolesymenus r WHERE r.usuario = :usuario"),
-    @NamedQuery(name = "Rolesymenus.findByFecha", query = "SELECT r FROM Rolesymenus r WHERE r.fecha = :fecha")})
 public class Rolesymenus implements Serializable {
 
     private static final long serialVersionUID = 1L;

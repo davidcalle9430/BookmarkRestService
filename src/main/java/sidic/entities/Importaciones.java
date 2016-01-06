@@ -10,8 +10,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -20,17 +18,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Importaciones.findAll", query = "SELECT i FROM Importaciones i"),
-    @NamedQuery(name = "Importaciones.findByConsec", query = "SELECT i FROM Importaciones i WHERE i.importacionesPK.consec = :consec"),
-    @NamedQuery(name = "Importaciones.findByFecha", query = "SELECT i FROM Importaciones i WHERE i.importacionesPK.fecha = :fecha"),
-    @NamedQuery(name = "Importaciones.findByCodigo", query = "SELECT i FROM Importaciones i WHERE i.importacionesPK.codigo = :codigo"),
-    @NamedQuery(name = "Importaciones.findByCantidad", query = "SELECT i FROM Importaciones i WHERE i.cantidad = :cantidad"),
-    @NamedQuery(name = "Importaciones.findByCostojm", query = "SELECT i FROM Importaciones i WHERE i.costojm = :costojm"),
-    @NamedQuery(name = "Importaciones.findByCostoim", query = "SELECT i FROM Importaciones i WHERE i.costoim = :costoim"),
-    @NamedQuery(name = "Importaciones.findByDocumento", query = "SELECT i FROM Importaciones i WHERE i.documento = :documento"),
-    @NamedQuery(name = "Importaciones.findByNdoc", query = "SELECT i FROM Importaciones i WHERE i.importacionesPK.ndoc = :ndoc"),
-    @NamedQuery(name = "Importaciones.findByPrecio", query = "SELECT i FROM Importaciones i WHERE i.precio = :precio")})
 public class Importaciones implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,28 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "hojacliente")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Hojacliente.findAll", query = "SELECT h FROM Hojacliente h"),
-    @NamedQuery(name = "Hojacliente.findByRazsoc", query = "SELECT h FROM Hojacliente h WHERE h.razsoc = :razsoc"),
-    @NamedQuery(name = "Hojacliente.findByDireccion", query = "SELECT h FROM Hojacliente h WHERE h.direccion = :direccion"),
-    @NamedQuery(name = "Hojacliente.findByTelefono", query = "SELECT h FROM Hojacliente h WHERE h.telefono = :telefono"),
-    @NamedQuery(name = "Hojacliente.findByProptario", query = "SELECT h FROM Hojacliente h WHERE h.proptario = :proptario"),
-    @NamedQuery(name = "Hojacliente.findByNit", query = "SELECT h FROM Hojacliente h WHERE h.nit = :nit"),
-    @NamedQuery(name = "Hojacliente.findByFechaing", query = "SELECT h FROM Hojacliente h WHERE h.fechaing = :fechaing"),
-    @NamedQuery(name = "Hojacliente.findByCodigo", query = "SELECT h FROM Hojacliente h WHERE h.codigo = :codigo"),
-    @NamedQuery(name = "Hojacliente.findByGerente", query = "SELECT h FROM Hojacliente h WHERE h.gerente = :gerente"),
-    @NamedQuery(name = "Hojacliente.findByFechamodif", query = "SELECT h FROM Hojacliente h WHERE h.fechamodif = :fechamodif"),
-    @NamedQuery(name = "Hojacliente.findByClientesCiudad", query = "SELECT h FROM Hojacliente h WHERE h.clientesCiudad = :clientesCiudad"),
-    @NamedQuery(name = "Hojacliente.findByCiudadesCiudad", query = "SELECT h FROM Hojacliente h WHERE h.ciudadesCiudad = :ciudadesCiudad"),
-    @NamedQuery(name = "Hojacliente.findByCupo", query = "SELECT h FROM Hojacliente h WHERE h.cupo = :cupo"),
-    @NamedQuery(name = "Hojacliente.findByFecha", query = "SELECT h FROM Hojacliente h WHERE h.fecha = :fecha"),
-    @NamedQuery(name = "Hojacliente.findByDescipcion", query = "SELECT h FROM Hojacliente h WHERE h.descipcion = :descipcion"),
-    @NamedQuery(name = "Hojacliente.findByPlazodepago", query = "SELECT h FROM Hojacliente h WHERE h.plazodepago = :plazodepago"),
-    @NamedQuery(name = "Hojacliente.findByValor", query = "SELECT h FROM Hojacliente h WHERE h.valor = :valor"),
-    @NamedQuery(name = "Hojacliente.findByFactura", query = "SELECT h FROM Hojacliente h WHERE h.factura = :factura"),
-    @NamedQuery(name = "Hojacliente.findByDias", query = "SELECT h FROM Hojacliente h WHERE h.dias = :dias"),
-    @NamedQuery(name = "Hojacliente.findByObservaciones", query = "SELECT h FROM Hojacliente h WHERE h.observaciones = :observaciones"),
-    @NamedQuery(name = "Hojacliente.findById", query = "SELECT h FROM Hojacliente h WHERE h.id = :id")})
 public class Hojacliente implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,24 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "lvencidas")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Lvencidas.findAll", query = "SELECT l FROM Lvencidas l"),
-    @NamedQuery(name = "Lvencidas.findByTipo", query = "SELECT l FROM Lvencidas l WHERE l.tipo = :tipo"),
-    @NamedQuery(name = "Lvencidas.findByFechapago", query = "SELECT l FROM Lvencidas l WHERE l.fechapago = :fechapago"),
-    @NamedQuery(name = "Lvencidas.findByFecha", query = "SELECT l FROM Lvencidas l WHERE l.fecha = :fecha"),
-    @NamedQuery(name = "Lvencidas.findByDias", query = "SELECT l FROM Lvencidas l WHERE l.dias = :dias"),
-    @NamedQuery(name = "Lvencidas.findByVendcod", query = "SELECT l FROM Lvencidas l WHERE l.vendcod = :vendcod"),
-    @NamedQuery(name = "Lvencidas.findByVendnombre", query = "SELECT l FROM Lvencidas l WHERE l.vendnombre = :vendnombre"),
-    @NamedQuery(name = "Lvencidas.findByCodigo", query = "SELECT l FROM Lvencidas l WHERE l.codigo = :codigo"),
-    @NamedQuery(name = "Lvencidas.findByRazsoc", query = "SELECT l FROM Lvencidas l WHERE l.razsoc = :razsoc"),
-    @NamedQuery(name = "Lvencidas.findByCiudad", query = "SELECT l FROM Lvencidas l WHERE l.ciudad = :ciudad"),
-    @NamedQuery(name = "Lvencidas.findByFactura", query = "SELECT l FROM Lvencidas l WHERE l.factura = :factura"),
-    @NamedQuery(name = "Lvencidas.findByTipfact", query = "SELECT l FROM Lvencidas l WHERE l.tipfact = :tipfact"),
-    @NamedQuery(name = "Lvencidas.findByFpago", query = "SELECT l FROM Lvencidas l WHERE l.fpago = :fpago"),
-    @NamedQuery(name = "Lvencidas.findByValor", query = "SELECT l FROM Lvencidas l WHERE l.valor = :valor"),
-    @NamedQuery(name = "Lvencidas.findByDescontada", query = "SELECT l FROM Lvencidas l WHERE l.descontada = :descontada"),
-    @NamedQuery(name = "Lvencidas.findByVMasDe", query = "SELECT l FROM Lvencidas l WHERE l.vMasDe = :vMasDe"),
-    @NamedQuery(name = "Lvencidas.findById", query = "SELECT l FROM Lvencidas l WHERE l.id = :id")})
 public class Lvencidas implements Serializable {
 
     private static final long serialVersionUID = 1L;
