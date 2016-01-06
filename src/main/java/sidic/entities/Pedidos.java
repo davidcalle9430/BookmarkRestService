@@ -47,8 +47,8 @@ public class Pedidos implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "CANTIDAD")
     private Double cantidad;
-    @Column(name = "NOMBREESPA\u00d1OL")
-    private String nombreespaÃ±ol;
+    @Column(name = "NOMBREESPAÑOL")
+    private String nombreespañol;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -102,12 +102,12 @@ public class Pedidos implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public String getNombreespaÃ±ol() {
-        return nombreespaÃ±ol;
+    public String getNombreespañol() {
+        return nombreespañol;
     }
 
-    public void setNombreespaÃ±ol(String nombreespaÃ±ol) {
-        this.nombreespaÃ±ol = nombreespaÃ±ol;
+    public void setNombreespañol(String nombreespañol) {
+        this.nombreespañol = nombreespañol;
     }
 
     public Integer getId() {
