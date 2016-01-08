@@ -120,6 +120,11 @@ body {
   width: 10em;
   height: 10em;
 }
+
+.submit[disabled=disabled]{
+	 color: #c0c0c0;
+     background-color: #ffffff;
+}
 @-webkit-keyframes load8 {
   0% {
     -webkit-transform: rotate(0deg);

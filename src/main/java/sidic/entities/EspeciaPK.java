@@ -23,40 +23,40 @@ public class EspeciaPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Basic(optional = false)
     @Column(nullable = false, name="CODIGO")
-    private double codigo;
+    private Long codigo;
     @Basic(optional = false)
     @Column(nullable = false)
-    private double articulo;
+    private Long articulo;
 
     public EspeciaPK() {
     }
 
-    public EspeciaPK(double codigo, double articulo) {
+    public EspeciaPK(Long codigo, Long articulo) {
         this.codigo = codigo;
         this.articulo = articulo;
     }
 
-    public double getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(double codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
-    public double getArticulo() {
+    public Long getArticulo() {
         return articulo;
     }
 
-    public void setArticulo(double articulo) {
+    public void setArticulo(Long articulo) {
         this.articulo = articulo;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) codigo;
-        hash += (int) articulo;
+        hash += (long) codigo;
+        hash += (long) articulo;
         return hash;
     }
 

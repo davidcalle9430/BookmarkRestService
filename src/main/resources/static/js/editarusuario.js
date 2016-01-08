@@ -1,11 +1,4 @@
 
-function llenarDatoFormulario(llave, valor){
-	var input = $("form input[name="+ llave + "]").first();
-	input.attr("value", valor);
-	
-}
-
-
 /**
  * 
  */

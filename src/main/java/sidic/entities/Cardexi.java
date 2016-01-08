@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -17,7 +19,7 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * por Ahora creo que la i al final hace referencia a que es el cardex del inventario
  * @author david
  */
 @Entity
@@ -27,12 +29,13 @@ public class Cardexi implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "consec")
-    private Integer consec;
+    private Long consec;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "CODIGO")
-    private Double codigo;
+    private Long codigo;
     @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
@@ -45,28 +48,28 @@ public class Cardexi implements Serializable {
     @Column(name = "NDOC")
     private Double ndoc;
     @Column(name = "SALDO")
-    private Double saldo;
+    private Long saldo;
 
     public Cardexi() {
     }
 
-    public Cardexi(Integer consec) {
+    public Cardexi(Long consec) {
         this.consec = consec;
     }
 
-    public Integer getConsec() {
+    public Long getConsec() {
         return consec;
     }
 
-    public void setConsec(Integer consec) {
+    public void setConsec(Long consec) {
         this.consec = consec;
     }
 
-    public Double getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Double codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
@@ -110,11 +113,11 @@ public class Cardexi implements Serializable {
         this.ndoc = ndoc;
     }
 
-    public Double getSaldo() {
+    public Long getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(Double saldo) {
+    public void setSaldo(Long saldo) {
         this.saldo = saldo;
     }
 

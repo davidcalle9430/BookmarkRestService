@@ -25,7 +25,7 @@ public class Genero implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(nullable = false, precision = 22)
-    private Double codigo;
+    private Long codigo;
     @Column(length = 35)
     private String nombre;
     @Column(precision = 22)
@@ -50,15 +50,15 @@ public class Genero implements Serializable {
     public Genero() {
     }
 
-    public Genero(Double codigo) {
+    public Genero(Long codigo) {
         this.codigo = codigo;
     }
 
-    public Double getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Double codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 

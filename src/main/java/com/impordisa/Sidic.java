@@ -47,26 +47,21 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
 import converters.ClassFinder;
 import converters.UsuarioPKConverter;
 import repositories.MenusRepository;
 import repositories.RolesRepository;
 import repositories.RolesYMenusRepository;
 import repositories.UsuarioRepository;
-import sidic.entities.Clientes;
 import sidic.entities.Menus;
 import sidic.entities.Niveles;
-import sidic.entities.Opciones;
 import sidic.entities.Rolessss;
 import sidic.entities.Rolesymenus;
 import sidic.entities.Usuarios;
 
 /**
- * Clase encargade de arrancar la aplicación haciendo un escan de los
- * componentes que necesita Encargadad e cargar la configuración de la
- * aplicación
- *
+ * Clase encargade de arrancar la aplicación haciendo un escaneo de los
+ * componentes que necesita para la configuración
  * @author David Calle
  * @version 1.0
  * @since 2015-12-14
@@ -111,15 +106,19 @@ class StaticResourceConfiguration extends WebMvcConfigurerAdapter {
  * @version 1.0
  * @since 2015-12-14
  */
+@EnableWebMvc
 @ComponentScan("org.springframework.security.samples.mvc")
 @Configuration
-@EnableWebMvc
+@Component
 class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
+		//registry.addViewController( "/" ).setViewName( "index.html" );
+		//registry.addViewController( "" ).setViewName( "index.html" );
 		registry.addViewController("/login").setViewName("login");
 		registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+		//super.addViewControllers( registry );
 	}
 }
 
@@ -255,6 +254,9 @@ class RequestFilter extends OncePerRequestFilter {
 		String nombreMenu = URI.split("/")[1]; // se parte la url en trozos y se
 												// obtiene el primer valor
 		Menus menu = menusRepository.findOneByMenusPK_menu(nombreMenu);
+		if(menu == null){
+			return false;
+		}
 		String reggex = "(.)*" + menu.getMenusPK().getMenu() + "(.)*";
 		if (URI.matches(reggex)) { // a final de cuentas, un rol viene siendo lo // mismo que un nivel
 			List<Rolesymenus> rolXmenu = rolesYMenusRepository.findAllByRolesymenusPK_Menu(menu.getMenusPK().getMenu());
@@ -278,21 +280,28 @@ class RequestFilter extends OncePerRequestFilter {
 		HttpSession session = request.getSession();
 		SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		String URI = request.getRequestURI();
+		if(URI.equals("/") || URI.equals("/inicio/") || URI.equals("/login") ){ // No se logrò congirar la ruta / por lo que se redirige a /inicio/
+			if(URI.equals("/")){
+				response.sendRedirect("/inicio/");
+			}
+			filterChain.doFilter(request, response);
+			return;
+		}
 		String nombreMenu = URI.split("/")[1];
 		boolean esApi = nombreMenu.equals("api") || nombreMenu.equals("static"); // se busca que no haga request a archivos estàticos ni al api
 		if (!esApi) {
 			if (sci != null) {
 				UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
 				Usuarios elected = usuarioRepository.findOneByUsuario(cud.getUsername());
-				boolean permitido = false;
+				boolean permitido = false;		
 				if (!esApi) {
 					permitido = validarPermiso(URI, elected);
-				}
-				if (!(esApi || permitido)) {
-					throw new ServletException("Su rol no tiene permitido ver este mensaje");
-				}
+					if (!permitido) {
+						response.sendError(500, "El rol del usuario actual no tiene los permisos suficientes" );
+						return;
+					}
+				}	
 			}
-
 		}
 		filterChain.doFilter(request, response);
 	}

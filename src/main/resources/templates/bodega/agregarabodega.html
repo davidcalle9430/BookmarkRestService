@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form">
+	<nav th:replace="nav :: nav"></nav>
+	<h1 style="color: black">Agregar a Bodega</h1>
+	<form onkeypress="return event.keyCode != 13;">
+		<div class="row">
+			<div class="large-4 columns">
+				<label>C&oacute;digo <input id="codigo" type="text" onchange="buscar()" required="required" />
+				</label>
+			</div>
+			<div class="large-4 columns">
+				<label>Nombre <input id="nombre" type="text" required="required" />
+				</label>
+			</div>
+			<div class="large-4 columns">
+				<label>Cantidad en bodega <input id="cantBodega" type="text" disabled="disabled" />
+				</label>
+			</div>
+			<div class="large-4 columns">
+				<label>Documento <input  id="documento" type="text" required="required"/>
+				</label>
+			</div>
+			<div class="large-4 columns">
+				<label>No. Doc <input id="ndoc" type="text" required="required" />
+				</label>
+			</div>
+			<div class="large-4 columns">
+				<label>Cantidad <input id="cantidad" type="text" required="required" />
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="">
+				<button type="submit" class="button large-3 submit" style="float:right">Agregar</button>
+			</div>
+		</div>
+	</form>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/bodega/agregarAbodega.js"></script>
+</body>
+</html>

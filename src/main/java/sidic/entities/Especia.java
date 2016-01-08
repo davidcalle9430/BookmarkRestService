@@ -6,24 +6,34 @@
 package sidic.entities;
 
 import java.io.Serializable;
+
+import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * Clase que representa un cliente especial
  * @author david
  */
+@IdClass(EspeciaPK.class)
 @Entity
 @XmlRootElement
 public class Especia implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected EspeciaPK especiaPK;
+    @Id
+    @Basic(optional = false)
+    @Column(nullable = false, name="CODIGO")
+    private Long codigo;
+    @Id
+    @Basic(optional = false)
+    @Column(nullable = false)
+    private Long articulo;
     @Column(length = 35)
     private String referencia;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -35,24 +45,36 @@ public class Especia implements Serializable {
 
     public Especia() {
     }
+    
 
-    public Especia(EspeciaPK especiaPK) {
-        this.especiaPK = especiaPK;
-    }
+    public Especia(Long codigo, Long articulo) {
+		super();
+		this.codigo = codigo;
+		this.articulo = articulo;
+	}
 
-    public Especia(double codigo, double articulo) {
-        this.especiaPK = new EspeciaPK(codigo, articulo);
-    }
 
-    public EspeciaPK getEspeciaPK() {
-        return especiaPK;
-    }
+	public Long getCodigo() {
+		return codigo;
+	}
 
-    public void setEspeciaPK(EspeciaPK especiaPK) {
-        this.especiaPK = especiaPK;
-    }
 
-    public String getReferencia() {
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+
+
+	public double getArticulo() {
+		return articulo;
+	}
+
+
+	public void setArticulo(Long articulo) {
+		this.articulo = articulo;
+	}
+
+
+	public String getReferencia() {
         return referencia;
     }
 
@@ -74,31 +96,42 @@ public class Especia implements Serializable {
 
     public void setClientes(Clientes clientes) {
         this.clientes = clientes;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (especiaPK != null ? especiaPK.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Especia)) {
-            return false;
-        }
-        Especia other = (Especia) object;
-        if ((this.especiaPK == null && other.especiaPK != null) || (this.especiaPK != null && !this.especiaPK.equals(other.especiaPK))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "sidic.entities.Especia[ especiaPK=" + especiaPK + " ]";
+   
     }
     
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((articulo == null) ? 0 : articulo.hashCode());
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Especia other = (Especia) obj;
+		if (articulo == null) {
+			if (other.articulo != null)
+				return false;
+		} else if (!articulo.equals(other.articulo))
+			return false;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
+    
+    
 }
+    

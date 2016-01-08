@@ -1,0 +1,3 @@
+ALTER TABLE cardexi 
+CHANGE COLUMN consec consec 
+int(10) NOT NULL AUTO_INCREMENT;

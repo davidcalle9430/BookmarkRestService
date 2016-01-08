@@ -32,4 +32,28 @@ $.ajaxSetup({
 function get(name){
 	   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
 	      return decodeURIComponent(name[1]);
-	}
+}
+
+/**
+ * Funciòn de regresa la fecha actual como una cadena
+ * en formato yyyy-mm-dd
+ */
+function darFechaActual(){
+	var fecha = new Date();
+	var dd = fecha.getDate();
+    var mm = fecha.getMonth()+1;
+    var yyyy = fecha.getFullYear();
+    return ""+yyyy+"-"+mm+"-"+dd;
+}
+
+/*
+ * 
+ * Función que se encarga de poner en un input type text
+ * con nombre llace, el valor valor
+ */
+function llenarDatoFormulario(llave, valor){
+	var input = $("form input[name="+ llave + "]").first();
+	input.attr("value", valor);
+	
+}
+
