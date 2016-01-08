@@ -10,4 +10,8 @@ public class BodegaController {
 	public String agregarABodega(){
 		return "/bodega/agregarabodega";
 	}
+	@RequestMapping(value="/mnudevi/")
+	public String devolucion(){
+		return "/bodega/devolucion";
+	}
 }
