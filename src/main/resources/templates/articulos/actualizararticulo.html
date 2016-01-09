@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form">
+	<nav th:replace="nav :: nav"></nav>
+	<h2 style="color: black; margin-top:0; text-align:center;">Actualizar Art&iacute;culo</h2>
+	<form onkeypress="return event.keyCode != 13;">
+		<div class="row">
+			<div class="large-12 columns">
+				<label>C&oacute;digo del grupo al que va a pertenecer <input id="codigo" type="text" onchange="buscar()" required="required" />
+				</label>
+			</div>
+			<div class="large-12 columns">
+				<label>N&uacute;mero para asignar el c&oacute;digo<input id="nombre" type="text" required="required" />
+				</label>
+			</div>
+			<div class="large-12 columns">
+				<label>C&oacute;digo Art&iacute;culo <input id="cantBodega" type="text"/>
+				</label>
+			</div>
+			<div class="large-12 columns">
+				<label>Referencia Oficina <input  id="documento" type="text" required="required"/>
+				</label>
+			</div>
+			<div class="large-12 columns">
+				<label>Referencia Vendedor <input id="ndoc" type="text" required="required" />
+				</label>
+			</div>
+			<div class="large-12 columns">
+				<label>Marca <input id="cantidad" type="text" required="required" />
+				</label>
+			</div>
+			<div class="large-12 columns">
+				<label>Uso <input id="cantidad" type="text" required="required" />
+				</label>
+			</div>
+			<div class="large-12 columns">
+				<label>Modelo Oficina <input id="cantidad" type="text" required="required" />
+				</label>
+			</div>
+			<div class="large-12 columns">
+				<label>Modelo Vendedor <input id="cantidad" type="text" required="required" />
+				</label>
+			</div>
+			<div class="large-12 columns">
+				<label>Procedencia <input id="cantidad" type="text" required="required" />
+				</label>
+			</div>
+		</div>
+		<div class="row">
+				<button type="submit" class="button large-3 submit">Guardar</button>
+				<button type="submit" class="button large-3 submit">Eliminar</button>
+				<button type="submit" class="button large-3 submit">Cerrar</button>
+		</div>
+	</form>
+   	<footer th:replace="footer :: footer"></footer>
+</body>
+</html>

@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:tiles="http://www.thymeleaf.org">
+<html>
 <head th:replace="header :: header">
 </head>
 <body class="main-form">
+	<button  data-dropdown="drop1" 
+	aria-controls="drop1" aria-expanded="false"
+	 class="button dropdown">
+	 Dropdown Button</button>
+	<br/>
+	<ul id="drop1" data-dropdown-content class="f-dropdown"
+		aria-hidden="true">
+		<li><a href="#">This is a link</a></li>
+		<li><a href="#">This is another</a></li>
+		<li><a href="#">Yet another</a></li>
+	</ul>
 	<nav th:replace="nav :: nav"></nav>
-	<div class="loader"></div>
-   	<footer th:replace="footer :: footer"></footer>
-   	<script src="/static/js/crearTabla.js"></script>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/crearTabla.js"></script>
 </body>
 </html>

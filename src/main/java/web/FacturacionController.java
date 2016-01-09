@@ -10,5 +10,9 @@ public class FacturacionController {
 	public String crearFactura(){
 		return "/facturas/crearfactura";
 	}
+	@RequestMapping(value = "/mnuanufi/")
+	public String anularFactura(){
+		return "/facturas/anularfactura";
+	}
 }
 	

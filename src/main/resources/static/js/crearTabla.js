@@ -21,6 +21,7 @@ function cargarEncabezados(lista, propiedades, aMostrar) {
 function cargarTabla(lista, propiedades, aMostrar, indice) {
 	if (indice == 0) {
 		cargarEncabezados(lista, propiedades, aMostrar);
+		dobleClic(manejador);
 	}
 	var tabla = $("table").first();
 	for (var i = 0; i < lista.length; i++) {
@@ -44,7 +45,7 @@ function cargarTabla(lista, propiedades, aMostrar, indice) {
 function cargarClientes(indice, loader) {
 	if (indice <= tamMax || tamMax == null) {
 		$.ajax({
-			url : "/api/clientes/?page=" + indice+"&sort=codigo,desc",
+			url : "/api/clientes/?page=" + indice + "&sort=codigo,desc",
 			success : function(data) {
 				console.log("página " + indice)
 				cargarTabla(data._embedded.clientes, [ "codigo", "razsoc",
@@ -53,7 +54,7 @@ function cargarClientes(indice, loader) {
 						" NIT" ], indice);
 				loader.css({
 					display : "none"
-				});	
+				});
 				tamMax = data.page.totalPages;
 				if (paginaActual <= tamMax) {
 					paginaActual++;
@@ -64,15 +65,32 @@ function cargarClientes(indice, loader) {
 		})
 	}
 }
+
+/*
+ * Función que se encarga de añadir un handler para cada fila
+ * 
+ */
+
+function dobleClic(manejador) {
+	console.log("entra al manejador");
+	$("body").on("click","tr", manejador);
+
+}
+var manejador = function() {
+	var hijos = $(this).children();
+	console.log(hijos);
+	alert("Funciona :3 "+ hijos[1].innerHTML);
+}
+
 /**
  * función encargada de crear una tabla
  * 
  * 
  */
-
 var tamMax = null; // variable que guarda el tamaño máximo de la página
 var paginaActual = 0;
-var alFinal = false; // variable que determina si está al final de la pagina para recargar
+var alFinal = false; // variable que determina si está al final de la pagina
+						// para recargar
 $(document).ready(
 		function() {
 			var body = $("body").first();
@@ -91,7 +109,7 @@ $(document).ready(
 					function() {
 						if ($(window).scrollTop() + $(window).height() > $(
 								document).height() - 50) {
-							if(!alFinal){
+							if (!alFinal) {
 								alFinal = true;
 								cargarClientes(paginaActual, loader, tamMax);
 							}

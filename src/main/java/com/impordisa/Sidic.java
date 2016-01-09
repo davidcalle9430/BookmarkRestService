@@ -58,7 +58,6 @@ import sidic.entities.Niveles;
 import sidic.entities.Rolessss;
 import sidic.entities.Rolesymenus;
 import sidic.entities.Usuarios;
-
 /**
  * Clase encargade de arrancar la aplicación haciendo un escaneo de los
  * componentes que necesita para la configuración
@@ -305,5 +304,4 @@ class RequestFilter extends OncePerRequestFilter {
 		}
 		filterChain.doFilter(request, response);
 	}
-
 }
