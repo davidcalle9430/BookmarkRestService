@@ -79,7 +79,7 @@ function dobleClic(manejador) {
 var manejador = function() {
 	var hijos = $(this).children();
 	console.log(hijos);
-	alert("Funciona :3 "+ hijos[1].innerHTML);
+	window.location = "editar/?codigo="+ hijos[0].innerHTML;
 }
 
 /**

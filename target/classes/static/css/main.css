@@ -145,4 +145,22 @@ body {
     transform: rotate(360deg);
   }
 }
-	
+.boton{
+	margin-top: 0.8%;
+	background-color: #03A9F4;
+	margin-bottom: 0.8%;
+}
+.boton:hover{
+	background-color: #03A9F4;	
+}
+.boton-derecha{
+	float:right;
+}
+.grupo-forma {
+	border-top: solid 1px gray;
+	border-left: solid 1px gray;
+	border-right: solid 1px gray;
+}
+.grupo-forma-ultimo{
+	border-bottom: solid 1px gray;
+}

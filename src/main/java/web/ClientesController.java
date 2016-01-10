@@ -9,6 +9,14 @@ public class ClientesController {
 
 	@RequestMapping(value="/mnuclijm/", method = RequestMethod.GET)
 	public String darClientes(){
-		return "clientes";
+		return "/clientes/clientes";
+	}
+	@RequestMapping(value="/mnuclijm/crear/")
+	public String crearCliente(){
+		return "/clientes/nuevocliente";
+	}
+	@RequestMapping(value="/mnuclijm/editar/")
+	public String eliminarCliente(){
+		return "/clientes/editarcliente";
 	}
 }
