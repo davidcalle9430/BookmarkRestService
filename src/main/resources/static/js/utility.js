@@ -68,7 +68,6 @@ function getForObject(object, url, toDo){
 	}
 	$.ajax({
 		url : url,
-		async: false,
 		success : function(data){
 			toDo(data);	
 		},
@@ -95,6 +94,27 @@ function postForObject(object, url, todo, error){
 		},
 		error :function(data){
 			error();
+		}
+	});
+}
+/**
+ * función que funciona como un wrapper para los requet ajax
+ * @param object, objecto a agregar
+ * @param url, URI que identifica el recurso
+ * @param todo, función  asociada a la creación exitossa
+ * @param error, función asociada al error
+ */
+function putForObject(object, url, todo, error){
+	$.ajax({
+		type : "put",
+		url : url,
+		data : JSON.stringify(object),
+	    contentType: 'application/json; charset=utf-8',
+		success : function(data){
+			todo(data);
+		},
+		error :function(data){
+			error(data);
 		}
 	});
 }

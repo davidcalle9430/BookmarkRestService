@@ -99,12 +99,18 @@ var cargarCodigo = function(codigoActual){
  * Función que se encarga de llenar los dropdown
  */
 function cargarValores(){
-	getForObject({sort : "codigo,desc",size : 1000}, "/api/ciudades", cargarCiudades);
-	getForObject({sort : "codigo,desc",size : 1000}, "/api/corrers", cargarCorrers);
-	getForObject({sort : "codigo,desc",size : 1000}, "/api/vendedores", cargarVendedores);
-	getForObject({sort : "linea,desc",size : 1000}, "/api/lineas", cargarLineas);
-	getForObject({max: 999}, "/api/clientes/search/encontrarSiguienteId", cargarCodigo);
+	$.when(getForObject({sort : "codigo,desc",size : 1000}, "/api/ciudades", cargarCiudades),
+	getForObject({sort : "codigo,desc",size : 1000}, "/api/corrers", cargarCorrers),
+	getForObject({sort : "codigo,desc",size : 1000}, "/api/vendedores", cargarVendedores),
+	getForObject({sort : "linea,desc",size : 1000}, "/api/lineas", cargarLineas),
+	getForObject({max: 999}, "/api/clientes/search/encontrarSiguienteId", cargarCodigo)).done(function(){
+		
+		
+	})
+	
+	
 }
+
 /**
  * función que carga el id cuando cambia la selección y es por código
  */

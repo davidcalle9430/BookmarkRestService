@@ -13,44 +13,86 @@ var cargarCliente = function(data) {
 	var formulario = $("#editar").first();
 	llenarFormularioObjeto(formulario, data);
 }
-var cargarLinea = function(data){
+var cargarLinea = function(data) {
 	$("#lineas").first().val(data.linea);
 }
-var cargarCodCorr = function(data){
-	console.log(data.codigo);
+var cargarCodCorr = function(data) {
 	$("#corrers").first().val(data.codigo);
 }
 
-var cargarCiudad = function(data){
-	console.log(data.codigo);
+var cargarCiudad = function(data) {
 	$("#ciudades").first().val(data.codigo);
 }
 
-
-var cargarVendedor = function(data){
+var cargarVendedor = function(data) {
 	$("#vendedores").first().val(data.codigo);
 }
 var cliente = get("codigo");
+var formulario = $("#editar").first();
+var uri = "/api/clientes/" + cliente;
+
+var cargarValoresFaltantes = function(){
+	
+}
+
+var carga = false;
 /**
  * función que se ejecuta en el momento de que se carga el docuemento
  */
 $(document).ready(function() {
-	cargarValores();
-	var formulario = $("#editar").first();
-	var uri = "/api/clientes/" + cliente;
-	getForObject(null, uri , cargarCliente);
-	getForObject(null, uri +"/codcorr" , cargarCodCorr);
-	getForObject(null, uri +"/linea" , cargarLinea);
-	getForObject(null, uri +"/ciudad" , cargarCiudad);
-	getForObject(null, uri +"/vendedor" , cargarVendedor);
+		cargarValores();
+		getForObject(null, uri, cargarCliente);
+		$(document).ajaxStop(function() {
+			if(!carga){
+				getForObject(null, uri + "/codcorr", cargarCodCorr);
+				getForObject(null, uri + "/linea", cargarLinea);
+				getForObject(null, uri + "/ciudad", cargarCiudad);
+				getForObject(null, uri + "/vendedor", cargarVendedor);
+				carga = true;
+			}
+		});
+		
 });
 
-$("#editar").first().submit(function(ev){
-	ev.preventDefault();
-	console.log("oprimió editar");
-});
+var confirmacionActualizacion = function(data) {
+	alert("Cliente acutalizado correctamente");
+}
 
-$("#eliminar").first().submit(function(ev){
+var errorActualizacion = function(data) {
+	alert("Error a actualizar el cliente");
+}
+$("#editar").first().submit(
+		function(ev) {
+			ev.preventDefault();
+			var objeto = $(this).serializeObject();
+			/* falta meter las uris de los objetos relacionados */
+			objeto.ciudad = "/api/ciudades/" + objeto.ciudad;
+			objeto.codcorr = "/api/corrers/" + objeto.codcorr;
+			objeto.linea = "/api/lineas/" + objeto.linea;
+			objeto.vendedor = "/api/vendedores/" + objeto.vendedor;
+			objeto.zona = "/api/zonas/" + objeto.zona;
+			objeto.fechamodif = darFechaActual();
+			console.log(objeto);
+			putForObject(objeto, "/api/clientes/" + cliente,
+					confirmacionActualizacion, errorActualizacion);
+
+		});
+
+$("#eliminar").first().submit(function(ev) {
 	ev.preventDefault();
-	console.log("oprimió eliminar");
+	var confirmacion = confirm("Está seguro que desea eliminar el usuario");
+	if (confirmacion) {
+		$.ajax({
+			contentType: 'application/json; charset=utf-8',
+			type: "delete",
+			url : "/api/clientes/" + cliente,
+			success : function(data){
+				alert("Eliminado Correctamente");
+				window.location = "/mnuclijm/";
+			},
+			error : function(data){
+				alert("Error al elminar el cliente");
+			}
+		});
+	}
 });
