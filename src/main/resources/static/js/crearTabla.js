@@ -45,7 +45,7 @@ function cargarTabla(lista, propiedades, aMostrar, indice) {
 function cargarClientes(indice, loader) {
 	if (indice <= tamMax || tamMax == null) {
 		$.ajax({
-			url : "/api/clientes/?page=" + indice + "&sort=codigo,desc",
+			url : "/api/clientes/?page=" + indice + "&sort=codigo",
 			success : function(data) {
 				console.log("página " + indice)
 				cargarTabla(data._embedded.clientes, [ "codigo", "razsoc",

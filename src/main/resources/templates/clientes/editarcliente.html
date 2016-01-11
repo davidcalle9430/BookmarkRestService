@@ -5,7 +5,221 @@
 </head>
 <body class="main-form">
 	<nav th:replace="nav :: nav"></nav>
-	<h2 style="color: black; margin-top:0; text-align:center;">Editar Cliente</h2>
-   	<footer th:replace="footer :: footer"></footer>
+	<h4 style="color: black; margin-top: 0; text-align: center;">Editar
+		Cliente</h4>
+	<form id="editar" onkeypress="return event.keyCode != 13;">
+		<div class="row">
+
+			<!-- Datos Oficina -->
+
+			<div class="column row grupo-forma">
+				<div class="column row">
+					<h6 class="subheader"
+						style="padding-left: .9375rem; display: block;">Datos Oficina</h6>
+				</div>
+
+				<div class="large-4 columns">
+					<label>Nit <input id="nit" type="text" required="required"
+						name="nit" /></label>
+				</div>
+				<div class="large-4 columns">
+					<label>CC<input onchange="validarExistencia()" name="cc"
+						id="cc" type="text" required="required" />
+					</label>
+				</div>
+				<div class="large-4 columns">
+					<label>C&oacute;digo<input id="codigo" name="codigo"
+						type="text" readonly="readonly" />
+					</label>
+				</div>
+			</div>
+
+			<!-- Datos Dian -->
+
+			<div class="column row grupo-forma grupo-forma">
+				<div class="column row">
+					<h6 class="subheader"
+						style="padding-left: .9375rem; display: block;">Datos Dian</h6>
+				</div>
+
+				<div class="large-4 columns">
+					<label>Identificaci&oacute;n <input name="nitN" type="text"
+						required="required" /></label>
+				</div>
+				<div class="large-4 columns">
+					<label>D&iacute;gito<input name="digitovNit" id="nombre"
+						type="text" required="required" />
+					</label>
+				</div>
+			</div>
+
+			<!-- Tipo de Cliente -->
+			<div class="column row grupo-forma grupo-forma">
+				<div class="column row">
+					<h6 class="subheader"
+						style="padding-left: .9375rem; display: block;">Tipo de
+						Cliente</h6>
+				</div>
+
+				<div class="large-4 columns">
+					<label>Cliente con C&oacute;digo <input type="radio"
+						value="codigo" id="tipoC" name="tipoC"
+						 required="required" checked="checked" /></label>
+				</div>
+				<div class="large-4 columns">
+					<label>Cliente Ocacional <input  id="tipoC"
+						name="tipoC" value="codigo" onclick="clienteOcasional()"
+						required="required" />
+					</label>
+				</div>
+				<div class="large-4 columns">
+					<label>Con Sucursales [S/N] <input id="surcursales"
+						name="sucursales" type="text" required="required" />
+					</label>
+				</div>
+			</div>
+
+			<!-- Nombres Dian -->
+			<div class="column row grupo-forma grupo-forma">
+				<div class="column row">
+					<h6 class="subheader"
+						style="padding-left: .9375rem; display: block;">Nombres DIAN</h6>
+				</div>
+
+				<div class="large-6 columns">
+					<label>Apellido 1 <input name="apellido1" id="apellido1"
+						type="text" required="required" /></label>
+				</div>
+				<div class="large-6 columns">
+					<label>Apellido 2 <input name="apellido2" id="apellido2"
+						type="text" required="required" /></label>
+				</div>
+				<div class="large-6 columns">
+					<label>Nombre 1<input name="nombre1" id="nombre1"
+						type="text" required="required" />
+					</label>
+				</div>
+				<div class="large-6	 columns">
+					<label>Nombre 2<input name="nombre2" id="nombre2"
+						type="text" required="required" />
+					</label>
+				</div>
+			</div>
+
+			<!-- Raz&oacute;n Social -->
+			<div class="column row grupo-forma grupo-forma grupo-forma-ultimo">
+				<div class="column row">
+					<h6 class="subheader"
+						style="padding-left: .9375rem; display: block;">Raz&oacute;n
+						Social</h6>
+				</div>
+				<div class="large-12 columns">
+					<label>Raz&oacute;n Social / Establecimiento <input
+						id="codigo" type="text" name="razsoc" required="required" /></label>
+				</div>
+			</div>
+
+			<!-- Fin de los grupos -->
+			<div class="large-12 columns">
+				<label>Direcci&oacute;n <input id="direccion" type="text"
+					required="required" name="direccion" /></label>
+			</div>
+
+			<div class="large-6 columns">
+				<label>Ciudad <select id="ciudades" name="ciudad"><option
+							disabled="disabled" selected="selected">Selecciona una
+							Opci&oacute;n</option></select></label>
+			</div>
+
+			<div class="large-6 columns">
+				<label>Tel&eacute;fono <input id="telefono" type="text"
+					name="telefono" required="required" /></label>
+			</div>
+			<div class="large-6 columns">
+				<label>C&oacute;digo Correr&iacute;a <select name="codcorr"
+					id="corrers"><option disabled="disabled"
+							selected="selected">Selecciona una Opci&oacute;n</option></select></label>
+			</div>
+
+			<div class="large-6 columns">
+				<label>R&oacute;tulo [S/N] <input id="rotulo" type="text"
+					name="rotulo" required="required" /></label>
+			</div>
+
+			<div class="large-12 columns">
+				<label>Propietario <input type="text" name="proptario"
+					required="required" /></label>
+			</div>
+
+			<div class="large-12 columns">
+				<label>Gerente <input id="gerente" type="text"
+					name="gerente" required="required" /></label>1
+			</div>
+			<div class="large-6 columns">
+				<label>Pedidos <input id="pedidos" type="text"
+					name="pedidos" required="required" /></label>
+			</div>
+
+			<div class="large-6 columns">
+				<label>L&iacute;nea <select name="linea" id="lineas"><option
+							disabled="disabled" selected="selected">Selecciona una
+							Opci&oacute;n</option></select></label>
+			</div>
+
+			<div class="large-6 columns">
+				<label>Cobros<input id="cobros" name="cobros" type="text"
+					required="required" /></label>
+			</div>
+
+			<div class="large-6 columns">
+				<label>Cupo<input id="cupo" name="cupo" type="text"
+					required="required" /></label>
+			</div>
+
+			<div class="large-4 columns">
+				<label>Cobro ICA [S/N]<input name="ica" id="ica" type="text"
+					required="required" /></label>
+			</div>
+			<div class="large-4 columns">
+				<label>Porcentaje ICA<input id="porcica" name="porcica"
+					type="text" required="required" /></label>
+			</div>
+			<div class="large-4 columns">
+				<label>Activo [S/N]<input id="activo" name="activo"
+					type="text" required="required" /></label>
+			</div>
+			<div class="large-6 columns">
+				<label>Vendedor<select name="vendedor" id="vendedores">
+						<option disabled="disabled" selected="selected">
+							Selecciona una Opci&oacute;n</option>
+				</select></label>
+			</div>
+			<div class="large-6 columns">
+				<label>C&eacute;dula Vendedor<input name="idvendedor"
+					id="idvendedor" type="text" required="required" readonly="readonly"
+					value="0" /></label>
+			</div>
+			<div class="large-12 columns">
+				<label>Fecha de Ingreso [yyyy-mm-dd]<input id="codigo"
+					name="fechaing" type="text" required="required"
+					placeholder="yyyy-mm-dd" /></label>
+			</div>
+		</div>
+		<div class="row">
+			<button id="crear" type="submit" style="float: right;"
+				class="button large-3 submit">Editar</button>
+		</div>
+	</form>
+	<form id="eliminar" onkeypress="return event.keyCode != 13;">
+		<div class="row">
+			<button id="crear" type="submit" style="float: right;"
+				class="button large-3 submit alert">Eliminar</button>
+		</div>
+		<input type="hidden" id="codigo" name="codigo"></input>
+	</form>
+	<footer th:replace="footer :: footer"></footer>
+	<script type="text/javascript" src="/static/js/clientes/utility.js "></script>
+	<script type="text/javascript"
+		src="/static/js/clientes/editarcliente.js "></script>
 </body>
 </html>

@@ -238,7 +238,10 @@ class CustomRestMvcConfiguration {
 	}
 }
 
-/* Filtro encargado de la seguridad extra de la aplicación */
+/**
+ *  Filtro encargado de la seguridad extra de la aplicación
+ *   
+ *   */
 @Configuration
 class RequestFilter extends OncePerRequestFilter {
 	@Autowired
@@ -249,9 +252,7 @@ class RequestFilter extends OncePerRequestFilter {
 	private MenusRepository menusRepository;
 
 	public boolean validarPermiso(String URI, Usuarios usuario) {
-		// return true;
-		String nombreMenu = URI.split("/")[1]; // se parte la url en trozos y se
-												// obtiene el primer valor
+		String nombreMenu = URI.split("/")[1]; // se parte la url en trozos y se obtine el primer valor
 		Menus menu = menusRepository.findOneByMenusPK_menu(nombreMenu);
 		if(menu == null){
 			return false;
@@ -272,10 +273,9 @@ class RequestFilter extends OncePerRequestFilter {
 		}
 		return false;
 	}
-
+	
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		String URI = request.getRequestURI();

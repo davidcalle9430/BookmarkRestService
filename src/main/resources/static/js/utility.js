@@ -46,14 +46,55 @@ function darFechaActual(){
     return ""+yyyy+"-"+mm+"-"+dd;
 }
 
-/*
- * 
+/**
  * Función que se encarga de poner en un input type text
  * con nombre llace, el valor valor
  */
 function llenarDatoFormulario(llave, valor){
 	var input = $("form input[name="+ llave + "]").first();
 	input.attr("value", valor);
-	
 }
 
+/**
+ * función que funciona como un wrapper para los requet ajax
+ * @param object, objecto a agregar
+ * @param url, URI que identifica el recurso
+ * @param todo, función  asociada a la creación exitossa
+ * @param error, función asociada al error
+ */
+function getForObject(object, url, toDo){
+	if(object != null){
+		url = url + "?" + $.param(object)
+	}
+	$.ajax({
+		url : url,
+		async: false,
+		success : function(data){
+			toDo(data);	
+		},
+		error: function(data){
+			console.log("Hubo un error en la consulta " + url);
+		}
+	});
+}
+/**
+ * función que funciona como un wrapper para los requet ajax
+ * @param object, objecto a agregar
+ * @param url, URI que identifica el recurso
+ * @param todo, función  asociada a la creación exitossa
+ * @param error, función asociada al error
+ */
+function postForObject(object, url, todo, error){
+	$.ajax({
+		type : "post",
+		url : url,
+		data : JSON.stringify(object),
+	    contentType: 'application/json; charset=utf-8',
+		success : function(data){
+			todo();
+		},
+		error :function(data){
+			error();
+		}
+	});
+}
