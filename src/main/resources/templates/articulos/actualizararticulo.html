@@ -5,56 +5,81 @@
 </head>
 <body class="main-form">
 	<nav th:replace="nav :: nav"></nav>
-	<h2 style="color: black; margin-top:0; text-align:center;">Actualizar Art&iacute;culo</h2>
-	<form onkeypress="return event.keyCode != 13;">
+	<h2 style="color: black; margin-top: 0; text-align: center;">Actualizar
+		Art&iacute;culo</h2>
+	<form onkeypress="return event.keyCode != 13;" id="editar">
 		<div class="row">
 			<div class="large-12 columns">
-				<label>C&oacute;digo del grupo al que va a pertenecer <input id="codigo" type="text" onchange="buscar()" required="required" />
+				<label>C&oacute;digo del grupo al que va a pertenecer <input
+					id="codigo-grupo" type="text" onchange="borrarAsignar()" required="required"/>
 				</label>
 			</div>
 			<div class="large-12 columns">
-				<label>N&uacute;mero para asignar el c&oacute;digo<input id="nombre" type="text" required="required" />
+				<label>N&uacute;mero para asignar el c&oacute;digo (cero para que sea aut&oacute;matico)<input
+					id="codigo-asignar" type="text" required="required" onchange="buscarArticulo()"/>
 				</label>
 			</div>
 			<div class="large-12 columns">
-				<label>C&oacute;digo Art&iacute;culo <input id="cantBodega" type="text"/>
+				<label>C&oacute;digo Art&iacute;culo <input id="codigo"
+					type="text" readonly="readonly" name="codigo" />
 				</label>
 			</div>
 			<div class="large-12 columns">
-				<label>Referencia Oficina <input  id="documento" type="text" required="required"/>
+				<label>Referencia Oficina <input id="referencia" type="text" name="referencia"
+					required="required" />
 				</label>
 			</div>
 			<div class="large-12 columns">
-				<label>Referencia Vendedor <input id="ndoc" type="text" required="required" />
+				<label>Referencia Vendedor <input id="refvendedor" type="text" name="refvendedor"
+					required="required" />
 				</label>
 			</div>
 			<div class="large-12 columns">
-				<label>Marca <input id="cantidad" type="text" required="required" />
+				<label>Marca <input id="marca" type="text" name="marca"
+					required="required" />
 				</label>
 			</div>
 			<div class="large-12 columns">
-				<label>Uso <input id="cantidad" type="text" required="required" />
+				<label>Uso <input id="uso" type="text" name="uso"
+					required="required" />
+				</label>
+			</div>
+			<div class="large-4 columns">
+				<label>Modelo Oficina <input id="modelo1" type="text" name="modelo1"
+					required="required" />
+				</label>
+			</div>
+			<div class="large-4 columns">
+				<label>Modelo Oficina <input id="modelo2" type="text" name="modelo2"
+					required="required" />
+				</label>
+			</div>
+			<div class="large-4 columns">
+				<label>Modelo Oficina <input id="modelo3" type="text" name="modelo3"
+					required="required" />
 				</label>
 			</div>
 			<div class="large-12 columns">
-				<label>Modelo Oficina <input id="cantidad" type="text" required="required" />
+				<label>Modelo Vendedor <input id="modelvendedor" type="text" name="modelvendedor"
+					required="required" />
 				</label>
 			</div>
-			<div class="large-12 columns">
-				<label>Modelo Vendedor <input id="cantidad" type="text" required="required" />
-				</label>
-			</div>
-			<div class="large-12 columns">
-				<label>Procedencia <input id="cantidad" type="text" required="required" />
+			<div class="large-12 columns"> 
+				<label>Procedencia <input id="procedenc" type="text" name="procedenc"
+					required="required" />
 				</label>
 			</div>
 		</div>
 		<div class="row">
-				<button type="submit" class="button large-3 submit">Guardar</button>
-				<button type="submit" class="button large-3 submit">Eliminar</button>
-				<button type="submit" class="button large-3 submit">Cerrar</button>
+			<button type="submit" class="button large-3 submit" style="float: right;">Guardar</button>
 		</div>
 	</form>
-   	<footer th:replace="footer :: footer"></footer>
+	<form id="eliminar">
+		<div class="row">
+			<button type="submit" class="button large-3 submit alert"  style="float: right;">Eliminar</button>
+		</div>
+	</form>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/articulos/actualizarArticulo.js" type="text/javascript"></script>
 </body>
 </html>

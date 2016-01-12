@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form">
+	<nav th:replace="nav :: nav"></nav>
+	<style>
+		td:hover{
+			background-color: #ffff78;
+		}
+	</style>
+	<div class="row">
+		<a class="large button boton boton-derecha" href="crear/">Agregar Nuevo</a>
+	</div>
+	<table id="articulos">
+		
+	</table>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/articulos/ajustarCodigos.js" type="text/javascript"></script>
+</body>
+</html>

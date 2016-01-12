@@ -68,7 +68,7 @@ import sidic.entities.Usuarios;
 @SpringBootApplication
 @EntityScan(basePackages = { "entities", "sidic.entities" })
 @EnableJpaRepositories(basePackages = { "repositories" })
-@ComponentScan(basePackages = { "com.impordisa", "restcontrollers", "web" })
+@ComponentScan(basePackages = { "com.impordisa", "restcontrollers", "web" , "projections"})
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @EnableAutoConfiguration
 public class Sidic {
@@ -113,11 +113,8 @@ class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		//registry.addViewController( "/" ).setViewName( "index.html" );
-		//registry.addViewController( "" ).setViewName( "index.html" );
 		registry.addViewController("/login").setViewName("login");
 		registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
-		//super.addViewControllers( registry );
 	}
 }
 

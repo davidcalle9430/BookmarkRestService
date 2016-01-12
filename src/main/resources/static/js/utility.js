@@ -76,6 +76,28 @@ function getForObject(object, url, toDo){
 		}
 	});
 }
+
+/**
+ * función que funciona como un wrapper para los requet ajax
+ * @param object, objecto a agregar
+ * @param url, URI que identifica el recurso
+ * @param todo, función  asociada a la creación exitossa
+ * @param error, función asociada al error
+ */
+function getForObject(object, url, toDo,error){
+	if(object != null){
+		url = url + "?" + $.param(object)
+	}
+	$.ajax({
+		url : url,
+		success : function(data){
+			toDo(data);	
+		},
+		error: function(data){
+			error(data);
+		}
+	});
+}
 /**
  * función que funciona como un wrapper para los requet ajax
  * @param object, objecto a agregar
