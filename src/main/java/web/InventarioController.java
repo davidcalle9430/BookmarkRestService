@@ -12,7 +12,7 @@ public class InventarioController {
 	
 	@RequestMapping(value="/mnuajupi/")
 	public String ajustarPreciosCodigo(){
-		return "/inventario/ajustarcantidadescodigo";
+		return "/inventario/ajustarPreciosCodigo";
 	}
 }
 

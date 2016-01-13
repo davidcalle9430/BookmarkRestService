@@ -19,7 +19,7 @@ function obtenerFilaSelec()
 					obtenerAjuste(data, trSelec);
 				},
 				error : function(data) {
-					alert("Este código no esta relacionado a algún articulo");
+					alert("Este código no esta relacionado a algún artículo");
 				}
 			});
 	});

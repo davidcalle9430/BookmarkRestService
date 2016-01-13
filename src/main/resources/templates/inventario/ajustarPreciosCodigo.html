@@ -5,26 +5,23 @@
 </head>
 <body class="main-form">
 	<nav th:replace="nav :: nav"></nav>
-
 	<h1
-		style="color: black; margin-top: 0; text-align: center; font-size: 1.8em">Modificar cantidades de inventario</h1>
+		style="color: black; margin-top: 0; text-align: center; font-size: 1.8em">Modificar precio por c&oacute;digo</h1>
 	<form>
 		<table>
 			<tr>
 				<th>C&oacute;digo</th>
 				<th>Nombre</th>
-				<th>Cantidad disponible</th>
-				<th>Nueva cantidad</th>
-				<th>Doc</th>
-				<th>Ndoc</th>
+				<th>Referencia</th>
+				<th>Precio</th>
+				<th>Nuevo precio</th>
 			</tr>
 			<tr>
 				<td><input type="number" id="codigo"></input></td>
-				<td><input type="text" id="nombre"></input></td>
-				<td><input type="text" id="cantidadVieja" readonly="readonly"></input></td>
-				<td><input type="number" id="cantNueva" required="required"></input></td>
-				<td><input type="text" id="documento" required="required" maxlength="3"></input></td>
-				<td><input type="number" id="ndoc" required="required"></input></td>
+				<td><input type="text" id="nombre" readonly="readonly"></input></td>
+				<td><input type="text" id="referencia" readonly="readonly"></input></td>
+				<td><input type="number" id="precio" readonly="readonly"></input></td>
+				<td><input type="number" id="nPrecio" required="required"></input></td>
 			</tr>
 	
 		</table>
@@ -36,6 +33,6 @@
 		</div>
 	</form>	
 	<footer th:replace="footer :: footer"></footer>
-	<script src="/static/js/inventario/ajusteCantidad.js"></script>
+	<script src="/static/js/inventario/ajustePrecio.js"></script>
 </body>
 </html>
