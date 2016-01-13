@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="large-12 columns">
 				<label>C&oacute;digo
-				<input id="codigo" type="text" name="codigo" required="required" /></label>
+				<input id="codigo" type="text" name="codigo" required="required" readonly="readonly"/></label>
 			</div>
 			<div class="large-12 columns">
 				<label>Nombre Espa&ntilde;ol 
@@ -24,10 +24,9 @@
 				<label>Tipo Art&iacute;culo
 				<input id="tipart" type="text" name="tipart" required="required" /></label>
 			</div>
-			
 			<div class="large-12 columns">
 				<label>Con Iva[S/N]
-				<input name="idvendedor" id="idvendedor" type="text" required="required" readonly="readonly"/></label>
+				<input name="iva" id="iva" type="text" required="required"/></label>
 			</div>
 		</div>
 		<div class="row">
@@ -40,5 +39,6 @@
 		</div>
 	</form>
 	<footer th:replace="footer :: footer"></footer>
+	<script type="text/javascript" src="/static/js/articulos/editarInglesEspaniol.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 var articulo = null;
 var esNuevo = true; // define si el artículo es nuevo
+var viejoArticulo = null;
 /**
  * Tomada de
  * http://stackoverflow.com/questions/2998784/how-to-output-integers-with-leading-zeros-in-javascript
@@ -60,6 +61,7 @@ function buscarArticulo() {
 		$.ajax({
 			url : "/api/articulos/" + codigo,
 			success : function(data) {
+				viejoArticulo = data;
 				console.log(data);
 				esNuevo = false;
 				llenarArticulo(data);
@@ -82,11 +84,8 @@ function buscarArticulo() {
 			console.log("hay que generarlo")
 			$("#codigo").first().val(enteroInicio + 1);
 		}
-		getForObject({
-			min : enteroInicio,
-			max : enteroFin
-		}, "/api/articulos/search/darSiguienteCodigoCategoria",
-				insertarCodigoGenerado, insertarCodigoGeneradoNuevo);
+		getForObject({ min : enteroInicio, max : enteroFin}, "/api/articulos/search/darSiguienteCodigoCategoria",
+					 insertarCodigoGenerado, insertarCodigoGeneradoNuevo);
 	}
 
 }
@@ -123,9 +122,11 @@ $(document).ready(
 					function(ev) {
 						ev.preventDefault();
 						var artic = $("#editar").serializeObject();
-						console.log(articulo);
 						if (!esNuevo) {
-							putForObject(artic, "/api/articulos/" + articulo,
+							for(var atributo in artic){
+								viejoArticulo[atributo] = artic[atributo];
+							}
+							putForObject(viejoArticulo, "/api/articulos/" + articulo,
 									exitoActualizar, errorActualizar);
 						} else {
 							postForObject(artic, "/api/articulos",

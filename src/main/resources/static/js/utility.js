@@ -98,9 +98,11 @@ function getForObject(object, url, toDo,error){
 		}
 	});
 }
+
+$("<tr>").append($("<input>",{id:"hola"}))
 /**
  * función que funciona como un wrapper para los requet ajax
- * @param object, objecto a agregar
+ * @param1 object, objecto a agregar
  * @param url, URI que identifica el recurso
  * @param todo, función  asociada a la creación exitossa
  * @param error, función asociada al error
@@ -140,3 +142,5 @@ function putForObject(object, url, todo, error){
 		}
 	});
 }
+
+

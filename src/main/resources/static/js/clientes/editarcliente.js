@@ -1,3 +1,4 @@
+var cliente = null;
 function llenarFormularioObjeto(formulario, objeto) {
 	var objeto = objeto;
 	formulario.find("input").each(function() {
@@ -10,6 +11,7 @@ function llenarFormularioObjeto(formulario, objeto) {
 }
 
 var cargarCliente = function(data) {
+	cliente = data;
 	var formulario = $("#editar").first();
 	llenarFormularioObjeto(formulario, data);
 }
@@ -72,8 +74,10 @@ $("#editar").first().submit(
 			objeto.vendedor = "/api/vendedores/" + objeto.vendedor;
 			objeto.zona = "/api/zonas/" + objeto.zona;
 			objeto.fechamodif = darFechaActual();
-			console.log(objeto);
-			putForObject(objeto, "/api/clientes/" + cliente,
+			for(var atributo in objeto){
+				cliente[atributo] = objeto[atributo];
+			}
+			putForObject(cliente, "/api/clientes/" + cliente.codigo,
 					confirmacionActualizacion, errorActualizacion);
 
 		});
