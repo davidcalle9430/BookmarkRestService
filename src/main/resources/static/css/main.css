@@ -1,3 +1,17 @@
+.boton-redondo{
+	border: 2px solid #f5f5f5;
+    border-radius: 50%;
+    background-color: #2199e8;
+    width:  5%;
+    text-align: center;
+    height: 6%;
+    margin-bottom: 2%;
+    margin-right: 5%;
+}
+
+.boton-redondo:hover{
+	color: black;
+	}
 body {
 	marging-top: 2rem;
 }
