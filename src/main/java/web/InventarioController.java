@@ -9,4 +9,10 @@ public class InventarioController {
 	public String ajustarCantidadesCodigo(){
 		return "/inventario/ajustarcantidadescodigo";
 	}
+	
+	@RequestMapping(value="/mnuajupi/")
+	public String ajustarPreciosCodigo(){
+		return "/inventario/ajustarcantidadescodigo";
+	}
 }
+
