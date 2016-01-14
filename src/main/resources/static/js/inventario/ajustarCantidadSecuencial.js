@@ -10,7 +10,7 @@ var cargarNombres = function(articulos) {
 	for (var i = 0; i < generos.length; i++) {
 		var genero = generos[i];
 		var tr = $("<tr>");
-		var codigo = $("<td>", {text : genero.codigo});
+		var codigo = $("<td>", {text :genero.codigo});
 		var nombre = $("<td>", { text : genero.nombre });
 		var cantDisp = $("<td>", { text : genero.cantdisp });
 		tr.append(codigo);
