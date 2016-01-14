@@ -1,15 +1,7 @@
 var articulo = null;
 var esNuevo = true; // define si el artículo es nuevo
 var viejoArticulo = null;
-/**
- * Tomada de
- * http://stackoverflow.com/questions/2998784/how-to-output-integers-with-leading-zeros-in-javascript
- * función encargada de formatear con ceros
- */
-function zeroPad(num, places) {
-	var zero = places - num.toString().length + 1;
-	return Array(+(zero > 0 && zero)).join("0") + num;
-}
+
 /**
  * de borrar el acutal
  */
