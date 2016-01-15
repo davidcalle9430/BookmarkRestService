@@ -13,6 +13,11 @@ function obtenerFilaSelec()
 	$("table").on("change", "input[id=codigo]", function(ev) {
 		var trSelec = $(this).parent().parent();
 		var codigoSelec = $(trSelec).find("#codigo").val();
+		$(trSelec).find("#nombre").val("");
+		$(trSelec).find("#cantidadVieja").val("");
+		$(trSelec).find("#cantNueva").val("");
+		$(trSelec).find("#documento").val("");
+		$(trSelec).find("#ndoc").val("");
 		$.ajax({
 				url : "/api/generos/" + codigoSelec,
 				success : function(data) {

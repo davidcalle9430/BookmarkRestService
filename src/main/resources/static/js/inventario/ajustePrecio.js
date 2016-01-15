@@ -1,32 +1,62 @@
 var cambiados = new Object();
 
-$(document).ready(function() { obtenerFilaSelec();
-$("form").submit(guardarCambios);
+$(document).ready(
+function() 
+{ 
+	obtenerFilaSelec();
+	$("form").submit(guardarCambios);
 });
 
 
 /**
- * Función encargada de obtener la fila donde se digita el cádigo del articulo a actualizar
+ * Se encarga de obtener el objeto articulo asocaido al codigo ingresado 
+ * teniendo en cuenta que fila se esta modificando.
  * */
 function obtenerFilaSelec()
 {
-	$("table").on("change", "input[id=codigo]", function(ev) {
+	$("table").on("change", "input[id=codigo]", 
+	function(ev) 
+	{
 		var trSelec = $(this).parent().parent();
-		var codigoSelec = $(trSelec).find("#codigo").val();
-		$.ajax({
-				url : "/api/articulos/" + codigoSelec,
-				success : function(data) {
-					obtenerArticulo(data, trSelec);
-				},
-				error : function(data) {
-					alert("Este código no esta relacionado a algún articulo");
-				}
-			});
+		var codigoConFormato = $(trSelec).find("#codigo").val();
+		$(trSelec).find("#nombre").val("");
+		$(trSelec).find("#referencia").val("");
+		$(trSelec).find("#precio").val("");
+		$(trSelec).find("#nPrecio").val("");
+		if( verificarFormatoCodigo( codigoConFormato ) )
+		{
+			var codigoSelec = obtenerNumeroAPartirDeCodigo(codigoConFormato);
+			if( obtenerCheckSum( codigoSelec ) == darCheckSumDeCodigo( codigoConFormato ) )
+			{
+				$.ajax
+				({
+					url : "/api/articulos/" + codigoSelec,
+					success : function(data) 
+					{
+						obtenerArticulo(data, trSelec);
+					},
+					error : function(data) 
+					{
+						alert("Este código no esta relacionado a algún articulo");
+					}
+				});
+			}
+			else
+			{
+				alert("El dígito de verificación es incorrecto!!");
+			}
+		}
+		else
+		{
+			alert("Este código no coincide con el formato: 000-000-0");
+			$(trSelec).find("#codigo").val("000-000-0");
+		}
 	});
 }
 
 /**
- * Función encargada de obtener el objeto articulo asocaido al codigo digitado
+ * Se encarga de obtener el objeto género asocaido al codigo ingresado y al artículo que se esta modificando.
+ * Luego autocompleta los demás atributos del artículo.
  * @param articuloSelec: Articulo seleccionado.
  * @param trSelect: Fila HTML seleccionada.
  * */
@@ -67,7 +97,7 @@ function agregarFila()
 	 var nuevoTdPrecio= $("<td>");
 	 var nuevoTdNprecio= $("<td>");
 	 
-	 var nuevoInputCodigo= $("<input>",{id:"codigo", type:"number"});
+	 var nuevoInputCodigo= $("<input>",{id:"codigo", type:"text"});
 	 var nuevoInputNombre= $("<input>",{id:"nombre", type:"text", readonly:"readonly"});
 	 var nuevoInputReferencia= $("<input>",{id:"referencia", type:"text",readonly:"readonly"});
 	 var nuevoInputPrecio= $("<input>",{id:"precio", type:"number",readonly:"readonly"});
@@ -117,18 +147,26 @@ function guardarCambios(ev)
  * */
 function actualizarArticulo( i, tr )
 {
-	var nCardex;
 	var actualizo = false;
 	if ( i > 0 )
 	{
 		var codidoArt = $(tr).find("#codigo").val();
 		var nPrecio = $(tr).find("#nPrecio").val();
-		if (nPrecio != "" && nPrecio != null && cambiados[codidoArt].precio != nPrecio )
+		if( verificarFormatoCodigo( codidoArt ) )
 		{
-			cambiados[codidoArt].precio = nPrecio;
-			putForObject(cambiados[codidoArt], "/api/articulos/"+codidoArt,
-					function(data){},function(data){alert("El artículo con id "+data.codigo+" no se actualizó!!");} );
-			actualizo = true;
+			var codigoSelec = obtenerNumeroAPartirDeCodigo(codidoArt);
+			if (nPrecio != "" && nPrecio != null && cambiados[codigoSelec].precio != nPrecio )
+			{
+				cambiados[codigoSelec].precio = nPrecio;
+				putForObject(cambiados[codigoSelec], "/api/articulos/"+codigoSelec,
+						function(data){},function(data){alert("El artículo con id "+data.codigo+" no se actualizó!!");} );
+				actualizo = true;
+			}
+		}
+		else
+		{
+			alert("El código de alguno de los artículos no coincide con el formato: 000-000-0");
+			$(tr).find("#codigo").val("000-000-0");
 		}
 	}
 	return actualizo;

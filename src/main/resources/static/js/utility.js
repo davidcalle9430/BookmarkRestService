@@ -1,32 +1,48 @@
+
 /**
- * Función encargada de formatear los nùmeros con una mìnima contidad de digistos
+ * Función encargada de verificar si un código se encuentra en el formato correcto (000-000-0).
+ * @para codigo: Código al que se le verificará el formato.
+ */
+function verificarFormatoCodigo( codigo )
+{
+	var re = /[0-9]{3,3}-[0-9]{3,3}-[0-9]{1,2}/;  
+    return re.test(codigo);
+}
+
+/**
+ * Función encargada de formatear los nùmeros con una mínima cantidad de digistos
  * Tomada de
  * http://stackoverflow.com/questions/2998784/how-to-output-integers-with-leading-zeros-in-javascript
  * función encargada de formatear con ceros
  */
-function zeroPad(num, places) {
+function zeroPad(num, places)
+{
 	var zero = places - num.toString().length + 1;
 	return Array(+(zero > 0 && zero)).join("0") + num;
 }
+
 /**
  * Función encargada de obtener el nùmero que representa el código
  */
-
-function obtenerNumeroAPartirDeCodigo(codigo)	{
+function obtenerNumeroAPartirDeCodigo(codigo)
+{
 	var numeros = codigo.split("-");
 	return parseInt(numeros[0] + numeros[1]);
 }
-/**
- * retorna lel checksum que tiene un codigo
- */
 
-function darCheckSumDeCodigo(codigo){
+/**
+ * Retorna el checksum que tiene un codigo
+ */
+function darCheckSumDeCodigo(codigo)
+{
 	return codigo.split("-")[2];
 }
+
 /**
  * Función encargada de obtener el nùmero escrito como un codigo valido
  */
-function darCodigoFormateado(numero){
+function darCodigoFormateado(numero)
+{
 	numero = parseInt(numero);
 	var inicio = Math.floor(numero / 1000);
 	var fin = numero % 1000;
@@ -34,22 +50,35 @@ function darCodigoFormateado(numero){
 	codigo += obtenerCheckSum(numero)
 	return codigo;
 }
+
 /**
- * Función encargada de calcular un checksum a partir de un código
+ * Función encargada de calcular un checksum a partir de un código.
+ * @param codigo: Codigo, CON formato, del articulo al que se le calcula el digito de verificación.  
  */
-function obtenerCheckSum(numero){
+function obtenerCheckSumConFormato( codigo )
+{
+	var numero = obtenerNumeroAPartirDeCodigo(codigo);
+	return obtenerCheckSum(numero);
+}
+
+/**
+ * Función encargada de calcular un checksum a partir de un código.
+ * @param codigo: Codigo, SIN formato, del articulo al que se le calcula el digito de verificación.  
+ */
+function obtenerCheckSum(numero)
+{
 	var primero = numero % 10;
-	var segundo = Math.floor((numero % 100) / 10);
-	var tercero = Math.floor((numero % 1000) / 100);
-	var cuarto = Math.floor((numero % 10000) / 1000);
-	var quinto = Math.floor((numero % 100000) / 10000);
-	var sexto = Math.floor((numero % 1000000) / 100000);	
-	var check = 10 -  ( ((primero+tercero+quinto) + (2*(segundo + cuarto + sexto))) %10) ;
+	var segundo = Math.floor( ( numero % 100 ) / 10 );
+	var tercero = Math.floor( ( numero % 1000 ) / 100 );
+	var cuarto = Math.floor( ( numero % 10000 ) / 1000 );
+	var quinto = Math.floor( ( numero % 100000 ) / 10000 );
+	var sexto = Math.floor( ( numero % 1000000 ) / 100000 );	
+	var check = 10 -  ( ( ( primero + tercero + quinto ) + (2*(segundo + cuarto + sexto ) ) ) % 10 ) ;
 	return check;
 }
 
 /**
- * función encargada de serilizar un formulario y volverlo un objeto JS
+ * función encargada de serializar un formulario y volverlo un objeto JS
  */
 $.fn.serializeObject = function()
 {
@@ -185,7 +214,10 @@ function putForObject(object, url, todo, error){
 		data : JSON.stringify(object),
 	    contentType: 'application/json; charset=utf-8',
 		success : todo,
-		error : error
+		error :function(data)
+		{
+			error();
+		}
 	});
 }
 
