@@ -9,12 +9,12 @@
 	<div class="row" style="border-bottom: 5px solid black; margin-bottom: 50px;">
 		<div class="large-6 columns">
 		     <label>Factura
-		        <input disabled="disabled" type="number" value="101010101"/>
+		        <input id="factura" name="factura" readonly="readonly" type="number" />
 		     </label>
     	 </div>
     	 <div class="large-6 columns">
 		     <label>Fecha
-		        <input disabled="disabled" type="date" value="2013-01-08"/>
+		        <input id="fecha" name="fecha" readonly="readonly" type="text" onload="llenarFecha"/>
 		     </label>
     	 </div>
 	</div>
@@ -22,36 +22,36 @@
 		<div class="large-8 columns">
 		    <label>Vendido a código</label>
 		    <div class="large-4 columns">
-		    <input type="text" />
+		    <input id="codigo-1" name="codigo-1" type="text" />
 		    </div>
 		    <div class="large-8 columns">
-		    <input type="text" />
+		    <input id="codigo-2" readonly="readonly" name="codigo-2" type="text" />
 			</div>
 		 </div>
 		 <div class="large-4 columns">
 		     <label>Nit o CC
-		        <input type="text"/>
+		        <input id="nit" readonly="readonly" name="nit" type="text"/>
 		     </label>
     	 </div>
 	</div>
 	<div class="row">
 		<div class="large-12 columns">
 	      <label>Almacén
-	        <input type="text"/>
+	        <input id="almacen" name="almacen" type="text"/>
 	      </label>
     	</div>
 	</div>
 	<div class="row">
 		<div class="large-12 columns">
 	      <label>Dirección
-	        <input type="text"/>
+	        <input id="direccion" readonly="readonly" name="direccion" type="text"/>
 	      </label>
     	</div>
 	</div>
 	<div class="row">
 		<div class="large-6 columns">
 			<label>Línea
-			  <select>
+			  <select id="linea" name="linea">
 			    <option value="husker">Husker</option>
 			    <option value="starbuck">Starbuck</option>
 			    <option value="hotdog">Hot Dog</option>
@@ -61,7 +61,7 @@
 		</div>
 		<div class="large-6 columns">
 			<label>Correría
-			  <select>
+			  <select id="correria" name="correria">
 			    <option value="husker">Husker</option>
 			    <option value="starbuck">Starbuck</option>
 			    <option value="hotdog">Hot Dog</option>
@@ -74,36 +74,33 @@
 		<div class="large-6 columns">
 		    <label>Ciudad</label>
 		    <div class="large-4 columns">
-		    <input type="text" />
+		    <input id="ciudad-1" name="ciudad-1" type="text" />
 		    </div>
 		    <div class="large-8 columns">
-		    <input type="text" />
+		    <input id="ciudad-2" readonly="readonly" name="ciudad-2" type="text" />
 			</div>
 		 </div>
 		 <div class="large-3 columns">
 		     <label>Precio
-		        <input type="number" placeholder="[M]/[V]/[M+]/[++]"/>
+		        <input id="precio" name="precio" type="number" placeholder="[M]/[V]/[M+]/[++]"/>
 		     </label>
     	 </div>
     	 <div class="large-3 columns">
 		     <label>Cambia precios
-		        <input type="text" placeholder="S/N"/>
+		        <input id="cambia-precios" readonly="readonly" name="cambia-precios" type="text" placeholder="S/N"/>
 		     </label>
     	 </div>
 	</div>
 	<div class="row">
 		<div class="large-6 columns">
 		     <label>Orden
-		        <input type="text"/>
+		        <input id="orden" name="orden" type="text"/>
 		     </label>
     	 </div>
     	 <div class="large-6 columns">
-			<label>Correría
-			  <select>
-			    <option value="husker">Husker</option>
-			    <option value="starbuck">Starbuck</option>
-			    <option value="hotdog">Hot Dog</option>
-			    <option value="apollo">Apollo</option>
+			<label>Vendedor
+			  <select id="vendedor" name="vendedor" >
+			    <option disabled="disabled" selected="selected">Selecciona una opción</option>
 			  </select>
 			</label>
 		 </div>
@@ -111,28 +108,22 @@
 	<div class="row">
 		 <div class="large-6 columns">
 		    <label>Forma de pago
-			  <select>
-			    <option value="husker">Husker</option>
-			    <option value="starbuck">Starbuck</option>
-			    <option value="hotdog">Hot Dog</option>
-			    <option value="apollo">Apollo</option>
+			  <select id="forma-pago" name="forma-pago" required="required">
+			  <option disabled="disabled" selected="selected">Selecciona una opción</option>
 			  </select>
 			</label>
     	 </div>
     	 <div class="large-6 columns">
     		<label>Días
-		        <input type="text"/>
+		        <input id="dias" name="dias" type="text"/>
 		    </label>
 		 </div>
 	</div>
 	<div class="row">
 		<div class="large-12 columns">
 		    <label>Notas
-			  <select>
-			    <option value="husker">Husker</option>
-			    <option value="starbuck">Starbuck</option>
-			    <option value="hotdog">Hot Dog</option>
-			    <option value="apollo">Apollo</option>
+			  <select id="notas" name="notas" style="font-size: 0.75REM">
+			  	<option disabled="disabled" selected="selected">Selecciona una opción</option>
 			  </select>
 			</label>
     	 </div>
@@ -140,12 +131,12 @@
 	<div class="row">
 		<div class="large-6 columns">
 		     <label>Días
-		        <input type="text"/>
+		        <input id="dias" name="dias" type="text"/>
 		     </label>
     	 </div>
     	 <div class="large-6 columns">
 		     <label>Porcentaje
-		        <input type="text"/>
+		        <input id="porcentaje" name="porcentaje" type="text"/>
 		     </label>
     	 </div>
 	</div>
@@ -175,5 +166,6 @@
 	</div>
 		
    	<footer th:replace="footer :: footer"></footer>
+   	<script type="text/javascript" src="/static/js/facturas/crearFactura.js"></script>
 </body>
 </html>

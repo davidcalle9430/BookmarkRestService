@@ -119,8 +119,8 @@ function get(name){
  */
 function darFechaActual(){
 	var fecha = new Date();
-	var dd = fecha.getDate();
-    var mm = fecha.getMonth()+1;
+	var dd = zeroPad(fecha.getDate(), 2);
+    var mm = zeroPad(fecha.getMonth()+1, 2);
     var yyyy = fecha.getFullYear();
     return ""+yyyy+"-"+mm+"-"+dd;
 }
