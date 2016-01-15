@@ -16,4 +16,6 @@ public interface ArticuloRepository extends JpaRepository<Articulo, Long>{
 	public Long darSiguienteCodigoCategoria(@Param("min")Long min,@Param("max") Long max);
 	@Query(nativeQuery=true,value="SELECT g.nombre, a.referencia, a.precio, a.codigo FROM articulo a JOIN genero g on LEFT(LPAD(a.codigo,6,'0'),3) = LPAD(g.codigo,3,'0');")
 	List<Object[]> darArticulosGenero();
+	@RestResource
+	public Articulo findOneBycodigo(@Param("codigo")Long codigo);
 }

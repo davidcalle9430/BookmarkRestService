@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Cardex implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @GeneratedValue
     @Id
     @Basic(optional = false)
     @Column(name = "consec")
@@ -41,9 +43,9 @@ public class Cardex implements Serializable {
     @Column(name = "DOCUMENTO")
     private String documento;
     @Column(name = "CANTIDAD")
-    private Double cantidad;
+    private Long cantidad;
     @Column(name = "NDOC")
-    private Double ndoc;
+    private Long ndoc;
     @Column(name = "SALDO")
     private Double saldo;
 
@@ -94,19 +96,19 @@ public class Cardex implements Serializable {
         this.documento = documento;
     }
 
-    public Double getCantidad() {
+    public Long getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Double cantidad) {
+    public void setCantidad(Long cantidad) {
         this.cantidad = cantidad;
     }
 
-    public Double getNdoc() {
+    public Long getNdoc() {
         return ndoc;
     }
 
-    public void setNdoc(Double ndoc) {
+    public void setNdoc(Long ndoc) {
         this.ndoc = ndoc;
     }
 
