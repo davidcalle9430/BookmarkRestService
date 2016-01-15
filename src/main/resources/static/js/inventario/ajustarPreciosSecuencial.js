@@ -1,11 +1,11 @@
 var alFinal = false;
 var pagina = 0;
 function crearFila(articulos) {
-	articulos = articulos._embedded.articulos;
+	//articulos = articulos._embedded.articulos;
 	var codigo, nombre, referencia, precio;
 	for (var i = 0; i < articulos.length; i++) {
 		var ColumnaNombre = $("<td>", {
-			text : articulos[i].marca
+			text : articulos[i].nombre
 		});
 		var ColumnaCodigo = $("<td>", {
 			text : darCodigoFormateado( articulos[i].codigo )
@@ -27,11 +27,13 @@ function crearFila(articulos) {
 
 function nAjax(){
 	$.ajax({
-		url : '/api/articulos?page='+pagina,
+		url : '/api/articulos/search/articulosgeneros',
 		success : function(data) {
 			crearFila(data);
 			alFinal=false;
 			pagina++;
+			$(".loader").css("display", "none");
+			$("table").css("display","table");
 		},
 		error : function(data) {
 			console.log('fail');
