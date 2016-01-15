@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+	<title>Anular factura</title>
+	<style>
+		tr:hover {
+			background-color: #ffff78;
+		}
+	</style>
+</head>
+<body class="main-form">
+	<nav th:replace="nav :: nav"></nav>
+	<h1 style="color: black;"> Clientes con referencia especial </h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Código</th>
+				<th>Razón social</th>
+				<th>Dirección</th>
+				<th>Teléfono</th>
+				<th>CAMREF</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+   	<footer th:replace="footer :: footer"></footer>
+   	<script src="/static/js/clientes/clientesReferenciaEspecial.js"></script>
+</body>
+</html>

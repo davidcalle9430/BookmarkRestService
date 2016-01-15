@@ -41,6 +41,10 @@ body {
 	color: #fff;
 }
 
+span{
+	color: black;
+}
+
 @media only screen and (max-width: 40em) {
 	.menu-text {
 		display: none !important;
