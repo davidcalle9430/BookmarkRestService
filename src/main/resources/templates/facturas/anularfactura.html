@@ -2,10 +2,50 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:tiles="http://www.thymeleaf.org">
 <head th:replace="header :: header">
+	<title>Anular factura</title>
 </head>
 <body class="main-form">
 	<nav th:replace="nav :: nav"></nav>
-	<h1> Anular Factura </h1>
+	<h1 style="color: black;"> Anular Factura </h1>
+	
+	<form>
+		<div class="row">
+		   <div class="large-12 columns">
+		     <label>Número de la factura a anular
+		       <input type="text"/>
+		     </label>
+		   </div>
+		</div>
+		<div class="row">
+		   <div class="large-12 columns">
+		     <label>Fecha de la factura
+		       <input type="text" placeholder="YYYY-MM-DD" />
+		     </label>
+		   </div>
+		</div>
+		<div class="row">
+		   <div class="large-12 columns">
+		     <label>Código del cliente</label>
+		     <div class="large-4 columns">
+		     <input type="text" />
+		     </div>
+		     <div class="large-8 columns">
+		     <input type="text" />
+		     </div>
+		   </div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+			  <textarea placeholder="None"></textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-2 large-offset-9 columns">
+			  <a href="#" class="button">Anular factura</a>
+			</div>
+		</div>
+	</form>
+	
    	<footer th:replace="footer :: footer"></footer>
 </body>
 </html>

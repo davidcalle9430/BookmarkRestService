@@ -22,6 +22,15 @@ tr:nth-child(even){
 	color: black;
 }
 
+tr:nth-child(even):hover{
+	background-color: #ffff78;
+	color: black;
+}
+tr:nth-child(odd):hover{
+	background-color: #ffff78;
+	color: black;
+}
+
 th {
     background-color: gray;
     color: black;

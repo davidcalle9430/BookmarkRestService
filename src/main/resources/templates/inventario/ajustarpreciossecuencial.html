@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+	<style>
+		tr:hover {
+			background-color: #ffff78;
+		}
+	</style>
+</head>
+<body class="main-form">
+	<nav th:replace="nav :: nav"></nav>
+	<table>
+		<thead>
+			<tr>
+				<th>Código</th>
+				<th>Nombre</th>
+				<th>Referencia</th>
+				<th>Precio</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/inventario/ajustarPreciosSecuencial.js"></script>
+</body>
+</html>

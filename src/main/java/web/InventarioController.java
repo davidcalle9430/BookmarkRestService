@@ -15,7 +15,6 @@ public class InventarioController {
 		return "/inventario/ajustarcantidadescodigo";
 	}
 	
-	
    @RequestMapping(value="/mnuajucsi/")
    public String ajustarCantidadSecuencial(){
 	   return "/inventario/ajustarCantidadSecuencial";
@@ -24,6 +23,11 @@ public class InventarioController {
    @RequestMapping(value="/mnuajucsi/editar/")
    public String ajustarCantidadSecuencialEditar(){
 	   return "/inventario/ajustarCantidadSecuencialEditar";
+   }
+   
+   @RequestMapping(value="/mnuajupsi/")
+   public String ajustarPreciosSecuencial(){
+	   return "/inventario/ajustarpreciossecuencial";
    }
 }
 
