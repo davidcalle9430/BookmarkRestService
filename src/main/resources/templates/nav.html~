@@ -33,18 +33,18 @@
             		</li>
             		<li><a class="nav__item" href="#">Ajustar Precios</a>
             			<ul>
-            				<li><a class="nav__item" href="/mnuajupi/">&nbsp;	&nbsp; Precio Dando c&oacute;digo</a></li>
-            				<li><a class="nav__item" href="#">&nbsp;	&nbsp; Precio Secuencialmente</a></li>
+            				<li><a class="nav__item" href="#">&nbsp;	&nbsp; precio dando c&oacute;digo</a></li>
+            				<li><a class="nav__item" href="/mnuajupsi/">&nbsp;	&nbsp; precio Secuencialmente</a></li>
             			</ul>
             		</li>
             		<li><a class="nav__item" href="/mnuanufi/">Anular Factura </a></li>
             	</ul>
             </li>
             <li><a class="nav__item" href="#">Compras</a></li>
-            <li><a class="nav__item" href="#">Clientes Especiales</a></li>
+            <li><a class="nav__item" href="/clientesrefespecial/">Clientes Especiales</a></li>
             <li><a class="nav__item" href="#">Ayuda</a></li>
-            <li><a class="nav__item" href="/login">Logout</a></li>
-            <li><a class="nav__item" href="/logout">Login</a></li>
+            <li><a class="nav__item" href="/login">logout</a></li>
+            <li><a class="nav__item" href="/logout">login</a></li>
         </ul>
     </nav>
 </body>

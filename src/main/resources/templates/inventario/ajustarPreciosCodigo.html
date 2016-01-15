@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form">
+	<nav th:replace="nav :: nav"></nav>
+	<h1
+		style="color: black; margin-top: 0; text-align: center; font-size: 1.8em">Modificar precio de inventario</h1>
+	<form>
+		<table>
+			<tr>
+				<th>C&oacute;digo</th>
+				<th>Nombre</th>
+				<th>Referencia</th>
+				<th>Precio</th>
+				<th>Nuevo precio</th>
+			</tr>
+			<tr>
+				<td><input type="text" id="codigo"></input></td>
+				<td><input type="text" id="nombre" readonly="readonly"></input></td>
+				<td><input type="text" id="referencia" readonly="readonly"></input></td>
+				<td><input type="number" id="precio" readonly="readonly"></input></td>
+				<td><input type="number" id="nPrecio" required="required"></input></td>
+			</tr>
+	
+		</table>
+		<div class="row">
+			<a class="boton-redondo" style="float:right" onclick="agregarFila();">+</a>
+		</div>
+		<div class="row">
+			<input type="submit" class="button expand success" style="float:right" value="Guardar cambios"></input>
+		</div>
+	</form>	
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/inventario/ajustePrecio.js"></script>
+</body>
+</html>
