@@ -46,7 +46,7 @@ public class Cardexi implements Serializable {
     @Column(name = "CANTIDAD")
     private Double cantidad;
     @Column(name = "NDOC")
-    private Double ndoc;
+    private Long ndoc;
     @Column(name = "SALDO")
     private Long saldo;
 
@@ -105,11 +105,11 @@ public class Cardexi implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Double getNdoc() {
+    public Long getNdoc() {
         return ndoc;
     }
 
-    public void setNdoc(Double ndoc) {
+    public void setNdoc(Long ndoc) {
         this.ndoc = ndoc;
     }
 
