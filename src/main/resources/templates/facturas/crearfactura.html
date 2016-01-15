@@ -5,7 +5,175 @@
 </head>
 <body class="main-form">
 	<nav th:replace="nav :: nav"></nav>
-	<h1>Crear Factura</h1>
+	<h1 style="color: black">Crear Factura</h1>
+	<div class="row" style="border-bottom: 5px solid black; margin-bottom: 50px;">
+		<div class="large-6 columns">
+		     <label>Factura
+		        <input disabled="disabled" type="number" value="101010101"/>
+		     </label>
+    	 </div>
+    	 <div class="large-6 columns">
+		     <label>Fecha
+		        <input disabled="disabled" type="date" value="2013-01-08"/>
+		     </label>
+    	 </div>
+	</div>
+	<div class="row">
+		<div class="large-8 columns">
+		    <label>Vendido a código</label>
+		    <div class="large-4 columns">
+		    <input type="text" />
+		    </div>
+		    <div class="large-8 columns">
+		    <input type="text" />
+			</div>
+		 </div>
+		 <div class="large-4 columns">
+		     <label>Nit o CC
+		        <input type="text"/>
+		     </label>
+    	 </div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+	      <label>Almacén
+	        <input type="text"/>
+	      </label>
+    	</div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+	      <label>Dirección
+	        <input type="text"/>
+	      </label>
+    	</div>
+	</div>
+	<div class="row">
+		<div class="large-6 columns">
+			<label>Línea
+			  <select>
+			    <option value="husker">Husker</option>
+			    <option value="starbuck">Starbuck</option>
+			    <option value="hotdog">Hot Dog</option>
+			    <option value="apollo">Apollo</option>
+			  </select>
+			</label>
+		</div>
+		<div class="large-6 columns">
+			<label>Correría
+			  <select>
+			    <option value="husker">Husker</option>
+			    <option value="starbuck">Starbuck</option>
+			    <option value="hotdog">Hot Dog</option>
+			    <option value="apollo">Apollo</option>
+			  </select>
+			</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-6 columns">
+		    <label>Ciudad</label>
+		    <div class="large-4 columns">
+		    <input type="text" />
+		    </div>
+		    <div class="large-8 columns">
+		    <input type="text" />
+			</div>
+		 </div>
+		 <div class="large-3 columns">
+		     <label>Precio
+		        <input type="number" placeholder="[M]/[V]/[M+]/[++]"/>
+		     </label>
+    	 </div>
+    	 <div class="large-3 columns">
+		     <label>Cambia precios
+		        <input type="text" placeholder="S/N"/>
+		     </label>
+    	 </div>
+	</div>
+	<div class="row">
+		<div class="large-6 columns">
+		     <label>Orden
+		        <input type="text"/>
+		     </label>
+    	 </div>
+    	 <div class="large-6 columns">
+			<label>Correría
+			  <select>
+			    <option value="husker">Husker</option>
+			    <option value="starbuck">Starbuck</option>
+			    <option value="hotdog">Hot Dog</option>
+			    <option value="apollo">Apollo</option>
+			  </select>
+			</label>
+		 </div>
+	</div>
+	<div class="row">
+		 <div class="large-6 columns">
+		    <label>Forma de pago
+			  <select>
+			    <option value="husker">Husker</option>
+			    <option value="starbuck">Starbuck</option>
+			    <option value="hotdog">Hot Dog</option>
+			    <option value="apollo">Apollo</option>
+			  </select>
+			</label>
+    	 </div>
+    	 <div class="large-6 columns">
+    		<label>Días
+		        <input type="text"/>
+		    </label>
+		 </div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+		    <label>Notas
+			  <select>
+			    <option value="husker">Husker</option>
+			    <option value="starbuck">Starbuck</option>
+			    <option value="hotdog">Hot Dog</option>
+			    <option value="apollo">Apollo</option>
+			  </select>
+			</label>
+    	 </div>
+	</div>
+	<div class="row">
+		<div class="large-6 columns">
+		     <label>Días
+		        <input type="text"/>
+		     </label>
+    	 </div>
+    	 <div class="large-6 columns">
+		     <label>Porcentaje
+		        <input type="text"/>
+		     </label>
+    	 </div>
+	</div>
+	
+	<table style="margin: 5vmin 0 10vmin 0;">
+		<thead>
+			<tr>
+				<th>Código</th>
+				<th>Nombre</th>
+				<th>Referencia</th>
+				<th>Cantidad</th>
+				<th>Precio</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	<div class="row">
+		<div class="large-2 large-offset-9 columns">
+		  <a href="#" class="button" style="width: 100%;">Agregar producto</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-2 large-offset-9 columns">
+		  <a href="#" class="button success" style="width: 100%;">Crear factura</a>
+		</div>
+	</div>
+		
    	<footer th:replace="footer :: footer"></footer>
 </body>
 </html>
