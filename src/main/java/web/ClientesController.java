@@ -19,4 +19,9 @@ public class ClientesController {
 	public String eliminarCliente(){
 		return "/clientes/editarcliente";
 	}
+	
+	@RequestMapping(value="/clientesrefespecial/")
+	public String clientesReferenciaEspecial(){
+		return "/clientes/clientesReferenciaEspecial";
+	}
 }

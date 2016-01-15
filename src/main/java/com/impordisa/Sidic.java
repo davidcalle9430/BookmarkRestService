@@ -252,7 +252,7 @@ class RequestFilter extends OncePerRequestFilter {
 		String nombreMenu = URI.split("/")[1]; // se parte la url en trozos y se obtine el primer valor
 		Menus menu = menusRepository.findOneByMenusPK_menu(nombreMenu);
 		if(menu == null){
-			return false;
+			return true;
 		}
 		String reggex = "(.)*" + menu.getMenusPK().getMenu() + "(.)*";
 		if (URI.matches(reggex)) { // a final de cuentas, un rol viene siendo lo // mismo que un nivel
@@ -284,7 +284,7 @@ class RequestFilter extends OncePerRequestFilter {
 			return;
 		}
 		String nombreMenu = URI.split("/")[1];
-		boolean esApi = nombreMenu.equals("api") || nombreMenu.equals("static"); // se busca que no haga request a archivos estàticos ni al api
+		boolean esApi = nombreMenu.equals("api") || nombreMenu.equals("static") || nombreMenu.equals("jm"); // se busca que no haga request a archivos estàticos ni al api
 		if (!esApi) {
 			if (sci != null) {
 				UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
