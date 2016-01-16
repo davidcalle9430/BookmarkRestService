@@ -6,165 +6,165 @@
 <body class="main-form">
 	<nav th:replace="nav :: nav"></nav>
 	<h1 style="color: black">Crear Factura</h1>
-	<div class="row" style="border-bottom: 5px solid black; margin-bottom: 50px;">
-		<div class="large-6 columns">
-		     <label>Factura
-		        <input id="factura" name="factura" readonly="readonly" type="number" />
-		     </label>
-    	 </div>
-    	 <div class="large-6 columns">
-		     <label>Fecha
-		        <input id="fecha" name="fecha" readonly="readonly" type="text" onload="llenarFecha"/>
-		     </label>
-    	 </div>
-	</div>
-	<div class="row">
-		<div class="large-8 columns">
-		    <label>Vendido a código</label>
-		    <div class="large-4 columns">
-		    <input id="codigo-1" name="codigo-1" type="text" />
-		    </div>
-		    <div class="large-8 columns">
-		    <input id="codigo-2" readonly="readonly" name="codigo-2" type="text" />
+	<form>
+		<div class="row" style="border-bottom: 5px solid black; margin-bottom: 50px;">
+			<div class="large-6 columns">
+			     <label>Factura
+			        <input id="factura" name="factura" readonly="readonly" type="number" />
+			     </label>
+	    	 </div>
+	    	 <div class="large-6 columns">
+			     <label>Fecha
+			        <input id="fecha" name="fecha" readonly="readonly" type="text" onload="llenarFecha"/>
+			     </label>
+	    	 </div>
+		</div>
+		<div class="row">
+			<div class="large-4 columns">
+			    <label>Vendido a c&oacute;digo</label>
+			    	<input id="codigo-1" name="codigo-1" type="text" />
 			</div>
-		 </div>
-		 <div class="large-4 columns">
-		     <label>Nit o CC
-		        <input id="nit" readonly="readonly" name="nit" type="text"/>
-		     </label>
-    	 </div>
-	</div>
-	<div class="row">
-		<div class="large-12 columns">
-	      <label>Almacén
-	        <input id="almacen" name="almacen" type="text"/>
-	      </label>
-    	</div>
-	</div>
-	<div class="row">
-		<div class="large-12 columns">
-	      <label>Dirección
-	        <input id="direccion" readonly="readonly" name="direccion" type="text"/>
-	      </label>
-    	</div>
-	</div>
-	<div class="row">
-		<div class="large-6 columns">
-			<label>Línea
-			  <select id="linea" name="linea">
-			    <option value="husker">Husker</option>
-			    <option value="starbuck">Starbuck</option>
-			    <option value="hotdog">Hot Dog</option>
-			    <option value="apollo">Apollo</option>
-			  </select>
-			</label>
+			<div class="large-4 columns">
+			    <label>Nombre
+			       <input id="codigo-2" readonly="readonly" name="codigo-2" type="text" />
+			    </label>
+	    	</div>
+			<div class="large-4 columns">
+			    <label>Nit o CC
+			       <input id="nit" readonly="readonly" name="nit" type="text"/>
+			    </label>
+	    	</div>
 		</div>
-		<div class="large-6 columns">
-			<label>Correría
-			  <select id="correria" name="correria">
-			    <option value="husker">Husker</option>
-			    <option value="starbuck">Starbuck</option>
-			    <option value="hotdog">Hot Dog</option>
-			    <option value="apollo">Apollo</option>
-			  </select>
-			</label>
+		<div class="row">
+			<div class="large-12 columns">
+		      <label>Almacén
+		        <input id="almacen" name="almacen" type="text"/>
+		      </label>
+	    	</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="large-6 columns">
-		    <label>Ciudad</label>
-		    <div class="large-4 columns">
-		    <input id="ciudad-1" name="ciudad-1" type="text" />
-		    </div>
-		    <div class="large-8 columns">
-		    <input id="ciudad-2" readonly="readonly" name="ciudad-2" type="text" />
+		<div class="row">
+			<div class="large-12 columns">
+		      <label>Dirección
+		        <input id="direccion" readonly="readonly" name="direccion" type="text"/>
+		      </label>
+	    	</div>
+		</div>
+		<div class="row">
+			<div class="large-6 columns">
+				<label>Línea
+				  <select id="linea" name="linea">
+				  </select>
+				</label>
 			</div>
-		 </div>
-		 <div class="large-3 columns">
-		     <label>Precio
-		        <input id="precio" name="precio" type="number" placeholder="[M]/[V]/[M+]/[++]"/>
-		     </label>
-    	 </div>
-    	 <div class="large-3 columns">
-		     <label>Cambia precios
-		        <input id="cambia-precios" readonly="readonly" name="cambia-precios" type="text" placeholder="S/N"/>
-		     </label>
-    	 </div>
-	</div>
-	<div class="row">
-		<div class="large-6 columns">
-		     <label>Orden
-		        <input id="orden" name="orden" type="text"/>
-		     </label>
-    	 </div>
-    	 <div class="large-6 columns">
-			<label>Vendedor
-			  <select id="vendedor" name="vendedor" >
-			    <option disabled="disabled" selected="selected">Selecciona una opción</option>
-			  </select>
-			</label>
-		 </div>
-	</div>
-	<div class="row">
-		 <div class="large-6 columns">
-		    <label>Forma de pago
-			  <select id="forma-pago" name="forma-pago" required="required">
-			  <option disabled="disabled" selected="selected">Selecciona una opción</option>
-			  </select>
-			</label>
-    	 </div>
-    	 <div class="large-6 columns">
-    		<label>Días
-		        <input id="dias" name="dias" type="text"/>
-		    </label>
-		 </div>
-	</div>
-	<div class="row">
-		<div class="large-12 columns">
-		    <label>Notas
-			  <select id="notas" name="notas" style="font-size: 0.75REM">
-			  	<option disabled="disabled" selected="selected">Selecciona una opción</option>
-			  </select>
-			</label>
-    	 </div>
-	</div>
-	<div class="row">
-		<div class="large-6 columns">
-		     <label>Días
-		        <input id="dias" name="dias" type="text"/>
-		     </label>
-    	 </div>
-    	 <div class="large-6 columns">
-		     <label>Porcentaje
-		        <input id="porcentaje" name="porcentaje" type="text"/>
-		     </label>
-    	 </div>
-	</div>
-	
-	<table style="margin: 5vmin 0 10vmin 0;">
-		<thead>
-			<tr>
-				<th>Código</th>
-				<th>Nombre</th>
-				<th>Referencia</th>
-				<th>Cantidad</th>
-				<th>Precio</th>
-			</tr>
-		</thead>
-		<tbody>
-		</tbody>
-	</table>
-	<div class="row">
-		<div class="large-2 large-offset-9 columns">
-		  <a href="#" class="button" style="width: 100%;">Agregar producto</a>
+			<div class="large-6 columns">
+				<label>Correría
+				  <select id="correria" name="correria">
+				  </select>
+				</label>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="large-2 large-offset-9 columns">
-		  <a href="#" class="button success" style="width: 100%;">Crear factura</a>
+		<div class="row">
+			<div class="large-6 columns">
+			    <label>Ciudad</label>
+			    <div class="large-4 columns">
+			    <input id="ciudad-1" name="ciudad-1" readonly="readonly" type="text" />
+			    </div>
+			    <div class="large-8 columns">
+			    <input id="ciudad-2" readonly="readonly" name="ciudad-2" type="text" />
+				</div>
+			 </div>
+			 <div class="large-3 columns">
+			     <label>Precio
+			        <input id="precio" name="precio" type="text" pattern="M|V|M\+|\+\+" placeholder="[M]/[V]/[M+]/[++]"/>
+			     </label>
+	    	 </div>
+	    	 <div class="large-3 columns">
+			     <label>Cambia precios
+			        <input id="cambia-precios" pattern="S|N" name="cambia-precios" type="text" placeholder="S/N"/>
+			     </label>
+	    	 </div>
 		</div>
-	</div>
+		<div class="row">
+			<div class="large-6 columns">
+			     <label>Orden
+			        <input id="orden" name="orden" required="required" type="text"/>
+			     </label>
+	    	 </div>
+	    	 <div class="large-6 columns">
+				<label>Vendedor
+				  <select id="vendedor" name="vendedor" >
+				    <option disabled="disabled" selected="selected">Selecciona una opción</option>
+				  </select>
+				</label>
+			 </div>
+		</div>
+		<div class="row">
+			 <div class="large-6 columns">
+			    <label>Forma de pago
+				  <select id="forma-pago" name="forma-pago" required="required" onchange="cambioDeFormaPago();">
+				  <option disabled="disabled" selected="selected">Selecciona una opción</option>
+				  </select>
+				</label>
+	    	 </div>
+	    	 <div class="large-6 columns">
+	    		<label id="labelDiasPago">D&iacute;as
+			        <input id="diasPago" name="diasPago" type="text"/>
+			    </label>
+			 </div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+			    <label>Notas
+				  <select id="notas" name="notas" style="font-size: 0.75REM" onchange="cambioDeNotas();">
+				  	<option disabled="disabled" selected="selected">Selecciona una opción</option>
+				  </select>
+				</label>
+	    	 </div>
+		</div>
+		<div class="row">
+			<div class="large-6 columns">
+			     <label>D&iacute;as
+			        <input id="dias" name="dias" type="text"/>
+			     </label>
+	    	 </div>
+	    	 <div class="large-6 columns">
+			     <label>Porcentaje
+			        <input id="porcentaje" name="porcentaje" type="text"/>
+			     </label>
+	    	 </div>
+		</div>
 		
+		<table style="margin: 5vmin 0 10vmin 0;">
+			<thead>
+				<tr>
+					<th>Código</th>
+					<th>Nombre</th>
+					<th>Referencia</th>
+					<th>Cantidad</th>
+					<th>Precio</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				<td><input type="text" id="codigo"></input></td>
+				<td><input type="text" id="nombre" readonly="readonly"></input></td>
+				<td><input type="text" id="referencia" readonly="readonly"></input></td>
+				<td><input type="number" id="cantidad" required="required"></input></td>
+				<td><input type="number" id="precio" readonly="readonly"></input></td>
+			</tr>
+			</tbody>
+		</table>
+		<div class="row">
+			<div class="large-2 large-offset-9 columns">
+			  <a class="button" style="width: 100%;" onclick="agregarFila();">Agregar producto</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-2 large-offset-9 columns">
+			  <button type="submit" class="button success" style="width: 100%;" >Crear factura</button>
+			</div>
+		</div>
+	</form>		
    	<footer th:replace="footer :: footer"></footer>
    	<script type="text/javascript" src="/static/js/facturas/crearFactura.js"></script>
 </body>
