@@ -5,7 +5,7 @@
  */
 function verificarFormatoCodigo( codigo )
 {
-	var re = /[0-9]{3,3}-[0-9]{3,3}-[0-9]{1,2}/;  
+	var re = /^[0-9][0-9][0-9]-[0-9]{3,3}-[0-9]$/;  
     return re.test(codigo);
 }
 

@@ -26,10 +26,14 @@
 	
 		</table>
 		<div class="row">
-			<a class="boton-redondo" style="float:right" onclick="agregarFila();">+</a>
+			<div class="large-2 large-offset-9 columns">
+			  <a id="botAgregaFila" class="button expand" onclick="agregarFila();" style="width: 100%;">Añadir fila</a>
+			</div>
 		</div>
 		<div class="row">
-			<input type="submit" class="button expand success" style="float:right" value="Guardar cambios"></input>
+			<div class="large-2 large-offset-9 columns">
+				<input type="submit" class="button expand success" style="width: 100%;" value="Guardar cambios"></input>
+			</div>
 		</div>
 	</form>	
 	<footer th:replace="footer :: footer"></footer>
