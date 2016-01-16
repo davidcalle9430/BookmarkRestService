@@ -1,10 +1,15 @@
+var esEspecial = "S";
 var NFact = null;
 var ciudad = null;
 var cliente = null;
+var cambiados = new Object();
+
 
 $(document).ready(function(){
 	$("#cambia-precios").val("N");
 	$("#precio").val("M");
+	obtenerFilaSelec();
+//	$("form").submit(guardarCambios);
 	cargarFormasPago();
 	cargarNotas();
 	cargarNFact();
@@ -12,19 +17,147 @@ $(document).ready(function(){
 	cargarCliente();
 	cargarLineas();
 	cargarVendedores();
-	
 })
 
 
-function cargarVendedores(){
-	getForObject(null, "/api/vendedores", function(vendedores){
-		vendedores = vendedores._embedded.vendedores;
-		var select = $("#vendedor");
-		for(var i = 0; i < vendedores.length; i++){
-			var option = $("<option>", {value : vendedores[i].codigo, text: vendedores[i].nombre});
-			select.append(option);
+
+/**
+ * Se encarga de obtener el objeto articulo asocaido al codigo ingresado 
+ * teniendo en cuenta que fila se esta modificando.
+ * */
+function obtenerFilaSelec()
+{
+	$("table").on("change", "input[id=codigo]", 
+	function(ev) 
+	{
+		var trSelec = $(this).parent().parent();
+		obtenerAtributosArticulo(trSelec);
+	});
+}
+
+function obtenerAtributosArticulo( trSelec)
+{
+	var codigoConFormato = $(trSelec).find("#codigo").val();
+	$(trSelec).find("#nombre").val("");
+	$(trSelec).find("#referencia").val("");
+	$(trSelec).find("#precio").val("");
+	$(trSelec).find("#cantidad").val("");
+	if( verificarFormatoCodigo( codigoConFormato ) )
+	{
+		var codigoSelec = obtenerNumeroAPartirDeCodigo(codigoConFormato);
+		if( obtenerCheckSum( codigoSelec ) == darCheckSumDeCodigo( codigoConFormato ) )
+		{
+			$.ajax
+			({
+				url : "/api/articulos/" + codigoSelec,
+				success : function(data) 
+				{
+					obtenerArticulo(data, trSelec);
+				},
+				error : function(data) 
+				{
+					alert("Este código no esta relacionado a algún articulo");
+				}
+			});
+		}
+		else
+		{
+			alert("El dígito de verificación es incorrecto!!");
+		}
+	}
+	else
+	{
+		alert("Este código no coincide con el formato: 000-000-0");
+		$(trSelec).find("#codigo").val("000-000-0");
+	}
+}
+
+/**
+ * Se encarga de obtener el objeto género asocaido al codigo ingresado y al artículo que se esta modificando.
+ * Luego autocompleta los demás atributos del artículo.
+ * @param articuloSelec: Articulo seleccionado.
+ * @param trSelect: Fila HTML seleccionada.
+ * */
+function obtenerArticulo(articuloSelec, trSelect) 
+{
+	var idGenero = Math.floor(articuloSelec.codigo/1000);
+	$.ajax({
+		url : "/api/generos/" + idGenero,
+		success : function(data) {
+			$(trSelect).find("#nombre").val(data.nombre);
+		},
+		error : function(data) {
+			alert("Este código no esta relacionado a algún género");
 		}
 	});
+	cambiados[articuloSelec.codigo] = articuloSelec;
+	$(trSelect).find("#referencia").val(articuloSelec.referencia);
+	if(articuloSelec.precio != null )
+	{	
+		$(trSelect).find("#precio").val(articuloSelec.precio);
+	}
+	else
+	{
+		$(trSelect).find("#precio").val(0);
+	}	
+}
+
+/**
+ * Función encargada de crear una nueva fila con campos vacios
+ * */
+function agregarFila()
+ {
+	 var nuevoTr= $("<tr>");
+	 
+	 var nuevoTdCodigo= $("<td>");
+	 var nuevoTdNombre= $("<td>");
+	 var nuevoTdReferencia= $("<td>");
+	 var nuevoTdPrecio= $("<td>");
+	 var nuevoTdNprecio= $("<td>");
+	 
+	 var nuevoInputCodigo= $("<input>",{id:"codigo", type:"text"});
+	 var nuevoInputNombre= $("<input>",{id:"nombre", type:"text", readonly:"readonly"});
+	 var nuevoInputReferencia= $("<input>",{id:"referencia", type:"text",readonly:"readonly"});
+	 var nuevoInputNprecio= $("<input>",{id:"cantidad", type:"number", required:"required"});
+	 var nuevoInputPrecio= $("<input>",{id:"precio", type:"number",readonly:"readonly"});
+	 
+	 nuevoTdCodigo.append(nuevoInputCodigo);
+	 nuevoTdNombre.append(nuevoInputNombre);
+	 nuevoTdReferencia.append(nuevoInputReferencia);
+	 nuevoTdNprecio.append(nuevoInputNprecio);
+	 nuevoTdPrecio.append(nuevoInputPrecio);
+	 
+	 nuevoTr.append(nuevoTdCodigo);
+	 nuevoTr.append(nuevoTdNombre);
+	 nuevoTr.append(nuevoTdReferencia);
+	 nuevoTr.append(nuevoTdNprecio);
+	 nuevoTr.append(nuevoTdPrecio);
+	 
+	 $("table").append(nuevoTr);
+ }
+
+/**
+ * Función encargada de actualizar las cantidades de cada articulo modificado
+ * */
+function guardarCambios(ev)
+{		
+	ev.preventDefault();
+	var actualizados = 0;
+	$("table tr").each(function(i,tr){
+		if (actualizarArticulo(i, $(tr)))
+		{
+			actualizados++;
+		}
+	});
+	if ( actualizados > 0 )
+	{
+		alert("Se han actualizado exitósamente los "+actualizados+" artículos!");
+	}
+	else
+	{
+		alert("No se registró algún cambio!");
+	}
+	location.reload();
 }
 
 function cargarCliente(){
@@ -52,6 +185,19 @@ function cargarCliente(){
 		}
 	})
 }
+
+
+function cargarVendedores(){
+	getForObject(null, "/api/vendedores", function(vendedores){
+		vendedores = vendedores._embedded.vendedores;
+		var select = $("#vendedor");
+		for(var i = 0; i < vendedores.length; i++){
+			var option = $("<option>", {value : vendedores[i].codigo, text: vendedores[i].nombre});
+			select.append(option);
+		}
+	});
+}
+
 function cargarLineas(){
 	getForObject(null,"/api/lineas", function(lineas){
 		lineas = lineas._embedded.lineas;
@@ -97,15 +243,14 @@ function completarCliente(cliente){
 	}
 }
 
+//NO SABEMOS PARA QU SE USA
 function completarEspecial( especias )
 {
 	especias = especias._embedded.especias;
-	var esEspecial = "S";
 	if( especias.length == 0 )
 	{
 		esEspecial = "N";
 	}
-	$("#cambia-precios").val(esEspecial);
 }
 
 
@@ -125,6 +270,34 @@ function completarCiudad( cliente ){
 			}
 	})
 }
+
+function cambioDeFormaPago() 
+{
+	var formaPago = $("#forma-pago").val();
+	if(formaPago == "CON")
+	{
+		$("#labelDiasPago").attr("style", "display:none");
+	}
+	else
+	{
+		$("#labelDiasPago").attr("style", "display:block");
+	}
+}
+
+
+function cambioDeNotas()
+{
+	var notas = $("#notas").val();
+	getForObject(null,"/api/textosFactura/"+notas,completarNotas);
+}
+
+
+function completarNotas( notaSelec )
+{
+	$("#dias").val(notaSelec.dias);
+	$("#porcentaje").val(notaSelec.porcentaje);
+}
+
 
 function cargarNFact(){
 	$.ajax({
