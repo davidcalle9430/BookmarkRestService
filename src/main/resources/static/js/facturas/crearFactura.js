@@ -3,63 +3,127 @@ var ciudad = null;
 var cliente = null;
 
 $(document).ready(function(){
+	$("#cambia-precios").val("N");
+	$("#precio").val("M");
 	cargarFormasPago();
 	cargarNotas();
 	cargarNFact();
 	llenarFecha();
-	cargarCiudad();
 	cargarCliente();
+	cargarLineas();
+	cargarVendedores();
+	
 })
 
+
+function cargarVendedores(){
+	getForObject(null, "/api/vendedores", function(vendedores){
+		vendedores = vendedores._embedded.vendedores;
+		var select = $("#vendedor");
+		for(var i = 0; i < vendedores.length; i++){
+			var option = $("<option>", {value : vendedores[i].codigo, text: vendedores[i].nombre});
+			select.append(option);
+		}
+	});
+}
+
 function cargarCliente(){
-	$('#codigo-1').keyup(function(event){
+	$('#codigo-1').blur(function(event){
 		var codigo = $(this).val();
-		$.ajax({
-			url: '/api/clientes/'+codigo,
-			success: function(data){
-				cliente = data;
-				completarCliente(data);
-			},
-			error: function(data){
-				completarCliente(null);
-			}
-		})
+		if( codigo !==  "" )
+		{
+			$.ajax({
+				url: '/api/clientes/'+codigo,
+				success: function(data){
+					cliente = data;
+					completarCliente(data);
+				},
+				error: function(data){
+					completarCliente(null);
+				}
+			})
+		}
+		else
+		{
+			$("#codigo-2").removeAttr("readonly");
+			$("#nit").removeAttr("readonly");
+			$("#direccion").removeAttr("readonly");
+			$("#ciudad-1").removeAttr("readonly");
+		}
 	})
+}
+function cargarLineas(){
+	getForObject(null,"/api/lineas", function(lineas){
+		lineas = lineas._embedded.lineas;
+		var select = $("#linea");
+		for(var i = 0; i < lineas.length; i++){
+			 var option = $("<option>",{value:lineas[i].linea, text: zeroPad(lineas[i].linea,3) + "  " + zeroPad(lineas[i].rango1,3) + "-"+  zeroPad(lineas[i].rango2,3)});
+			 select.append(option);
+		}
+	})
+}
+
+function completarLinea(cliente){
+	getForObject(null, "/api/clientes/"+cliente.codigo+"/linea", function(linea){
+		$("#linea").val(linea.linea);
+	});
+}
+
+function completarCorreria(cliente){
+	getForObject(null, "/api/clientes/"+cliente.codigo+"/codcorr", function(corr){
+		$("#correria").append($("<option>", { text : zeroPad(corr.codigo, 3) + " " + corr.nombre }));
+	});
+}
+
+function completarVendedor(cliente){
+	getForObject(null, "/api/clientes/"+cliente.codigo+"/vendedor", function(vendedor){
+		$("#vendedor").val(vendedor.codigo);
+	});
 }
 
 function completarCliente(cliente){
 	if( cliente != null ){
+		getForObject({codigo:cliente.codigo}, "/api/especia/search/findByCodigo", completarEspecial );
 		$('#codigo-2').val(cliente.proptario);
 		$('#direccion').val(cliente.direccion);
 		$('#almacen').val(cliente.razsoc);
-		$('#nit').val(cliente.nit)
+		$('#nit').val( cliente.nit != null? cliente.nit : (cliente.cc != null? cliente.cc : "0"));
+		completarLinea(cliente);
+		completarCorreria(cliente);
+		completarVendedor(cliente);
+		completarCiudad(cliente.codigo);
 	}else{
-		$('#cliente-2').val('cliente no encontrado');
+		alert("Este código no esta asociado a algún código");
 	}
 }
 
-function cargarCiudad(){
-	$("#ciudad-1").keyup(function(event) {
-		var codigo = $(this).val();
-		$.ajax({
-			url: "/api/ciudades/"+codigo,
-			success:function(data){
-				ciudad = data;
-				completarCiudad(ciudad);
-			},
-			error: function(data){
-				completarCiudad(null);
+function completarEspecial( especias )
+{
+	especias = especias._embedded.especias;
+	var esEspecial = "S";
+	if( especias.length == 0 )
+	{
+		esEspecial = "N";
+	}
+	$("#cambia-precios").val(esEspecial);
+}
+
+
+function completarCiudad( cliente ){
+	$.ajax(
+	{
+		url: "/api/clientes/"+cliente+"/ciudad",
+		success:function(data)
+				{
+					$("#ciudad-1").val(data.codigo);	
+					$("#ciudad-2").val(data.ciudad);
+				},
+		error: function(data)
+			{
+				$("#ciudad-2").val('Ciudad no registrada en la base de datos');
+				$("#ciudad-1").val("0");	
 			}
-		})
 	})
-}
-
-function completarCiudad( ciudad ){
-	if( ciudad!=null){
-		$("#ciudad-2").val(ciudad.ciudad);
-	}else{
-		$("#ciudad-2").val('Ciudad no encontrada');
-	}
 }
 
 function cargarNFact(){
@@ -70,7 +134,7 @@ function cargarNFact(){
 			llenarFactIva(NFact.factiva);
 		},
 		error: function(data){
-			console.log('error al obtener los datos');
+			console.log('Error al obtener los datos');
 		}
 	})
 }
@@ -115,7 +179,7 @@ function cargarFormasPago(){
 			llenarFormasPago(data);
 		},
 		error: function(data){
-			console.log('error al obtener los datos');
+			alert('Error al obtener los datos');
 		}
 	})
 }
