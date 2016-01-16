@@ -56,6 +56,6 @@ $(document).ready(
 			
 			$('table').on('click','tr', function(){
 				var hijos = $(this).children();
-				alert('toca todavía hacerla' + hijos[0].innerHTML);
+				window.location = "/mnuajupi/?codigo="+hijos[0].innerHTML;
 			})
 		})

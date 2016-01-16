@@ -4,6 +4,16 @@ $(document).ready(
 function() 
 { 
 	obtenerFilaSelec();
+	var getCodigo = get("codigo");
+	if( getCodigo != null && getCodigo != "")
+	{
+		var celda = $("#codigo");
+		celda.val(getCodigo);
+		var trSelec = $(celda).parent().parent();
+		celda.attr("readonly","readonly");
+		$("#botAgregaFila").attr("style","display:none");	
+		obtenerAtributosArticulo(trSelec);
+	}
 	$("form").submit(guardarCambios);
 });
 
@@ -18,40 +28,45 @@ function obtenerFilaSelec()
 	function(ev) 
 	{
 		var trSelec = $(this).parent().parent();
-		var codigoConFormato = $(trSelec).find("#codigo").val();
-		$(trSelec).find("#nombre").val("");
-		$(trSelec).find("#referencia").val("");
-		$(trSelec).find("#precio").val("");
-		$(trSelec).find("#nPrecio").val("");
-		if( verificarFormatoCodigo( codigoConFormato ) )
+		obtenerAtributosArticulo(trSelec);
+	});
+}
+
+function obtenerAtributosArticulo( trSelec)
+{
+	var codigoConFormato = $(trSelec).find("#codigo").val();
+	$(trSelec).find("#nombre").val("");
+	$(trSelec).find("#referencia").val("");
+	$(trSelec).find("#precio").val("");
+	$(trSelec).find("#nPrecio").val("");
+	if( verificarFormatoCodigo( codigoConFormato ) )
+	{
+		var codigoSelec = obtenerNumeroAPartirDeCodigo(codigoConFormato);
+		if( obtenerCheckSum( codigoSelec ) == darCheckSumDeCodigo( codigoConFormato ) )
 		{
-			var codigoSelec = obtenerNumeroAPartirDeCodigo(codigoConFormato);
-			if( obtenerCheckSum( codigoSelec ) == darCheckSumDeCodigo( codigoConFormato ) )
-			{
-				$.ajax
-				({
-					url : "/api/articulos/" + codigoSelec,
-					success : function(data) 
-					{
-						obtenerArticulo(data, trSelec);
-					},
-					error : function(data) 
-					{
-						alert("Este código no esta relacionado a algún articulo");
-					}
-				});
-			}
-			else
-			{
-				alert("El dígito de verificación es incorrecto!!");
-			}
+			$.ajax
+			({
+				url : "/api/articulos/" + codigoSelec,
+				success : function(data) 
+				{
+					obtenerArticulo(data, trSelec);
+				},
+				error : function(data) 
+				{
+					alert("Este código no esta relacionado a algún articulo");
+				}
+			});
 		}
 		else
 		{
-			alert("Este código no coincide con el formato: 000-000-0");
-			$(trSelec).find("#codigo").val("000-000-0");
+			alert("El dígito de verificación es incorrecto!!");
 		}
-	});
+	}
+	else
+	{
+		alert("Este código no coincide con el formato: 000-000-0");
+		$(trSelec).find("#codigo").val("000-000-0");
+	}
 }
 
 /**
