@@ -1,36 +1,36 @@
 var pagina = 0;
 var alFinal = false;
-function ajaxCall(){
+function ajaxCall() {
 	$.ajax({
-		url: '/api/clientes?sort=razsoc&page='+pagina,
-		success: function(data){
+		url : '/api/clientes?sort=razsoc&page=' + pagina,
+		success : function(data) {
 			crearFila(data);
-			alFinal=false;
+			alFinal = false;
 			pagina++;
 		},
-		error: function(data){
+		error : function(data) {
 			console.log("Error al recuperar los datos");
 		}
 	})
 }
 
-function crearFila( clientes ){
+function crearFila(clientes) {
 	clientes = clientes._embedded.clientes;
-	for( var i=0; i<clientes.length; i++){
+	for (var i = 0; i < clientes.length; i++) {
 		var columnaCodigo = $('<td>', {
-			text: clientes[i].codigo
+			text : clientes[i].codigo
 		});
 		var columnaRazsoc = $('<td>', {
-			text: clientes[i].razsoc
+			text : clientes[i].razsoc
 		});
 		var columnaDireccion = $('<td>', {
-			text: clientes[i].direccion
+			text : clientes[i].direccion
 		});
 		var columnaTelefono = $('<td>', {
-			text: clientes[i].telefono
+			text : clientes[i].telefono
 		});
 		var columnaCamref = $('<td>', {
-			text: clientes[i].camref
+			text : clientes[i].camref
 		});
 		var tr = $('<tr>');
 		tr.append(columnaCodigo);
@@ -41,17 +41,19 @@ function crearFila( clientes ){
 		$('tbody').append(tr);
 	}
 }
-
-$(document).ready(
-		function() {
+function clicFila(){
+	var hijos = $(this).children();
+	window.location = "editar/?codigo="+hijos[0].innerHTML;
+}
+$(document).ready(function() {
 			ajaxCall();
-			$(window).scroll(
-					function() {
+			$(window).scroll(function() {
 						if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
 							if (!alFinal) {
 								alFinal = true;
 								ajaxCall();
 							}
 						}
-					});
-		})
+			});
+			$("table").on("click","tr", clicFila);
+});

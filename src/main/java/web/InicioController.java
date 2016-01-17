@@ -9,4 +9,8 @@ public class InicioController {
 	public String inicio(){
 		return "inicio";
 	}
+	@RequestMapping(value="/jm/")
+	public String menuJM(){
+		return "jm";
+	}
 }
