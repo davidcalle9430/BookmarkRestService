@@ -1,13 +1,13 @@
 package resultclasses;
 
-public class cardexFactura {
+public class CardexFactura {
 	private Long codigo;
 	private String nombre;
 	private String genero;
 	private String referencia;
 	private Double valor;
 	
-	public cardexFactura(){
+	public CardexFactura(){
 		
 	}
 	

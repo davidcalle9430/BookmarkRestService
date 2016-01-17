@@ -221,4 +221,13 @@ function putForObject(object, url, todo, error){
 	});
 }
 
-
+function deleteForObject(url, todo, error){
+	$.ajax(
+	{
+		type : "delete",
+		url : url,
+	    contentType: 'application/json; charset=utf-8',
+		success : todo,
+		error : error
+	});
+}

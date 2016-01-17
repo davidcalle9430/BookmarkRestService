@@ -54,7 +54,6 @@ import repositories.RolesRepository;
 import repositories.RolesYMenusRepository;
 import repositories.UsuarioRepository;
 import sidic.entities.Menus;
-import sidic.entities.Niveles;
 import sidic.entities.Rolessss;
 import sidic.entities.Rolesymenus;
 import sidic.entities.Usuarios;
@@ -258,12 +257,9 @@ class RequestFilter extends OncePerRequestFilter {
 		if (URI.matches(reggex)) { // a final de cuentas, un rol viene siendo lo // mismo que un nivel
 			List<Rolesymenus> rolXmenu = rolesYMenusRepository.findAllByRolesymenusPK_Menu(menu.getMenusPK().getMenu());
 			for (Rolesymenus rolymenu : rolXmenu) {
-				List<Niveles> niveles = usuario.getNivelesList();
-				for (Niveles nivel : niveles) {
-					Long comparador = new Long(nivel.getNivelesPK().getNivel());
-					if (comparador.equals(rolymenu.getRolesymenusPK().getRol())) {
-						return true;
-					}
+				Long comparador = new Long(usuario.getNivel());
+				if(rolymenu.getRolesymenusPK().getRol().equals(comparador)){
+					return true;
 				}
 			}
 			return false;
@@ -276,7 +272,7 @@ class RequestFilter extends OncePerRequestFilter {
 		HttpSession session = request.getSession();
 		SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		String URI = request.getRequestURI();
-		if(URI.equals("/") || URI.equals("/inicio/") || URI.equals("/login") ){ // No se logrò congirar la ruta / por lo que se redirige a /inicio/
+		if(URI.equals("/") || URI.equals("/inicio/") || URI.equals("/login") || URI.equals("/jm/")){ // No se logrò congirar la ruta / por lo que se redirige a /inicio/
 			if(URI.equals("/")){
 				response.sendRedirect("/inicio/");
 			}
