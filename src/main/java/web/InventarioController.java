@@ -30,5 +30,10 @@ public class InventarioController {
    public String ajustarPreciosSecuencial(){
 	   return "/inventario/ajustarpreciossecuencial";
    }
+   
+   @RequestMapping(value="/mnuactpjm/")
+   public String actualizarPorcentajes(){
+	   return "/inventario/actualizarPorcentajes";
+   }
 }
 
