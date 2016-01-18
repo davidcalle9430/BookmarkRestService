@@ -22,6 +22,11 @@ where a.codigo = cardex.codigo
 order by cardex.consec;
 
 
+select e.codigo, c.razsoc, e.articulo, e.referencia, e.precio
+from ((articulo a JOIN especia e ON a.codigo = e.articulo) JOIN clientes c ON  e.codigo = c.codigo)
+order by e.codigo, e.articulo
+
+
 select a.codigo, g.nombre, a.referencia, a.precio*cardex.cantidad as valor
 from articulo a, cardex, genero g
 where a.codigo = cardex.codigo
