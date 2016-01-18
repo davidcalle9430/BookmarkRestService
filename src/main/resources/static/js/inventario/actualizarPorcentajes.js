@@ -32,7 +32,7 @@ function llenarTabla( generos ){
 		})
 		var porcprec = $('<p>',{
 			text:generos[i].porcprec,
-			class: 'porcprec'
+			class: 'porcprec text-left'
 		})
 		var tr_porcprec = $('<td>');
 		tr_porcprec.append(porcprec);
@@ -44,22 +44,30 @@ function llenarTabla( generos ){
 	}
 	
 }
-
+/*
+ * clase oyente de evento de clic sobre la fila de una tabla
+ * cuando hay clic se reemplaza la etiqueta <p> por etiquetas
+ * que corresponden a un cuadro de texto y un boton de guardar
+ * los eventos producidos por este boton no se manejan en esta clase
+ * */
 $('table').on('click', 'tr', function() {
     var prev = $(this).find('.porcprec').text();
     $(this).find('.porcprec').replaceWith("<div class=\"row\">"
-    +"<div class=\"large-4 large-offset-4 columns\">"
+    +"<div class=\"large-4 columns\">"
     +"<div class=\"row collapse\">"
     +"  <div class=\"small-10 columns\">"
     +"     <input type=\"text\" value=\""+prev+"\">"
     +"  </div>"
     +"  <div class=\"small-2 columns\">"
-    +"     <a href=\"#\" class=\"button postfix guardar-btn\">Guardar</a>"
+    +"     <a class=\"button postfix guardar-btn\">Guardar</a>"
     +"  </div>"
     +"</div>"
   +"</div>");
 });
 
+$('table').on('click', '.guardar-btn', function() {
+	console.log('clic');
+});
 /*
  * Acciones a ejecutar cuando se terminen de cargar los elementos en la
  * pantalla (html, css). En este caso se ejecuta un codigo que permite
