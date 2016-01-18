@@ -1,6 +1,4 @@
-var terminado = 0; // variable controladora de ajax
-
-/*
+/**
  * 
  */
 function actualizar(){
@@ -37,7 +35,12 @@ function cargarClientes(){
 		clientes.forEach(function(cliente){
 			select.append($("<option>", {value : cliente.codigo, text: cliente.razsoc}));
 		});
-		cargarArticulos();
+	});
+	$("form").submit(function(ev){
+		ev.preventDefault();
+		var obj = $(this).serializeObject();
+		console.log(JSON.stringify(obj));
+		postForObject(obj,"/api/especia", exito, error);
 	});
 }
 
@@ -54,9 +57,6 @@ function cargarArticulos(){
 		articulos.forEach(function(articulo){
 			select.append($("<option>", {value : articulo.codigo, text: articulo.referencia}));
 		});
-		$("#cliente").val(get("codigo"));
-		$("#articulo").val(get("articulo"));
-		actualizar();
 	});
 }
 /**
@@ -64,15 +64,5 @@ function cargarArticulos(){
  */
 $(document).ready(function(){
 	cargarClientes();
-	$("#editar").submit(function(ev){
-		ev.preventDefault();
-		var obj = $(this).serializeObject();
-		console.log(JSON.stringify(obj));
-		postForObject(obj,"/api/especia", exito, error);
-	});
-	$("#eliminar").submit(function(ev){
-		ev.preventDefault();
-		
-		deleteForObject("/api/especia/"+get("codigo")+"--"+get("articulo"), exito, error);
-	});
-});
+	cargarArticulos();
+})

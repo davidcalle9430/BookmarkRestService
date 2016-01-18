@@ -61,7 +61,7 @@ public class ArticulosController {
 		for (Object[] fila : resultado) {
 			ClienteArticuloEspecial cas = new ClienteArticuloEspecial();
 			cas.setArticulo((Long) ((fila[2] != null)? fila[2]: null));
-			cas.setCodigo((Long) ((fila[0] != null)? fila[2]: null));
+			cas.setCodigo((Long) ((fila[0] != null)? fila[0]: null));
 			cas.setPrecio((Double) ((fila[4] != null)? fila[4]: null));
 			cas.setRazonSocial((String)  ((fila[1] != null)? fila[1]: null));
 			cas.setReferencia((String)((fila[3] != null)? fila[3]: null));

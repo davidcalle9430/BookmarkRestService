@@ -16,5 +16,5 @@ public interface EspeciaRepository  extends JpaRepository<Especia, EspeciaPK>{
 	@RestResource
 	public List<Especia> findByCodigo (@Param("codigo") Long codigo);
 	@RestResource
-	public Especia findOneByArticuloAndReferencia(@Param("articulo") Long articulo, @Param("referencia") Long referencia);
+	public Especia findOneByCodigoAndArticulo(@Param("codigo") Long codigo, @Param("articulo") Long articulo);
 }

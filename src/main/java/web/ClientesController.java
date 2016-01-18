@@ -43,5 +43,9 @@ public class ClientesController {
 	public String actualizarClientesReferenciaEspecialEditar(){
 		return "/clientes/actualizarClientesReferenciaEspecialEditar";
 	}
+	@RequestMapping(value="/mnucliresi/crear/")
+	public String actualizarClientesReferenciaEspecialCrear(){
+		return "/clientes/actualizarClientesReferenciaEspecialCrear";
+	}
 
 }
