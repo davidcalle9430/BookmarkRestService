@@ -34,5 +34,14 @@ public class ClientesController {
 	public String clientesReferenciaEspecialEditar(){
 		return "/clientes/clientesReferenciaEspecialEditar";
 	}
+	@RequestMapping(value="/mnucliresi/")
+	public String actualizarClientesReferenciaEspecial(){
+		return "/clientes/actualizarClientesReferenciaEspecial";
+	}
+	
+	@RequestMapping(value="/mnucliresi/editar/")
+	public String actualizarClientesReferenciaEspecialEditar(){
+		return "/clientes/actualizarClientesReferenciaEspecialEditar";
+	}
 
 }

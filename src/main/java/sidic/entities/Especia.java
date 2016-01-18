@@ -33,7 +33,7 @@ public class Especia implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(nullable = false)
-    private Long articulo;
+    private Long articulo; // el anterior ingeniero no hizo una relación directa en la bd
     @Column(length = 35)
     private String referencia;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation

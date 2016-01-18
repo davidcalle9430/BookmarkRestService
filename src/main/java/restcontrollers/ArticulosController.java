@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import resultclasses.ArticuloGenero;
 import resultclasses.CardexFactura;
+import resultclasses.ClienteArticuloEspecial;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import repositories.ArticuloRepository;
 import sidic.entities.Articulo;;
+/**
+ * Clase que se encarga de extnder la funcionalidad de spring data rest en la entidad artìculo
+ * consiste en queries más complejas que encesitan de  clases  resultado intermedias para poder ser retornadas como un JSON
+ * @author david
+ *
+ */
 @RestController
 public class ArticulosController {
 	@RequestMapping(value="/prueba/")
@@ -39,6 +46,31 @@ public class ArticulosController {
 		}
 		return cfList;
 	}
+	
+	
+	
+	@RequestMapping(value="/api/articulos/search/especiales")
+	public List<ClienteArticuloEspecial> darClientesEspeciales(){
+		Query query = em.createQuery("select e.codigo, c.razsoc, e.articulo, e.referencia, e.precio"
+				+ "					  from Articulo a, Especia e, Clientes c"
+				+ "					  where a.codigo = e.articulo and e.codigo = c.codigo"
+				+ "                   order by e.codigo, e.articulo");
+		@SuppressWarnings("unchecked")
+		List<Object[]> resultado = query.getResultList();
+		List<ClienteArticuloEspecial> retorno = new ArrayList<>();
+		for (Object[] fila : resultado) {
+			ClienteArticuloEspecial cas = new ClienteArticuloEspecial();
+			cas.setArticulo((Long) ((fila[2] != null)? fila[2]: null));
+			cas.setCodigo((Long) ((fila[0] != null)? fila[2]: null));
+			cas.setPrecio((Double) ((fila[4] != null)? fila[4]: null));
+			cas.setRazonSocial((String)  ((fila[1] != null)? fila[1]: null));
+			cas.setReferencia((String)((fila[3] != null)? fila[3]: null));
+			retorno.add(cas);
+		}
+		return retorno;
+	}
+	
+	
 	@RequestMapping(value="/api/articulos/")
 	public Page<Articulo> todosLosArticulos(@RequestParam(defaultValue="0") Integer pagina){
 		Page<Articulo> pages = articuloRepository.findAll(new PageRequest(pagina, 30));

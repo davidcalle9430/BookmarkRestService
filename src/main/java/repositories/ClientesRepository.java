@@ -22,4 +22,6 @@ public interface ClientesRepository extends JpaRepository<Clientes, Long> {
 	public Integer encontrarSiguienteIdOcasional(@Param("max")Long max);
 	@RestResource()
 	public Optional<List<Clientes>> findAllByCc(@Param("cc")String cc);
+	@RestResource(path = "especiales", rel = "especiales")
+	public List<Clientes> findAllByCamref(@Param("camref")String camref);
 }

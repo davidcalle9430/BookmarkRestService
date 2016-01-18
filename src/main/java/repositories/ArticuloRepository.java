@@ -11,6 +11,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import sidic.entities.Articulo;
 @RepositoryRestResource( path="/articulos" , itemResourceRel = "articulo", collectionResourceRel ="articulos") 
 public interface ArticuloRepository extends JpaRepository<Articulo, Long>{
+		
 	@RestResource
 	@Query("select max(codigo) from Articulo a where a.codigo >= ?1 and a.codigo < ?2")
 	public Long darSiguienteCodigoCategoria(@Param("min")Long min,@Param("max") Long max);
@@ -18,4 +19,8 @@ public interface ArticuloRepository extends JpaRepository<Articulo, Long>{
 	List<Object[]> darArticulosGenero();
 	@RestResource
 	public Articulo findOneBycodigo(@Param("codigo")Long codigo);
+	
+	@Query("select a from Articulo a, Lineas l where ((a.codigo / 1000) between l.rango1 and l.rango2) and l.permiterefespecial='S'")
+	@RestResource
+	public List<Articulo> especialesLinea();
 }
