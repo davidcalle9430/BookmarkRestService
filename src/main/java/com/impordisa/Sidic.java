@@ -178,6 +178,7 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 				try {
 					usuario = usuarioRepository.findOneByUsuario(username);
 				} catch (Exception e) {
+					e.printStackTrace();
 					throw new UsernameNotFoundException("El usuario " + username + " No existe");
 				}
 				if (usuario != null) {

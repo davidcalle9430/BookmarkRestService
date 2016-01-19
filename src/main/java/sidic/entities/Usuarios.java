@@ -13,7 +13,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
@@ -42,7 +41,7 @@ public class Usuarios implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(nullable = false,name="Empresa")
-    private int empresa;
+    private Integer empresa;
     @Id
     @Basic(optional = false)
     @Column(nullable = false, length = 50)
@@ -74,16 +73,16 @@ public class Usuarios implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<Menus> menusList;
     @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "usuarios")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<Niveles> nivelesList;
 
     public Usuarios() {
     }
-    public int getEmpresa() {
+    public Integer getEmpresa() {
   		return empresa;
   	}
 
-  	public void setEmpresa(int empresa) {
+  	public void setEmpresa(Integer empresa) {
   		this.empresa = empresa;
   	}
 

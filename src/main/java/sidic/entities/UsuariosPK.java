@@ -23,7 +23,7 @@ public class UsuariosPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Basic(optional = false)
     @Column(nullable = false,name="Empresa")
-    private int empresa;
+    private Integer empresa;
     @Basic(optional = false)
     @Column(nullable = false, length = 50)
     private String usuario;
@@ -31,7 +31,7 @@ public class UsuariosPK implements Serializable {
     public UsuariosPK() {
     }
 
-    public UsuariosPK(int empresa, String usuario) {
+    public UsuariosPK(Integer empresa, String usuario) {
         this.empresa = empresa;
         this.usuario = usuario;
     }
@@ -40,7 +40,7 @@ public class UsuariosPK implements Serializable {
         return empresa;
     }
 
-    public void setEmpresa(int empresa) {
+    public void setEmpresa(Integer empresa) {
         this.empresa = empresa;
     }
 
@@ -52,31 +52,44 @@ public class UsuariosPK implements Serializable {
         this.usuario = usuario;
     }
 
+ 
+    
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (int) empresa;
-        hash += (usuario != null ? usuario.hashCode() : 0);
-        return hash;
-    }
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((empresa == null) ? 0 : empresa.hashCode());
+		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
+		System.out.println( "hash code " + result);
+		return result;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UsuariosPK)) {
-            return false;
-        }
-        UsuariosPK other = (UsuariosPK) object;
-        if (this.empresa != other.empresa) {
-            return false;
-        }
-        if ((this.usuario == null && other.usuario != null) || (this.usuario != null && !this.usuario.equals(other.usuario))) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		System.out.println("eguals");
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UsuariosPK other = (UsuariosPK) obj;
+		if (empresa == null) {
+			if (other.empresa != null)
+				return false;
+		} else if (!empresa.equals(other.empresa))
+			return false;
+		
+		
+		if (usuario == null) {
+			if (other.usuario != null)
+				return false;
+		} else if (!usuario.equals(other.usuario))
+			return false;
+		return true;
+	}
 
-    @Override
+	@Override
     public String toString() {
         return "sidic.entities.UsuariosPK[ empresa=" + empresa + ", usuario=" + usuario + " ]";
     }

@@ -2,6 +2,9 @@ package restcontrollers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -70,7 +73,8 @@ public class UsuariosController {
 	public Usuarios darInformacionUsuario(){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
-		return usuarioRepository.findOneByUsuario(username);
+		Usuarios  u = usuarioRepository.findOneByUsuario(username);
+		return  u;
 	}
 	
 	/**
@@ -79,22 +83,22 @@ public class UsuariosController {
 	 * @param usuario
 	 * @return código de estatus dependiendo del camino de ejecución
 	 */
+
 	@RequestMapping(value="/api/seguridad/autenticacion/", produces="application/json", method = RequestMethod.POST)
-	public ResponseEntity<?> cambiarContrasenia(@RequestBody Usuarios usuario){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	public ResponseEntity<?> cambiarContrasenia(@RequestBody Usuarios usuario, HttpServletRequest request, HttpSession httpSession){
+		/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
 		Usuarios actual = usuarioRepository.findOneByUsuario(username);
-		actual.setPassword(usuario.getPassword());
 		if(!actual.getUsuario().equals(usuario.getUsuario())){
 			return new ResponseEntity<Usuarios>(HttpStatus.UNAUTHORIZED);
-		}
+		}*/
 		try{
-			usuarioRepository.save(usuario);
+			usuarioRepository.actualizarContrasena(usuario.getUsuario(), usuario.getPassword());
 		}catch(Exception e){
 			e.printStackTrace();
 			return new ResponseEntity<Usuarios>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+		httpSession.invalidate();
 		return new ResponseEntity<Usuarios>(HttpStatus.ACCEPTED);
 	}
 	
