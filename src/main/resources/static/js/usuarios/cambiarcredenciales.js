@@ -2,6 +2,7 @@ var usuario = null;
 
 function exito() {
 	alert("contraseña actualizada correctamente");
+	window.location = "/";
 }
 function error() {
 	alert("Error al actualizar la contraseña");

@@ -2,6 +2,8 @@ package repositories;
 
 
 
+import java.util.Date;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,6 +21,6 @@ public interface UsuarioRepository extends JpaRepository<Usuarios, UsuariosPK>{
 	public Usuarios findOneByUsuario(@Param("usuario") String usuario);
 	@Transactional
 	@Modifying
-	@Query("update Usuarios set password=?2 where usuario=?1")
-	public int actualizarContrasena(String Usuario, String contra);
+	@Query("update Usuarios set password=?2, fechapassword =?3 where usuario=?1")
+	public int actualizarContrasena(String Usuario, String contra, Date fecha);
 }

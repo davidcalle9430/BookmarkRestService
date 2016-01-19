@@ -1,6 +1,8 @@
 package com.impordisa;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -309,20 +311,46 @@ class RequestFilter extends OncePerRequestFilter {
 		}
 		return false;
 	}
+	public boolean necesitaCambioPassword(SecurityContextImpl sci){
+		if (sci != null) {
+			UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
+			Usuarios elected = usuarioRepository.findOneByUsuario(cud.getUsername());
+			SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+			LocalDate fechaPassword = LocalDate.parse( DATE_FORMAT.format(elected.getFechapassword()) );
+			fechaPassword = fechaPassword.plusDays(new Long(elected.getMaxdias()));
+			LocalDate fechaActual = LocalDate.now();
+			if(fechaActual.isAfter(fechaPassword)){
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		String URI = request.getRequestURI();
-		if(URI.equals("/") || URI.equals("/inicio/") || URI.equals("/login") || URI.equals("/jm/")){ // No se logrò congirar la ruta / por lo que se redirige a /inicio/
+		String nombreMenu = "";
+		if(URI.split("/").length > 1){ // se valida que el uri no sea origen /
+			nombreMenu = URI.split("/")[1];
+		}
+		boolean cambio = necesitaCambioPassword(sci);
+		 if(cambio){
+			 if(!URI.equals("/") && !URI.equals("/logout/") && !URI.equals("/cambiarcredenciales/") && !nombreMenu.equals("static") && !nombreMenu.equals("api") ){ //urls que no se ven afectadas
+				 response.sendRedirect("/cambiarcredenciales/");
+				 filterChain.doFilter(request, response); // se redirige a credenciales porque necesita cambiar la contrasenia
+				 return;
+			 }	 
+		 }
+		if(URI.equals("/") || URI.equals("/inicio/") || URI.equals("/login") || URI.equals("/jm/")){ // No se logrò confugirar la ruta / por lo que se redirige a /inicio/
 			if(URI.equals("/")){
 				response.sendRedirect("/inicio/");
 			}
 			filterChain.doFilter(request, response);
 			return;
 		}
-		String nombreMenu = URI.split("/")[1];
+		
 		boolean esApi = nombreMenu.equals("api") || nombreMenu.equals("static") || nombreMenu.equals("jm"); // se busca que no haga request a archivos estàticos ni al api
 		if (!esApi) {
 			if (sci != null) {

@@ -1,5 +1,6 @@
 package restcontrollers;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -93,7 +94,8 @@ public class UsuariosController {
 			return new ResponseEntity<Usuarios>(HttpStatus.UNAUTHORIZED);
 		}*/
 		try{
-			usuarioRepository.actualizarContrasena(usuario.getUsuario(), usuario.getPassword());
+			Date fecha = new Date();
+			usuarioRepository.actualizarContrasena(usuario.getUsuario(), usuario.getPassword(), fecha );
 		}catch(Exception e){
 			e.printStackTrace();
 			return new ResponseEntity<Usuarios>(HttpStatus.INTERNAL_SERVER_ERROR);
