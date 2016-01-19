@@ -47,17 +47,36 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import converters.ClassFinder;
 import converters.EspeciaConverter;
 import converters.UsuarioPKConverter;
 import repositories.MenusRepository;
 import repositories.RolesRepository;
 import repositories.RolesYMenusRepository;
 import repositories.UsuarioRepository;
+import sidic.entities.Articulo;
+import sidic.entities.Cardex;
+import sidic.entities.Cardexi;
+import sidic.entities.Cartera;
+import sidic.entities.Ciudades;
+import sidic.entities.Clientes;
+import sidic.entities.Correr;
+import sidic.entities.Empresas;
+import sidic.entities.Especia;
+import sidic.entities.Genero;
+import sidic.entities.Importaciones;
+import sidic.entities.Lineas;
 import sidic.entities.Menus;
+import sidic.entities.Nfact;
+import sidic.entities.Niveles;
+import sidic.entities.Opciones;
+import sidic.entities.Plazos;
 import sidic.entities.Rolessss;
 import sidic.entities.Rolesymenus;
+import sidic.entities.TextosFacturas;
 import sidic.entities.Usuarios;
+import sidic.entities.Vendedor;
+import sidic.entities.VentasseguimientoOrg;
+import sidic.entities.Zonas;
 /**
  * Clase encargade de arrancar la aplicación haciendo un escaneo de los
  * componentes que necesita para la configuración
@@ -218,10 +237,30 @@ class CustomRestMvcConfiguration {
 			@Override
 			public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 				config.setBasePath("/api");
-				List<Class<?>> classes = ClassFinder.find("sidic.entities");
-				for (Class<?> class1 : classes) {
-					config.exposeIdsFor(class1);
-				}
+				config.exposeIdsFor(Articulo.class);
+				config.exposeIdsFor(Cardexi.class);
+				config.exposeIdsFor(Cardex.class);
+				config.exposeIdsFor(Cartera.class);
+				config.exposeIdsFor(Ciudades.class);
+				config.exposeIdsFor(Clientes.class);
+				config.exposeIdsFor(Correr.class);
+				config.exposeIdsFor(Empresas.class);
+				config.exposeIdsFor(Especia.class);
+				config.exposeIdsFor(Genero.class);
+				config.exposeIdsFor(Importaciones.class);
+				config.exposeIdsFor(Lineas.class);
+				config.exposeIdsFor(Menus.class);
+				config.exposeIdsFor(Nfact.class);
+				config.exposeIdsFor(Niveles.class);
+				config.exposeIdsFor(Opciones.class);
+				config.exposeIdsFor(Plazos.class);
+				config.exposeIdsFor(Rolessss.class);
+				config.exposeIdsFor(Rolesymenus.class);
+				config.exposeIdsFor(TextosFacturas.class);
+			    config.exposeIdsFor(Usuarios.class);
+			    config.exposeIdsFor(Vendedor.class);
+			    config.exposeIdsFor(VentasseguimientoOrg.class);
+			    config.exposeIdsFor(Zonas.class);
 			}
 
 			@Override

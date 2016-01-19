@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form">
+	<nav th:replace="nav :: nav"></nav>
+	<h1 style="color: black">Cambiar Contrase&ntilde;a</h1>
+	<form onkeypress="return event.keyCode != 13;">
+		<div class="row">
+			<div class="large-12 columns">
+				<label>Nombre de usuario <input id="user" name="usuario" type="text"  readonly="readonly"/>
+				</label>
+			</div>
+			<div class="large-12 columns">
+				<label>Contrase&ntilde;a Actual<input name="password" id="password" type="password" required="required" /></label>
+			</div>
+			<div class="large-12 columns">
+				<label>Nueva Contrase&ntilde;a<input  name="nvacontra" id="nvacontra" type="password" /></label>
+			</div>
+			<div class="large-12 columns">
+				<label>Repetir Nueva Contrase&ntilde;a <input name="nvacontra1"  id="nvacontra1" type="password" required="required"/>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="">
+				<button type="submit" class="button large-3 submit" style="float:right">Cambiar</button>
+			</div>
+		</div>
+	</form>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/usuarios/cambiarcredenciales.js"></script>
+</body>
+</html>
