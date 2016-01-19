@@ -9,17 +9,17 @@ public class LineasController {
 	@RequestMapping(value="/mnuactlajm/")
 	public String listarLineas()
 	{
-		return "/lineas/lineas";
+		return "lineas/lineas";
 	}
 	
 	@RequestMapping(value="/mnuactlajm/editar/")
 	public String editarLinea(){
-		return "/lineas/editarLinea";
+		return "lineas/editarLinea";
 	}
 	
 	@RequestMapping(value="/mnuactlajm/agregar/")
 	public String agregarLinea(){
-		return "/lineas/editarLinea";
+		return "lineas/editarLinea";
 	}
 }
 

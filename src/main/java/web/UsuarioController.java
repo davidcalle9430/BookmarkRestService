@@ -32,6 +32,6 @@ public class UsuarioController {
 	
 	@RequestMapping(value="/cambiarcredenciales/")
 	public String cambiarCredenciales(){
-		return "/usuarios/cambiarcredenciales";
+		return "usuarios/cambiarcredenciales";
 	}
 }

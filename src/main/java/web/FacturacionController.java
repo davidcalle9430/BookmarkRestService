@@ -8,11 +8,11 @@ public class FacturacionController {
 
 	@RequestMapping(value="/mnufaci/")
 	public String crearFactura(){
-		return "/facturas/crearfactura";
+		return "facturas/crearfactura";
 	}
 	@RequestMapping(value = "/mnuanufi/")
 	public String anularFactura(){
-		return "/facturas/anularfactura";
+		return "facturas/anularfactura";
 	}
 }
 	

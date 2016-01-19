@@ -9,7 +9,7 @@ public class ComprasController {
 	@RequestMapping(value="/mnucomjm/")
 	public String agregarCompra()
 	{
-		return "/compras/agregarCompra";
+		return "compras/agregarCompra";
 	}
 	
 	

@@ -7,33 +7,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class InventarioController {
 	@RequestMapping(value="/mnuajcandcjm/")
 	public String ajustarCantidadesCodigo(){
-		return "/inventario/ajustarcantidadescodigo";
+		return "inventario/ajustarcantidadescodigo";
 	}
 	
 	@RequestMapping(value="/mnuajupi/")
 	public String ajustarPreciosCodigo(){
-		return "/inventario/ajustarPreciosCodigo";
+		return "inventario/ajustarPreciosCodigo";
 	}
 	
 	
    @RequestMapping(value="/mnuajucsi/")
    public String ajustarCantidadSecuencial(){
-	   return "/inventario/ajustarCantidadSecuencial";
+	   return "inventario/ajustarCantidadSecuencial";
    }
    
    @RequestMapping(value="/mnuajucsi/editar/")
    public String ajustarCantidadSecuencialEditar(){
-	   return "/inventario/ajustarCantidadSecuencialEditar";
+	   return "inventario/ajustarCantidadSecuencialEditar";
    }
    
    @RequestMapping(value="/mnuajupsi/")
    public String ajustarPreciosSecuencial(){
-	   return "/inventario/ajustarpreciossecuencial";
+	   return "inventario/ajustarpreciossecuencial";
    }
    
    @RequestMapping(value="/mnuactpjm/")
    public String actualizarPorcentajes(){
-	   return "/inventario/actualizarPorcentajes";
+	   return "inventario/actualizarPorcentajes";
    }
 }
 

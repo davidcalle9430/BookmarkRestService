@@ -15,37 +15,37 @@ public class ClientesController {
 
 	@RequestMapping(value="/mnuclijm/", method = RequestMethod.GET)
 	public String darClientes(){
-		return "/clientes/clientes";
+		return "clientes/clientes";
 	}
 	@RequestMapping(value="/mnuclijm/crear/")
 	public String crearCliente(){
-		return "/clientes/nuevocliente";
+		return "clientes/nuevocliente";
 	}
 	@RequestMapping(value="/mnuclijm/editar/")
 	public String eliminarCliente(){
-		return "/clientes/editarcliente";
+		return "clientes/editarcliente";
 	}
 	
 	@RequestMapping(value="/mnuclirei/")
 	public String clientesReferenciaEspecial(){
-		return "/clientes/clientesReferenciaEspecial";
+		return "clientes/clientesReferenciaEspecial";
 	}
 	@RequestMapping(value="/mnuclirei/editar/")
 	public String clientesReferenciaEspecialEditar(){
-		return "/clientes/clientesReferenciaEspecialEditar";
+		return "clientes/clientesReferenciaEspecialEditar";
 	}
 	@RequestMapping(value="/mnucliresi/")
 	public String actualizarClientesReferenciaEspecial(){
-		return "/clientes/actualizarClientesReferenciaEspecial";
+		return "clientes/actualizarClientesReferenciaEspecial";
 	}
 	
 	@RequestMapping(value="/mnucliresi/editar/")
 	public String actualizarClientesReferenciaEspecialEditar(){
-		return "/clientes/actualizarClientesReferenciaEspecialEditar";
+		return "clientes/actualizarClientesReferenciaEspecialEditar";
 	}
 	@RequestMapping(value="/mnucliresi/crear/")
 	public String actualizarClientesReferenciaEspecialCrear(){
-		return "/clientes/actualizarClientesReferenciaEspecialCrear";
+		return "clientes/actualizarClientesReferenciaEspecialCrear";
 	}
 
 }
