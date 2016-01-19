@@ -29,4 +29,9 @@ public class UsuarioController {
 	public String editarUsuario(){
 		return "vistaeditarusuario";
 	}
+	
+	@RequestMapping(value="/cambiarcredenciales/")
+	public String cambiarCredenciales(){
+		return "/usuarios/cambiarcredenciales";
+	}
 }
