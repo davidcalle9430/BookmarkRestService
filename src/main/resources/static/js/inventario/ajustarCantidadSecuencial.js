@@ -1,7 +1,10 @@
 var pagina = 0;
 var alFinal = true;
+
 /**
- * funciòn que se encarga de cargar los datos del request ajax
+ * Se encarga de cargar los datos de cada artículo del request ajax en una tabla HTML.
+ * @paramas articulos: Los articulos a cargar.
+ * 
  */
 var cargarNombres = function(articulos) {
 	alFinal = false;
@@ -21,14 +24,16 @@ var cargarNombres = function(articulos) {
 	pagina++;
 }
 
-
+/**
+ * Se encarga de redirigir a la vista para editar el Artículo seleccionado.
+ */
 var clicFila = function(){
 	var hijos = $(this).children();
 	window.location = "editar/?codigo="+hijos[0].innerHTML;
 }
 
 /**
- * Función encargada de crear los encabezados de las tablas
+ * Función encargada de crear los encabezados de la tabla.
  */
 function crearEncabezados() {
 	// codigo nombre ingles, nombre español, tipo, con iva
@@ -40,16 +45,18 @@ function crearEncabezados() {
 	tr.append(thCodigo);
 	tr.append(thNombre);
 	tr.append(thCantDisp);
+	
 	tabla.append(tr);
 }
 
 
 /**
- * funciòn encarga de cargar una nueva pàgina de la tabla
+ * Función encargdaa de cargar una nueva página de ariculos en la tabla.
  */
 function agregarFila() {
 	getForObject({page : pagina}, "/api/generos", cargarNombres);
 }
+
 $(document).ready(function(){
 	crearEncabezados();
 	agregarFila();

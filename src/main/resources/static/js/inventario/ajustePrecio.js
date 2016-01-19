@@ -1,8 +1,22 @@
+/**
+ * Mapa donde se guardan los artículos que el usuario desea actualizar.
+ * Llave: Código del artículo.
+ * Valor: Objeto artículo
+ * */
 var cambiados = new Object();
 
 $(document).ready(
 function() 
 { 
+	iniciarFormulario();
+});
+
+/**
+ * Se encarga de inicar lo compnentes del formualrio y revisar si llega el código
+ * de algún artculo en la URL.
+ * */
+function iniciarFormulario()
+{
 	obtenerFilaSelec();
 	var getCodigo = get("codigo");
 	if( getCodigo != null && getCodigo != "")
@@ -14,13 +28,46 @@ function()
 		$("#botAgregaFila").attr("style","display:none");	
 		obtenerAtributosArticulo(trSelec);
 	}
-	$("form").submit(guardarCambios);
-});
-
+	$("form").submit(guardarCambios);	
+}
 
 /**
- * Se encarga de obtener el objeto articulo asocaido al codigo ingresado 
- * teniendo en cuenta que fila se esta modificando.
+ * Función encargada de crear una nueva fila con campos vacios.
+ * */
+function agregarFila()
+ {
+	 var nuevaFila= $("<tr>");
+	 
+	 var columnaCodigo= $("<td>");
+	 var columnaNombre= $("<td>");
+	 var columnaReferencia= $("<td>");
+	 var columnaPrecio= $("<td>");
+	 var columnaNprecio= $("<td>");
+	 
+	 var valorColumnaCodigo= $("<input>",{id:"codigo", type:"text"});
+	 var valorColumnaNombre= $("<input>",{id:"nombre", type:"text", readonly:"readonly"});
+	 var valorColumnaReferencia= $("<input>",{id:"referencia", type:"text",readonly:"readonly"});
+	 var valorColumnaPrecio= $("<input>",{id:"precio", type:"number",readonly:"readonly"});
+	 var valorColumnaNprecio= $("<input>",{id:"nPrecio", type:"number", required:"required"});
+	 
+	 columnaCodigo.append(valorColumnaCodigo);
+	 columnaNombre.append(valorColumnaNombre);
+	 columnaReferencia.append(valorColumnaReferencia);
+	 columnaPrecio.append(valorColumnaPrecio);
+	 columnaNprecio.append(valorColumnaNprecio);
+	 
+	 nuevaFila.append(columnaCodigo);
+	 nuevaFila.append(columnaNombre);
+	 nuevaFila.append(columnaReferencia);
+	 nuevaFila.append(columnaPrecio);
+	 nuevaFila.append(columnaNprecio);
+	 
+	 $("table").append(nuevaFila);
+ }
+
+/**
+ * Se encarga de capturar la fila cuya columna "Código" se esta modificando.
+ * Para así obtener el artículo que se modificará.
  * */
 function obtenerFilaSelec()
 {
@@ -32,6 +79,11 @@ function obtenerFilaSelec()
 	});
 }
 
+/**
+ * Se encarga de obtener el objeto articulo asocaido al codigo ingresado.
+ * teniendo en cuenta que fila se esta modificando.
+ * @param trSelec: Fila HTML donde se encuentra el artículo que se modificará.
+ * */
 function obtenerAtributosArticulo( trSelec)
 {
 	var codigoConFormato = $(trSelec).find("#codigo").val();
@@ -49,7 +101,7 @@ function obtenerAtributosArticulo( trSelec)
 				url : "/api/articulos/" + codigoSelec,
 				success : function(data) 
 				{
-					obtenerArticulo(data, trSelec);
+					obtenerGenero(data, trSelec);
 				},
 				error : function(data) 
 				{
@@ -70,12 +122,12 @@ function obtenerAtributosArticulo( trSelec)
 }
 
 /**
- * Se encarga de obtener el objeto género asocaido al codigo ingresado y al artículo que se esta modificando.
- * Luego autocompleta los demás atributos del artículo.
+ * Se encarga de obtener el objeto género asocaido al codigo ingresado del artículo 
+ * que se esta modificando. Luego autocompleta, en el formulario los demás atributos del artículo.
  * @param articuloSelec: Articulo seleccionado.
- * @param trSelect: Fila HTML seleccionada.
+ * @param trSelect: Fila HTML donde se encuentra el artículo que se modificará.
  * */
-function obtenerArticulo(articuloSelec, trSelect) 
+function obtenerGenero(articuloSelec, trSelect) 
 {
 	var idGenero = Math.floor(articuloSelec.codigo/1000);
 	$.ajax({
@@ -100,41 +152,11 @@ function obtenerArticulo(articuloSelec, trSelect)
 }
 
 /**
- * Función encargada de crear una nueva fila con campos vacios
- * */
-function agregarFila()
- {
-	 var nuevoTr= $("<tr>");
-	 
-	 var nuevoTdCodigo= $("<td>");
-	 var nuevoTdNombre= $("<td>");
-	 var nuevoTdReferencia= $("<td>");
-	 var nuevoTdPrecio= $("<td>");
-	 var nuevoTdNprecio= $("<td>");
-	 
-	 var nuevoInputCodigo= $("<input>",{id:"codigo", type:"text"});
-	 var nuevoInputNombre= $("<input>",{id:"nombre", type:"text", readonly:"readonly"});
-	 var nuevoInputReferencia= $("<input>",{id:"referencia", type:"text",readonly:"readonly"});
-	 var nuevoInputPrecio= $("<input>",{id:"precio", type:"number",readonly:"readonly"});
-	 var nuevoInputNprecio= $("<input>",{id:"nPrecio", type:"number", required:"required"});
-	 
-	 nuevoTdCodigo.append(nuevoInputCodigo);
-	 nuevoTdNombre.append(nuevoInputNombre);
-	 nuevoTdReferencia.append(nuevoInputReferencia);
-	 nuevoTdPrecio.append(nuevoInputPrecio);
-	 nuevoTdNprecio.append(nuevoInputNprecio);
-	 
-	 nuevoTr.append(nuevoTdCodigo);
-	 nuevoTr.append(nuevoTdNombre);
-	 nuevoTr.append(nuevoTdReferencia);
-	 nuevoTr.append(nuevoTdPrecio);
-	 nuevoTr.append(nuevoTdNprecio);
-	 
-	 $("table").append(nuevoTr);
- }
-
-/**
- * Función encargada de actualizar las cantidades de cada articulo modificado
+ * Función encargada de recorrer la tabla que contiene los artículos a los
+ * que el usuario ha decidio cambiarles el precio, para luego delegar la función
+ * de actualizarlos en la base de datos.
+ * @param ev: Evento, asociado al clic del ratón, que se dispara cuando el 
+ * 			  usuario decide persistir los cambios hechos.
  * */
 function guardarCambios(ev)
 {		
@@ -158,7 +180,11 @@ function guardarCambios(ev)
 }
 
 /**
- * Función encargada de modificar cada articulo en la base de datos.
+ * Función encargada de modificar el precio de un artículo en la base de datos.
+ * @param i: Índice de la fila donde se encuentra el artículo a modificiar. Sirve para controlar 
+ * 			 que la fila en @tr que se recibe no sea el encabezado de la tabla.
+ * @param tr: Fila HTML donde se encuentra el artículo al que se le actualizará, 
+ * 			  en la base de datos, el precio.
  * */
 function actualizarArticulo( i, tr )
 {

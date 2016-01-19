@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1 style="color: black">Activaci&oacute;n De L&iacute;nea</h1>
+	<form onkeypress="return event.keyCode != 13;">
+		<div class="row">
+			<div class="large-4 columns">
+				<label>L&iacute;nea <input id="linea" type="number" name="linea"/>
+				</label>
+			</div>
+			<div class="large-4 columns">
+				<label>Rango 1 
+					<input id="rango1" type="number" name="rango1" required="required" /></label>
+			</div>
+			<div class="large-4 columns">
+				<label>Rango 2 
+					<input id="rango2" type="number" name="rango2" required="required" /></label>
+			</div>
+			<div class="large-4 columns">
+				<label>Estado 
+					<input id="estado" type="text" required="required" name="estado" pattern="a|A|d|D"/></label>
+			</div>
+			<div class="large-4 columns">
+				<label>Descripci&oacute;n 
+					<input id="descp" type="text" required="required" name="descp" />
+				</label>
+			</div>
+			<div class="large-4 columns">
+				<label>Permite Referencia Especial 
+					<input id="refEspecial" type="text" name="refEspecial"	pattern="n|N|s|S" required="required" />
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-4 columns">
+				<label>Estado: A = Activar
+				</label>
+				<label>Estado: D = Desactivar
+				</label>
+			</div>
+			<div class="large-4 columns">
+				<label>Permte Referencia Espscial:  S/N
+				</label>
+			</div>
+			<div class="">
+				<button type="submit" class="button large-3 submit"
+					style="float: right">Guardar cambios</button>
+			</div>
+		</div>
+	</form>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/lineas/editarLinea.js"></script>
+</body>
+</html>
