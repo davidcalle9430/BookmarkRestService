@@ -29,3 +29,7 @@ where a.codigo = cardex.codigo
 	and ndoc = 438
 	and str_to_date('2002-01-03', '%Y-%m-%d')
 order by cardex.consec;
+
+ALTER TABLE importaciones 
+CHANGE COLUMN consec consec 
+int(10) NOT NULL AUTO_INCREMENT;

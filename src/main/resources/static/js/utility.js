@@ -192,10 +192,10 @@ function postForObject(object, url, todo, error){
 		data : JSON.stringify(object),
 	    contentType: 'application/json; charset=utf-8',
 		success : function(data){
-			todo();
+			todo(data);
 		},
 		error :function(data){
-			error();
+			error(data);
 		}
 	});
 }

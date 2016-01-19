@@ -59,7 +59,7 @@ function crearCardex( articulo, nCantidad, tr )
 	var nCardex = new Object();
 	var tipoAjuste;
 	var ajuste = nCantidad - articulo.cantdisp;
-	var doc = $(tr).find("#documento").val().toUpperCase();;
+	var doc = $(tr).find("#documento").val().toUpperCase();
 	var nDoc = $(tr).find("#ndoc").val();
 	
 	if (ajuste > 0)
@@ -147,7 +147,7 @@ function actualizarArticulo( i, tr )
 			cambiados[codidoArt].cantdisp = nCantidad;
 			putForObject(cambiados[codidoArt], "/api/generos/"+codidoArt,
 					function(data){},function(data){alert("El artículo con id "+data.codigo+" no se actualizó!!");} );
-			postForObject(nCardex, "/api/cardexi", 
+			postForObject(nCardex, "/api/cardexi/", 
 					function(data){},function(data){alert("Error al agregar un nuevo registro a la hoja Cardex!!");} );
 			actualizo = true;
 		}

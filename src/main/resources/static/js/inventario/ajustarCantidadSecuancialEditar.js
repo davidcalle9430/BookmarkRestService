@@ -37,7 +37,7 @@ $(document).ready(function(){
 		if(cardexi.ajuste < 0){
 			ajuste = ajuste * -1;
 		}
-		cardexi.documento = obj.documento;
+		cardexi.documento = obj.documen.totoUpperCase();
 		cardexi.ndoc = obj.ndoc;
 		cardexi.cantidad = cardexi.ajuste;
 		cardexi.saldo = obj.cantidad;
