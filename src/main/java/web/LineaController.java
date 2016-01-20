@@ -9,4 +9,12 @@ public class LineaController {
 	public String activacionLineas(){
 		return "/lineas/activacionLineas";
 	}
+	@RequestMapping(value="/mnuactlajm7/editar/")
+	public String activacionLineasEditar(){
+		return "/lineas/activacionLineasEditar";
+	}
+	@RequestMapping(value="/mnuactlajm7/nuevo/")
+	public String activacionLineasNuevo(){
+		return "/lineas/activacionLineasNuevo";
+	}
 }
