@@ -25,4 +25,13 @@ public class ZonasController {
 	public String nuevaZona(){
 		return "zonas/zonasNuevo";
 	}
+	
+	/**
+	 * metodo encargado de mostrar el formulario  de nueva zona
+	 * @return referencia el template de nueva zona
+	 */
+	@RequestMapping(value="/mnuactzonjm/editar/")
+	public String editarZona(){
+		return "zonas/zonasEditar";
+	}
 }
