@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+	<title>Activar líneas (editar)</title>
+	<style>
+		tr:hover {
+			background-color: #ffff78;
+		}
+	</style>
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1 style="color: black;"> Activación de líneas </h1>
+	<form>
+		<div class="row">
+		    <div class="large-12 columns">
+		      <label>Línea
+		        <input type="text" id="linea" placeholder="Línea" />
+		      </label>
+		    </div>
+		    <div class="large-6 columns">
+		      <label>Rango 1
+		        <input type="text" id="rango1" placeholder="Rango 1" />
+		      </label>
+		    </div>
+		    <div class="large-6 columns">
+		      <label>Rango 2
+		        <input type="text" id="rango2" placeholder="Rango 2" />
+		      </label>
+		    </div>
+		    <div class="large-6 columns">
+		      <label>Estado</label>
+		      <input type="radio" name="estado" value="activado" id="estadoActivar"/><label for="estadoActivar">Activado</label>
+		      <input type="radio" name="estado" value="desactivado" id="estadoDesactivar"/><label for="estadoDesactivar">Desactivado</label>
+		    </div>
+		    <div class="large-6 columns">
+		      <label>Permite ref especial</label>
+		      <input type="radio" name="permiteRefEspecial" value="si" id="presi"/><label for="presi">Sí</label>
+		      <input type="radio" name="permiteRefEspecial" value="no" id="preno"/><label for="preno">No</label>
+		    </div>
+		    <div class="large-12 columns">
+			<label>Descripción
+			  <textarea id="descripcion" placeholder="Descripción"></textarea>
+			</label>
+    	</div>
+		 </div>
+	</form>
+	<div class="row">
+		<div class="large-2 large-offset-9 columns">
+		  <a id="guardar-cambios" class="button" style="width: 100%;">Guardar cambios</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-2 large-offset-9 columns">
+		  <a id="eliminar" class="button alert" style="width: 100%;">Eliminar elemento</a>
+		</div>
+	</div>
+   	<footer th:replace="footer :: footer"></footer>
+   	<script src="/static/js/lineas/activacionLineasEditar.js"></script>
+</body>
+</html>

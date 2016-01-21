@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+	<title>Actualizar porcentajes</title>
+	<style>
+		tr:hover {
+			background-color: #ffff78;
+		}
+	</style>
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1 style="color: black;"> Activación de líneas </h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Linea</th>
+				<th>Rango 1</th>
+				<th>Rango 2</th>
+				<th>Estado</th>
+				<th>Descripción</th>
+				<th>Permite ref especial</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	<div class="row">
+		<div class="large-2 large-offset-9 columns">
+		  <a class="button anadir-fila" style="width: 100%;">Agregar linea</a>
+		</div>
+	</div>
+   	<footer th:replace="footer :: footer"></footer>
+   	<script src="/static/js/lineas/activacionLineas.js"></script>
+</body>
+</html>
