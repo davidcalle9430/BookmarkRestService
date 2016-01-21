@@ -30,7 +30,7 @@ public class UsuarioController {
 		return "vistaeditarusuario";
 	}
 	
-	@RequestMapping(value="/cambiarcredenciales/")
+	@RequestMapping(value="/mnucampass/")
 	public String cambiarCredenciales(){
 		return "usuarios/cambiarcredenciales";
 	}

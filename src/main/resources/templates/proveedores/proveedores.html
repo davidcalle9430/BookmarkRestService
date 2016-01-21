@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+	<style>
+		td:hover{
+			background-color: #ffff78;
+		}
+	</style>
+</head>
+
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<table  id="lineas">
+	<thead>
+	<tr>
+		<th style="text-align:center">Procedencia</th>
+		<th  style="text-align:center">Referencias</th>
+	</tr>
+	</thead>
+		
+	</table>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/proveedores/proveedores.js" type="text/javascript"></script>
+	  <script>
+    		$(document).foundation();
+  	  </script>
+</body>
+</html>

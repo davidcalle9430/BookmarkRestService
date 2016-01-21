@@ -23,4 +23,5 @@ public interface ArticuloRepository extends JpaRepository<Articulo, Long>{
 	@Query("select a from Articulo a, Lineas l where ((a.codigo / 1000) between l.rango1 and l.rango2) and l.permiterefespecial='S'")
 	@RestResource
 	public List<Articulo> especialesLinea();
+	
 }
