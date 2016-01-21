@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1 style="color: black; margin-top:0;">Inicializar N&uacute;mero de Secuencia Facturas</h1>
+	<form onkeypress="return event.keyCode != 13;">
+		<div class="row">
+			<div class="large-12 columns">
+				<label>Numero Inicial de las facturas Imporisa <input id="zona" type="text" name="zona" onchange="verificar()"
+				 required="required" />
+				</label>
+			</div>
+			<div class="large-12 columns">
+				<label>Clave para entrar al men&uacute; JMQ <input id="nombre" type="text" name="nombre"
+					required="required"  /></label>
+			</div>
+			<div class="large-12 columns">
+				<label>Procentaje de IVA<input id="nombre" type="text" name="nombre"
+					required="required"  /></label>
+			</div>
+			<div class="large-12 columns">
+				<label>Cuenta 1 impresi&oacute;n factura <input id="nombre" type="text" name="nombre"
+					required="required"  /></label>
+			</div>
+			
+			<div class="large-12 columns">
+				<label>Cuenta 2 impresi&oacute;n factur <input id="nombre" type="text" name="nombre"
+					required="required"  /></label>
+			</div>
+			<div class="large-12 columns">
+				<label>Recibos Caja<input id="nombre" type="text" name="nombre"
+					required="required"  /></label>
+			</div>
+			<div class="large-12 columns">
+				<label>Notas Cre&eacute;dito <input id="nombre" type="text" name="nombre"
+					required="required"  /></label>
+			</div>
+			<div class="large-12 columns">
+				<label>Notas de&eacute;bito <input id="nombre" type="text" name="nombre"
+					required="required"  /></label>
+			</div>
+			
+			<div class="large-12 columns">
+				<label>Facturas Proveedores<input id="nombre" type="text" name="nombre"
+					required="required"  /></label>
+			</div>
+			<div class="large-12 columns">
+				<label>Nuevo Formato <input id="nombre" type="text" name="nombre"
+					required="required"  /></label>
+			</div>
+			<div class="large-12 columns">
+				<label>Fecha Seguimiento Llantas <input id="nombre" type="text" name="nombre"
+					required="required"  /></label>
+			</div>
+			<div class="large-12 columns">
+				<label>Factura en Proceso <input id="nombre" type="text" name="nombre"
+					required="required"  /></label>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="">
+				<button type="submit" class="button large-3 submit"
+					style="float: right">Nueva</button>
+			</div>
+		</div>
+	</form>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/parametros/parametros.js"></script>
+</body>
+</html>
