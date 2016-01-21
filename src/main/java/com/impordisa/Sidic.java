@@ -282,7 +282,7 @@ class CustomRestMvcConfiguration {
 /**
  *  Filtro encargado de la seguridad extra de la aplicación
  *   
- *   */
+ * */
 @Configuration
 class RequestFilter extends OncePerRequestFilter {
 	@Autowired
@@ -337,8 +337,8 @@ class RequestFilter extends OncePerRequestFilter {
 		}
 		boolean cambio = necesitaCambioPassword(sci);
 		 if(cambio){
-			 if(!URI.equals("/") && !URI.equals("/logout/") && !URI.equals("/cambiarcredenciales/") && !nombreMenu.equals("static") && !nombreMenu.equals("api") ){ //urls que no se ven afectadas
-				 response.sendRedirect("/cambiarcredenciales/");
+			 if(!URI.equals("/") && !URI.equals("/logout/") && !URI.equals("/mnucampass/") && !nombreMenu.equals("static") && !nombreMenu.equals("api") ){ //urls que no se ven afectadas
+				 response.sendRedirect("/mnucampass/");
 				 filterChain.doFilter(request, response); // se redirige a credenciales porque necesita cambiar la contrasenia
 				 return;
 			 }	 
@@ -356,7 +356,7 @@ class RequestFilter extends OncePerRequestFilter {
 			if (sci != null) {
 				UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
 				Usuarios elected = usuarioRepository.findOneByUsuario(cud.getUsername());
-				boolean permitido = false;		
+				boolean permitido = false;			
 				if (!esApi) {
 					permitido = validarPermiso(URI, elected);
 					if (!permitido) {

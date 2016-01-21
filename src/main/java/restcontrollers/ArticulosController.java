@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import resultclasses.ArticuloGenero;
 import resultclasses.CardexFactura;
 import resultclasses.ClienteArticuloEspecial;
+import resultclasses.Proveedor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,6 +30,13 @@ import sidic.entities.Articulo;;
  */
 @RestController
 public class ArticulosController {
+	
+	/**
+	 * query sin aprametros debido a errrores por los caracteres especiales
+	 * @param ndoc
+	 * @param fecha
+	 * @return
+	 */
 	@RequestMapping(value="/prueba/")
 	public List<CardexFactura> test(@RequestParam("numerodoc")Long ndoc, @RequestParam("fecha")String fecha){
 		System.out.println("si llego " + ndoc + fecha);
@@ -48,7 +56,10 @@ public class ArticulosController {
 	}
 	
 	
-	
+	/**
+	 * metodo que reetorna un json
+	 * @return la lista de objetos especiales
+	 */
 	@RequestMapping(value="/api/articulos/search/especiales")
 	public List<ClienteArticuloEspecial> darClientesEspeciales(){
 		Query query = em.createQuery("select e.codigo, c.razsoc, e.articulo, e.referencia, e.precio"
@@ -70,7 +81,11 @@ public class ArticulosController {
 		return retorno;
 	}
 	
-	
+	/**
+	 * funcíon que retorna los artoculos paginados
+	 * @param pagina
+	 * @return
+	 */
 	@RequestMapping(value="/api/articulos/")
 	public Page<Articulo> todosLosArticulos(@RequestParam(defaultValue="0") Integer pagina){
 		Page<Articulo> pages = articuloRepository.findAll(new PageRequest(pagina, 30));
@@ -90,6 +105,18 @@ public class ArticulosController {
 		}
 		return articulos;
 	}
+	
+	/**
+	 * función que retorna una lista de proveedores
+	 * @return lista de proveedores
+	 */
+	@RequestMapping(value="/api/proveedores/")
+	@SuppressWarnings("unchecked")
+	public List<Proveedor> darProveedores(){
+		Query q = em.createQuery("select new resultclasses.Proveedor( count(a) as numReg, procedenc ) from Articulo a group by a.procedenc");
+		return q.getResultList();
+	}
+	
 	@Autowired
 	private ArticuloRepository articuloRepository;
 	@PersistenceContext
