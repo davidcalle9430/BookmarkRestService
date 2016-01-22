@@ -1,5 +1,11 @@
 package resultclasses;
 
+/**
+ * Clase intenmediaria que sirve para almacenar objetos, que se envía en un request HTTP 
+ * cuando la fucnionalidad exige la actualización recurrente de varias tablas,
+ * con el fin de modificarlos en la base de datos consumiento el api.
+ * **/
+
 public class CardexFactura 
 {
 	private Long codigo;

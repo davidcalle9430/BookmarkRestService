@@ -3,7 +3,7 @@ package restcontrollers;
 
 import java.util.List;
 
-import resultclasses.Bodega;
+import resultclasses.Devolucion;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,39 +18,35 @@ import repositories.CardexiRepository;
 import repositories.GeneroRepository;
 
 /**
- * Clase que se encarga de extender la funcionalidad de spring data 
- * rest en la entidad Bodega consiste en queries más complejas que 
- * necesitan de clases  resultado intermedias para poder ser retornadas como un JSON.
+ * Clase que se encarga de extender la funcionalidad de spring data rest en la entidad Devolucion
+ * consiste en queries más complejas que necesitan de clases  resultado intermedias para poder ser retornadas como un JSON
  * @author David Suárez.
  *
  */
 
 @RestController
-public class BodegaRestController 
+public class DevolucionRestController 
 {
 	
-	@Autowired 
-	CardexiRepository controCardex;
-	
-	@Autowired 
-	GeneroRepository controGenero;
-	
+	@Autowired CardexiRepository controCardex;
+	@Autowired GeneroRepository controGenero;
 	
 	/**
-	 * Método que se encarga de recorrer una lista de @Bodega para actualizar 
+	 * Método que se encarga de recorrer una lista de @Devolucion para actualizar 
 	 * el objeto @Género asociado y agregar un nueo registro de una @Cardexi
-	 * apoyándose en el controaldor del api.
+	 * apoyándose en el controlador del api.
 	 * @param compras: Lista de bodegas que contiene el @Genero y el @Cardexi a actualizar.
 	 * @return Código de estado Http.
 	 * **/
-	@RequestMapping(value="/api/bodega/", method = RequestMethod.PUT )
-	public ResponseEntity<?> guardaEnBodega( @RequestBody List<Bodega> bodegas)
+	@RequestMapping(value="/api/devolucion/", method = RequestMethod.PUT )
+	public ResponseEntity<?> guardaDevolucion( @RequestBody List<Devolucion> devoluciones)
 	{
-		for (Bodega bodega : bodegas ) 
+		for (Devolucion devolucion : devoluciones ) 
 		{
-			controCardex.save( bodega.getCardex( ) );
-			controGenero.save( bodega.getGenero( ) );
+			controCardex.save( devolucion.getCardex( ) );
+			controGenero.save( devolucion.getGenero( ) );
 		}
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
-	}	
+	}
+	
 }

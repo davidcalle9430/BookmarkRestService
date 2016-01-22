@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  */
 @Controller
-public class ClientesController {
+public class ClientesController 
+{
 
 	@RequestMapping(value="/mnuclijm/", method = RequestMethod.GET)
 	public String darClientes(){

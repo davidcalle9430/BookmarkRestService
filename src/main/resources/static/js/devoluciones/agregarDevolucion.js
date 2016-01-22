@@ -1,10 +1,10 @@
 /**
- * Mapa donde se guardan los artículos que el usuario desea agregar a bodega.
+ * Mapa donde se guardan los artículos que el usuario desea agregar a devolucion.
  * Llave: Código del artículo.
  * Valor: Objeto artículo.
  * */
 var articulosEntabla = new Object();
-var artiBodegados = [];
+var articulosDevueltos = [];
 
 $(document).ready(
 function() 
@@ -19,7 +19,7 @@ function()
 function iniciarFormulario()
 {
 	obtenerFilaSelec();
-	$("form").submit(agregarAbodega);	
+	$("form").submit(agregarDevoluciones);	
 }
 
 /**
@@ -59,7 +59,7 @@ function agregarFila()
 
 /**
  * Se encarga de capturar la fila cuya columna "Código" se esta modificando.
- * Para así obtener el artículo que se agregarAbodegaá.
+ * Para así obtener el artículo que se devolverá.
  * */
 function obtenerFilaSelec()
 {
@@ -80,7 +80,7 @@ function obtenerFilaSelec()
 /**
  * Se encarga de obtener el objeto genero asocaido al codigo ingresado.
  * teniendo en cuenta que fila se esta modificando.
- * @param trSelec: Fila HTML donde se encuentra el artículo que se agregará a bodega.
+ * @param trSelec: Fila HTML donde se encuentra el artículo que se agregará a devoluciones.
  * */
 function obtenerAtributosArticulo( trSelec )
 {
@@ -106,27 +106,27 @@ function obtenerAtributosArticulo( trSelec )
 
 /**
  * Función encargada de recorrer la tabla que contiene los artículos a los
- * que el usuario ha decidio agregar a bodega, para luego delegar la función
+ * que el usuario ha decidio agregar a devolucion, para luego delegar la función
  * de actualizarlos en la base de datos.
  * @param ev: Evento, asociado al clic del ratón, que se dispara cuando el 
  * 			  usuario decide persistir los cambios hechos.
  * */
-function agregarAbodega(ev)
+function agregarDevoluciones(ev)
 {		
 	ev.preventDefault();
-	var agregados = 0;
+	var devueltos = 0;
 	$("table tr").each(function(i,tr){
 		if (actualizarArticulo(i, $(tr)))
 		{
-			agregados++;
+			devueltos++;
 		}
 	});
-	//console.log(artiBodegados);
+	//console.log(articulosDevueltos);
 	$.ajax
 	({
 		type : "put",
-		url : "/api/bodega/",
-		data : JSON.stringify(artiBodegados),
+		url : "/api/devolucion/",
+		data : JSON.stringify(articulosDevueltos),
 	    contentType: 'application/json; charset=utf-8',
 		success : function(data) 
 		{
@@ -134,23 +134,24 @@ function agregarAbodega(ev)
 		},
 		error : function(data) 
 		{
-			alert("El artículo con id "+data.codigo+" no se actualizó!!");
+			alert("Error al agregar las devoluciones!!!!!!");
 		}
 	});
 	
-	if ( agregados > 0 )
+	if ( articulosEntabla > 0 )
 	{
-		alert("Se han agregado exitósamente los "+agregados+" a bodega!");
+		alert("Se han egistrado exitósamente los "+devueltos+" artículos devueltos!");
 	}
 	else
 	{
-		alert("No se registró alguna adición a bodega!");
+		alert("No se registró alguna devolución!");
 	}
+	
 	location.reload();
 }
 
 /**
- * Función encargada de agregar a bodega los articulos editados.
+ * Función encargada de agregar a devolucion los articulos editados.
  * @param i: Índice de la fila donde se encuentra el artículo a modificiar. Sirve para controlar 
  * 			 que la fila en @tr que se recibe no sea el encabezado de la tabla.
  * @param tr: Fila HTML donde se encuentra el artículo al que se le actualizará, 
@@ -159,19 +160,19 @@ function agregarAbodega(ev)
 function actualizarArticulo( i, tr )
 {
 	var actualizo = false;
-	var bodega;
+	var devolucion;
 
 	if ( i > 0 )
 	{
 		var codigoArt = $(tr).find("#codigo").val();
-		var cantidadCompra = parseFloat($(tr).find("#cantidad").val());
+		var cantidadDevolucion = parseFloat($(tr).find("#cantidad").val());
 		
-		if( articulosEntabla[codigoArt] != null && cantidadCompra != 0)
+		if( articulosEntabla[codigoArt] != null && cantidadDevolucion != 0 )
 		{
-			articulosEntabla[codigoArt].cantdisp += cantidadCompra;
-			cardex = crearCardex( articulosEntabla[codigoArt], tr, cantidadCompra );	
-			bodega = { genero:articulosEntabla[codigoArt], cardex:cardex };
-			artiBodegados.push(bodega);
+			articulosEntabla[codigoArt].cantdisp += cantidadDevolucion;
+			cardex = crearCardex( articulosEntabla[codigoArt], tr, cantidadDevolucion );	
+			devolucion = { genero:articulosEntabla[codigoArt], cardex:cardex };
+			articulosDevueltos.push(devolucion);
 			actualizo = true;
 		}
 	}
@@ -185,7 +186,7 @@ function actualizarArticulo( i, tr )
  * @param tr: Fila HTML donde se encuentra el artículo al que se le actualizará, 
  * 			  en la base de datos, la cantidad.
  * */
-function crearCardex( articulo, tr, cantidadBodega )
+function crearCardex( articulo, tr, cantidadDevolucion )
 {
 	var nCardex = new Object();
 	
@@ -196,7 +197,7 @@ function crearCardex( articulo, tr, cantidadBodega )
 	nCardex.fecha = darFechaActual();
 	nCardex.tipo = "E";
 	nCardex.documento =  doc;
-	nCardex.cantidad = cantidadBodega;
+	nCardex.cantidad = cantidadDevolucion;
 	nCardex.ndoc = nDoc;
 	nCardex.saldo = articulo.cantdisp;
 		

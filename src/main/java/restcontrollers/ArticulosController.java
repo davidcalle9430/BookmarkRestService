@@ -29,7 +29,12 @@ import sidic.entities.Articulo;;
  *
  */
 @RestController
-public class ArticulosController {
+public class ArticulosController 
+{
+	@Autowired
+	private ArticuloRepository articuloRepository;
+	@PersistenceContext
+	private EntityManager em;
 	
 	/**
 	 * query sin aprametros debido a errrores por los caracteres especiales
@@ -38,13 +43,15 @@ public class ArticulosController {
 	 * @return
 	 */
 	@RequestMapping(value="/prueba/")
-	public List<CardexFactura> test(@RequestParam("numerodoc")Long ndoc, @RequestParam("fecha")String fecha){
+	public List<CardexFactura> test(@RequestParam("numerodoc")Long ndoc, @RequestParam("fecha")String fecha)
+	{
 		System.out.println("si llego " + ndoc + fecha);
 		Query query = em.createNativeQuery("select a.codigo, g.nombre, a.referencia, a.precio*cardex.cantidad as valor from articulo a, cardex, genero g where a.codigo = cardex.codigo 	and LEFT(LPAD(a.codigo,6,'0'),3) = LPAD(g.codigo,3,'0') and ndoc = "+ndoc+" and str_to_date('"+fecha+"', '%Y\\-%m\\-%d') order by cardex.consec");
 		@SuppressWarnings("unchecked")
 		List<Object[]> resultados = query.getResultList();
 		ArrayList<CardexFactura> cfList = new ArrayList<>();
-		for (Object[] objects : resultados) {
+		for (Object[] objects : resultados) 
+		{
 			CardexFactura cf = new CardexFactura();
 			cf.setCodigo(objects[0]!=null?(long)Double.parseDouble(objects[0].toString()):null);
 			cf.setNombre(objects[1]!=null?objects[1].toString():null);
@@ -61,7 +68,8 @@ public class ArticulosController {
 	 * @return la lista de objetos especiales
 	 */
 	@RequestMapping(value="/api/articulos/search/especiales")
-	public List<ClienteArticuloEspecial> darClientesEspeciales(){
+	public List<ClienteArticuloEspecial> darClientesEspeciales()
+	{
 		Query query = em.createQuery("select e.codigo, c.razsoc, e.articulo, e.referencia, e.precio"
 				+ "					  from Articulo a, Especia e, Clientes c"
 				+ "					  where a.codigo = e.articulo and e.codigo = c.codigo"
@@ -69,7 +77,8 @@ public class ArticulosController {
 		@SuppressWarnings("unchecked")
 		List<Object[]> resultado = query.getResultList();
 		List<ClienteArticuloEspecial> retorno = new ArrayList<>();
-		for (Object[] fila : resultado) {
+		for (Object[] fila : resultado) 
+		{
 			ClienteArticuloEspecial cas = new ClienteArticuloEspecial();
 			cas.setArticulo((Long) ((fila[2] != null)? fila[2]: null));
 			cas.setCodigo((Long) ((fila[0] != null)? fila[0]: null));
@@ -87,15 +96,18 @@ public class ArticulosController {
 	 * @return
 	 */
 	@RequestMapping(value="/api/articulos/")
-	public Page<Articulo> todosLosArticulos(@RequestParam(defaultValue="0") Integer pagina){
+	public Page<Articulo> todosLosArticulos(@RequestParam(defaultValue="0") Integer pagina)
+	{
 		Page<Articulo> pages = articuloRepository.findAll(new PageRequest(pagina, 30));
 		return pages;
 	}
+	
 	@RequestMapping(value="/api/articulos/search/articulosgeneros")
 	public List<ArticuloGenero> darArticulosGenero(){
 		List<Object[]> resultado = articuloRepository.darArticulosGenero();
 		ArrayList<ArticuloGenero> articulos = new ArrayList<>();
-		for (Object[] articulo : resultado) {
+		for (Object[] articulo : resultado) 
+		{
 			ArticuloGenero nuevo = new ArticuloGenero();
 			nuevo.setNombre(articulo[0] != null?   (String)articulo[0].toString(): null);
 			nuevo.setReferencia(articulo[1] != null? (String)articulo[1].toString() : null);
@@ -112,13 +124,9 @@ public class ArticulosController {
 	 */
 	@RequestMapping(value="/api/proveedores/")
 	@SuppressWarnings("unchecked")
-	public List<Proveedor> darProveedores(){
+	public List<Proveedor> darProveedores()
+	{
 		Query q = em.createQuery("select new resultclasses.Proveedor( count(a) as numReg, procedenc ) from Articulo a group by a.procedenc");
 		return q.getResultList();
 	}
-	
-	@Autowired
-	private ArticuloRepository articuloRepository;
-	@PersistenceContext
-	private EntityManager em;
 }

@@ -8,19 +8,16 @@ import sidic.entities.Genero;
  * cuando la fucnionalidad exige la actualización recurrente de varias tablas,
  * con el fin de modificarlos en la base de datos consumiento el api.
  * **/
-
-public class Bodega 
-{
+public class Devolucion {
 	
 	private Genero genero;
 	private Cardexi cardex;	
 	
-	public Bodega() 
-	{
+	public Devolucion() {
 		super();
 	}
 
-	public Bodega(Genero genero, Cardexi cardex) 
+	public Devolucion(Genero genero, Cardexi cardex) 
 	{
 		super();
 		this.genero = genero;

@@ -4,7 +4,14 @@ import sidic.entities.Articulo;
 import sidic.entities.Cardex;
 import sidic.entities.Importaciones;
 
-public class Compra {
+/**
+ * Clase intenmediaria que sirve para almacenar objetos, que se envía en un request HTTP 
+ * cuando la fucnionalidad exige la actualización recurrente de varias tablas,
+ * con el fin de modificarlos en la base de datos consumiento el api.
+ * **/
+
+public class Compra 
+{
 	
 	private Articulo articulo;
 	private Cardex cardex;
@@ -12,7 +19,8 @@ public class Compra {
 	
 	
 	
-	public Compra() {
+	public Compra() 
+	{
 		super();
 	}
 

@@ -26,14 +26,28 @@ import repositories.ImportacionesRepository;
  *
  */
 @RestController
-public class ComprasRestController {
+public class ComprasRestController 
+{
 	
-	@Autowired ArticuloRepository controArticulo;
-	@Autowired CardexRepository controCardex;
-	@Autowired ImportacionesRepository controImport;
-	@Autowired GeneroRepository controGenero;
+	@Autowired 
+	ArticuloRepository controArticulo;
+	@Autowired 
+	CardexRepository controCardex;
 	
+	@Autowired 
+	ImportacionesRepository controImport;
 	
+	@Autowired 
+	GeneroRepository controGenero;
+	
+	/**
+	 * Método que se encarga de recorrer una lista de @Compra para actualizar 
+	 * el objeto @Género y @Articulo asociado y agregar un nueo registro 
+	 * de una @Cardexi y @Importacion.
+	 * apoyándose en el controaldor del api.
+	 * @param compras: Lista de compras que contiene el @Genero y el @Cardexi a actualizar.
+	 * @return Código de estado Http.
+	 * **/
 	@RequestMapping(value="/api/comprar/", method = RequestMethod.PUT )
 	public ResponseEntity<?> comprar( @RequestBody List<Compra> compras)
 	{
@@ -61,8 +75,5 @@ public class ComprasRestController {
 		}
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
-	
-	
-	
 	
 }
