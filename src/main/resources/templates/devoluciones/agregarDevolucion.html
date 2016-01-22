@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form">
+	<nav th:replace="nav :: nav"></nav>
+	<h1
+		style="color: black; margin-top: 0; text-align: center; font-size: 1.8em">Devoluciones</h1>
+	<form>
+		<table>
+			<tr>
+				<th>C&oacute;digo</th>
+				<th>Nombre</th>
+				<th>Cantidad</th>
+				<th>Documento</th>
+				<th>NDoc</th>
+			</tr>
+			<tr>
+				<td><input type="number" id="codigo"></input></td>
+				<td><input type="text" id="nombre" readonly="readonly"></input></td>
+				<td><input type="number" id="cantidad" required="required"></input></td>
+				<td><input type="text" id="doc" required="required"></input></td>
+				<td><input type="number" id="nDoc" required="required"></input></td>
+			</tr>
+		</table>
+		<div class="row">
+			<div class="large-2 large-offset-9 columns">
+			  <a id="botAgregaFila" class="button expand" onclick="agregarFila();" style="width: 100%;">Añadir fila</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-2 large-offset-9 columns">
+				<input type="submit" class="button expand success" style="width: 100%;" value="Guardar cambios"></input>
+			</div>
+		</div>
+	</form>	
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/devoluciones/agregarDevolucion.js"></script>
+</body>
+</html>
