@@ -65,7 +65,25 @@ public class Importaciones implements Serializable {
     public Importaciones() {
     }
 
-    public int getConsec() {
+    
+    
+    public Importaciones(int consec, Date fecha, double codigo, double ndoc, Double cantidad, Double costojm,
+			Double costoim, String documento, Double precio) {
+		super();
+		this.consec = consec;
+		this.fecha = fecha;
+		this.codigo = codigo;
+		this.ndoc = ndoc;
+		this.cantidad = cantidad;
+		this.costojm = costojm;
+		this.costoim = costoim;
+		this.documento = documento;
+		this.precio = precio;
+	}
+
+
+
+	public int getConsec() {
         return consec;
     }
 

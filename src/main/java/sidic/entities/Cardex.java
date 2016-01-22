@@ -140,9 +140,11 @@ public class Cardex implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "sidic.entities.Cardex[ consec=" + consec + " ]";
-    }
+	@Override
+	public String toString() {
+		return "Cardex [consec=" + consec + ", codigo=" + codigo + ", fecha=" + fecha + ", tipo=" + tipo
+				+ ", documento=" + documento + ", cantidad=" + cantidad + ", ndoc=" + ndoc + ", saldo=" + saldo + "]";
+	}
+
     
 }

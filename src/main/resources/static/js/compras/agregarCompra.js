@@ -1,18 +1,10 @@
 /**
  * Mapa donde se guardan los artículos que el usuario desea comprar.
  * Llave: Código del artículo.
- * Valor: Objeto artículo
+ * Valor: Objeto artículo.
  * */
 var comprados = new Object();
-
-var p = true;
-
-var articuloSelec;
-var cosultcom;
-var costojm;
-var precio;
-var doc;
-var nDoc;
+var artiComprados = [];
 
 $(document).ready(
 function() 
@@ -189,18 +181,24 @@ function comprar(ev)
 		if (actualizarArticulo(i, $(tr)))
 		{
 			comprados++;
-			crearCardex( articuloSelec );
-			actualizarGenero( articuloSelec );
-			//Inserta registro en la tabla de importaciones cuando DOCUMENTO ES PED O PÉD
-			if(doc === "PED" || doc === "PÉD")
-			{
-				//alert("ENTRO IF y va a crear imp");
-				crearImportacion( articuloSelec );
-				//alert("volvio de crear importacion");
-				
-			}
 		}
 	});
+	console.log(artiComprados);
+	$.ajax
+	({
+		type : "put",
+		url : "/api/comprar/",
+		data : JSON.stringify(artiComprados),
+	    contentType: 'application/json; charset=utf-8',
+		success : function(data) 
+		{
+		},
+		error : function(data) 
+		{
+			alert("El artículo con id "+data.codigo+" no se actualizó!!");
+		}
+	});
+	
 	if ( comprados > 0 )
 	{
 		alert("Se han egistrado exitósamente los "+comprados+" artículos aquiridos!");
@@ -209,7 +207,7 @@ function comprar(ev)
 	{
 		alert("No se registró alguna compra!");
 	}
-	location.reload();
+	//location.reload();
 }
 
 /**
@@ -224,18 +222,23 @@ function actualizarArticulo( i, tr )
 	var actualizo = false;
 	if ( i > 0 )
 	{
+		var nCompra;
+		var importacion = null;
+		var cardex;
+		var genero;
 		var codidoArt = $(tr).find("#codigo").val();
 		var cantidadCompra = parseFloat($(tr).find("#cantidad").val());
-		cosultcom = $(tr).find("#costoJm").val();
-		costojm = $(tr).find("#costoIm").val();
-		precio = $(tr).find("#precio").val();
-		doc = $(tr).find("#doc").val().toUpperCase();
-		nDoc = $(tr).find("#nDoc").val();
+		var cosultcom = $(tr).find("#costoJm").val();
+		var costojm = $(tr).find("#costoIm").val();
+		var precio = $(tr).find("#precio").val();
+		var doc = $(tr).find("#doc").val().toUpperCase();
+		var nDoc = $(tr).find("#nDoc").val();
 
 		if( verificarFormatoCodigo( codidoArt ) )
 		{
 			var codigoSelec = obtenerNumeroAPartirDeCodigo(codidoArt);
 			var articuloAcomprar = comprados[codigoSelec];
+			var divisor = articuloAcomprar.cantdisp + cantidadCompra;
 			articuloAcomprar.cantdisp = articuloAcomprar.cantdisp == null? 0:articuloAcomprar.cantdisp;
 			articuloAcomprar.ultcostpr = articuloAcomprar.costprom;
 			articuloAcomprar.ultcosproi = articuloAcomprar.costpromim;
@@ -243,15 +246,13 @@ function actualizarArticulo( i, tr )
 			articuloAcomprar.fecanteimp = articuloAcomprar.fecultimp;
 			articuloAcomprar.invimppas = articuloAcomprar.cantdisp + cantidadCompra;
 			articuloAcomprar.fecultimp = darFechaActual();
-			articuloAcomprar.costprom = ( articuloAcomprar.costprom*articuloAcomprar.cantdisp + cosultcom*cantidadCompra)/( articuloAcomprar.cantdisp + cantidadCompra );
-			articuloAcomprar.costpromim = ( ( articuloAcomprar.costpromim*articuloAcomprar.cantdisp ) + ( costojm * cantidadCompra ) )/( articuloAcomprar.cantdisp + cantidadCompra );
+			articuloAcomprar.costprom = ( articuloAcomprar.costprom*articuloAcomprar.cantdisp + cosultcom*cantidadCompra)/divisor;
+			articuloAcomprar.costpromim = ( ( articuloAcomprar.costpromim*articuloAcomprar.cantdisp ) + ( costojm * cantidadCompra ) )/divisor;
 			articuloAcomprar.precio = precio;
 			articuloAcomprar.costjm = costojm;
 			articuloAcomprar.ultcomp = cantidadCompra;
 			articuloAcomprar.cantdisp += cantidadCompra;
 			articuloAcomprar.cosultcom = cosultcom;
-			
-			articuloSelec = articuloAcomprar;
 			
 			if(articuloAcomprar.costprom == null || articuloAcomprar.costprom == 0 )
 			{
@@ -262,21 +263,16 @@ function actualizarArticulo( i, tr )
 			{
 				articuloAcomprar.costpromim = costjm;
 			}
-			$.ajax
-			({
-				type : "put",
-				url : "/api/articulos/" + codigoSelec,
-				data : JSON.stringify(articuloAcomprar),
-			    contentType: 'application/json; charset=utf-8',
-				success : function(data) 
-				{
-					
-				},
-				error : function(data) 
-				{
-					alert("El artículo con id "+data.codigo+" no se actualizó!!");
-				}
-			});
+			
+			cardex = crearCardex( articuloAcomprar, tr );
+			if(doc === "PED" || doc === "PÉD")
+			{
+				importacion = crearImportacion( articuloAcomprar, tr );	
+			}
+			compra = { articulo:articuloAcomprar, cardex:cardex, importacion:importacion };
+			
+			artiComprados.push(compra);
+			
 			actualizo = true;
 		}
 		else
@@ -289,16 +285,18 @@ function actualizarArticulo( i, tr )
 }
 
 /**
- * Función encargada de crear un nuebo objeto Cardex.
+ * Función encargada de crear un nuevo objeto Cardex.
  * @param articulo: Articulo asociado al nuevo objeto Cardex.
- * @param nCantidad: Cantidad que entra/sale del registro Cardex
  * @param tr: Fila HTML donde se encuentra el artículo al que se le actualizará, 
  * 			  en la base de datos, la cantidad.
  * */
-function crearCardex( articulo )
+function crearCardex( articulo, tr )
 {
 	var nCardex = new Object();
-    //alert("CARDEX");
+	
+	var doc = $(tr).find("#doc").val().toUpperCase();
+	var nDoc = $(tr).find("#nDoc").val();
+
 	nCardex.codigo = articulo.codigo;
 	nCardex.fecha = darFechaActual();
 	nCardex.tipo = "E";
@@ -306,90 +304,24 @@ function crearCardex( articulo )
 	nCardex.cantidad = articulo.ultcomp;
 	nCardex.ndoc = nDoc;
 	nCardex.saldo = articulo.cantdisp;
-	console.log(nCardex);
-	
-	$.ajax
-	({
-		type : "post",
-		url : "/api/cardex/",
-		data : JSON.stringify(nCardex),
-	    contentType: 'application/json; charset=utf-8',
-		success : function(data) 
-		{
-			//alert("creoCARDEX " + nCantidad);
-			//creoCardex = true;
-		},
-		error : function(data) 
-		{
-			alert("Error al agregar un nuevo registro a la hoja Kardex!!");
-		}
-	});
-}
-
-
-/**
- * Se encarga de actualizar la cantdispjm sumandole la nueva cantidad comprada.
- * @param articuloSelec: Articulo seleccionado.
- * @param trSelect: Fila HTML donde se encuentra el artículo que se comprará.
- * */
-function actualizarGenero( articulo ) 
-{
-	//alert("llega a act genero");
-	var idGenero = Math.floor(articulo.codigo/1000);
-	$.ajax({
-		url : "/api/generos/" + idGenero,
-		success : function(data) 
-		{
-			//alert("obtiene el genero con id:" + data.codigo);
-			var cantVieja = data.cantdispjm;
-			if( cantVieja == null )
-			{
-				//data.cantdispjm = new Object();
-				data.cantdispjm = articulo.ultcomp;
-			}
-			else
-			{
-				//alert("no es null");
-				data.cantdispjm = cantVieja + articulo.ultcomp;
-			}
-			
-			var genActualizado = data;
-			$.ajax
-			({
-				type : "put",
-				url : "/api/generos/" + idGenero,
-				data : JSON.stringify(genActualizado),
-			    contentType: 'application/json; charset=utf-8',
-				success : function(data) 
-				{
-					//creoGenero = true;
-					//alert("actualiza genere");
-					//alert("LISTO ELPOLLO");
-				},
-				error : function(data) 
-				{
-					alert("Error al actualizar cantdispjm del género " + data.nombre +"!!");
-				}
-			});
-		},
-		error : function(data) 
-		{
-			alert("Este artículo no esta relacionado a algún género");
-		}
-	});	
+		
+	return nCardex;
 }
 
 /**
  * Función encargada de crear un nuevo objeto Importacion.
- * @param nCantidad: Cantidad que entra/sale del registro Importacion
- * @param doc: Documento de la Importacion.
- * @param nDoc: No. de documento de la Importacion.
  * @param codigo: Código del articulo asociado a la Importacion.
  * @param tr: Fila HTML donde se encuentra el artículo que se comprará.
  * */
-function crearImportacion( articulo )
+function crearImportacion( articulo, tr )
 {
 	var nImport = new Object();
+
+	var cosultcom = $(tr).find("#costoJm").val();
+	var costojm = $(tr).find("#costoIm").val();
+	var precio = $(tr).find("#precio").val();
+	var doc = $(tr).find("#doc").val().toUpperCase();
+	var nDoc = $(tr).find("#nDoc").val();
 	
 	nImport.fecha = darFechaActual();
 	nImport.codigo = articulo.codigo;
@@ -399,24 +331,6 @@ function crearImportacion( articulo )
 	nImport.documento =  doc;
 	nImport.ndoc = nDoc;
 	nImport.precio = precio;
-	console.log(nImport);
-	//alert("IMPT");
-	$.ajax
-	({
-		type : "post",
-		url : "/api/importaciones/",
-		data : JSON.stringify(nImport),
-	    contentType: 'application/json; charset=utf-8',
-		success : function(data) 
-		{
-			//alert("IMPT SUCCES");
-			//creoImpt = true;
-			//alert("Volvio de act genero");
-		},
-		error : function(data) 
-		{
-			alert("Error al agregar un nuevo registro a las Importaciones!!" );
-		}
-	});
-	
+		
+	return nImport;
 }
