@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BodegaController {
 	@RequestMapping(value = "/mnuenti/")
 	public String agregarABodega(){
-		return "bodega/agregarabodega";
+		return "bodega/agregarAbodega";
 	}
 	@RequestMapping(value="/mnudevi/")
 	public String devolucion(){

@@ -16,7 +16,8 @@ public class Compra {
 		super();
 	}
 
-	public Compra(Articulo articulo, Cardex cardex, Importaciones importacion) {
+	public Compra(Articulo articulo, Cardex cardex, Importaciones importacion) 
+	{
 		super();
 		this.articulo = articulo;
 		this.cardex = cardex;
@@ -24,35 +25,41 @@ public class Compra {
 	}
 
 	
-	public Articulo getArticulo() {
+	public Articulo getArticulo() 
+	{
 		return articulo;
 	}
 
-	public void setArticulo(Articulo articulo) {
+	public void setArticulo(Articulo articulo) 
+	{
 		this.articulo = articulo;
 	}
 
 	
-	public Cardex getCardex() {
+	public Cardex getCardex() 
+	{
 		return cardex;
 	}
 
-	public void setCardex(Cardex cardex) {
+	public void setCardex(Cardex cardex) 
+	{
 		this.cardex = cardex;
 	}
 
-	public Importaciones getImportacion() {
+	public Importaciones getImportacion() 
+	{
 		return importacion;
 	}
 
-	public void setImportacion(Importaciones importacion) {
+	public void setImportacion(Importaciones importacion) 
+	{
 		this.importacion = importacion;
 	}
 
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		return "Compra [articulo=" + articulo + ", cardex=" + cardex + ", importacion=" + importacion + "]";
 	}
-
 	
 }

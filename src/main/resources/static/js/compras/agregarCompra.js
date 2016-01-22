@@ -167,8 +167,8 @@ function obtenerGenero(articuloSelec, trSelect)
 }
 
 /**
- * Función encargada de recorrer la tabla que contiene los artículos a los
- * que el usuario ha decidio cambiarles el precio, para luego delegar la función
+ * Función encargada de recorrer la tabla que contiene los artículos
+ * que el usuario ha decidio comprar, para luego delegar la función
  * de actualizarlos en la base de datos.
  * @param ev: Evento, asociado al clic del ratón, que se dispara cuando el 
  * 			  usuario decide persistir los cambios hechos.
@@ -183,7 +183,7 @@ function comprar(ev)
 			comprados++;
 		}
 	});
-	console.log(artiComprados);
+	
 	$.ajax
 	({
 		type : "put",
@@ -192,6 +192,14 @@ function comprar(ev)
 	    contentType: 'application/json; charset=utf-8',
 		success : function(data) 
 		{
+			if ( comprados > 0 )
+			{
+				alert("Se han registrado exitósamente los "+comprados+" artículos aquiridos!");
+			}
+			else
+			{
+				alert("No se registró alguna compra!");
+			}
 		},
 		error : function(data) 
 		{
@@ -199,19 +207,11 @@ function comprar(ev)
 		}
 	});
 	
-	if ( comprados > 0 )
-	{
-		alert("Se han egistrado exitósamente los "+comprados+" artículos aquiridos!");
-	}
-	else
-	{
-		alert("No se registró alguna compra!");
-	}
-	//location.reload();
+	location.reload();
 }
 
 /**
- * Función encargada de modificar el precio de un artículo en la base de datos.
+ * Función encargada de modificar un artículo en la base de datos.
  * @param i: Índice de la fila donde se encuentra el artículo a modificiar. Sirve para controlar 
  * 			 que la fila en @tr que se recibe no sea el encabezado de la tabla.
  * @param tr: Fila HTML donde se encuentra el artículo al que se le actualizará, 

@@ -37,8 +37,8 @@ public class ComprasRestController {
 	@RequestMapping(value="/api/comprar/", method = RequestMethod.PUT )
 	public ResponseEntity<?> comprar( @RequestBody List<Compra> compras)
 	{
-		for (Compra compra : compras) {
-
+		for (Compra compra : compras) 
+		{
 			Genero genero = controGenero.findOne( (long) Math.floor(compra.getArticulo().getCodigo()/1000 ));
 			
 			if( genero.getCantdispjm() == null )
