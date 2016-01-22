@@ -50,7 +50,8 @@ p {
 
 nav { 
 	margin: 50px 0;
-	background-color: #f5f5f5;
+	background-color: #969696;
+    font-size: 12px;
 }
 
 nav ul {
@@ -58,19 +59,22 @@ nav ul {
 	margin:0;
 	list-style: none;
 	position: relative;
+	font-size: 12px;
 }
 	
 nav ul li {
 	display:inline-block;
-	background-color: #f5f5f5;
+	background-color: #969696;
+	font-size: 12px;
 }
 
 nav a {
 	display:block;
 	padding:0 10px;	
 	color:black;
-	line-height: 60px;
+	line-height: 30px;
 	text-decoration:none;
+    font-size: 12px;
 }
 
 nav a:hover { 
@@ -81,7 +85,8 @@ nav a:hover {
 nav ul ul {
 	display: none;
 	position: absolute; 
-	top: 60px; /* the height of the main nav */
+	top: 30px; /* the height of the main nav */
+	font-size: 12px;
 }
 	
 /* Display Dropdowns on Hover */
@@ -95,6 +100,7 @@ nav ul ul li {
 	float:none;
 	display:list-item;
 	position: relative;
+	font-size: 12px;
 }
 
 nav ul ul ul{
@@ -106,6 +112,7 @@ nav ul ul ul li {
 	top:-60px; 
 	left:170px;
 	display: block;
+	font-size: 12px;
 }
 
 nav{
@@ -113,7 +120,7 @@ nav{
 }
 
 .nav__item{
-	font-size: 15px;
+	font-size: 13px;
 }
 /* Change this in order to change the Dropdown symbol */
 li > a:after { content:  ' +'; }
