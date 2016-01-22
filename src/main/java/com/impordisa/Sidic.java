@@ -265,7 +265,7 @@ class CustomRestMvcConfiguration {
 			    config.exposeIdsFor(Vendedor.class);
 			    config.exposeIdsFor(VentasseguimientoOrg.class);
 			    config.exposeIdsFor(Zonas.class);
-			    config.isIdExposedFor(NfactLog.class);
+			    config.exposeIdsFor(NfactLog.class);
 			}
 
 			@Override
