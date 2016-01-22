@@ -162,9 +162,11 @@ public class Genero implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "sidic.entities.Genero[ codigo=" + codigo + " ]";
-    }
+	@Override
+	public String toString() {
+		return "Genero [codigo=" + codigo + ", nombre=" + nombre + ", ultcod=" + ultcod + ", cantdisp=" + cantdisp
+				+ ", cantdispjm=" + cantdispjm + ", cantdispf=" + cantdispf + ", porcprec=" + porcprec + ", costprom="
+				+ costprom + ", nombrei=" + nombrei + ", tipart=" + tipart + ", iva=" + iva + "]";
+	}
     
 }

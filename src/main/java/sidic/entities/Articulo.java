@@ -324,9 +324,17 @@ public class Articulo implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "sidic.entities.Articulo[ codigo=" + codigo + " ]";
-    }
+	@Override
+	public String toString() {
+		return "Articulo [codigo=" + codigo + ", referencia=" + referencia + ", uso=" + uso + ", modelo1=" + modelo1
+				+ ", modelo2=" + modelo2 + ", modelo3=" + modelo3 + ", marca=" + marca + ", precio=" + precio
+				+ ", cantdisp=" + cantdisp + ", procedenc=" + procedenc + ", ultcostpr=" + ultcostpr + ", costprom="
+				+ costprom + ", ultcostjm=" + ultcostjm + ", costjm=" + costjm + ", ultcomp=" + ultcomp + ", cosultcom="
+				+ cosultcom + ", invimppas=" + invimppas + ", fecsaldado=" + fecsaldado + ", fecultimp=" + fecultimp
+				+ ", invimpante=" + invimpante + ", fecanteimp=" + fecanteimp + ", costpromim=" + costpromim
+				+ ", ultcosproi=" + ultcosproi + ", modif=" + modif + ", refcorta=" + refcorta + ", refvendedor="
+				+ refvendedor + ", modelvendedor=" + modelvendedor + "]";
+	}
+
     
 }
