@@ -14,5 +14,18 @@ public class FacturacionController {
 	public String anularFactura(){
 		return "facturas/anularfactura";
 	}
+	
+	@RequestMapping(value="/mnutextosfacturas/")
+	public String textosFacturas(){
+		return "facturas/textosfactura";
+	}
+	@RequestMapping(value="/mnutextosfacturas/nuevo/")
+	public String textosFacturasNuevo(){
+		return "facturas/textosfacturanuevo";
+	}
+	@RequestMapping(value="/mnutextosfacturas/editar/")
+	public String textosFacturasEditar(){
+		return "facturas/textosfacturaeditar";
+	}
 }
 	
