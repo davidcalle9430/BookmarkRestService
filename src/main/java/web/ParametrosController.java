@@ -9,4 +9,9 @@ public class ParametrosController {
 	public String editarParametros(){
 		return "parametros/parametros";
 	}
+	
+	@RequestMapping("/mnulvalretjm/")
+	public String valorRetencion(){
+		return "parametros/retencion";
+	}
 }
