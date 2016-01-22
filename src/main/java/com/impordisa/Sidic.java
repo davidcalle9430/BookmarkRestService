@@ -69,6 +69,7 @@ import sidic.entities.Importaciones;
 import sidic.entities.Lineas;
 import sidic.entities.Menus;
 import sidic.entities.Nfact;
+import sidic.entities.NfactLog;
 import sidic.entities.Niveles;
 import sidic.entities.Opciones;
 import sidic.entities.Plazos;
@@ -264,6 +265,7 @@ class CustomRestMvcConfiguration {
 			    config.exposeIdsFor(Vendedor.class);
 			    config.exposeIdsFor(VentasseguimientoOrg.class);
 			    config.exposeIdsFor(Zonas.class);
+			    config.exposeIdsFor(NfactLog.class);
 			}
 
 			@Override
