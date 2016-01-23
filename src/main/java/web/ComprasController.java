@@ -13,6 +13,17 @@ public class ComprasController
 		return "compras/agregarCompra";
 	}
 	
+	@RequestMapping(value="/mnuconspedidos/")
+	public String consultarPedidos()
+	{
+		return "compras/consultarPedidos";
+	}
 	
+	@RequestMapping(value="/mnuconspedidos/listar/")
+	public String consultarPedidosPorNdoc()
+	{
+		return "compras/listarPedidos";
+	}
+
 }
 

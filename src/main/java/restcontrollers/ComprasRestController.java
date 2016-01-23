@@ -1,11 +1,21 @@
 package restcontrollers;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TemporalType;
 
 import resultclasses.Compra;
 import sidic.entities.Genero;
+import sidic.entities.Importaciones;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,16 +39,20 @@ import repositories.ImportacionesRepository;
 public class ComprasRestController 
 {
 	
-	@Autowired 
-	ArticuloRepository controArticulo;
-	@Autowired 
-	CardexRepository controCardex;
+	@PersistenceContext
+	private EntityManager em;
 	
 	@Autowired 
-	ImportacionesRepository controImport;
+	private ArticuloRepository controArticulo;
 	
 	@Autowired 
-	GeneroRepository controGenero;
+	private CardexRepository controCardex;
+	
+	@Autowired 
+	private ImportacionesRepository controImport;
+	
+	@Autowired 
+	private GeneroRepository controGenero;
 	
 	/**
 	 * Método que se encarga de recorrer una lista de @Compra para actualizar 
@@ -76,4 +90,35 @@ public class ComprasRestController
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/api/obtenerImportaciones/", method = RequestMethod.PUT )
+	public List<Importaciones> obtenerImportaciones( @RequestBody Map<String,String> params )
+	{
+		Query q;
+		System.out.println("NDOC: " + params.get("nDoc"));
+		if ( params.get("nDoc") != null )
+		{
+			q = em.createQuery("select i from Importaciones i where i.ndoc = :nDoc").setParameter("nDoc", Double.parseDouble( params.get( "nDoc" ) ) );
+			System.out.println("ENTRO NDOC");
+		}
+		else
+		{
+			DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+			Date fechaInicio = new Date();
+			Date fechaFin = new Date();
+			try {
+				fechaInicio = formatter.parse( params.get( "fechaFin" ) );
+				fechaFin = formatter.parse( params.get( "fechaInicio" ) );
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			q = em.createQuery("select i from Importaciones i where i.fecha between :fInicial and :fFinal")
+					.setParameter("fInicial", fechaInicio, TemporalType.DATE )
+					.setParameter("fFinal", fechaFin, TemporalType.DATE );
+			System.out.println("ENTRO FECHA");
+		}
+
+		 return q.getResultList();
+	}
 }

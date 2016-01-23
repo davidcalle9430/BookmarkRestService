@@ -16,9 +16,11 @@ import sidic.entities.Usuarios;
 import sidic.entities.UsuariosPK;
 
 @RepositoryRestResource( path="/users" , itemResourceRel = "users", collectionResourceRel ="users")
-public interface UsuarioRepository extends JpaRepository<Usuarios, UsuariosPK>{
+public interface UsuarioRepository extends JpaRepository<Usuarios, UsuariosPK>
+{
 	@RestResource()
 	public Usuarios findOneByUsuario(@Param("usuario") String usuario);
+	
 	@Transactional
 	@Modifying
 	@Query("update Usuarios set password=?2, fechapassword =?3 where usuario=?1")

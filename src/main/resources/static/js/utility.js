@@ -108,28 +108,57 @@ $.ajaxSetup({
  * Da el valor de llave con nombre name de los parámetros GET de la URL
  * Obtenido de http://stackoverflow.com/questions/831030/how-to-get-get-request-parameters-in-javascript  usuario Rafael
  */
-function get(name){
+function get(name)
+{
 	   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
 	      return decodeURIComponent(name[1]);
 }
 
 /**
- * Funciòn de regresa la fecha actual como una cadena
- * en formato yyyy-mm-dd
+ * Función que convierte @fecha en
+ * el formato dd/mm/yyyy.
  */
-function darFechaActual(){
+function formatearFecha( fecha )
+{
+	var fechaActual = fecha.split("-");
+	var dd = fechaActual[2];
+    var mm = fechaActual[1];
+    var yyyy = fechaActual[0];
+    return ""+dd+"/"+mm+"/"+yyyy;
+}
+
+/**
+ * Función que convierte @fecha en
+ * el formato ISO yyyy/mm/dd.
+ */
+function formatearFechaISO( fecha )
+{
+	var fechaActual = fecha.split("/");
+	var dd = fechaActual[0];
+    var mm = fechaActual[1];
+    var yyyy = fechaActual[2];
+    return ""+yyyy+"-"+mm+"-"+dd;
+}
+
+/**
+ * Función de regresa la fecha actual como una cadena
+ * en formato dd/mm/yyyy
+ */
+function darFechaActual()
+{
 	var fecha = new Date();
 	var dd = zeroPad(fecha.getDate(), 2);
     var mm = zeroPad(fecha.getMonth()+1, 2);
     var yyyy = fecha.getFullYear();
-    return ""+yyyy+"-"+mm+"-"+dd;
+    return ""+dd+"/"+mm+"/"+yyyy;
 }
 
 /**
  * Función que se encarga de poner en un input type text
  * con nombre llace, el valor valor
  */
-function llenarDatoFormulario(llave, valor){
+function llenarDatoFormulario(llave, valor)
+{
 	var input = $("form input[name="+ llave + "]").first();
 	input.attr("value", valor);
 }
@@ -141,7 +170,8 @@ function llenarDatoFormulario(llave, valor){
  * @param todo, función  asociada a la creación exitossa
  * @param error, función asociada al error
  */
-function getForObject(object, url, toDo){
+function getForObject(object, url, toDo)
+{
 	if(object != null){
 		url = url + "?" + $.param(object)
 	}
@@ -163,7 +193,8 @@ function getForObject(object, url, toDo){
  * @param todo, función  asociada a la creación exitossa
  * @param error, función asociada al error
  */
-function getForObject(object, url, toDo,error){
+function getForObject(object, url, toDo,error)
+{
 	if(object != null){
 		url = url + "?" + $.param(object)
 	}
@@ -185,7 +216,8 @@ function getForObject(object, url, toDo,error){
  * @param todo, función  asociada a la creación exitossa
  * @param error, función asociada al error
  */
-function postForObject(object, url, todo, error){
+function postForObject(object, url, todo, error)
+{
 	$.ajax({
 		type : "post",
 		url : url,
@@ -206,7 +238,8 @@ function postForObject(object, url, todo, error){
  * @param todo, función  asociada a la creación exitossa
  * @param error, función asociada al error
  */
-function putForObject(object, url, todo, error){
+function putForObject(object, url, todo, error)
+{
 	$.ajax(
 	{
 		type : "put",

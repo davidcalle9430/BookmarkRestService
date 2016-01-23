@@ -58,6 +58,7 @@ $(document).ready(function() {
 
 var confirmacionActualizacion = function(data) {
 	alert("Cliente acutalizado correctamente");
+	location.href = "/mnuclijm/";
 }
 
 var errorActualizacion = function(data) {
@@ -79,7 +80,6 @@ $("#editar").first().submit(
 			}
 			putForObject(cliente, "/api/clientes/" + cliente.codigo,
 					confirmacionActualizacion, errorActualizacion);
-
 		});
 
 $("#eliminar").first().submit(function(ev) {
@@ -92,7 +92,7 @@ $("#eliminar").first().submit(function(ev) {
 			url : "/api/clientes/" + cliente,
 			success : function(data){
 				alert("Eliminado Correctamente");
-				window.location = "/mnuclijm/";
+				location.href = "/mnuclijm/";
 			},
 			error : function(data){
 				alert("Error al elminar el cliente");

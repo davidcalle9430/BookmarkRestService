@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1 style="color: black; margin-top: 0.5em; margin-bottom: 0.5em; text-align: center; font-size: 1.8em">
+		Consultar Pedidos
+	</h1>
+	<form id="Consultar" onkeypress="return event.keyCode != 13;">
+		<div class="row">
+			<div class="column row grupo-forma grupo-forma">
+				<div class="large-8 columns">
+					<label>Pedido
+						<select disabled="disabled" required="required" name="pedidos" id="pedidos">
+							<option value="" disabled="disabled">
+								Selecciona una Opci&oacute;n
+							</option>
+						</select>
+					</label>
+				</div>
+				<div class="column row">
+					<h6 class="subheader"
+						style="padding-left: .9375rem; display: block;">Todos</h6>
+						<label>Todos &nbsp;
+						<input type="checkbox" id="todos" name="todos" checked="checked" />
+					</label>
+				</div>
+			</div>
+			<div class="column row grupo-forma grupo-forma grupo-forma-ultimo">
+			</div>
+		</div>
+		
+		<div style="margin-top: 1.4em" class="row" >
+			<div class="column row grupo-forma grupo-forma" id="fechas">
+				<div class="large-2 columns">
+					<h6>&nbsp;</h6>
+				</div>
+				
+				<div class="large-4 columns">
+					<h6 class="subheader"
+						style="display: block;">Fecha:</h6>
+					<label>Desde
+						<input type="date" name="fechaInicio" id="fechaInicio" required="required" placeholder="DD/MM/AAAA"/>						
+					</label>
+				</div>
+				
+				<div class="large-4 columns">
+				<h6 class="subheader"
+						style="padding-left: .9375rem; display: block;">&nbsp;</h6>
+					<label>Hasta
+						<input type="date" name="fechaFin" id="fechaFin" required="required" placeholder="DD/MM/AAAA"/>						
+					</label>
+				</div>
+				
+				<div class="large-2 columns">
+					<h6>&nbsp;</h6>
+				</div>	
+
+			<div class="column row grupo-forma grupo-forma grupo-forma-ultimo">
+			</div>		
+			</div>
+		</div>
+		<div class="row">
+			<button id="crear" type="submit" style="float: right; margin-top: 1.2em"
+				class="button large-3 submit success">Consultar</button>
+		</div>
+		
+		<div class="row">
+			<button id="crear" type="submit" style="float: right;"
+				class="button large-3 submit submit">Modificar</button>
+		</div>
+	</form>
+	<footer th:replace="footer :: footer"></footer>
+	<script type="text/javascript" src="/static/js/compras/consultarPedidos.js"></script>
+</body>
+</html>

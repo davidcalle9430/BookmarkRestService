@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1
+		style="color: black; margin-top: 0.5em; margin-bottom: 0.5em; text-align: center; font-size: 1.8em">Detalle Pedidos</h1>
+	<form>
+		<table>
+			<tr>
+				<th>Fecha</th>
+				<th>Pedido</th>
+				<th>CostoJM</th>
+				<th>Valor Venta</th>
+				<th>Utilidad</th>
+			</tr>
+		</table>
+		<div class="row">
+			<div class="large-2 large-offset-9 columns">
+				<input type="submit" class="button expand success" style="width: 100%;" value="Guardar cambios"></input>
+			</div>
+		</div>
+	</form>	
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/compras/listarPedidos.js"></script>
+</body>
+</html>

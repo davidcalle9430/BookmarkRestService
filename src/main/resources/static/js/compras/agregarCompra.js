@@ -13,7 +13,7 @@ function()
 });
 
 /**
- * Se encarga de inicar lo compnentes del formualrio y revisar si llega el código
+ * Se encarga de inicar lo componentes del formualrio y revisar si llega el código
  * de algún artculo en la URL.
  * */
 function iniciarFormulario()
