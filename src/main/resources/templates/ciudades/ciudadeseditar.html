@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1 style="color: black; margin-top:0;">Editar Ciudad	</h1>
+	<form id="editar" onkeypress="return event.keyCode != 13;">
+		<div class="row">
+			<div class="large-12 columns">
+				<label>C&oacute;digo <input id="codigo" type="text" name="codigo" onchange="verificar()"
+				 required="required" readonly="readonly" />
+				</label>
+			</div>
+			<div class="large-12 columns">
+				<label>Nombre<input id="ciudad" type="text" name="ciudad"
+					required="required"  /></label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="">
+				<button type="submit" class="button large-3 submit"
+					style="float: right">Editar</button>
+			</div>
+		</div>
+	</form>
+	
+	<!--  
+	<form id="eliminar">
+		<div class="row">
+			<div class="">
+				<button type="submit" class="button large-3 submit alert"
+					style="float: right">Eliminar</button>
+			</div>
+		</div>
+	</form>-->
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/ciudades/ciudadeseditar.js"></script>
+</body>
+</html>
