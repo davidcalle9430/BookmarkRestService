@@ -1,11 +1,11 @@
 /**
- *  función ajax que carga los elementos de la tabla
+ * 
  */
-var pagina = 0;
+var pagina = 0;	
 var alFinal = false;
 function ajaxCall() {
 	$.ajax({
-		url : '/api/textosFactura?page=' + pagina,
+		url : '/api/clientes?projection=rotulacion&page=' + pagina,
 		success : function(data) {
 			crearFila(data);
 			alFinal = false;
@@ -17,39 +17,41 @@ function ajaxCall() {
 	})
 }
 
-function crearFila(textos) {
-	textos = textos._embedded.textosFactura;
-	for (var i = 0; i < textos.length; i++) {
+function crearFila(clientes) {
+	
+	clientes = clientes._embedded.clientes;
+	for (var i = 0; i < clientes.length; i++) {
+		console.log("AJAXI")
 		var tr = $("<tr>");
 		var columnaCodigo = $('<td>', {
-			text : textos[i].codigo
+			text : clientes[i].codigo
 		});
-		var columnaTexto1 = $('<td>', {
-			text : textos[i].texto1
+		var columnaRazonSocial = $('<td>', {
+			text : clientes[i].razsoc
 		});
-		var columnaTexto2 = $('<td>', {
-			text : textos[i].texto2
+		var columnaCiudad = $('<td>', {
+			text : clientes[i].ciudad.ciudad
 		});
-		var columnaTexto3 = $('<td>', {
-			text : textos[i].texto3
+		var columnaRotulo = $('<td>', {
+			text : clientes[i].rotulo
 		});
-		
 		tr.append(columnaCodigo);
-		tr.append(columnaTexto1);
-		tr.append(columnaTexto2);
-		tr.append(columnaTexto3);
+		tr.append(columnaRazonSocial);
+		tr.append(columnaCiudad);
+		tr.append(columnaRotulo);
 		$('tbody').append(tr);
 	}
 }
 function clicFila(){
 	var hijos = $(this).children();
-	window.location = "editar/?codigo="+hijos[0].innerHTML;
+	window.location = "editar/?zona="+hijos[0].innerHTML;
 }
 
 var head = $("thead"); // busca los headers de la tabla
 var columnas = 4; // numero de columnas de la tabla
 $(document).ready(function() {
 			ajaxCall();
+			$("body").append($("<style>", {text : "td{width:" +100 / columnas + "vw;	}"}))
 			$(window).scroll(function() {
 						if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
 							if (!alFinal) {
