@@ -7,8 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ComprasController 
 {
 	
+	
+	@RequestMapping(value="/mnucomi/")
+	public String agregarCompraImp()
+	{
+		return "compras/agregarCompra";
+	}
+	
 	@RequestMapping(value="/mnucomjm/")
-	public String agregarCompra()
+	public String agregarCompraJm()
 	{
 		return "compras/agregarCompra";
 	}

@@ -6,7 +6,7 @@ function()
 
 /**
  * Se encarga de inicar lo componentes del formulario, 
- * revisar e interpretar los parámetros que llegan en la URL.
+ * revisar e interpretar los parámenuevaFilaos que llegan en la URL.
  * */
 function iniciarFormulario()
 {
@@ -14,35 +14,35 @@ function iniciarFormulario()
 	var nDoc = null;
 	var  fechaInicio;
 	var fechaFin;
+	
 	if( tipoConsulta === "f" )
 	{
 		fechaInicio = get("fInicio");
 		fechaFin = get("fFin");
-		alert("ECHAAA");
 	}
 	else
 	{
-		alert("NDOC");
 		nDoc = get("nDoc");
 		var fechaActual = darFechaActual( ).split("/");;
 		fechaInicio = fechaActual[2]+"-01-01";
 		fechaFin = formatearFechaISO( darFechaActual( ) );
 	}	
-	obtenerImportaciones( nDoc, fechaInicio, fechaFin );
+	
+	obtenerPedidos( nDoc, fechaInicio, fechaFin );
 }
 
 
 /**
  * Se encarga de inicar lo componentes del formulario, 
- * revisar e interpretar los parámetros que llegan en la URL.
+ * revisar e interpretar los parámenuevaFilaos que llegan en la URL.
  * */
-function obtenerImportaciones( nDoc, fechaInicio, fechaFin )
+function obtenerPedidos( nDoc, fechaInicio, fechaFin )
 {
 	var params = { nDoc:nDoc, fechaInicio: fechaInicio, fechaFin: fechaFin};
-	console.log(params);
+
 	$.ajax(
 	{
-		url : "/api/obtenerImportaciones/",
+		url : "/api/obtenerPedidos/",
 		type: "put",
 		data: JSON.stringify( params ),
 	    contentType: 'application/json; charset=utf-8',
@@ -59,10 +59,70 @@ function obtenerImportaciones( nDoc, fechaInicio, fechaFin )
 }
 
 /**
- * Se encarga de inicar lo componentes del formulario, 
- * revisar e interpretar los parámetros que llegan en la URL.
+ * Se encarga diligenciar la tabla HTML con los pedidos
+ * solicitados por el usuario, formateando la fecha como se pide.
+ * También de calcular el total de costos, ventas, y utilidades.
  * */
-function llenarTabla( importaciones )
+function llenarTabla( pedidos )
 {
-	console.log( importaciones );
+	var columnaFecha;
+	var columnaNdoc;
+	var columnaCosto;
+	var columnaVenta
+	var columnaUtilidad;
+	var nuevaFila;
+	
+	var totalVentas = 0;
+	var totalCosto = 0;
+	var totalUtilidad = 0;
+	var fechaConFormato;
+	var dia;
+	var mes;
+
+	for (var i = 0; i < pedidos.length; i++) 
+	{
+		totalCosto += pedidos[i].costo;
+		totalVentas += pedidos[i].venta;
+		
+		fechaConFormato = new Date( pedidos[i].fecha );
+		dia = zeroPad( fechaConFormato.getDate(), 2 );
+		mes = zeroPad( fechaConFormato.getMonth() + 1, 2 );
+		
+		columnaFecha = $('<td>', {
+		text : dia+"/"+mes+"/"+fechaConFormato.getFullYear()
+		});
+		
+		columnaNdoc = $('<td>', {
+			text : pedidos[i].nDoc
+		});
+		
+		columnaCosto = $('<td>', {
+			text : pedidos[i].costo
+		});
+		
+		columnaVenta = $('<td>', {
+			text : pedidos[i].venta
+		});
+		
+		columnaUtilidad = $('<td>', {
+			text : pedidos[i].utilidad
+		});
+		
+		nuevaFila = $('<tr>');
+		
+		nuevaFila.append(columnaFecha);
+		nuevaFila.append(columnaNdoc);
+		nuevaFila.append(columnaCosto);
+		nuevaFila.append(columnaVenta);
+		nuevaFila.append(columnaUtilidad);
+		
+		$("table").append(nuevaFila);
+	}
+	
+	totalUtilidad = ( ( ( totalCosto / totalVentas ) - 1 ) * 100 ) * ( -1 );
+	
+	$("#pedidos").val( pedidos.length );
+	$("#costo").val( totalCosto );
+	$("#venta").val( totalVentas);
+	$("#utilidad").val( totalUtilidad );
 }

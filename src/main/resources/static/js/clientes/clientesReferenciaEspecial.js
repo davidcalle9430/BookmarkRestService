@@ -1,9 +1,11 @@
 var pagina = 0;
 var alFinal = false;
+
 /**
  * función que trae toda la información necesaria por ajax
  */
-function ajaxCall() {
+function ajaxCall() 
+{
 	$.ajax({
 		url : '/api/clientes?sort=razsoc&page=' + pagina,
 		success : function(data) {
@@ -16,11 +18,13 @@ function ajaxCall() {
 		}
 	})
 }
+
 /**
  * función que crea una fila a partir de un cliente
  * @param clientes
  */
-function crearFila(clientes) {
+function crearFila(clientes) 
+{
 	clientes = clientes._embedded.clientes;
 	for (var i = 0; i < clientes.length; i++) {
 		var columnaCodigo = $('<td>', {
@@ -47,17 +51,20 @@ function crearFila(clientes) {
 		$('tbody').append(tr);
 	}
 }
+
 /**
  * función que se ejectua cuando se le da clic a una fila
  */
-function clicFila(){
+function clicFila()
+{
 	var hijos = $(this).children();
 	window.location = "editar/?codigo="+hijos[0].innerHTML;
 }
 /**
  * función que se ejecuta una vez se haya cargado todo el documento
  */
-$(document).ready(function() {
+$(document).ready(function() 
+{
 			ajaxCall();
 			$(window).scroll(function() {
 						if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {

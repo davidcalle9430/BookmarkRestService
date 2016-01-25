@@ -18,10 +18,50 @@
 			</tr>
 		</table>
 		<div class="row">
+			<div class="column row grupo-forma grupo-forma">
+				
+				<div class="large-3 columns">
+					<h6 class="subheader" style="padding-left: .9375rem; display: block;">
+						No. Pedidos
+					</h6>
+					<input type="text" readonly="readonly" name="pedidos" id="pedidos" ></input>
+				</div>
+				
+				<div class="large-3 columns">
+					<h6 class="subheader" style="padding-left: .9375rem; display: block;">
+						Total Costo
+					</h6>
+					<input type="text" readonly="readonly" name="costo" id="costo" ></input>
+				</div>
+				
+				<div class="large-3 columns">
+					<h6 class="subheader" style="padding-left: .9375rem; display: block;">
+						Total Ventas
+					</h6>
+					<input type="text" readonly="readonly" id="venta" name="venta" ></input>
+				</div>
+				
+				<div class="large-3 columns">
+					<h6 class="subheader" style="padding-left: .9375rem; display: block;">
+						Total Utilidad
+					</h6>
+					<input type="text" readonly="readonly" id="utilidad" name="utilidad" ></input>
+				</div>
+				
+			</div>
+			
+			<div class="column row grupo-forma grupo-forma grupo-forma-ultimo">
+			</div>
+			
+		</div>
+		
+		<div class="row">
 			<div class="large-2 large-offset-9 columns">
+							&nbsp;
 				<input type="submit" class="button expand success" style="width: 100%;" value="Guardar cambios"></input>
 			</div>
 		</div>
+		
 	</form>	
 	<footer th:replace="footer :: footer"></footer>
 	<script src="/static/js/compras/listarPedidos.js"></script>
