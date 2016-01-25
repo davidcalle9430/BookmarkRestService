@@ -1,10 +1,20 @@
 package restcontrollers;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TemporalType;
 
 import resultclasses.Compra;
+import resultclasses.Pedido;
 import sidic.entities.Genero;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +39,20 @@ import repositories.ImportacionesRepository;
 public class ComprasRestController 
 {
 	
-	@Autowired 
-	ArticuloRepository controArticulo;
-	@Autowired 
-	CardexRepository controCardex;
+	@PersistenceContext
+	private EntityManager em;
 	
 	@Autowired 
-	ImportacionesRepository controImport;
+	private ArticuloRepository controArticulo;
 	
 	@Autowired 
-	GeneroRepository controGenero;
+	private CardexRepository controCardex;
+	
+	@Autowired 
+	private ImportacionesRepository controImport;
+	
+	@Autowired 
+	private GeneroRepository controGenero;
 	
 	/**
 	 * Método que se encarga de recorrer una lista de @Compra para actualizar 
@@ -73,7 +87,68 @@ public class ComprasRestController
 				controImport.save(compra.getImportacion());
 			}
 		}
+		
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/api/obtenerPedidos/", method = RequestMethod.PUT )
+	public List<Pedido> obtenerImportaciones( @RequestBody Map<String,String> params )
+	{
+		Query q;
+		DateFormat formatter;
+
+		Date fechaInicio = new Date();
+		Date fechaFin = new Date();
+		List<Pedido> pedidos;
+		Double costo;
+		Double venta;
+		Double utilidad;
+		
+		if ( params.get("nDoc") != null )
+		{
+			q = em.createQuery("select new resultclasses.Pedido ( "
+					+ "max(i.fecha) as fecha, "
+					+ "i.ndoc,sum(i.costojm*i.cantidad) as costo, "
+					+ "sum(i.precio*i.cantidad) as venta ) "
+					+ "from Importaciones i where i.ndoc = :nDoc")
+				.setParameter("nDoc", Double.parseDouble( params.get( "nDoc" ) ) );
+		}
+		else
+		{
+			formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+			try 
+			{
+				fechaInicio = formatter.parse( params.get( "fechaInicio" ) );
+				fechaFin = formatter.parse( params.get( "fechaFin" ) );
+			} 
+			catch (ParseException e) 
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			q = em.createQuery("select new resultclasses.Pedido "
+					+ "( max(i.fecha) as fecha, i.ndoc, "
+					+ "sum(i.costojm*i.cantidad) as costo, "
+					+ "sum(i.precio*i.cantidad) as venta ) "
+					+ "from Importaciones i "
+					+ "where i.fecha between :fInicial and :fFinal "
+					+ "group by i.ndoc")
+					.setParameter("fInicial", fechaInicio, TemporalType.DATE )
+					.setParameter("fFinal", fechaFin, TemporalType.DATE );
+		}
+		
+		pedidos = q.getResultList();
+		
+		for (Pedido pedido : pedidos ) 
+		{
+			costo = pedido.getCosto();
+			venta = pedido.getVenta();
+			utilidad = ( ( ( costo / venta ) - 1 ) * 100 ) * ( -1 );
+			pedido.setUtilidad(utilidad);
+		}
+		
+		return pedidos;
+	}
 }
