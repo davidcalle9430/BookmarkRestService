@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ClientesController 
 {
 
-	@RequestMapping(value="/mnuclijm/", method = RequestMethod.GET)
+	@RequestMapping(value={"/mnuclijm/","/mnuactci/"}, method = RequestMethod.GET)
 	public String darClientes(){
 		return "clientes/clientes";
 	}

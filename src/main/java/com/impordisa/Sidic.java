@@ -80,6 +80,8 @@ import sidic.entities.Usuarios;
 import sidic.entities.Vendedor;
 import sidic.entities.VentasseguimientoOrg;
 import sidic.entities.Zonas;
+
+import projections.ClienteRotulacion;
 /**
  * Clase encargade de arrancar la aplicación haciendo un escaneo de los
  * componentes que necesita para la configuración
@@ -98,6 +100,10 @@ public class Sidic {
 		SpringApplication.run(Sidic.class, args);
 	}
 }
+
+
+
+
 
 /**
  * Manejador de recursos estáticos Clase encargada de configurar cómo se manejan
@@ -266,6 +272,8 @@ class CustomRestMvcConfiguration {
 			    config.exposeIdsFor(VentasseguimientoOrg.class);
 			    config.exposeIdsFor(Zonas.class);
 			    config.exposeIdsFor(NfactLog.class);
+			    // registro de proyecciones
+			    config.getProjectionConfiguration().addProjection(ClienteRotulacion.class);
 			}
 
 			@Override

@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author david
@@ -30,8 +32,10 @@ public class Ciudades implements Serializable {
     private Short codigo;
     @Column(length = 30)
     private String ciudad;
+    @JsonIgnore
     @OneToMany(mappedBy = "ciudad")
     private List<Proveedores> proveedoresList;
+    @JsonIgnore
     @OneToMany(mappedBy = "ciudad")
     private List<Clientes> clientesList;
 
