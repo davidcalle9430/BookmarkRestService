@@ -74,5 +74,5 @@ $(document).ready(function() {
 						
 						
 			});
-			$("table").on("click","tr", clicFila);
+		//	$("table").on("click","tr", clicFila);
 });
