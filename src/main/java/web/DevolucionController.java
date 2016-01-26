@@ -12,4 +12,10 @@ public class DevolucionController
 	{
 		return "devoluciones/agregarDevolucion";
 	}
+	
+	@RequestMapping(value="/mnudevjm/")
+	public String devolucionJM()
+	{
+		return "devoluciones/agregarDevolucionJM";
+	}
 }

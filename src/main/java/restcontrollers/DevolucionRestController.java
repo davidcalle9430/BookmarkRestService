@@ -3,8 +3,8 @@ package restcontrollers;
 
 import java.util.List;
 
-import resultclasses.Devolucion;
-
+import resultclasses.DevolucionJM;
+import sidic.entities.Genero;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import repositories.CardexiRepository;
+import repositories.ArticuloRepository;
+import repositories.CardexRepository;
 import repositories.GeneroRepository;
 
 /**
@@ -28,8 +29,14 @@ import repositories.GeneroRepository;
 public class DevolucionRestController 
 {
 	
-	@Autowired CardexiRepository controCardex;
-	@Autowired GeneroRepository controGenero;
+	@Autowired 
+	private CardexRepository controCardex;
+	
+	@Autowired 
+	private GeneroRepository controGenero;
+	
+	@Autowired 
+	private ArticuloRepository controArticulo;
 	
 	/**
 	 * Método que se encarga de recorrer una lista de @Devolucion para actualizar 
@@ -38,14 +45,27 @@ public class DevolucionRestController
 	 * @param compras: Lista de bodegas que contiene el @Genero y el @Cardexi a actualizar.
 	 * @return Código de estado Http.
 	 * **/
-	@RequestMapping(value="/api/devolucion/", method = RequestMethod.PUT )
-	public ResponseEntity<?> guardaDevolucion( @RequestBody List<Devolucion> devoluciones)
+	@RequestMapping(value="/api/devolucionJM/", method = RequestMethod.PUT )
+	public ResponseEntity<?> guardaDevolucionJM( @RequestBody List<DevolucionJM> devoluciones)
 	{
-		for (Devolucion devolucion : devoluciones ) 
+		Genero genero;
+		Double cantDispJm;
+		
+		for (DevolucionJM devolucion : devoluciones ) 
 		{
+			genero = controGenero.findOne( (long) Math.floor(devolucion.getArticulo( ).getCodigo()/1000 ));
+			
+			if( genero != null )
+			{
+				cantDispJm = genero.getCantdispjm();
+				genero.setCantdispjm( cantDispJm + devolucion.getCardex( ).getCantidad( ) );
+				controGenero.save( genero );
+			}
+		
 			controCardex.save( devolucion.getCardex( ) );
-			controGenero.save( devolucion.getGenero( ) );
+			controArticulo.save( devolucion.getArticulo( ) );
 		}
+		
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 	

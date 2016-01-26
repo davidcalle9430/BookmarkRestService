@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form">
+	<nav th:replace="nav :: nav"></nav>
+	<h1
+		style="color: black; margin-top: 0.5em; margin-bottom: 0.5em; text-align: center; font-size: 1.8em">Compras</h1>
+	<form>
+		<table>
+			<tr>
+				<th>C&oacute;digo</th>
+				<th>Nombre</th>
+				<th>Referencia</th>
+				<th>Factura</th>
+				<th>Tipo</th>
+				<th>Fecha</th>
+				<th>Cliente</th>
+				<th>Doc</th>
+				<th>NDoc</th>
+				<th>Cantidad</th>
+			</tr>
+			<tr>
+				<td><input type="text" id="codigo"></input></td>
+				<td><input type="text" id="nombre" readonly="readonly"></input></td>
+				<td><input type="text" id="referencia" readonly="readonly"></input></td>
+				<td><input type="text" id="factura" readonly="readonly"></input></td>
+				<td><input type="text" id="tipo" required="required"></input></td>
+				<td><input type="text" id="fecha" required="required"></input></td>
+				<td><input type="number" id="cliente" required="required"></input></td>
+				<td><input type="text" id="doc" required="required"></input></td>
+				<td><input type="number" id="nDoc" required="required"></input></td>
+				<td><input type="number" id="cantidad"></input></td>
+			</tr>
+		</table>
+		<div class="row">
+			<div class="large-2 large-offset-9 columns">
+			  <a id="botAgregaFila" class="button expand" onclick="agregarFila();" style="width: 100%;">Añadir fila</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-2 large-offset-9 columns">
+				<input type="submit" class="button expand success" style="width: 100%;" value="Guardar cambios"></input>
+			</div>
+		</div>
+	</form>	
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/devoluciones/agregarDevolucionesJM.js"></script>
+</body>
+</html>

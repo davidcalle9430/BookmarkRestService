@@ -138,7 +138,7 @@ function agregarDevoluciones(ev)
 		}
 	});
 	
-	if ( articulosEntabla > 0 )
+	if ( devueltos > 0 )
 	{
 		alert("Se han egistrado exitósamente los "+devueltos+" artículos devueltos!");
 	}
@@ -171,7 +171,7 @@ function actualizarArticulo( i, tr )
 		{
 			articulosEntabla[codigoArt].cantdisp += cantidadDevolucion;
 			cardex = crearCardex( articulosEntabla[codigoArt], tr, cantidadDevolucion );	
-			devolucion = { genero:articulosEntabla[codigoArt], cardex:cardex };
+			devolucion = { genero:articulosEntabla[codigoArt], cardexi:cardex };
 			articulosDevueltos.push(devolucion);
 			actualizo = true;
 		}
