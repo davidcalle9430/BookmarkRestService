@@ -29,4 +29,9 @@ public class UsuarioController {
 	public String editarUsuario(){
 		return "vistaeditarusuario";
 	}
+	@RequestMapping(value="/usuarios/", method = RequestMethod.GET)
+	public String usuarios(){
+		return "usuarios/usuarios";
+	}
+	
 }

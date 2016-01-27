@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+	<title>Anular factura</title>
+	<style>
+		tr:hover {
+			background-color: #ffff78;
+		}
+	</style>
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1 style="color: black;"> Usuarios </h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Usuario</th>
+				<th>Nivel</th>
+				<th>Nombre nivel</th>
+				<th>Max días</th>
+				<th>Días alerta</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+   	<footer th:replace="footer :: footer"></footer>
+   	<script src="/static/js/usuarios/usuarios.js"></script>
+</body>
+</html>
+
