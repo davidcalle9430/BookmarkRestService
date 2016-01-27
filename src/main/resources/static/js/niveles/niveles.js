@@ -5,7 +5,7 @@ var pagina = 0;
 var alFinal = false;
 function ajaxCall() {
 	$.ajax({
-		url : '/api/corrers?sort=codigo&page=' + pagina,
+		url : '/api/niveles?page=' + pagina,
 		success : function(data) {
 			crearFila(data);
 			alFinal = false;
@@ -17,22 +17,18 @@ function ajaxCall() {
 	})
 }
 
-function crearFila(corrers) {
-	corrers = corrers._embedded.corrers;
-	for (var i = 0; i < corrers.length; i++) {
+function crearFila(niveles) {
+	niveles = niveles._embedded.niveles;
+	for (var i = 0; i < niveles.length; i++) {
 		var tr = $("<tr>");
 		var columnaCodigo = $('<td>', {
-			text : corrers[i].codigo
+			text : niveles[i].nivelesPK.nivel
 		});
 		var columnaNombre = $('<td>', {
-			text : corrers[i].nombre
-		});
-		var columnaIva = $('<td>', {
-			text : corrers[i].iva ? "Sí" : "No"
+			text : niveles[i].descripcion
 		});
 		tr.append(columnaCodigo);
 		tr.append(columnaNombre);
-		tr.append(columnaIva);
 		$('tbody').append(tr);
 	}
 }
@@ -42,7 +38,7 @@ function clicFila(){
 }
 
 var head = $("thead"); // busca los headers de la tabla
-var columnas = 3; // numero de columnas de la tabla
+var columnas = 2; // numero de columnas de la tabla
 $(document).ready(function() {
 			ajaxCall();
 			$("body").append($("<style>", {text : "td{width:" +100 / columnas + "vw;	}"}))
