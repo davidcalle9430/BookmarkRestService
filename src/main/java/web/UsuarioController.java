@@ -29,9 +29,15 @@ public class UsuarioController {
 	public String editarUsuario(){
 		return "vistaeditarusuario";
 	}
+
 	
 	@RequestMapping(value="/mnucampass/")
 	public String cambiarCredenciales(){
 		return "usuarios/cambiarcredenciales";
+	}
+
+	@RequestMapping(value="/usuarios/", method = RequestMethod.GET)
+	public String usuarios(){
+		return "usuarios/usuarios";
 	}
 }
