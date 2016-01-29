@@ -50,6 +50,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import converters.EspeciaConverter;
+import converters.NivelesPKConverter;
 import converters.UsuarioPKConverter;
 import repositories.MenusRepository;
 import repositories.RolesRepository;
@@ -80,6 +81,8 @@ import sidic.entities.Usuarios;
 import sidic.entities.Vendedor;
 import sidic.entities.VentasseguimientoOrg;
 import sidic.entities.Zonas;
+
+import projections.ClienteRotulacion;
 /**
  * Clase encargade de arrancar la aplicación haciendo un escaneo de los
  * componentes que necesita para la configuración
@@ -98,6 +101,10 @@ public class Sidic {
 		SpringApplication.run(Sidic.class, args);
 	}
 }
+
+
+
+
 
 /**
  * Manejador de recursos estáticos Clase encargada de configurar cómo se manejan
@@ -266,6 +273,8 @@ class CustomRestMvcConfiguration {
 			    config.exposeIdsFor(VentasseguimientoOrg.class);
 			    config.exposeIdsFor(Zonas.class);
 			    config.exposeIdsFor(NfactLog.class);
+			    // registro de proyecciones
+			    config.getProjectionConfiguration().addProjection(ClienteRotulacion.class);
 			}
 
 			@Override
@@ -273,8 +282,10 @@ class CustomRestMvcConfiguration {
 				super.configureConversionService(conversionService);
 				UsuarioPKConverter usuarioPKConverter = new UsuarioPKConverter();
 				EspeciaConverter espcia = new EspeciaConverter();
+				NivelesPKConverter nivelesConverter = new NivelesPKConverter();
 				conversionService.addConverter(usuarioPKConverter);
 				conversionService.addConverter(espcia);
+				conversionService.addConverter(nivelesConverter);
 			}
 
 		};
