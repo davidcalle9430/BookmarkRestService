@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+	<title>Vendedores - Representantes (editar)</title>
+	<style>
+		tr:hover {
+			background-color: #ffff78;
+		}
+	</style>
+   	
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1 style="color: black;"> Vendedores / Representantes </h1>
+	<form>
+		<div class="row"> 
+		    <div class="large-6 columns">
+		      <label>Código
+		        <input type="text" id="codigo" placeholder="Código" readonly="readonly" maxlength="1"/>
+		      </label>
+		    </div>
+		    <div class="large-6 columns">
+		      <label>Tipo V/R (Vendedor/Reprentante)
+		        <input type="text" id="tipo" placeholder="Tipo" />
+		      </label>
+		    </div>
+		    <div class="large-12 columns">
+		      <label>Nombre
+		        <input type="text" id="nombre" placeholder="Nombre" />
+		      </label>
+		    </div>
+		    <div class="large-12 columns">
+		      <label>Dirección
+		        <input type="text" id="direccion" placeholder="Dirección" />
+		      </label>
+		    </div>
+		    <div class="large-6 columns">
+		      <label>Telefonos
+		        <input type="text" id="telefonos" placeholder="Telefonos" />
+		      </label>
+		    </div>
+		    <div class="large-6 columns">
+		      <label>Identificación
+		        <input type="text" id="identificacion" placeholder="identificación" />
+		      </label>
+		    </div>
+		    <div class="large-12 columns">
+		      <label>Observación 1
+		        <input type="text" id="observacion-1" placeholder="Observación 1" />
+		      </label>
+		    </div>
+		    <div class="large-12 columns">
+		      <label>Observación 2
+		        <input type="text" id="observacion-2" placeholder="Observación 2" />
+		      </label>
+		    </div>
+		    <div class="large-12 columns">
+		      <label>Observación 3
+		        <input type="text" id="observacion-3" placeholder="Observación 3" />
+		      </label>
+		    </div>
+		</div>div>
+	</form>
+	<div class="row">
+		<div class="large-2 large-offset-9 columns">
+		  <a id="guardar-cambios" class="button" style="width: 100%;">Guardar cambios</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-2 large-offset-9 columns">
+		  <a id="eliminar" class="button alert" style="width: 100%;">Eliminar elemento</a>
+		</div>
+	</div>
+   	<footer th:replace="footer :: footer"></footer>
+   	<script src="/static/js/vendedores/vendedoresEditar.js"></script>
+</body>
+</html>

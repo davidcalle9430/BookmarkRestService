@@ -3,7 +3,7 @@ package web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 /**
- * controlador encargador de enrutar la url a los templatess adecuados
+ * controlador encargador de enrutar la url a los templates adecuados
  * @author David Calle
  *
  */
