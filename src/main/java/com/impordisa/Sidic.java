@@ -50,6 +50,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import converters.EspeciaConverter;
+import converters.NivelesPKConverter;
 import converters.UsuarioPKConverter;
 import repositories.MenusRepository;
 import repositories.RolesRepository;
@@ -281,8 +282,10 @@ class CustomRestMvcConfiguration {
 				super.configureConversionService(conversionService);
 				UsuarioPKConverter usuarioPKConverter = new UsuarioPKConverter();
 				EspeciaConverter espcia = new EspeciaConverter();
+				NivelesPKConverter nivelesConverter = new NivelesPKConverter();
 				conversionService.addConverter(usuarioPKConverter);
 				conversionService.addConverter(espcia);
+				conversionService.addConverter(nivelesConverter);
 			}
 
 		};

@@ -129,7 +129,7 @@ public class Niveles implements Serializable {
 
     @Override
     public String toString() {
-        return "sidic.entities.Niveles[ nivelesPK=" + nivelesPK + " ]";
+        return nivelesPK.getNivel()+"";
     }
     
 }
