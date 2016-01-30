@@ -197,6 +197,7 @@ function getForObject(object, url, toDo,error)
 {
 	if(object != null){
 		url = url + "?" + $.param(object)
+		alert(url);
 	}
 	$.ajax({
 		url : url,
