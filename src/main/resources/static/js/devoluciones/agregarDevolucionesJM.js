@@ -19,7 +19,26 @@ function()
 function iniciarFormulario()
 {
 	obtenerFilaSelec();
+	capturarTab();
 	$("form").submit(agregarDevoluciones);	
+}
+
+/**
+ * Se encarga de capturar la fila cuya columna "cantidad" se esta modificando.
+ * Para así agregar una nueva fila al final.
+ * */
+function capturarTab()
+{
+	$("table").on("keydown", "#cantidad", 
+	function(ev) 
+	{
+		var code = ev.keyCode || ev.which;
+		if (code == '9') 
+		{
+			agregarFila();
+		}
+		var trSelec = $(this).parent().parent();
+	});
 }
 
 /**
