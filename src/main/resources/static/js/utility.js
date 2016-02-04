@@ -150,7 +150,7 @@ function darFechaActual()
 	var dd = zeroPad(fecha.getDate(), 2);
     var mm = zeroPad(fecha.getMonth()+1, 2);
     var yyyy = fecha.getFullYear();
-    return ""+dd+"/"+mm+"/"+yyyy;
+    return ""+yyyy+"-"+mm+"-"+dd;
 }
 
 /**
@@ -197,6 +197,7 @@ function getForObject(object, url, toDo,error)
 {
 	if(object != null){
 		url = url + "?" + $.param(object)
+		alert(url);
 	}
 	$.ajax({
 		url : url,

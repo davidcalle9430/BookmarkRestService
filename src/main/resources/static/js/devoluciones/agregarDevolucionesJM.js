@@ -4,7 +4,7 @@
  * Valor: Objeto artículo.
  * */
 var artiEnTabla = new Object();
-var artiComprados = [];
+var articulosDevueltosJM = [];
 
 $(document).ready(
 function() 
@@ -20,16 +20,16 @@ function iniciarFormulario()
 {
 	obtenerFilaSelec();
 	capturarTab();
-	$("form").submit(comprar);	
+	$("form").submit(agregarDevoluciones);	
 }
 
 /**
- * Se encarga de capturar la fila cuya columna "precio" se esta modificando.
+ * Se encarga de capturar la fila cuya columna "cantidad" se esta modificando.
  * Para así agregar una nueva fila al final.
  * */
 function capturarTab()
 {
-	$("table").on("keydown", "#precio", 
+	$("table").on("keydown", "#cantidad", 
 	function(ev) 
 	{
 		var code = ev.keyCode || ev.which;
@@ -51,43 +51,47 @@ function agregarFila()
 	 var columnaCodigo= $("<td>");
 	 var columnaNombre= $("<td>");
 	 var columnaReferencia= $("<td>");
-	 var columnaCantidad= $("<td>");
-	 var columnaCostoJm= $("<td>");
-	 var columnaCostoIm= $("<td>");
+	 var columnaFactura= $("<td>");
+	 var columnaTipo= $("<td>");
+	 var columnaFecha= $("<td>");
+	 var columnaCliente = $("<td>");
 	 var columnaDoc= $("<td>");
 	 var columnaNdoc= $("<td>");
-	 var columnaPrecio= $("<td>");
+	 var columnaCantidad= $("<td>");
 
 
 	 var valorColumnaCodigo= $("<input>",{id:"codigo", type:"text"});
 	 var valorColumnaNombre= $("<input>",{id:"nombre", type:"text", readonly:"readonly"});
 	 var valorColumnaReferencia= $("<input>",{id:"referencia", type:"text",readonly:"readonly"});
-	 var valorColumnaCantidad= $("<input>",{id:"cantidad", type:"number", required:"required"});
-	 var valorColumnaCostoJm= $("<input>",{id:"costoJm", type:"number", required:"required"});
-	 var valorColumnaCostoIm= $("<input>",{id:"costoIm", type:"number", required:"required"});
+	 var valorColumnaFactura= $("<input>",{id:"factura", type:"number", required:"required"});
+	 var valorColumnaTipo= $("<input>",{id:"tipo", type:"number", required:"required"});
+	 var valorColumnaFecha= $("<input>",{id:"fecha", type:"number", required:"required"});
+	 var valorColumnaCliente= $("<input>",{id:"cliente", type:"text", required:"required"});
 	 var valorColumnaDoc= $("<input>",{id:"doc", type:"text", required:"required"});
 	 var valorColumnaNdoc= $("<input>",{id:"nDoc", type:"number", required:"required"});
-	 var valorColumnaPrecio= $("<input>",{id:"precio", type:"number"});
+	 var valorColumnaCantidad= $("<input>",{id:"cantidad", type:"number"});
 
 	 columnaCodigo.append(valorColumnaCodigo);
 	 columnaNombre.append(valorColumnaNombre);
 	 columnaReferencia.append(valorColumnaReferencia);
-	 columnaCantidad.append(valorColumnaCantidad);
-	 columnaCostoJm.append(valorColumnaCostoJm);
-	 columnaCostoIm.append(valorColumnaCostoIm);
+	 columnaFactura.append(valorColumnaFactura);
+	 columnaTipo.append(valorColumnaTipo);
+	 columnaFecha.append(valorColumnaFecha);
+	 columnaCliente.append( valorColumnaCliente )
 	 columnaDoc.append(valorColumnaDoc);
 	 columnaNdoc.append(valorColumnaNdoc);
-	 columnaPrecio.append(valorColumnaPrecio);
+	 columnaCantidad.append(valorColumnaCantidad);
 	 
 	 nuevaFila.append(columnaCodigo);
 	 nuevaFila.append(columnaNombre);
 	 nuevaFila.append(columnaReferencia);
-	 nuevaFila.append(columnaCantidad);
-	 nuevaFila.append(columnaCostoJm);
-	 nuevaFila.append(columnaCostoIm);
+	 nuevaFila.append(columnaFactura);
+	 nuevaFila.append(columnaTipo);
+	 nuevaFila.append(columnaFecha);
+	 nuevaFila.append(columnaCliente );
 	 nuevaFila.append(columnaDoc);
 	 nuevaFila.append(columnaNdoc);
-	 nuevaFila.append(columnaPrecio);
+	 nuevaFila.append(columnaCantidad);
 	 
 	 $("table").append(nuevaFila);
  }
@@ -117,11 +121,13 @@ function obtenerAtributosArticulo( trSelec)
 	$(trSelec).find("#nombre").val("");
 	$(trSelec).find("#referencia").val("");
 	$(trSelec).find("#cantidad").val("");
-	$(trSelec).find("#costoJm").val("");
-	$(trSelec).find("#costoIm").val("");
+	$(trSelec).find("#factura").val("");
+	$(trSelec).find("#tipo").val("");
 	$(trSelec).find("#doc").val("");
 	$(trSelec).find("#nDoc").val("");
-	$(trSelec).find("#precio").val("");
+	$(trSelec).find("#fecha").val("");
+	$(trSelec).find("#cliente").val("");
+	
 	if( verificarFormatoCodigo( codigoConFormato ) )
 	{
 		var codigoSelec = obtenerNumeroAPartirDeCodigo(codigoConFormato);
@@ -162,6 +168,7 @@ function obtenerAtributosArticulo( trSelec)
 function obtenerGenero(articuloSelec, trSelect) 
 {
 	var idGenero = Math.floor(articuloSelec.codigo/1000);
+	
 	$.ajax({
 		url : "/api/generos/" + idGenero,
 		success : function(data) 
@@ -173,8 +180,10 @@ function obtenerGenero(articuloSelec, trSelect)
 			alert("Este artículo no esta relacionado a algún género");
 		}
 	});
+	
 	artiEnTabla[articuloSelec.codigo] = articuloSelec;
 	$(trSelect).find("#referencia").val(articuloSelec.referencia);
+	
 	if(articuloSelec.precio != null )
 	{	
 		$(trSelect).find("#precio").val(articuloSelec.precio);
@@ -186,28 +195,28 @@ function obtenerGenero(articuloSelec, trSelect)
 }
 
 /**
- * Función encargada de recorrer la tabla que contiene los artículos
- * que el usuario ha decidio comprar, para luego delegar la función
+ * Función encargada de recorrer la tabla que contiene los artículos a los
+ * que el usuario ha decidio agregar a devolucion, para luego delegar la función
  * de actualizarlos en la base de datos.
  * @param ev: Evento, asociado al clic del ratón, que se dispara cuando el 
  * 			  usuario decide persistir los cambios hechos.
  * */
-function comprar(ev)
+function agregarDevoluciones(ev)
 {		
 	ev.preventDefault();
-	var comprados = 0;
+	var devueltos = 0;
 	$("table tr").each(function(i,tr){
 		if (actualizarArticulo(i, $(tr)))
 		{
-			comprados++;
+			devueltos++;
 		}
 	});
-	
+	console.log(articulosDevueltosJM);
 	$.ajax
 	({
 		type : "put",
-		url : "/api/comprar/",
-		data : JSON.stringify(artiComprados),
+		url : "/api/devolucionJM/",
+		data : JSON.stringify(articulosDevueltosJM),
 	    contentType: 'application/json; charset=utf-8',
 		success : function(data) 
 		{
@@ -215,20 +224,22 @@ function comprar(ev)
 		},
 		error : function(data) 
 		{
-			alert("El artículo con id "+data.codigo+" no se actualizó!!");
+			alert("Error al agregar las devoluciones!!!!!!");
 		}
 	});
-	if ( comprados > 0 )
+	
+	if ( devueltos > 0 )
 	{
-		alert("Se han registrado exitósamente los "+comprados+" artículos aquiridos!");
+		alert("Se han egistrado exitósamente los "+devueltos+" artículos devueltos!");
 	}
 	else
 	{
-		alert("No se registró alguna compra!");
+		alert("No se registró alguna devolución!");
 	}
 	
 	location.reload();
 }
+
 
 /**
  * Función encargada de modificar un artículo en la base de datos.
@@ -242,63 +253,27 @@ function actualizarArticulo( i, tr )
 	var actualizo = false;
 	if ( i > 0 )
 	{
-		var nCompra;
-		var importacion = null;
 		var cardex;
 		var genero;
 		var codidoArt = $(tr).find("#codigo").val();
-		var cantidadCompra = parseFloat($(tr).find("#cantidad").val());
-		var cosultcom = $(tr).find("#costoJm").val();
-		var costojm = $(tr).find("#costoIm").val();
-		var precio = $(tr).find("#precio").val();
-		var doc = $(tr).find("#doc").val().toUpperCase();
-		var nDoc = $(tr).find("#nDoc").val();
+		var cantidadDevolucion = parseFloat($(tr).find("#cantidad").val());
 
 		if( verificarFormatoCodigo( codidoArt ) )
 		{
-			if( cantidadCompra != 0 )
+			if( cantidadDevolucion != 0 )
 			{
 				var codigoSelec = obtenerNumeroAPartirDeCodigo(codidoArt);
-				var articuloAcomprar = artiEnTabla[codigoSelec];
-				var divisor = articuloAcomprar.cantdisp + cantidadCompra;
-				articuloAcomprar.cantdisp = articuloAcomprar.cantdisp == null? 0:articuloAcomprar.cantdisp;
-				articuloAcomprar.ultcostpr = articuloAcomprar.costprom;
-				articuloAcomprar.ultcosproi = articuloAcomprar.costpromim;
-				articuloAcomprar.invimpante = articuloAcomprar.invimppas;
-				articuloAcomprar.fecanteimp = articuloAcomprar.fecultimp;
-				articuloAcomprar.invimppas = articuloAcomprar.cantdisp + cantidadCompra;
-				articuloAcomprar.fecultimp = darFechaActual();
-				articuloAcomprar.costprom = ( articuloAcomprar.costprom*articuloAcomprar.cantdisp + cosultcom*cantidadCompra)/divisor;
-				articuloAcomprar.costpromim = ( ( articuloAcomprar.costpromim*articuloAcomprar.cantdisp ) + ( costojm * cantidadCompra ) )/divisor;
-				articuloAcomprar.precio = precio;
-				articuloAcomprar.costjm = costojm;
-				articuloAcomprar.ultcomp = cantidadCompra;
-				articuloAcomprar.cantdisp += cantidadCompra;
-				articuloAcomprar.cosultcom = cosultcom;
+				var articuloAdevolver = artiEnTabla[codigoSelec];
 				
-				if(articuloAcomprar.costprom == null || articuloAcomprar.costprom == 0 )
-				{
-					articuloAcomprar.costprom = cosultcom;
-				}
+				articuloAdevolver.cantdisp += cantidadDevolucion;
+				cardex = crearCardex( articuloAdevolver, cantidadDevolucion, tr );	
+				devolucion = { articulo:articuloAdevolver, cardex:cardex};
 				
-				if(articuloAcomprar.costpromim == null || articuloAcomprar.costpromim == 0 )
-				{
-					articuloAcomprar.costpromim = costjm;
-				}
-				
-				cardex = crearCardex( articuloAcomprar, tr );
-				if(doc === "PED" || doc === "PÉD")
-				{
-					importacion = crearImportacion( articuloAcomprar, tr );	
-				}
-				compra = { articulo:articuloAcomprar, cardex:cardex, importacion:importacion };
-				
-				artiComprados.push(compra);
+				articulosDevueltosJM.push(devolucion);
 				
 				actualizo = true;
 			}
 		}
-		
 		else
 		{
 			alert("El código de alguno de los artículos no coincide con el formato: 000-000-0");
@@ -314,7 +289,7 @@ function actualizarArticulo( i, tr )
  * @param tr: Fila HTML donde se encuentra el artículo al que se le actualizará, 
  * 			  en la base de datos, la cantidad.
  * */
-function crearCardex( articulo, tr )
+function crearCardex( articulo, cantidadDevolucion, tr )
 {
 	var nCardex = new Object();
 	
@@ -325,7 +300,7 @@ function crearCardex( articulo, tr )
 	nCardex.fecha = darFechaActual();
 	nCardex.tipo = "E";
 	nCardex.documento =  doc;
-	nCardex.cantidad = articulo.ultcomp;
+	nCardex.cantidad = cantidadDevolucion;
 	nCardex.ndoc = nDoc;
 	nCardex.saldo = articulo.cantdisp;
 		

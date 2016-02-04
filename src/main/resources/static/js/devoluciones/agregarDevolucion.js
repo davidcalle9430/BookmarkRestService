@@ -19,7 +19,26 @@ function()
 function iniciarFormulario()
 {
 	obtenerFilaSelec();
+	capturarTab();
 	$("form").submit(agregarDevoluciones);	
+}
+
+/**
+ * Se encarga de capturar la fila cuya columna "nDoc" se esta modificando.
+ * Para así agregar una nueva fila al final.
+ * */
+function capturarTab()
+{
+	$("table").on("keydown", "#nDoc", 
+	function(ev) 
+	{
+		var code = ev.keyCode || ev.which;
+		if (code == '9') 
+		{
+			agregarFila();
+		}
+		var trSelec = $(this).parent().parent();
+	});
 }
 
 /**
@@ -138,7 +157,7 @@ function agregarDevoluciones(ev)
 		}
 	});
 	
-	if ( articulosEntabla > 0 )
+	if ( devueltos > 0 )
 	{
 		alert("Se han egistrado exitósamente los "+devueltos+" artículos devueltos!");
 	}
@@ -171,7 +190,7 @@ function actualizarArticulo( i, tr )
 		{
 			articulosEntabla[codigoArt].cantdisp += cantidadDevolucion;
 			cardex = crearCardex( articulosEntabla[codigoArt], tr, cantidadDevolucion );	
-			devolucion = { genero:articulosEntabla[codigoArt], cardex:cardex };
+			devolucion = { genero:articulosEntabla[codigoArt], cardexi:cardex };
 			articulosDevueltos.push(devolucion);
 			actualizo = true;
 		}

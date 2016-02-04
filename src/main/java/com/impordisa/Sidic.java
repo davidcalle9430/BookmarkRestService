@@ -81,7 +81,7 @@ import sidic.entities.Usuarios;
 import sidic.entities.Vendedor;
 import sidic.entities.VentasseguimientoOrg;
 import sidic.entities.Zonas;
-
+import projections.ClienteFactura;
 import projections.ClienteRotulacion;
 /**
  * Clase encargade de arrancar la aplicación haciendo un escaneo de los
@@ -275,6 +275,7 @@ class CustomRestMvcConfiguration {
 			    config.exposeIdsFor(NfactLog.class);
 			    // registro de proyecciones
 			    config.getProjectionConfiguration().addProjection(ClienteRotulacion.class);
+			    config.getProjectionConfiguration().addProjection(ClienteFactura.class);
 			}
 
 			@Override
