@@ -16,12 +16,16 @@ import resultclasses.Proveedor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import repositories.ArticuloRepository;
-import sidic.entities.Articulo;;
+import repositories.EspeciaRepository;
+import sidic.entities.Articulo;
+import sidic.entities.Especia;;
 /**
  * Clase que se encarga de extnder la funcionalidad de spring data rest en la entidad artìculo
  * consiste en queries más complejas que encesitan de  clases  resultado intermedias para poder ser retornadas como un JSON
@@ -31,6 +35,10 @@ import sidic.entities.Articulo;;
 @RestController
 public class ArticulosController 
 {
+	
+	
+	@Autowired
+	private EspeciaRepository especiaRepository;
 	@Autowired
 	private ArticuloRepository articuloRepository;
 	@PersistenceContext
@@ -128,5 +136,19 @@ public class ArticulosController
 	{
 		Query q = em.createQuery("select new resultclasses.Proveedor( count(a) as numReg, procedenc ) from Articulo a group by a.procedenc");
 		return q.getResultList();
+	}
+	
+	/**
+	 * 
+	 */
+	@RequestMapping(value="/api/articulos/{id}/especial", method = RequestMethod.GET,produces="application/json")
+	public Articulo darArticuloEspecial(@PathVariable Long id, @RequestParam Long idCliente){
+			Especia	especia = especiaRepository.findOneByCodigoAndArticulo(idCliente, id );
+			Articulo actual = articuloRepository.findOne(id);
+			if(especia != null){
+				actual.setReferencia(especia.getReferencia());
+				actual.setPrecio(especia.getPrecio());
+			}
+			return actual;
 	}
 }

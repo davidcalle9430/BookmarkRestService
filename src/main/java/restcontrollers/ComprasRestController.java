@@ -69,18 +69,22 @@ public class ComprasRestController
 		{
 			Genero genero = controGenero.findOne( (long) Math.floor(compra.getArticulo().getCodigo()/1000 ));
 			
-			if( genero.getCantdispjm() == null )
-			{
-				genero.setCantdispjm( compra.getArticulo( ).getUltcomp() );
-			}
-			else
-			{
-				genero.setCantdispjm( genero.getCantdispjm( ) + compra.getArticulo().getUltcomp( ) );
-			}
-
 			controArticulo.save( compra.getArticulo( ) );
 			controCardex.save( compra.getCardex( ) );
-			controGenero.save( genero );
+			
+			if( genero != null )
+			{
+				if( genero.getCantdispjm() == null )
+				{
+					genero.setCantdispjm( compra.getArticulo( ).getUltcomp() );
+				}
+				else
+				{
+					genero.setCantdispjm( genero.getCantdispjm( ) + compra.getArticulo().getUltcomp( ) );
+				}
+				
+				controGenero.save( genero );
+			}
 			
 			if( compra.getImportacion() != null )
 			{

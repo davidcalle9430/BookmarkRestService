@@ -5,9 +5,30 @@
  * */
 var cambiados = new Object();
 
-$(document).ready(function() { obtenerFilaSelec();
-$("form").submit(guardarCambios);
+$(document).ready(function() 
+{ 
+	obtenerFilaSelec();
+	capturarTab();
+	$("form").submit(guardarCambios);
 });
+
+/**
+ * Se encarga de capturar la fila cuya columna "ndoc" se esta modificando.
+ * Para así agregar una nueva fila al final.
+ * */
+function capturarTab()
+{
+	$("table").on("keydown", "#ndoc", 
+	function(ev) 
+	{
+		var code = ev.keyCode || ev.which;
+		if (code == '9') 
+		{
+			agregarFila();
+		}
+		var trSelec = $(this).parent().parent();
+	});
+}
 
 /**
  * Función encargada de crear una nueva fila con campos vacios

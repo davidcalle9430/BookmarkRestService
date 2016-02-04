@@ -12,12 +12,31 @@ function()
 });
 
 /**
+ * Se encarga de capturar la fila cuya columna "nPrecio" se esta modificando.
+ * Para así agregar una nueva fila al final.
+ * */
+function capturarTab()
+{
+	$("table").on("keydown", "#nPrecio", 
+	function(ev) 
+	{
+		var code = ev.keyCode || ev.which;
+		if (code == '9') 
+		{
+			agregarFila();
+		}
+		var trSelec = $(this).parent().parent();
+	});
+}
+
+/**
  * Se encarga de inicar lo compnentes del formualrio y revisar si llega el código
  * de algún artculo en la URL.
  * */
 function iniciarFormulario()
 {
 	obtenerFilaSelec();
+	capturarTab();
 	var getCodigo = get("codigo");
 	if( getCodigo != null && getCodigo != "")
 	{

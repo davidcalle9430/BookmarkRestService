@@ -11,17 +11,17 @@ import sidic.entities.Genero;
 public class Devolucion {
 	
 	private Genero genero;
-	private Cardexi cardex;	
+	private Cardexi cardexi;	
 	
 	public Devolucion() {
 		super();
 	}
 
-	public Devolucion(Genero genero, Cardexi cardex) 
+	public Devolucion(Genero genero, Cardexi cardexi) 
 	{
 		super();
 		this.genero = genero;
-		this.cardex = cardex;
+		this.cardexi = cardexi;
 	}
 
 	
@@ -36,20 +36,20 @@ public class Devolucion {
 	}
 
 	
-	public Cardexi getCardex() 
+	public Cardexi getCardexi() 
 	{
-		return cardex;
+		return cardexi;
 	}
 
-	public void setCardex(Cardexi cardex) 
+	public void setCardexi(Cardexi cardexi) 
 	{
-		this.cardex = cardex;
+		this.cardexi = cardexi;
 	}
 
 	@Override
 	public String toString() 
 	{
-		return "Bodega [articulo=" + genero + ", cardex=" + cardex + "]";
+		return "Bodega [articulo=" + genero + ", cardexi=" + cardexi + "]";
 	}
 
 	
