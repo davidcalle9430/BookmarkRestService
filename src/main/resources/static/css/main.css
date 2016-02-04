@@ -4,6 +4,27 @@ h1{
 	font-size: 4vmin;
 }
 
+table{
+	width: 90vw;
+	margin: 2vmin auto 2vmin auto;
+}
+table thead{
+	font-size: 2vmin;
+	color: #F00;
+}
+
+table tr th{
+	font-size: 2vmin;
+	color: #FFF;
+}
+
+table tbody tr td{
+	font-size: 1.5vmin;
+}
+table tbody tr td input{
+	border: 0px;
+	background-color: #F00;
+} 
 .boton-redondo{
 	border: 2px solid #f5f5f5;
     border-radius: 50%;
