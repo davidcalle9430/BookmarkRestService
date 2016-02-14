@@ -3,6 +3,9 @@
  */
 var pagina = 0;
 var alFinal = false;
+/**
+ * petición ajax para obtener todos los niveles
+ */
 function ajaxCall() {
 	$.ajax({
 		url : '/api/niveles?page=' + pagina,
@@ -16,7 +19,10 @@ function ajaxCall() {
 		}
 	})
 }
-
+/**
+ * función que se encarg de crear una fila para cada uno de los niveles
+ * @param niveles, referencia a lista de niveles a crear
+ */
 function crearFila(niveles) {
 	niveles = niveles._embedded.niveles;
 	for (var i = 0; i < niveles.length; i++) {
@@ -32,6 +38,10 @@ function crearFila(niveles) {
 		$('tbody').append(tr);
 	}
 }
+/**
+ * función que se ejecuta cuando el usuario le da clic a una fila
+ * es importante haber agregado el listener para su funcionamiento
+ */
 function clicFila(){
 	var hijos = $(this).children();
 	window.location = "editar/?codigo="+hijos[0].innerHTML;

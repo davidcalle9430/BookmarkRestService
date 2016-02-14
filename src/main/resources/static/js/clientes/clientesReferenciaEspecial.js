@@ -63,6 +63,8 @@ function clicFila()
 /**
  * función que se ejecuta una vez se haya cargado todo el documento
  */
+var head = $("thead"); // busca los headers de la tabla
+var columnas = 5; // numero de columnas de la tabla
 $(document).ready(function() 
 {
 			ajaxCall();
@@ -72,6 +74,18 @@ $(document).ready(function()
 								alFinal = true;
 								ajaxCall();
 							}
+						}
+						if(head.position().top -$(this).scrollTop() < 0 ){
+							head.css("position", "fixed");
+							head.css("top", "0px");
+							head.css("left", "0px");
+							head.find("th").each(function(el){
+								$(this).css("width", 100 / columnas + "vw")
+							})
+						}else{
+							head.css("position", "");
+							head.css("top", "");
+							head.css("left", "");
 						}
 			});
 			$("table").on("click","tr", clicFila);
