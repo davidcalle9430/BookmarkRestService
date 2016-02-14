@@ -6,7 +6,7 @@ var alFinal = false; // variable que verifica que esté al final del  window
  */
 function ajaxCall() {
 	$.ajax({
-		url : '/api/rolesymenus?projection=rolesymenus&page=' + pagina,
+		url : '/api/opcionesniveles/?page=' + pagina,
 		success : function(data) {
 			crearFila(data);
 			alFinal = false;
@@ -22,20 +22,20 @@ function ajaxCall() {
  * @param niveles, referencia a lista de niveles a crear
  */
 function crearFila(niveles) {
-	niveles = niveles._embedded.rolesymenus;
+	console.log(niveles);
 	for (var i = 0; i < niveles.length; i++) {
 		var tr = $("<tr>");
 		var columnaNivel = $('<td>', {
-			text : niveles[i].rolesymenusPK.rol
+			text : niveles[i].nivel
 		});
 		var columnaNombre = $('<td>', {
-			text : niveles[i].menus.menusPK.menu
+			text : niveles[i].nombre
 		});
 		var columnaCodigoMenu = $('<td>', {
-			text : niveles[i].menus.menusPK.menu
+			text : niveles[i].codMenu
 		});
 		var columnaNombreMenu = $('<td>', {
-			text : niveles[i].menus.descripcion
+			text : niveles[i].nombreMenu
 		});
 		tr.append(columnaNivel);
 		tr.append(columnaNombre);
