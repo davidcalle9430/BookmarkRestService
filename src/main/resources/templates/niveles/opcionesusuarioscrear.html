@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+<title>Modificac&iacute;on de Opciones</title>
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1>Nueva Opci&oacute;n-Rol</h1>
+	<form onkeypress="return event.keyCode != 13;">
+		<div class="row">
+			<div class="large-12 columns">
+				<label> Nivel <select id="nivel" name="nivel"
+					required="required" ></select></label>
+			</div>
+			<div class="large-12 columns">
+				<label> Men&uacute; <select id="menu" name="menu"
+					required="required" ></select></label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="">
+				<button type="submit" class="button large-3 submit"
+					style="float: right">Nuevo</button>
+			</div>
+		</div>
+	</form>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/niveles/opcionesusuarioscrear.js"></script>
+</body>
+</html>
