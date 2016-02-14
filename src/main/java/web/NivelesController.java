@@ -17,4 +17,8 @@ public class NivelesController {
 	public String nuevoNivel(){
 		return "niveles/nivelesnuevo";
 	}
+	@RequestMapping(value="/mnunivelopc/")
+	public String opcionesUsuarios(){
+		return "niveles/opcionesusuarios";
+	}
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+	<title>Opciones Usuarios</title>
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1> Opciones Usuarios </h1>
+	<div class="row">
+		<a class="large button boton boton-derecha" href="nuevo/">Nuevo</a>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th>Nivel</th>
+				<th>Nombre</th>
+				<th>Cod.Men&uacute;</th>
+				<th>Nombre Men&uacute;</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+   	<footer th:replace="footer :: footer"></footer>
+   	<script src="/static/js/niveles/opcionesusuarios.js"></script>
+</body>
+</html>
