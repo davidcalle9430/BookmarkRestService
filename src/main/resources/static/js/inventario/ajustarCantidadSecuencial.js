@@ -38,7 +38,7 @@ var clicFila = function(){
 function crearEncabezados() {
 	// codigo nombre ingles, nombre español, tipo, con iva
 	var tabla = $("#articulos").first();
-	var tr = $("<tr>");
+	var tr = $("<thead>");
 	var thCodigo = $("<th>", { text : "Código"});
 	var thNombre = $("<th>", { text : "Nombre "});
 	var thCantDisp = $("<th>", {text : "Cant. Disp."});
@@ -47,6 +47,7 @@ function crearEncabezados() {
 	tr.append(thCantDisp);
 	
 	tabla.append(tr);
+	head = $("thead");
 }
 
 
@@ -56,7 +57,8 @@ function crearEncabezados() {
 function agregarFila() {
 	getForObject({page : pagina}, "/api/generos", cargarNombres);
 }
-
+var head = $("thead"); // busca los headers de la tabla
+var columnas = 3; // numero de columnas de la tabla
 $(document).ready(function(){
 	crearEncabezados();
 	agregarFila();
@@ -66,6 +68,19 @@ $(document).ready(function(){
 				alFinal = true;
 				agregarFila();
 			}
+		}
+		
+		if(head.position().top -$(this).scrollTop() < 0 ){
+			head.css("position", "fixed");
+			head.css("top", "0px");
+			head.css("left", "0px");
+			head.find("th").each(function(el){
+				$(this).css("width", 100 / columnas + "vw")
+			})
+		}else{
+			head.css("position", "");
+			head.css("top", "");
+			head.css("left", "");
 		}
 	});
 	$("table").on("click","tr", clicFila);

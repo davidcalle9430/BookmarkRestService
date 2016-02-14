@@ -6,7 +6,7 @@
 
 function cargarEncabezados(lista, propiedades, aMostrar) {
 	var primero = lista[0];
-	var tr = $("<tr>");
+	var tr = $("<thead>");
 	for (atributo in primero) {
 		if (propiedades.indexOf(atributo) != -1) {
 			var th = $("<th>");
@@ -16,7 +16,7 @@ function cargarEncabezados(lista, propiedades, aMostrar) {
 	}
 	var tabla = $("table").first();
 	tabla.append(tr);
-
+	head = $("thead");
 }
 function cargarTabla(lista, propiedades, aMostrar, indice) {
 	if (indice == 0) {
@@ -90,9 +90,9 @@ var manejador = function() {
 var tamMax = null; // variable que guarda el tamaño máximo de la página
 var paginaActual = 0;
 var alFinal = false; // variable que determina si está al final de la pagina
-						// para recargar
-$(document).ready(
-		function() {
+var columnas = 5;
+var head = $("thead");
+$(document).ready(function() {
 			var body = $("body").first();
 			var table = $("<table>", {
 				id : "tabla"
@@ -112,7 +112,21 @@ $(document).ready(
 							if (!alFinal) {
 								alFinal = true;
 								cargarClientes(paginaActual, loader, tamMax);
+								
 							}
+						}
+						
+						if(head.position().top -$(this).scrollTop() < 0 ){
+							head.css("position", "fixed");
+							head.css("top", "0px");
+							head.css("left", "0px");
+							head.find("th").each(function(el){
+								$(this).css("width", 100 / columnas + "vw" )
+							})
+						}else{
+							head.css("position", "");
+							head.css("top", "");
+							head.css("left", "");
 						}
 					});
 		});

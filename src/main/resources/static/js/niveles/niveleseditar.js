@@ -10,7 +10,7 @@ $(document).ready(function(){
 		obj.nivelesPK = new Object();
 		obj.nivelesPK.nivel = obj.nivel;
 		obj.nivelesPK.empresa = 1;
-		obj.fecha = formatearFechaISO(darFechaActual());
+		obj.fecha = darFechaActual(); //formatearFechaISO(darFechaActual());
 		putForObject(obj, "/api/niveles/actualizar", exito, errorAc);
 	});
 });
