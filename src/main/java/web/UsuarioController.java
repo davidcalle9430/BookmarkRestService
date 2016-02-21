@@ -40,4 +40,15 @@ public class UsuarioController {
 	public String usuarios(){
 		return "usuarios/usuarios";
 	}
+	
+	@RequestMapping(value="/mnuusuarios/nuevo/", method = RequestMethod.GET)
+	public String usuariosCrear(){
+		return "usuarios/usuariosnuevo";
+	}
+	
+	@RequestMapping(value="/mnuusuarios/editar/", method = RequestMethod.GET)
+	public String usuariosEditar(){
+		return "usuarios/usuarioseditar";
+	}
+	
 }

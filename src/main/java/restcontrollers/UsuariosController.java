@@ -54,7 +54,7 @@ public class UsuariosController {
 	}
 	
 	/**
-	 * función que edita el usaurios y lo deja como el  parametro
+	 * función que edita el usaurios y lo deja como el  parametro, pero solo la contrasenia
 	 * @param usuario
 	 * @return
 	 */
@@ -66,6 +66,28 @@ public class UsuariosController {
 		}
 		usuarioRepository.save(usuario);
 		return new ResponseEntity<Usuarios>(HttpStatus.OK);	
+	}
+	
+	/**
+	 * función que edita el usaurios y lo deja como el  parametro
+	 * @param usuario
+	 * @return
+	 */
+	@RequestMapping(value="/api/usuarios/", produces="application/json", method = RequestMethod.PUT)
+	public ResponseEntity<?> editarUsuarioCompleto(@RequestBody Usuarios usuario){
+		Usuarios seleccionado = usuarioRepository.findOneByUsuario(usuario.getUsuario());
+		seleccionado.setPassword(usuario.getPassword());
+		seleccionado.setMaxdias(usuario.getMaxdias());
+		seleccionado.setDiasalerta(usuario.getDiasalerta());
+		seleccionado.setNivel(usuario.getNivel());
+		try{
+			usuarioRepository.save(usuario);
+			return new ResponseEntity<Usuarios>(HttpStatus.OK);	
+		}catch(Exception e){
+			return new ResponseEntity<Usuarios>(HttpStatus.INTERNAL_SERVER_ERROR);	
+		}
+		
+		
 	}
 	@RequestMapping(value="/api/usuarios/{usuario}/", produces="application/json", method = RequestMethod.DELETE)
 	public ResponseEntity<?> borrarUsuario(@RequestBody Usuarios usuario){

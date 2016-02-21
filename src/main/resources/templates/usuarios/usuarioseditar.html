@@ -10,14 +10,26 @@
 	<form onkeypress="return event.keyCode != 13;">
 		<div class="row">
 			<div class="large-12 columns">
-				<label>Nivel <input readonly="readonly" id="nivel" type="number" name="nivel" required="required" onchange="verificar()"/>
+				<label>Usuario <input readonly="readonly" id="usuario" type="text" name="usuario" required="required"/>
 				</label>
 			</div>
 			<div class="large-12 columns">
-				<label>Descripci&oacute;n <input id="descripcion" type="text" name="descripcion"
+				<label> Nivel <select id="nivel" type="text" name="nivel"
+					required="required"  ></select></label>
+			</div>
+			<div class="large-12 columns">
+				<label> D&iacute;as cambio password <input id="maxdias" type="number" name="maxdias"
+					required="required"  /></label>
+			</div>
+			<div class="large-12 columns">
+				<label> D&iacute;as mensaje de cambio <input id="diasalerta" type="number" name="diasalerta"
 					required="required"  /></label>
 			</div>
 		</div>
+			<div class="large-12 columns">
+				<label> Password <input id="password" type="password" name="password"
+					required="required"  /></label>
+			</div>
 		<div class="row">
 			<div class="">
 				<button type="submit" class="button large-3 submit"
@@ -26,6 +38,6 @@
 		</div>
 	</form>
 	<footer th:replace="footer :: footer"></footer>
-	<script src="/static/js/niveles/niveleseditar.js"></script>
+	<script src="/static/js/usuarios/usuarioseditar.js"></script>
 </body>
 </html>
