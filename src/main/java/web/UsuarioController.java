@@ -36,7 +36,7 @@ public class UsuarioController {
 		return "usuarios/cambiarcredenciales";
 	}
 
-	@RequestMapping(value="/usuarios/", method = RequestMethod.GET)
+	@RequestMapping(value="/mnuusuarios/", method = RequestMethod.GET)
 	public String usuarios(){
 		return "usuarios/usuarios";
 	}

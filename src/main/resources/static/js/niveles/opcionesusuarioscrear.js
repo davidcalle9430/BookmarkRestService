@@ -1,10 +1,25 @@
 var opciones = null; // todaas las opciones
 var niveles = null; // todos los niveles
+var usuario = null; // usuario que está logeado
+/**
+ * función que se ejecuta al cargar el DOM
+ */
 $(document).ready(function() {
+	getForObject(null, "/api/seguridad/autenticacion/", function(actual) {
+		usuario = actual;
+	});
 	$("form").submit(function(ev) {
 		ev.preventDefault();
 		var obj = $(this).serializeObject();
-		postForObject(obj, "/api/rolesymenus/", exito, error);
+		console.log(obj);
+		var nuevo = new Object();
+		nuevo.empresa = 1;
+		nuevo.rol = parseInt(obj.nivel);
+		nuevo.menu = obj.menu;
+		nuevo.fecha = darFechaActual();
+		nuevo.usuario = usuario.usuario;
+		console.log(JSON.stringify(nuevo));	
+		postForObject( obj	 , "/api/rolesymenus/", exito , error);
 	});
 	cargarFormulario();
 });
@@ -56,10 +71,16 @@ function cargarNiveles(data){
 function errorNiveles(){
 	alert("Error al cargar los niveles");
 }
+/**
+ * función que se ejecuta cuando hay exito
+ */
 function exito(){
 	alert("Éxito al crear");
 	//location.href = "/jm/";
 }
+/**
+ * función que se ejecuta cuando hay error
+ */
 function error(){
 	alert("Error al crear");
 	//location.href = "/jm/";

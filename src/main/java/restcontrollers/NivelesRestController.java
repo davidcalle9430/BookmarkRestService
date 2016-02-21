@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,9 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import repositories.MenusRepository;
 import repositories.NivelesRepository;
 import repositories.RolesYMenusRepository;
-import repositories.UsuarioRepository;
 import sidic.entities.Menus;
-import sidic.entities.MenusPK;
 import sidic.entities.Niveles;
 import sidic.entities.Rolesymenus;
 import sidic.entities.RolesymenusPK;
@@ -44,13 +41,20 @@ public class NivelesRestController {
 	
 	@Autowired
 	private RolesYMenusRepository rmRepository;
-	
+	/**
+	 * función que actualiza los niveles
+	 * @param nivel, nivel a actualizar
+	 * @return
+	 */
 	@RequestMapping(value="/api/niveles/actualizar", method = RequestMethod.PUT)
 	public ResponseEntity<?> actualizarNivel(@RequestBody Niveles nivel){
 		nivelesRespository.actualizarNivel(nivel.getNivelesPK().getNivel(), nivel.getDescripcion(), nivel.getFecha());
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
-	
+	/**
+	 * función que muestra las opciones por nivel
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/api/opcionesniveles/")
 	public List<RolesMenuNivel> darOpcionesNivel(){
@@ -66,7 +70,11 @@ public class NivelesRestController {
 		List<RolesMenuNivel> retorno = q.getResultList();
 		return retorno;
 	}
-	
+	/**
+	 * función que agrega un rol y menú, toca ahcer todo esto por el mal diseño del anterior desarrollo
+	 * @param elegidos
+	 * @return
+	 */
 	@RequestMapping(value="/api/rolesymenus/", method= RequestMethod.POST)
 	public ResponseEntity<?> agregarRolMenu(@RequestBody Map<String, String> elegidos){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -82,7 +90,8 @@ public class NivelesRestController {
 		nuevo.setFecha(new Date());
 		nuevo.setMenus(menu);
 		try{
-			rmRepository.save(nuevo);
+			nuevo = rmRepository.save(nuevo);
+			System.out.println("Grabo a " + nuevo.getRolesymenusPK().getMenu() + "-" + nuevo.getRolesymenusPK().getRol());
 			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 		}catch(Exception e){
 			e.printStackTrace();

@@ -198,7 +198,10 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 					rolesUsuario.forEach(rol -> {
 						Rolessss rolActual = rolesRepository
 								.findOneByRolessssPK_codigo(rol.getRolesymenusPK().getRol());
-						roles.add(rolActual.getNombre());
+						if(rolActual  != null){
+							roles.add(rolActual.getNombre());
+						}
+						
 					});
 					String[] arregloDeRoles = new String[roles.size()];
 					List<GrantedAuthority> rolesSeguridad = AuthorityUtils

@@ -1,53 +1,75 @@
-$(document).ready(function(){
-	tabla();
-});
-
-function tabla(){
+/**
+ * 
+ */
+var pagina = 0;
+var alFinal = false;
+/**
+ * funcíon que trae la lista de usuarios asíncronamente
+ */
+function ajaxCall() {
 	$.ajax({
-		url: '/api/users',
-		success: function(data){
-			var usuarios = data._embedded.users;
-			llenarTabla(usuarios);
+		url : '/api/usuariosnivel/',
+		success : function(data) {
+			crearFila(data);
+			alFinal = false;
+			pagina++;
 		},
-		error: function(){
-			
+		error : function(data) {
+			console.log("Error al recuperar los datos");
 		}
-	});
+	})
 }
 
-function llenarTabla(usuarios){
-	for(var i=0; i<usuarios.length; i++){
-		var usuario = $('<td>',{
-			text: users[i].usuario
+function crearFila(usuarios) {
+	for (var i = 0; i < usuarios.length; i++) {
+		var tr = $("<tr>");
+		var columnaUsuario = $('<td>', {
+			text : usuarios[i].usuario
 		});
-		console.log(usuarios[i].usuario);
-		var nivel = $('<td>',{
-			text: usuarios[i].nivel
+		var columnaNivel = $('<td>', {
+			text : usuarios[i].nivel
 		});
-		var nombreNivel = $('<td>',{
-			text: 'ToDo' //getNombreNivel(usuarios[i].nivel);
+		var columnaNombreNivel = $('<td>', {
+			text : usuarios[i].nombreNivel
 		});
-		var maxDias = $('<td>',{
-			text: usuarios[i].maxdias
+		var columnaMaxDias = $('<td>', {
+			text : usuarios[i].maxDias
 		});
-		var diasAlerta = $('<td>',{
-			text: usuarios[i].diasalerta
+		var columnaDiasAlerta = $('<td>', {
+			text : usuarios[i].diasAlerta
 		});
+		tr.append(columnaUsuario);
+		tr.append(columnaNivel);
+		tr.append(columnaNombreNivel);
+		tr.append(columnaMaxDias);
+		tr.append(columnaDiasAlerta);
+		$('tbody').append(tr);
 	}
 }
-
-function getNombreNivel(nivel){
-	$.ajax({
-		url: '/api/niveleses',
-		async: false,
-		success: function(data){
-			var niveles = data._embedded.niveleses;
-			for(var i=0; i<niveles.length; i++){
-				console.log(niveles[i]);
-			}
-		},
-		error: function(){
-			
-		}
-	});
+function clicFila(){
+	var hijos = $(this).children();
+	window.location = "editar/?usuario="+hijos[0].innerHTML;
 }
+
+var head = $("thead"); // busca los headers de la tabla
+var columnas = 5; // numero de columnas de la tabla
+$(document).ready(function() {
+			ajaxCall();
+			$(window).scroll(function() {
+						if(head.position().top -$(this).scrollTop() < 0 ){
+							head.css("position", "fixed");
+							head.css("top", "0px");
+							head.css("left", "0px");
+							head.find("th").each(function(el){
+								$(this).css("width", 100 / columnas + "vw")
+							})
+						}else{
+							head.css("position", "");
+							head.css("top", "");
+							head.css("left", "");
+						}
+						
+						
+			});
+			$("table").on("click","tr", clicFila);
+});
