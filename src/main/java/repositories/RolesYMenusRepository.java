@@ -12,4 +12,5 @@ import sidic.entities.RolesymenusPK;
 public interface RolesYMenusRepository extends JpaRepository<Rolesymenus,RolesymenusPK> {
 	public List<Rolesymenus> findAllByUsuario(@Param("usuario")String usuario);
 	public List<Rolesymenus> findAllByRolesymenusPK_Menu(String menu);
+	
 }

@@ -3,6 +3,9 @@ package restcontrollers;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import repositories.UsuarioRepository;
+import resultclasses.UsuariosNivel;
 import sidic.entities.Empresas;
 import sidic.entities.Usuarios;
 /**
@@ -29,15 +33,31 @@ import sidic.entities.Usuarios;
 public class UsuariosController {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+	@PersistenceContext
+	private EntityManager em;
+	/**
+	 * función que trae todos lo usuarios
+	 * @return todos los usuarios como una lista
+	 */
 	@RequestMapping(value="/api/usuarios/", method = RequestMethod.GET)
 	public List<Usuarios> mostrarTodosLosUsuarios(){
 		return usuarioRepository.findAll();
 	}
+	/**
+	 * función que trae la información del usuario con nombre usuario
+	 * @param usuario
+	 * @return
+	 */
 	@RequestMapping(value="/api/usuarios/{usuario}/", produces ="application/json", method = RequestMethod.GET)
 	public Usuarios darUsuario(@PathVariable String usuario){
 		return usuarioRepository.findOneByUsuario(usuario);
 	}
+	
+	/**
+	 * función que edita el usaurios y lo deja como el  parametro, pero solo la contrasenia
+	 * @param usuario
+	 * @return
+	 */
 	@RequestMapping(value="/api/usuarios/{usuario}/", produces="application/json", method = RequestMethod.PUT)
 	public ResponseEntity<?> editarUsuario(@RequestBody Usuarios usuario){
 		Usuarios seleccionado = usuarioRepository.findOneByUsuario(usuario.getUsuario());
@@ -46,6 +66,28 @@ public class UsuariosController {
 		}
 		usuarioRepository.save(usuario);
 		return new ResponseEntity<Usuarios>(HttpStatus.OK);	
+	}
+	
+	/**
+	 * función que edita el usaurios y lo deja como el  parametro
+	 * @param usuario
+	 * @return
+	 */
+	@RequestMapping(value="/api/usuarios/", produces="application/json", method = RequestMethod.PUT)
+	public ResponseEntity<?> editarUsuarioCompleto(@RequestBody Usuarios usuario){
+		Usuarios seleccionado = usuarioRepository.findOneByUsuario(usuario.getUsuario());
+		seleccionado.setPassword(usuario.getPassword());
+		seleccionado.setMaxdias(usuario.getMaxdias());
+		seleccionado.setDiasalerta(usuario.getDiasalerta());
+		seleccionado.setNivel(usuario.getNivel());
+		try{
+			usuarioRepository.save(usuario);
+			return new ResponseEntity<Usuarios>(HttpStatus.OK);	
+		}catch(Exception e){
+			return new ResponseEntity<Usuarios>(HttpStatus.INTERNAL_SERVER_ERROR);	
+		}
+		
+		
 	}
 	@RequestMapping(value="/api/usuarios/{usuario}/", produces="application/json", method = RequestMethod.DELETE)
 	public ResponseEntity<?> borrarUsuario(@RequestBody Usuarios usuario){
@@ -103,5 +145,26 @@ public class UsuariosController {
 		httpSession.invalidate();
 		return new ResponseEntity<Usuarios>(HttpStatus.ACCEPTED);
 	}
+	
+	/**
+	 * método que retorna al usuario junto con su nivel, toca hacer todo esto por el mal disenio
+	 */
+	@RequestMapping(value="/api/usuariosnivel/")
+	@SuppressWarnings("unchecked")
+	public List<UsuariosNivel> darUsuariosConNivel(){
+		Query q;
+		q = em.createQuery("select new resultclasses.UsuariosNivel ( "
+				+ "u.usuario, "
+				+ "u.nivel, "
+				+ "n.descripcion, "
+				+ "u.maxdias,"
+				+ "u.diasalerta ) "
+				+ "from Usuarios u , Niveles n "
+				+ "where u.nivel = n.nivelesPK.nivel "
+				);
+		List<UsuariosNivel> retorno = q.getResultList();
+		return retorno;
+	}
+	
 	
 }

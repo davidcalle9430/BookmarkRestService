@@ -36,8 +36,19 @@ public class UsuarioController {
 		return "usuarios/cambiarcredenciales";
 	}
 
-	@RequestMapping(value="/usuarios/", method = RequestMethod.GET)
+	@RequestMapping(value="/mnuusuarios/", method = RequestMethod.GET)
 	public String usuarios(){
 		return "usuarios/usuarios";
 	}
+	
+	@RequestMapping(value="/mnuusuarios/nuevo/", method = RequestMethod.GET)
+	public String usuariosCrear(){
+		return "usuarios/usuariosnuevo";
+	}
+	
+	@RequestMapping(value="/mnuusuarios/editar/", method = RequestMethod.GET)
+	public String usuariosEditar(){
+		return "usuarios/usuarioseditar";
+	}
+	
 }

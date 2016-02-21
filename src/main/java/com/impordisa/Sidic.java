@@ -83,6 +83,7 @@ import sidic.entities.VentasseguimientoOrg;
 import sidic.entities.Zonas;
 import projections.ClienteFactura;
 import projections.ClienteRotulacion;
+import projections.RolesyMenusProjection;
 /**
  * Clase encargade de arrancar la aplicación haciendo un escaneo de los
  * componentes que necesita para la configuración
@@ -197,7 +198,10 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 					rolesUsuario.forEach(rol -> {
 						Rolessss rolActual = rolesRepository
 								.findOneByRolessssPK_codigo(rol.getRolesymenusPK().getRol());
-						roles.add(rolActual.getNombre());
+						if(rolActual  != null){
+							roles.add(rolActual.getNombre());
+						}
+						
 					});
 					String[] arregloDeRoles = new String[roles.size()];
 					List<GrantedAuthority> rolesSeguridad = AuthorityUtils
@@ -276,6 +280,7 @@ class CustomRestMvcConfiguration {
 			    // registro de proyecciones
 			    config.getProjectionConfiguration().addProjection(ClienteRotulacion.class);
 			    config.getProjectionConfiguration().addProjection(ClienteFactura.class);
+			    config.getProjectionConfiguration().addProjection(RolesyMenusProjection.class);
 			}
 
 			@Override
@@ -339,7 +344,11 @@ class RequestFilter extends OncePerRequestFilter {
 		}
 		return false;
 	}
-	
+	/**
+	 * método que se encarga de hacer un filtrado de los request que llegan al serviodr y decide si tiene
+	 * los permisos suficientes para que la sesión actual acceda al controlador
+	 * también se encarga de revisar si un usuario necesita cmabio de contrasenia
+	 */
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)throws ServletException, IOException {
 		HttpSession session = request.getSession();
