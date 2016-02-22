@@ -1,7 +1,3 @@
-
-
-
-
 /**
  * 
  */
@@ -13,14 +9,13 @@ $(document).ready(function(){
 		if(head.position().top -$(this).scrollTop() < 0 ){
 			head.css("position", "fixed");
 			head.css("top", "0px");
-			head.css("left", "0px");
+			head.css("width", "90vw");
 			head.find("th").each(function(el){
 				$(this).css("width", 100 / columnas + "vw")
-			})
+			});
 		}else{
 			head.css("position", "");
 			head.css("top", "");
-			head.css("left", "");
 		}
 	});
 

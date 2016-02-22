@@ -11,11 +11,10 @@
 </head>
 <body class="main-form">
 	<nav th:replace="nav :: nav"></nav>
-	<h1> Clientes y Articulos con referencia especial </h1>
+	<h1> Clientes y Artículos con referencia especial </h1>
 		<div class="row">
 		<a class="large button boton boton-derecha" href="crear/">Nuevo</a>
 	</div>
-	<div class="loader"></div>
 	<table>
 		<thead>
 			<tr>
@@ -29,6 +28,7 @@
 		<tbody>
 		</tbody>
 	</table>
+	<div class="loader"></div>
    	<footer th:replace="footer :: footer"></footer>
    	<script src="/static/js/clientes/actualizarClientesReferenciaEspecial.js"></script>
 </body>
