@@ -93,40 +93,38 @@ var alFinal = false; // variable que determina si está al final de la pagina
 var columnas = 5;
 var head = $("thead");
 $(document).ready(function() {
-			var body = $("body").first();
-			var table = $("<table>", {
-				id : "tabla"
-			});
-			var tabla = $("table").first();
-			var loader = $(".loader").first();
-			loader.css({
-				display : "block"
-			});
-			body.append(table);
-			var tablaDom = $("table").first();
-			cargarClientes(paginaActual, loader);
-			$(window).scroll(
-					function() {
-						if ($(window).scrollTop() + $(window).height() > $(
-								document).height() - 50) {
-							if (!alFinal) {
-								alFinal = true;
-								cargarClientes(paginaActual, loader, tamMax);
-								
-							}
-						}
-						
-						if(head.position().top -$(this).scrollTop() < 0 ){
-							head.css("position", "fixed");
-							head.css("top", "0px");
-							head.css("left", "0px");
-							head.find("th").each(function(el){
-								$(this).css("width", 100 / columnas + "vw" )
-							})
-						}else{
-							head.css("position", "");
-							head.css("top", "");
-							head.css("left", "");
-						}
-					});
-		});
+	var body = $("body").first();
+	var table = $("<table>", {
+		id : "tabla"
+	});
+	var tabla = $("table").first();
+	var loader = $(".loader").first();
+	loader.css({
+		display : "block"
+	});
+	body.append(table);
+	var tablaDom = $("table").first();
+	cargarClientes(paginaActual, loader);
+	$(window).scroll(
+		function() {
+			if ($(window).scrollTop() + $(window).height() > $(
+					document).height() - 50) {
+				if (!alFinal) {
+					alFinal = true;
+					cargarClientes(paginaActual, loader, tamMax);
+					
+				}
+			}
+			if(head.position().top -$(this).scrollTop() < 0 ){
+				head.css("position", "fixed");
+				head.css("top", "0px");
+				head.css("width", "90vw");
+				head.find("th").each(function(el){
+					$(this).css("width", 100 / columnas + "vw")
+				});
+			}else{
+				head.css("position", "");
+			}
+		}
+	);
+});

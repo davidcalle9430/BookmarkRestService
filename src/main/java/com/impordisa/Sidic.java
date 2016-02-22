@@ -103,10 +103,6 @@ public class Sidic {
 	}
 }
 
-
-
-
-
 /**
  * Manejador de recursos estáticos Clase encargada de configurar cómo se manejan
  * los archivos estáticos
