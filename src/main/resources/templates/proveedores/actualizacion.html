@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+	<title>Zonas</title>
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1> Proveedores </h1>
+	<div class="row">
+		<a class="large button boton boton-derecha" href="nuevo/">Nuevo</a>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th>Identificaci&oacute;n</th>
+				<th>Nombre</th>
+				<th>Direcci&oacute;n</th>
+				<th>Tel&eacute;fono</th>
+				<th>Ciudad</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+   	<footer th:replace="footer :: footer"></footer>
+   	<script src="/static/js/proveedores/actualizacion.js"></script>
+</body>
+</html>

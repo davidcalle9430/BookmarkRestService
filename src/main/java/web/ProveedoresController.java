@@ -10,4 +10,14 @@ public class ProveedoresController {
 	public String darProveedores(){
 		return "proveedores/proveedores";
 	}
+	/**
+	 * la razón por la que este tiene este mapping es porque 
+	 * no existe en la base de datos, parece que no tiene permisos y 
+	 * el programador no la creó antes por pereza
+	 * @return
+	 */
+	@RequestMapping("/Mnulprov/actualizacion/")
+	public String darProveedoresActualizacion(){
+		return "proveedores/actualizacion";
+	}
 }
