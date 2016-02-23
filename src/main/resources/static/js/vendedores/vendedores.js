@@ -55,14 +55,17 @@ var head = $("thead"); // busca los headers de la tabla
 var columnas = 6; // numero de columnas de la tabla
 $(document).ready(function() {
 			tabla();
-			$("body").append($("<style>", {text : "td{width:" +100 / columnas + "vw;	}"}))
+			$("body").append($("<style>", {text : "td{width:" +90 / columnas + "vw;	}"}))
 			$(window).scroll(function() {
 				if(head.position().top -$(this).scrollTop() < 0 ){
 					head.css("position", "fixed");
 					head.css("top", "0px");
 					head.css("width", "90vw");
 					head.find("th").each(function(el){
-						$(this).css("width", 100 / columnas + "vw")
+						$(this).css("width", 90 / columnas + "vw")
+					});
+					$('table').find("td").each(function(el){
+						$(this).css("width", 90 / columnas + "vw")
 					});
 				}else{
 					head.css("position", "");

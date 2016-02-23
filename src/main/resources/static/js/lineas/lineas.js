@@ -21,11 +21,17 @@ function crearEncabezados()
 	var tabla = $("#lineas").first();
 	var tr = $("<tr>");
 	var codigo = $("<th>", {text :"Línea"});
+	codigo.css("width","16.6%");
 	var rango1 = $("<th>", { text : "Rango 1" });
+	rango1.css("width","16.6%");
 	var rango2 = $("<th>", { text : "Rango 2" });
+	rango2.css("width","16.6%");
 	var estado = $("<th>", { text : "Estado" });
+	estado.css("width","16.6%");
 	var descripcion = $("<th>", { text : "Descripción" });
+	descripcion.css("width","16.6%");
 	var permiterefespecial = $("<th>", { text: "Permite Referencia Especial" });
+	permiterefespecial.css("width","16.6%");
 	
 	tr.append(codigo);
 	tr.append(rango1);

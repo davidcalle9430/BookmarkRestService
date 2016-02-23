@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ComprasController 
 {
-	
-	
 	@RequestMapping(value="/mnucomi/")
 	public String agregarCompraImp()
 	{
@@ -31,6 +29,5 @@ public class ComprasController
 	{
 		return "compras/listarPedidos";
 	}
-
 }
 

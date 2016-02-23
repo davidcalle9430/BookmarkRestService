@@ -18,6 +18,7 @@ function ajaxCall() {
 }
 
 function crearFila(clientes) {
+	
 	clientes = clientes._embedded.clientes;
 	for (var i = 0; i < clientes.length; i++) {
 		console.log("AJAXI")
@@ -43,7 +44,7 @@ function crearFila(clientes) {
 }
 function clicFila(){
 	var hijos = $(this).children();
-	window.location = "editar/?zona="+hijos[0].innerHTML;
+	window.location = "editar/?codigo="+hijos[0].innerHTML;
 }
 
 var head = $("thead"); // busca los headers de la tabla
@@ -63,9 +64,6 @@ $(document).ready(function() {
 					head.css("top", "0px");
 					head.css("width", "90vw");
 					head.find("th").each(function(el){
-						$(this).css("width", 100 / columnas + "vw")
-					});
-					$('table').find("th").each(function(el){
 						$(this).css("width", 100 / columnas + "vw")
 					});
 				}else{

@@ -40,7 +40,7 @@ function agregarFila() {
 }
 
 var head = $("thead"); // busca los headers de la tabla
-var columnas = 2; // numero de columnas de la tabla
+var columnas = 5; // numero de columnas de la tabla
 $(document).ready(function(){
 	agregarFila();
 	$(window).scroll(function() {
@@ -55,7 +55,10 @@ $(document).ready(function(){
 			head.css("top", "0px");
 			head.css("width", "90vw");
 			head.find("th").each(function(el){
-				$(this).css("width", 100 / columnas + "vw")
+				$(this).css("width", 90 / columnas + "vw")
+			});
+			$('table').find("td").each(function(el){
+				$(this).css("width", 90 / columnas + "vw")
 			});
 		}else{
 			head.css("position", "");

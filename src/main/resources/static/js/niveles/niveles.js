@@ -66,6 +66,9 @@ $(document).ready(function() {
 							head.find("th").each(function(el){
 								$(this).css("width", 100 / columnas + "vw")
 							});
+							$('table').find("td").each(function(el){
+								$(this).css("width", 100 / columnas + "vw")
+							});
 						}else{
 							head.css("position", "");
 							head.css("top", "");
