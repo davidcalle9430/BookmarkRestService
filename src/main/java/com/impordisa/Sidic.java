@@ -74,6 +74,7 @@ import sidic.entities.NfactLog;
 import sidic.entities.Niveles;
 import sidic.entities.Opciones;
 import sidic.entities.Plazos;
+import sidic.entities.Proveedores;
 import sidic.entities.Rolessss;
 import sidic.entities.Rolesymenus;
 import sidic.entities.TextosFacturas;
@@ -83,6 +84,7 @@ import sidic.entities.VentasseguimientoOrg;
 import sidic.entities.Zonas;
 import projections.ClienteFactura;
 import projections.ClienteRotulacion;
+import projections.ProveedorCiudad;
 import projections.RolesyMenusProjection;
 /**
  * Clase encargade de arrancar la aplicación haciendo un escaneo de los
@@ -273,10 +275,12 @@ class CustomRestMvcConfiguration {
 			    config.exposeIdsFor(VentasseguimientoOrg.class);
 			    config.exposeIdsFor(Zonas.class);
 			    config.exposeIdsFor(NfactLog.class);
+			    config.exposeIdsFor(Proveedores.class); 
 			    // registro de proyecciones
 			    config.getProjectionConfiguration().addProjection(ClienteRotulacion.class);
 			    config.getProjectionConfiguration().addProjection(ClienteFactura.class);
 			    config.getProjectionConfiguration().addProjection(RolesyMenusProjection.class);
+			    config.getProjectionConfiguration().addProjection(ProveedorCiudad.class);
 			}
 
 			@Override
