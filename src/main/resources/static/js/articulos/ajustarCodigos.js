@@ -33,10 +33,15 @@ function crearEncabezados() {
 	var tabla = $("#articulos").first();
 	var tr = $("<thead>");
 	var thCodigo = $("<th>", { text : "Código"});
+	thCodigo.css("width","18vw");
 	var thNombreIngles = $("<th>", { text : "Nombre Inglés"});
+	thCodigo.css("width","18vw");
 	var thNombreEspaniol = $("<th>", {text : "Nombre Español"});
+	thCodigo.css("width","18vw");
 	var thTipo = $("<th>", {text : "Tipo"});
+	thCodigo.css("width","18vw");
 	var thIva = $("<th>", {text : "Iva"});
+	thCodigo.css("width","18vw");
 	tr.append(thCodigo);
 	tr.append(thNombreEspaniol);
 	tr.append(thNombreIngles);
@@ -76,7 +81,10 @@ $(document).ready(function() {
 			head.css("top", "0px");
 			head.css("width", "90vw");
 			head.find("th").each(function(el){
-				$(this).css("width", 100 / columnas + "vw")
+				$(this).css("width", 90 / columnas + "vw");
+			});
+			$('table').find("td").each(function(el){
+				$(this).css("width", 90 / columnas + "vw");
 			});
 		}else{
 			head.css("position", "");

@@ -13,8 +13,6 @@
 				<form name="f" th:action="@{/login}" method="post">
 					<div class="row column log-in-form">
 						<h4 class="text-center">Inicia sesi&oacute;n con tu cuenta</h4>
-						<div th:if="${param.error}" class="alert alert-error">Nombre
-							de Usuario o contrase&ntilde;a inv&aacute;lido</div>
 						<div th:if="${param.logout}" class="alert alert-success">Sesi&oacute;n
 							cerrada</div>
 						<label for="username">Nombre de Usuario</label> <input type="text"
@@ -28,7 +26,11 @@
 			</div>
 		</div>
 	</div>
+	<div class="alerta">
+	  nombre de usuario o contraseña incorrectos
+	</div>
    <footer th:replace="footer :: footer"></footer>
+   <script src="/static/js/login.js"></script>
 </body>
 </html>
 

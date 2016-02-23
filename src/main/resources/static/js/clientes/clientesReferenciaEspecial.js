@@ -67,24 +67,27 @@ var head = $("thead"); // busca los headers de la tabla
 var columnas = 5; // numero de columnas de la tabla
 $(document).ready(function() 
 {
-			ajaxCall();
-			$(window).scroll(function() {
-						if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
-							if (!alFinal) {
-								alFinal = true;
-								ajaxCall();
-							}
-						}
-						if(head.position().top -$(this).scrollTop() < 0 ){
-							head.css("position", "fixed");
-							head.css("top", "0px");
-							head.css("width", "90vw");
-							head.find("th").each(function(el){
-								$(this).css("width", 100 / columnas + "vw")
-							});
-						}else{
-							head.css("position", "");
-						}
-			});
-			$("table").on("click","tr", clicFila);
+	ajaxCall();
+	$(window).scroll(function() {
+				if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+					if (!alFinal) {
+						alFinal = true;
+						ajaxCall();
+					}
+				}
+				if(head.position().top -$(this).scrollTop() < 0 ){
+					head.css("position", "fixed");
+					head.css("top", "0px");
+					head.css("width", "90vw");
+					head.find("th").each(function(el){
+						$(this).css("width", 100 / columnas + "vw")
+					});
+					$('table').find('thead').find('tr').find("th").each(function(el){
+						$(this).css("width", 100 / columnas + "vw")
+					});
+				}else{
+					head.css("position", "");
+				}
+	});
+	$("table").on("click","tr", clicFila);
 });

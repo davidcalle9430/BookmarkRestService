@@ -58,7 +58,10 @@ $(document).ready(function() {
 							head.css("top", "0px");
 							head.css("width", "90vw");
 							head.find("th").each(function(el){
-								$(this).css("width", 100 / columnas + "vw")
+								$(this).css("width", 90 / columnas + "vw")
+							});
+							$('table').find("td").each(function(el){
+								$(this).css("width", 90 / columnas + "vw")
 							});
 						}else{
 							head.css("position", "");

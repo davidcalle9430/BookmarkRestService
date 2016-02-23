@@ -1,3 +1,13 @@
+.alerta{
+	color: #0F0F0F;
+	text-align: center;
+	background-color: #FE2E2E;
+	padding-top:2vh;
+	padding-bottom:2vh;
+	width: 40%;
+	margin: auto;
+}
+
 h1{
 	color: black;
 	margin: 2vmin 0 2vmin 0;
