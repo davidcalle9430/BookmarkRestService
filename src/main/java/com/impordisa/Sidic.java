@@ -77,6 +77,7 @@ import sidic.entities.Plazos;
 import sidic.entities.Rolessss;
 import sidic.entities.Rolesymenus;
 import sidic.entities.TextosFacturas;
+import sidic.entities.Tipooperacion;
 import sidic.entities.Usuarios;
 import sidic.entities.Vendedor;
 import sidic.entities.VentasseguimientoOrg;
@@ -277,6 +278,7 @@ class CustomRestMvcConfiguration {
 			    config.exposeIdsFor(VentasseguimientoOrg.class);
 			    config.exposeIdsFor(Zonas.class);
 			    config.exposeIdsFor(NfactLog.class);
+			    config.exposeIdsFor(Tipooperacion.class);
 			    // registro de proyecciones
 			    config.getProjectionConfiguration().addProjection(ClienteRotulacion.class);
 			    config.getProjectionConfiguration().addProjection(ClienteFactura.class);

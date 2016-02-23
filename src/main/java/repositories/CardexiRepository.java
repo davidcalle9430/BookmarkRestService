@@ -10,8 +10,11 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import sidic.entities.Cardexi;
-@RepositoryRestResource( path="/cardexi" , itemResourceRel = "cardexi", collectionResourceRel ="cardexi")
-public interface CardexiRepository extends JpaRepository<Cardexi, Integer> { 
+@RepositoryRestResource
+( path="/cardexi" , itemResourceRel = "cardexi", collectionResourceRel ="cardexi")
+
+public interface CardexiRepository extends JpaRepository<Cardexi, Integer> 
+{ 
 	@RestResource
 	public List<Cardexi> findOneByNdocAndFecha(@Param("ndoc")Long ndoc ,@DateTimeFormat(pattern = "yyyy-MM-dd")@Param("fecha") Date fecha);
 }

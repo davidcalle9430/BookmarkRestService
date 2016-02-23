@@ -83,5 +83,5 @@ function llenarTabla (lineas)
 function clicFila()
 {
 	var hijos = $(this).children();
-	window.location = "editar/?codigo="+hijos[0].innerHTML;
+	location.href= "editar/?codigo="+hijos[0].innerHTML;
 }

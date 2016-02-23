@@ -249,7 +249,7 @@ function putForObject(object, url, todo, error)
 		success : todo,
 		error :function(data)
 		{
-			error();
+			error( data );
 		}
 	});
 }
