@@ -14,8 +14,11 @@ var cargarNombres = function(articulos) {
 		var genero = generos[i];
 		var tr = $("<tr>");
 		var codigo = $("<td>", {text :genero.codigo});
+		codigo.css("width",'33.3%');
 		var nombre = $("<td>", { text : genero.nombre });
+		nombre.css("width",'33.3%');
 		var cantDisp = $("<td>", { text : genero.cantdisp });
+		cantDisp.css("width",'33.3%');
 		tr.append(codigo);
 		tr.append(nombre);
 		tr.append(cantDisp);
@@ -74,6 +77,9 @@ $(document).ready(function(){
 			head.css("top", "0px");
 			head.css("width", "90vw");
 			head.find("th").each(function(el){
+				$(this).css("width", 100 / columnas + "vw")
+			});
+			$('table').find("td").each(function(el){
 				$(this).css("width", 100 / columnas + "vw")
 			});
 		}else{
