@@ -46,7 +46,7 @@ function crearFila(proveedores) {
 }
 function clicFila(){
 	var hijos = $(this).children();
-	window.location = "editar/?zona="+hijos[0].innerHTML;
+	window.location = "editar/?proveedor="+hijos[0].innerHTML;
 }
 
 var head = $("thead"); // busca los headers de la tabla

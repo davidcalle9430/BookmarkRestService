@@ -20,4 +20,14 @@ public class ProveedoresController {
 	public String darProveedoresActualizacion(){
 		return "proveedores/actualizacion";
 	}
+	
+	@RequestMapping("/Mnulprov/actualizacion/nuevo/")
+	public String darProveedoresActualizacionCrear(){
+		return "proveedores/actualizacioncrear";
+	}
+	
+	@RequestMapping("/Mnulprov/actualizacion/editar/")
+	public String darProveedoresActualizacionEditar(){
+		return "proveedores/actualizacioneditar";
+	}
 }
