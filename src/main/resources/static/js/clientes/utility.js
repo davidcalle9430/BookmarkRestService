@@ -75,7 +75,7 @@ var errorCreacion = function(data){
  */
 var crearClienteBoton = function(evento){
 	evento.preventDefault();
-	console.log("Oprimieron el botòn");
+	//console.log("Oprimieron el botòn");
 	var nuevo = $(this).serializeObject();
 	nuevo.ciudad = "/api/ciudades/" + nuevo.ciudad;
 	nuevo.codcorr = "/api/corrers/" + nuevo.codcorr;

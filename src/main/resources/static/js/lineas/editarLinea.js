@@ -46,7 +46,8 @@ function iniciarFormulario()
 		lineaSelec.estado = nuevaLinea.estado.toUpperCase();
 		lineaSelec.descripcion = nuevaLinea.descp;
 		lineaSelec.permiterefespecial = nuevaLinea.refEspecial.toUpperCase();
-		console.log(lineaSelec);
+		//console.log(lineaSelec);
+		
 		if( agregarLinea )
 		{
 			postForObject(lineaSelec, "/api/lineas/", 

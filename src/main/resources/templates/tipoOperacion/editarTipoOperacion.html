@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1 style="color: black">Tipos de Operaci&oacute;n</h1>
+	<form id="editar" name="editar" onkeypress="return event.keyCode != 13;">
+		<div class="row">
+			<div class="large-4 columns">
+				<label>C&oacute;digo <input id="codigo" type="number" name="codigo" readonly="readonly" />
+				</label>
+			</div>
+			<div class="large-4 columns">
+				<label>Nombre
+					<input id="nombre" type="text" name="nombre" required="required" /></label>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="">
+				<button type="submit" class="button large-3 submit"
+					style="float: right">Guardar cambios</button>
+			</div>
+		</div>
+	</form>
+
+	<form id="eliminar" name="eliminar">
+		<div class="row">
+			<div class="">
+				<button type="submit" class="button large-3 submit alert"
+					style="float: right">Eliminar</button>
+			</div>
+		</div>
+	</form>
+	
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/tiposOperacion/editarTipoOperacion.js"></script>
+</body>
+</html>
