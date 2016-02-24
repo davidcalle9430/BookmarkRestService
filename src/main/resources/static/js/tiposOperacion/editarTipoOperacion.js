@@ -49,48 +49,59 @@ function iniciarFormulario()
 					  },
 			error: function(data)
 					{
-						console.log("Hubo un error en la consulta " + url);
 					}
 		});
 	}
 	
-	$("form").submit(function(ev){
-		ev.preventDefault();	
-
-		var nuevoTipoOpracion = $(this).serializeObject();
-		
-		tipoOperacionSelec.codigo = parseFloat( nuevoTipoOpracion.codigo );
-		tipoOperacionSelec.nombre = nuevoTipoOpracion.nombre.toUpperCase();
-		
-		if( agregarTipoOPeracion )
-		{
+	$("#editar").submit(editarTipoOperacion);
+	$("#eliminar").submit( elminarTipoOperacion );
 	
-			postForObject(tipoOperacionSelec, "/api/tipoOperaciones/", 
-					function(data){alert("Se ha agregado el tipo de operación No. "+ zeroPad( data.codigo , 3) + " con éxito!");location.href = "/tipoOperacion/";},
-					function(data){alert("Error al agregar el nuevo tipo de operación  No. "+ zeroPad( data.codigo , 3)+"!!");location.href = "/tipoOperacion/";} );
-		}
-		else
-		{	
-			console.log(tipoOperacionSelec);
-			$.ajax(
-					{
-						type : "put",
-						url : "/api/tipoOperaciones/"+tipoOperacionSelec.codigo,
-						data : JSON.stringify(tipoOperacionSelec),
-					    contentType: 'application/json; charset=utf-8',
-						success : function( data )
-								{
-									alert("Se ha actualizado el tipo de operación No. "+ zeroPad( data.codigo , 3) + " con éxito!");
-									location.href = "/tipoOperacion/";
-								},
-						error   : function( data )
-								{
-									alert("Error al actulizar el tipo de operación No. "+ zeroPad( data.codigo , 3) + "!!");
-									location.href = "/tipoOperacion/";
-								} 
-					}
-				  );
-		}
-		
-		});
+}
+
+function editarTipoOperacion ( ev )
+{
+	ev.preventDefault();	
+	
+	tipoOperacionSelec.codigo = parseFloat( $("#codigo").val() );
+	tipoOperacionSelec.nombre = $("#nombre").val().toUpperCase();
+	
+	if( agregarTipoOPeracion )
+	{
+		postForObject(tipoOperacionSelec, "/api/tipoOperaciones/", 
+				function(data){alert("Se ha agregado el tipo de operación No. "+ zeroPad( data.codigo , 3) + " con éxito!");location.href = "/tipoOperacion/";},
+				function(data){alert("Error al agregar el nuevo tipo de operación  No. "+ zeroPad( data.codigo , 3)+"!!");location.href = "/tipoOperacion/";} );
+	}
+	else
+	{	
+		//console.log(tipoOperacionSelec);
+		$.ajax(
+				{
+					type : "put",
+					url : "/api/tipoOperaciones/"+tipoOperacionSelec.codigo,
+					data : JSON.stringify(tipoOperacionSelec),
+				    contentType: 'application/json; charset=utf-8',
+					success : function( data )
+							{
+								alert("Se ha actualizado el tipo de operación No. "+ zeroPad( data.codigo , 3) + " con éxito!");
+								location.href = "/tipoOperacion/";
+							},
+					error   : function( data )
+							{
+								alert("Error al actulizar el tipo de operación No. "+ zeroPad( data.codigo , 3) + "!!");
+								location.href = "/tipoOperacion/";
+							} 
+				}
+			  );
+	}
+}
+
+
+function elminarTipoOperacion( ev )
+{
+	ev.preventDefault();
+	
+	idOperacion = parseFloat( $("#codigo").val() );
+	deleteForObject("/api/tipoOperaciones/"+idOperacion, 
+			function(data){alert("Se ha eliminado el tipo de operación con éxito!");location.href = "/tipoOperacion/";},
+			function(data){alert("Error al eliminar el tipo de operación!!");location.href = "/tipoOperacion/";} );
 }
