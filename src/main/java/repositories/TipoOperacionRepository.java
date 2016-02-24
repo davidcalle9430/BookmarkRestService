@@ -13,7 +13,7 @@ import sidic.entities.Tipooperacion;
 
 public interface TipoOperacionRepository extends JpaRepository<Tipooperacion, Short>
 {
-	@RestResource
-	@Query("select max(t.codigo) from Tipooperacion t")
+	@RestResource()
+	@Query("select max(t.codigo) as maxId from Tipooperacion t")
 	public Short obtenerMaxTipoOperacion( );
 }
