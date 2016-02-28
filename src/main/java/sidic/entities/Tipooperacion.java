@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author david
@@ -34,6 +36,7 @@ public class Tipooperacion implements Serializable {
     private Short codigo;
     @Column(length = 30)
     private String nombre;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipooperacion1")
     private List<Tipooperacionbases> tipooperacionbasesList;
 

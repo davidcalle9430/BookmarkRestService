@@ -49,6 +49,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import converters.BasesConverter;
 import converters.EspeciaConverter;
 import converters.NivelesPKConverter;
 import converters.UsuarioPKConverter;
@@ -84,6 +86,7 @@ import sidic.entities.Usuarios;
 import sidic.entities.Vendedor;
 import sidic.entities.VentasseguimientoOrg;
 import sidic.entities.Zonas;
+import projections.BasesTipoOperacion;
 import projections.ClienteFactura;
 import projections.ClienteRotulacion;
 import projections.ProveedorCiudad;
@@ -286,6 +289,7 @@ class CustomRestMvcConfiguration {
 			    config.getProjectionConfiguration().addProjection(ClienteFactura.class);
 			    config.getProjectionConfiguration().addProjection(RolesyMenusProjection.class);
 			    config.getProjectionConfiguration().addProjection(ProveedorCiudad.class);
+			    config.getProjectionConfiguration().addProjection(BasesTipoOperacion.class);
 			}
 
 			@Override
@@ -294,9 +298,11 @@ class CustomRestMvcConfiguration {
 				UsuarioPKConverter usuarioPKConverter = new UsuarioPKConverter();
 				EspeciaConverter espcia = new EspeciaConverter();
 				NivelesPKConverter nivelesConverter = new NivelesPKConverter();
+				BasesConverter basesConverter = new BasesConverter();
 				conversionService.addConverter(usuarioPKConverter);
 				conversionService.addConverter(espcia);
 				conversionService.addConverter(nivelesConverter);
+				conversionService.addConverter(basesConverter);
 			}
 
 		};
