@@ -84,6 +84,7 @@ import sidic.entities.Usuarios;
 import sidic.entities.Vendedor;
 import sidic.entities.VentasseguimientoOrg;
 import sidic.entities.Zonas;
+import projections.BasesTipoOperacion;
 import projections.ClienteFactura;
 import projections.ClienteRotulacion;
 import projections.ProveedorCiudad;
@@ -286,6 +287,7 @@ class CustomRestMvcConfiguration {
 			    config.getProjectionConfiguration().addProjection(ClienteFactura.class);
 			    config.getProjectionConfiguration().addProjection(RolesyMenusProjection.class);
 			    config.getProjectionConfiguration().addProjection(ProveedorCiudad.class);
+			    config.getProjectionConfiguration().addProjection(BasesTipoOperacion.class);
 			}
 
 			@Override
