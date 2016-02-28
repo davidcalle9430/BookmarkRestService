@@ -5,52 +5,47 @@
 </head>
 <body class="main-form">
 	<nav th:replace="navJM :: navJM"></nav>
-	<h1 style="color: black">Activaci&oacute;n De L&iacute;nea</h1>
-	<form onkeypress="return event.keyCode != 13;">
+	<h1 style="color: black">Bases</h1>
+	<form onkeypress="return event.keyCode != 13;" id="editar">
 		<div class="row">
-			<div class="large-4 columns">
-				<label>L&iacute;nea <input id="linea" type="number" name="linea"/>
+			<div class="large-12 columns">
+				<label>Tipo Operaci&oacute;n <select id="tipooperacion1"  name="tipooperacion1"></select>
 				</label>
 			</div>
-			<div class="large-4 columns">
-				<label>Rango 1 
-					<input id="rango1" type="number" name="rango1" required="required" /></label>
+			<div class="large-12 columns">
+				<label>Impuesto </label>
+				<label> <input id="RETEFTE" type="radio" name="impuesto" value="RETEFTE" required="required" /> Rete Fuente</label>
+				<label><input id="RETEIVA" type="radio" name="impuesto" required="required" value="RETEIVA" /> Rete Iva </label>
+				<label><input id="RETEICA" type="radio" name="impuesto" required="required" value="RETEICA" /> Rete Ica </label>		
 			</div>
-			<div class="large-4 columns">
-				<label>Rango 2 
-					<input id="rango2" type="number" name="rango2" required="required" /></label>
+			<div class="large-12 columns">
+				<label>Base 
+					<input id="base" type="number" name="base" required="required" /></label>
 			</div>
-			<div class="large-4 columns">
-				<label>Estado 
-					<input id="estado" type="text" required="required" name="estado" pattern="a|A|d|D"/></label>
+			<div class="large-12 columns">
+				<label>Porcentaje 
+					<input id="porcentaje" type="number" required="required" name="porcentaje" step="0.01"	/></label>
 			</div>
-			<div class="large-4 columns">
-				<label>Descripci&oacute;n 
-					<input id="descp" type="text" required="required" name="descp" />
-				</label>
-			</div>
-			<div class="large-4 columns">
-				<label>Permite Referencia Especial 
-					<input id="refEspecial" type="text" name="refEspecial"	pattern="n|N|s|S" required="required" />
-				</label>
+			<div class="large-12 columns">
+				<label>Tipo </label>
+				<label> <input id="1" type="radio" name="tipo" value="1" required="required" /> Por Cien </label>
+				<label> <input id="2" type="radio" name="tipo" value="2" required="required" /> Por Mil </label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="large-4 columns">
-				<label>Estado: A = Activar
-				</label>
-				<label>Estado: D = Desactivar
-				</label>
-			</div>
-			<div class="large-4 columns">
-				<label>Permte Referencia Espscial:  S/N
-				</label>
-			</div>
 			<div class="">
 				<button type="submit" class="button large-3 submit"
 					style="float: right">Guardar cambios</button>
 			</div>
 		</div>
+	</form>
+	<form id="eliminar">
+	<div class="row">
+			<div class="">
+				<button type="submit" class="button large-3 submit alert"
+					style="float: right">Eliminar</button>
+			</div>
+		</div>	
 	</form>
 	<footer th:replace="footer :: footer"></footer>
 	<script src="/static/js/bases/baseseditar.js"></script>

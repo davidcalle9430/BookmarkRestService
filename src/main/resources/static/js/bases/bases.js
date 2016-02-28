@@ -50,7 +50,7 @@ function crearFila(bases) {
 }
 function clicFila(){
 	var hijos = $(this).children();
-	window.location = "editar/?zona="+hijos[0].innerHTML;
+	window.location = "editar/?base="+hijos[0].innerHTML+"--"+hijos[2].innerHTML;
 }
 
 var head = $("thead"); // busca los headers de la tabla
