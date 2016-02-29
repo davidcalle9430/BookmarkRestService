@@ -22,9 +22,7 @@ function capturarTab()
 	{
 		var code = ev.keyCode || ev.which;
 		if (code == '9') 
-		{
 			agregarFila();
-		}
 		var trSelec = $(this).parent().parent();
 	});
 }
@@ -141,7 +139,7 @@ function obtenerAtributosArticulo( trSelec)
 }
 
 /**
- * Se encarga de obtener el objeto género asocaido al codigo ingresado del artículo 
+ * Se encarga de obtener el objeto género asociado al codigo ingresado del artículo 
  * que se esta modificando. Luego autocompleta, en el formulario los demás atributos del artículo.
  * @param articuloSelec: Articulo seleccionado.
  * @param trSelect: Fila HTML donde se encuentra el artículo que se modificará.
@@ -183,18 +181,12 @@ function guardarCambios(ev)
 	var actualizados = 0;
 	$("table tr").each(function(i,tr){
 		if (actualizarArticulo(i, $(tr)))
-		{
 			actualizados++;
-		}
 	});
 	if ( actualizados > 0 )
-	{
 		alert("Se han actualizado exitósamente los "+actualizados+" artículos!");
-	}
 	else
-	{
 		alert("No se registró algún cambio!");
-	}
 	location.reload();
 }
 
