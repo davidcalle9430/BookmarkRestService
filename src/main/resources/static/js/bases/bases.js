@@ -71,7 +71,7 @@ $(document).ready(function() {
 					head.find("th").each(function(el){
 						$(this).css("width", 90 / columnas + "vw")
 					});
-					$('table').find("th").each(function(el){
+					$('table').find("td").each(function(el){
 						$(this).css("width", 90 / columnas + "vw")
 					});
 				}else{
