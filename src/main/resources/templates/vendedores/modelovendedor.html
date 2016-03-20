@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+	<title>Vendedor / Representante</title>
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1> Vendedor / Representante </h1>
+	<div class="row">
+		<div class="large-2 large-offset-9 columns">
+		  <a id="nuevo" class="button" style="width: 100%;">Nuevo</a>
+		</div>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th style="width:11.111%;">CodArt</th>
+				<th style="width:11.111%;">Referencia Oficina</th>
+				<th style="width:11.111%;">Modelo Oficina1</th>
+				<th style="width:11.111%;">Modelo Oficina2</th>
+				<th style="width:11.111%;">Modelo Oficina3</th>
+				<th style="width:11.111%;">Marca Art&iacute;culo</th>
+				<th style="width:11.111%;">Disp</th>
+				<th style="width:11.111%;">Referencia Vendedor</th>
+				<th style="width:11.111%;">Modelo Vendedor</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+   	<footer th:replace="footer :: footer"></footer>
+   	<script src="/static/js/vendedores/modelovendedor.js"></script>
+</body>
+</html>
+
