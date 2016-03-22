@@ -1,6 +1,5 @@
 package web;
-
-//import org.springframework.security.access.prepost.PreAuthorize;
+	
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,5 +26,18 @@ public class VendedoresController {
 	@RequestMapping(value = "/mnuvenjm/editar", method = RequestMethod.GET)
 	public String nuevoVendedor(){
 		return "vendedores/vendedoresEditar";
+	}
+	
+	/**
+	 * actualiza referencia modelo vendedor
+	 */
+	@RequestMapping( value= "/mnuactrefermodel/" , method = RequestMethod.GET )
+	public String actualizaModeloVendedor(){
+		return "vendedores/modelovendedor";
+	}
+	
+	@RequestMapping( value= "/mnuactrefermodel/editar/" , method = RequestMethod.GET )
+	public String actualizaModeloVendedorEditar(){
+		return "vendedores/modelovendedoreditar";
 	}
 }
