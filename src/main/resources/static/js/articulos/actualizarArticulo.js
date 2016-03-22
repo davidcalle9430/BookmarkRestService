@@ -23,6 +23,7 @@ function limpiarFormulario() {
 	$("#modelo2").first().val(" ");
 	$("#modelo3").first().val(" ");
 	$("#procedenc").first().val(" ");
+	$("#cantdisp").first().val(" ");
 }
 /**
  * Función encargada de llenar el formulario
@@ -37,6 +38,7 @@ function llenarArticulo(articulo) {
 	$("#modelo2").first().val(articulo.modelo2);
 	$("#modelo3").first().val(articulo.modelo3);
 	$("#procedenc").first().val(articulo.procedenc);
+	$("#cantdisp").first().val(articulo.cantdisp);
 }
 
 /**
