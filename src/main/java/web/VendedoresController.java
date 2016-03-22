@@ -35,4 +35,9 @@ public class VendedoresController {
 	public String actualizaModeloVendedor(){
 		return "vendedores/modelovendedor";
 	}
+	
+	@RequestMapping( value= "/mnuactrefermodel/editar/" , method = RequestMethod.GET )
+	public String actualizaModeloVendedorEditar(){
+		return "vendedores/modelovendedoreditar";
+	}
 }

@@ -21,8 +21,9 @@ function llenar(articulos){
 	for (var i = 0; i < articulos.length; i++) {
 		
 		var codigo = $('<td>',{
-			text: articulos[i].codigo
+			text: articulos[i].codigo,
 		});
+		codigo.addClass("codigo");
 		
 		var observacion_4 = $('<td>',{
 			text: articulos[i].referencia
@@ -69,7 +70,7 @@ function llenar(articulos){
  */
 function clicFila(){
 	var codigo = $(this).find('.codigo').text();
-	window.location = '/mnuvenjm/editar/?nuevo=false&codigo='+codigo;
+	window.location = 'editar/?codigo='+codigo;
 }
 
 

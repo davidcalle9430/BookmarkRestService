@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+	<title>Editar Usuario</title>
+</head>
+<body class="main-form">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1>Editar Art&iacute;culo</h1>
+	<form onkeypress="return event.keyCode != 13;">
+		<div class="row">
+			<div class="large-12 columns">
+				<label>C&oacute;digo Art&iacute;culo <input readonly="readonly" id="codigo" type="text" name="codigo" required="required"/>
+				</label>
+			</div>
+			
+			<div class="large-6 columns">
+				<label> Referencia Vendedor <input id="refvendedor" type="text" name="refvendedor"
+					required="required"  ></input></label>
+			</div>
+			
+			<div class="large-6 columns">
+				<label> Modelo Vendedor <input id="modelovendedor" type="text" name="modelovendedor"
+					required="required"  /></label>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="">
+				<button type="submit" class="button large-3 submit"
+					style="float: right">Editar Art&iacute;culo</button>
+			</div>
+		</div>
+	</form>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/vendedores/modelovendedoreditar.js"></script>
+</body>
+</html>
