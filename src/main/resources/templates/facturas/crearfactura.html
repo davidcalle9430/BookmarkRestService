@@ -8,45 +8,47 @@
 	<h1 >Crear Factura</h1>
 	<form>
 		<div class="row" style="border-bottom: 5px solid black;">
-			<div class="large-6 columns">
+			<div class="large-6 medium-6 small-6
+			 columns">
 			     <label>Factura
 			        <input id="factura" name="factura" readonly="readonly" type="number" />
 			     </label>
 	    	 </div>
-	    	 <div class="large-6 columns">
+	    	 <div class="large-6 medium-6 small-6
+	    	  columns">
 			     <label>Fecha
 			        <input id="fecha" name="fecha" readonly="readonly" type="text" onload="llenarFecha"/>
 			     </label>
 	    	 </div>
 		</div>
 		<div class="row">
-			<div class="large-4 columns">
+			<div class="large-4 medium-4 small-4 columns">
 			    <label>Vendido a c&oacute;digo</label>
 			    	<input id="codigo-1" name="codigo-1" type="text" />
 			</div>
-			<div class="large-4 columns">
+			<div class="large-4 medium-4 small-4 columns">
 			    <label>Nombre
 			       <input id="codigo-2" readonly="readonly" name="codigo-2" type="text" />
 			    </label>
 	    	</div>
-			<div class="large-4 columns">
+			<div class="large-4 medium-4 small-4 columns">
 			    <label>Nit o CC
 			       <input id="nit" readonly="readonly" name="nit" type="text"/>
 			    </label>
 	    	</div>
 		</div>
 		<div class="row">
-			<div class="large-4 columns">
+			<div class="large-4 medium-4 small-4 columns">
 		      <label>Almacén
 		        <input id="almacen" name="almacen" type="text"/>
 		      </label>
 	    	</div>
-			<div class="large-4 columns">
+			<div class="large-4 medium-4 small-4 columns">
 		      <label>Dirección
 		        <input id="direccion" readonly="readonly" name="direccion" type="text"/>
 		      </label>
 	    	</div>
-	    	<div class="large-4 columns">
+	    	<div class="large-4 medium-4 small-4 columns">
 				<label>L&iacute;nea
 				  <select id="linea" name="linea">
 				  </select>
@@ -54,27 +56,27 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="large-4 columns">
+			<div class="large-4 medium-4 small-4 columns">
 				<label>Correr&iacute;a
 				  <select id="correria" name="correria" disabled="disabled">
 				  </select>
 				</label>
 			</div>
-			<div class="large-4 columns">
+			<div class="large-4 medium-4 small-4 columns">
 			    <label>Ciudad</label>
-			    <div class="large-4 columns">
+			    <div class="large-4 medium-4 small-4 columns">
 			    <input id="ciudad-1" name="ciudad-1" readonly="readonly" type="number" />
 			    </div>
-			    <div class="large-8 columns">
+			    <div class="large-8 medium-8 small-8 columns">
 			    <input id="ciudad-2" readonly="readonly" name="ciudad-2" type="text" />
 				</div>
 			 </div>
-			 <div class="large-2 columns">
+			 <div class="large-2 medium-2 small-2 columns">
 			     <label>Precio
 			        <input id="precio" name="precio" type="text" pattern="M|V|M\+|\+\+" placeholder="[M]/[V]/[M+]/[++]"/>
 			     </label>
 	    	 </div>
-	    	 <div class="large-2 columns">
+	    	 <div class="large-2 medium-2 small-2 columns">
 			     <label>Cambia precios
 			        <input id="cambia-precios" pattern="S|N" name="cambia-precios" type="text" placeholder="S/N"/>
 			     </label>
@@ -82,43 +84,43 @@
 		</div>
 		<div class="row">
 			 
-			<div class="large-3 columns">
+			<div class="large-3 medium-3 small-3 columns">
 			     <label>Orden
 			        <input id="orden" name="orden" required="required" type="text"/>
 			     </label>
 	    	 </div>
-	    	 <div class="large-3 columns">
+	    	 <div class="large-3 medium-3 small-3 columns">
 				<label>Vendedor
 				  <select id="vendedor" name="vendedor" >
 				    <option disabled="disabled" selected="selected">Selecciona una opción</option>
 				  </select>
 				</label>
 			 </div>
-			 <div class="large-3 columns">
+			 <div class="large-3 medium-3 small-3 columns">
 			    <label>Forma de pago
 				  <select id="forma-pago" name="forma-pago" required="required" onchange="cambioDeFormaPago();">
 				  <option disabled="disabled" selected="selected">Selecciona una opción</option>
 				  </select>
 				</label>
 	    	 </div>
-	    	 <div class="large-3 columns">
+	    	 <div class="large-3 medium-3 small-3 columns">
 	    		<label id="labelDiasPago">D&iacute;as
 			        <input id="diasPago" name="diasPago" type="text"/>
 			    </label>
 			 </div>
-			<div class="large-4 columns">
+			<div class="large-4 medium-4 small-4  columns">
 			    <label>Notas
 				  <select id="notas" name="notas" style="font-size: 0.75REM" onchange="cambioDeNotas();">
 				  	<option disabled="disabled" selected="selected">Selecciona una opción</option>
 				  </select>
 				</label>
 	    	 </div>
-			<div class="large-4 columns">
+			<div class="large-4 medium-4 small-4 columns">
 			     <label>D&iacute;as
 			        <input id="dias" name="dias" type="text"/>
 			     </label>
 	    	 </div>
-	    	 <div class="large-4 columns">
+	    	 <div class="large-4 medium-4 small-4 columns">
 			     <label>Porcentaje
 			        <input id="porcentaje" name="porcentaje" type="text"/>
 			     </label>
