@@ -4,27 +4,41 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class FacturacionController {
+public class FacturacionController 
+{
 
 	@RequestMapping(value="/mnufaci/")
-	public String crearFactura(){
+	public String crearFactura()
+	{
 		return "facturas/crearfactura";
 	}
 	@RequestMapping(value = "/mnuanufi/")
-	public String anularFactura(){
+	public String anularFactura()
+	{
 		return "facturas/anularfactura";
 	}
 	
+	@RequestMapping(value="/mnufaci/mostrarAdicionales")
+	public String conceptosAdicionales()
+	{
+		return "facturas/mostrarAdicionales";
+	}
+	
 	@RequestMapping(value="/mnutextosfacturas/")
-	public String textosFacturas(){
+	public String textosFacturas()
+	{
 		return "facturas/textosfactura";
 	}
+	
 	@RequestMapping(value="/mnutextosfacturas/nuevo/")
-	public String textosFacturasNuevo(){
+	public String textosFacturasNuevo()
+	{
 		return "facturas/textosfacturanuevo";
 	}
+	
 	@RequestMapping(value="/mnutextosfacturas/editar/")
-	public String textosFacturasEditar(){
+	public String textosFacturasEditar()
+	{
 		return "facturas/textosfacturaeditar";
 	}
 }

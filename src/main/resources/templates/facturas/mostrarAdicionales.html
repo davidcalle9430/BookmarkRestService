@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+
+<head th:replace="header :: header">
+</head>
+
+<body class="main-form">
+	<h1 >Conceptos Adicionales</h1>
+	<form onload="iniciarFormulario();">
+		<div class="row" >
+			<div class="large-6 columns">
+			     <label>Fletes
+			        <input id="fletes" name="fletes" type="number" />
+			     </label>
+	    	 </div>
+	    	 <div class="large-12 columns">
+			     <label>Concepto
+			        <input id="concepto" name="concepto" type="text"/>
+			     </label>
+	    	 </div>
+		</div>
+		
+		<div class="row">
+			<div class="large-6 columns">
+			    <label>Valor</label>
+			    	<input id="valor" name="valor" type="number" />
+			</div>
+			<div class="large-6 columns">
+			    <label>Descuento sobre el total
+			       <input id="descuento" name="descuento" type="number" onchange="validarDescuento();"/>
+			    </label>
+	    	</div>
+		</div>
+				
+		<div class="row">
+			<div class="large-2 large-offset-9 columns">
+			  <a class="button succes" style="width: 100%;" onclick="imprimir();">Imprimir</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-2 large-offset-9 columns">
+			  <button type="submit" class="button alert" style="width: 100%;" >Cerrar</button>
+			</div>
+		</div>
+	</form>		
+<footer th:replace="footer :: footer"></footer>
+   	<script type="text/javascript" src="/static/js/facturas/adicionales.js"></script>
+</body>
+</html>

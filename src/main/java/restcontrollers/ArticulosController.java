@@ -53,7 +53,6 @@ public class ArticulosController
 	@RequestMapping(value="/prueba/")
 	public List<CardexFactura> test(@RequestParam("numerodoc")Long ndoc, @RequestParam("fecha")String fecha)
 	{
-		System.out.println("si llego " + ndoc + fecha);
 		Query query = em.createNativeQuery("select a.codigo, g.nombre, a.referencia, a.precio*cardex.cantidad as valor from articulo a, cardex, genero g where a.codigo = cardex.codigo 	and LEFT(LPAD(a.codigo,6,'0'),3) = LPAD(g.codigo,3,'0') and ndoc = "+ndoc+" and str_to_date('"+fecha+"', '%Y\\-%m\\-%d') order by cardex.consec");
 		@SuppressWarnings("unchecked")
 		List<Object[]> resultados = query.getResultList();
