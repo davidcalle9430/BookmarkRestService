@@ -113,6 +113,7 @@ function obtenerAtributosArticulo( trSelec)
 		var codigoSelec = obtenerNumeroAPartirDeCodigo(codigoConFormato);
 		if( obtenerCheckSum( codigoSelec ) == darCheckSumDeCodigo( codigoConFormato ) )
 		{
+			$(trSelec).find("#codigo").val( darCodigoFormateado( codigoSelec ) );
 			$.ajax
 			({
 				url : "/api/articulos/" + codigoSelec,

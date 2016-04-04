@@ -110,6 +110,7 @@ function obtenerAtributosArticulo( trSelec )
 		url : "/api/generos/" + idGenero,
 		success : function(data) 
 		{
+			//$(trSelec).find("#codigo").val( darCodigoFormateado( idGenero ) );
 			$(trSelec).find("#codigo").attr("readonly", "readonly");
 			$(trSelec).find("#nombre").val( data.nombre );
 			$(trSelec).find("#cantidad").val( 0 );
