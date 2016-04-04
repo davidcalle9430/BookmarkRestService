@@ -50,7 +50,7 @@ $(document).ready(
 						if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
 							if (!alFinal) {
 								alFinal = true;
-								nAjax();
+								//nAjax();
 							}
 						}
 						if(head.position().top -$(this).scrollTop() < 0 ){

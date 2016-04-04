@@ -5,7 +5,7 @@
  */
 function verificarFormatoCodigo( codigo )
 {
-	var re = /^[0-9][0-9][0-9]-[0-9]{3,3}-[0-9]$/;  
+	var re = /^[0-9][0-9][0-9][0-9]{3,3}[0-9]$/;  
     return re.test(codigo);
 }
 
@@ -26,8 +26,8 @@ function zeroPad(num, places)
  */
 function obtenerNumeroAPartirDeCodigo(codigo)
 {
-	var numeros = codigo.split("-");
-	return parseInt(numeros[0] + numeros[1]);
+	var numeros = codigo.toString( );
+	return parseInt( numeros.substring( 0, 3 ) + numeros.substring( 3, 6 ));
 }
 
 /**
@@ -35,19 +35,19 @@ function obtenerNumeroAPartirDeCodigo(codigo)
  */
 function darCheckSumDeCodigo(codigo)
 {
-	return codigo.split("-")[2];
+	return codigo.toString()[6];
 }
 
 /**
  * Función encargada de obtener el nùmero escrito como un codigo valido
  */
-function darCodigoFormateado(numero)
+function darCodigoFormateado( numero )
 {
 	numero = parseInt(numero);
 	var inicio = Math.floor(numero / 1000);
 	var fin = numero % 1000;
-	var codigo = zeroPad(inicio,3) + "-" + zeroPad(fin,3) +"-";
-	codigo += obtenerCheckSum(numero)
+	var codigo = zeroPad( inicio, 3 ) + "-" + zeroPad( fin, 3 ) +"-";
+	codigo += obtenerCheckSum( numero )
 	return codigo;
 }
 
@@ -198,6 +198,7 @@ function getForObject(object, url, toDo,error)
 	if(object != null){
 		url = url + "?" + $.param(object);
 	}
+
 	$.ajax({
 		url : url,
 		success : function(data){

@@ -133,6 +133,7 @@ function obtenerAtributosArticulo( trSelec)
 		var codigoSelec = obtenerNumeroAPartirDeCodigo(codigoConFormato);
 		if( obtenerCheckSum( codigoSelec ) == darCheckSumDeCodigo( codigoConFormato ) )
 		{
+			$(trSelec).find("#codigo").val( darCodigoFormateado( codigoSelec ) );
 			$(trSelec).find("#codigo").attr("readonly", "readonly");
 			$.ajax
 			({
