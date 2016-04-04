@@ -240,3 +240,8 @@ span{
 .grupo-forma-ultimo{
 	border-bottom: solid 1px gray;
 }
+
+input , select {
+	max-height : 40px;
+	font-size: 5px;
+}

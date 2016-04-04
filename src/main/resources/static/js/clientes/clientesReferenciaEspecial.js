@@ -7,7 +7,7 @@ var alFinal = false;
 function ajaxCall() 
 {
 	$.ajax({
-		url : '/api/clientes?sort=razsoc&page=' + pagina,
+		url : '/api/clientes?sort=codigo&page=' + pagina,
 		success : function(data) {
 			crearFila(data);
 			alFinal = false;
