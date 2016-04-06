@@ -26,29 +26,53 @@ function llenar(articulos){
 		codigo.addClass("codigo");
 		
 		var observacion_4 = $('<td>',{
-			text: articulos[i].referencia
+			text: articulos[i].referencia,
+			css:{
+				width: '11.11%'
+			}
 		});
 		var nombre = $('<td>',{
-			text: articulos[i].modelo1
+			text: articulos[i].modelo1,
+			css:{
+				width: '11.11%'
+			}
 		});
 		var tipo = $('<td>',{
-			text: articulos[i].modelo2
+			text: articulos[i].modelo2,
+			css:{
+				width: '11.11%'
+			}
 		});;
 		var direccion = $('<td>',{
-			text: articulos[i].modelo3
+			text: articulos[i].modelo3,
+			css:{
+				width: '11.11%'
+			}
 		});
 		var telefonos = $('<td>',{
-			text: articulos[i].marca	
+			text: articulos[i].marca,
+			css:{
+				width: '11.11%'
+			}
 		});
 		var observacion_1 = $('<td>',{
-			text: articulos[i].cantdisp
+			text: articulos[i].cantdisp,
+			css:{
+				width: '11.11%'
+			}
 		});
 		
 		var observacion_2 = $('<td>',{
-			text: articulos[i].refvendedor
+			text: articulos[i].refvendedor,
+			css:{
+				width: '11.11%'
+			}
 		});
 		var observacion_3 = $('<td>',{
-			text: articulos[i].modelvendedor
+			text: articulos[i].modelvendedor,
+			css:{
+				width: '11.11%'
+			}
 		});
 		
 		var fila = $('<tr>');
@@ -90,9 +114,13 @@ $(document).ready(function() {
 					head.css("width", "90vw");
 					head.find("th").each(function(el){
 						$(this).css("width", 90 / columnas + "vw")
+						$(this).css("min-width", 90 / columnas + "vw")
+						$(this).css("max-width", 90 / columnas + "vw")
 					});
 					$('table').find("td").each(function(el){
 						$(this).css("width", 90 / columnas + "vw")
+						$(this).css("min-width", 90 / columnas + "vw")
+						$(this).css("max-width", 90 / columnas + "vw")
 					});
 				}else{
 					head.css("position", "");

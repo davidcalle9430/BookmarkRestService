@@ -6,7 +6,7 @@
 </head>
 <body class="main-form">
 	<nav th:replace="navJM :: navJM"></nav>
-	<h1>Inicializar N&uacute;mero de Secuencia Facturas</h1>
+	<h3 style="color:black;">Inicializar N&uacute;mero de Secuencia Facturas</h3>
 	<form onkeypress="return event.keyCode != 13;">
 		<div class="row">
 			<div class="large-4 columns">
@@ -14,49 +14,54 @@
 				 required="required" />
 				</label>
 			</div>
-			<div class="large-4 medium-4 small-4 columns">
+			<div class="large-4 medium-4 small-4 columns row">
 				<label>Clave para entrar al men&uacute; JMQ <input id="clavec" type="text" name="clavec"
 					required="required"  /></label>
 			</div>
-			<div class="large-4 medium-4 small-4 columns">
+			<div class="large-4 medium-4 small-4 columns row">
 				<label>Procentaje de IVA<input id="iva" type="text" name="iva"
 					required="required"  /></label>
 			</div>
-			<div class="large-6 medium-6 small-6  columns">
+			<div class="large-6 medium-6 small-6  columns row">
 				<label>Cuenta 1 impresi&oacute;n factura <input id="cuenta1" type="text" name="cuenta1"
 					required="required"  /></label>
 			</div>
 			
-			<div class="large-6 medium-6 small-6 columns">
-				<label>Cuenta 2 impresi&oacute;n factur <input id="cuenta2" type="text" name="cuenta2"
+			<div class="large-6 medium-6 small-6 columns row">
+				<label>Cuenta 2 impresi&oacute;n factura <input id="cuenta2" type="text" name="cuenta2"
 					required="required"  /></label>
 			</div>
-			<div class="large-4 medium-4 small-4 columns">
+			<div class="large-3 medium-3 small-3 columns row">
 				<label>Recibos Caja<input id="recibocaja" type="text" name="recibocaja"
 					required="required"  /></label>
 			</div>
-			<div class="large-4 medium-4 small-4 columns">
-				<label>Notas Cre&eacute;dito <input id="nc" type="text" name="nc"
+			<div class="large-3 medium-3 small-3 columns row">
+				<label>Notas Cr&eacute;dito <input id="nc" type="text" name="nc"
 					required="required"  /></label>
 			</div>
+<<<<<<< HEAD
 			<div class="large-4 medium-4 small-4 columns">
 				<label>Notas De&eacute;bito <input id="nd" type="text" name="nd"
+=======
+			<div class="large-2 medium-2 small-2 columns row">
+				<label>Notas d&eacute;bito <input id="nd" type="text" name="nd"
+>>>>>>> origin/bugs2entrega
 					required="required"  /></label>
 			</div>
 			
-			<div class="large-3 columns">
+			<div class="large-2 medium-2 small-2  columns row">
 				<label>Facturas Proveedores<input id="factPROVEEDORES" type="text" name="factproveedores"
 					required="required"  /></label>
 			</div>
-			<div class="large-3 medium-3 small-3 columns">
+			<div class="large-1 medium-1 small-1 columns row">
 				<label>Nuevo Formato <input id="nuevoformato" type="text" name="nuevoformato"
 					required="required"  /></label>
 			</div>
-			<div class="large-3 medium-3 small-3 columns">
+			<div class="large-2 medium-2 small-2  columns row">
 				<label>Fecha Seguimiento Llantas <input id="aaaaseguimiento" type="text" name="aaaaseguimiento"
 					required="required"  /></label>
 			</div>
-			<div class="large-3 medium-3 small-3 columns">
+			<div class="large-1 medium-1 small-1  columns row">
 				<label>Factura en Proceso <input id="facturaEnproceso" type="text" name="facturaenproceso"
 					required="required"  /></label>
 			</div>
