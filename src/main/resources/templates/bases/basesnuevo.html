@@ -8,28 +8,28 @@
 	<h1 style="color: black">Bases</h1>
 	<form onkeypress="return event.keyCode != 13;">
 		<div class="row">
-			<div class="large-12 medium-12 small-12 columns">
+			<div class="large-4 medium-4 small-4 row">
 				<label>Tipo Operaci&oacute;n <select id="tipooperacion1"  name="tipooperacion1"></select>
 				</label>
 			</div>
-			<div class="large-12 medium-12 small-12 columns">
+			<div class="large-2 medium-2 small-2 row">
 				<label>Impuesto </label>
-				<label> <input id="impuesto" type="radio" name="impuesto" value="RETEFTE" required="required" /> Rete Fuente</label>
-				<label><input id="impuesto" type="radio" name="impuesto" required="required" value="RETEIVA" /> Rete Iva </label>
-				<label><input id="impuesto" type="radio" name="impuesto" required="required" value="RETEICA" /> Rete Ica </label>		
+				<label> <input id="RETEFTE" type="radio" name="impuesto" value="RETEFTE" required="required" /> Rete Fuente</label>
+				<label><input id="RETEIVA" type="radio" name="impuesto" required="required" value="RETEIVA" /> Rete Iva </label>
+				<label><input id="RETEICA" type="radio" name="impuesto" required="required" value="RETEICA" /> Rete Ica </label>		
 			</div>
-			<div class="large-12 medium-12 small-12 columns">
+			<div class="large-1 medium-1 small-1 row">
 				<label>Base 
 					<input id="base" type="number" name="base" required="required" /></label>
 			</div>
-			<div class="large-12 medium-12 small-12 columns">
+			<div class="large-1 medium-1 small-1 row">
 				<label>Porcentaje 
-					<input step="0.01" id="porcentaje" type="number" required="required" name="porcentaje" /></label>
+					<input id="porcentaje" type="number" required="required" name="porcentaje" step="0.01"	/></label>
 			</div>
-			<div class="large-12 medium-12 small-12 columns">
+			<div class="large-6 medium-6 small-6 row">
 				<label>Tipo </label>
-				<label> <input id="tipo" type="radio" name="tipo" value="1" required="required" /> Por Cien </label>
-				<label> <input id="tipo" type="radio" name="tipo" value="2" required="required" /> Por Mil </label>
+				<label> <input id="1" type="radio" name="tipo" value="1" required="required" /> Por Cien </label>
+				<label> <input id="2" type="radio" name="tipo" value="2" required="required" /> Por Mil </label>
 			</div>
 		</div>
 		<div class="row">

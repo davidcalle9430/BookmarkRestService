@@ -8,38 +8,38 @@
 	<h1>Actualizar Art&iacute;culo</h1>
 	<form onkeypress="return event.keyCode != 13;" id="editar">
 		<div class="row">
-			<div class="large-12 medium-12 small-12 columns">
+			<div class="large-2 medium-2 small-2 row">
 				<label>C&oacute;digo del grupo al que va a pertenecer 
 					<input id="codigo-grupo" type="text" onchange="borrarAsignar()" required="required"/>
 				</label>
 			</div>
-			<div class="large-6 medium-6 small-6 columns">
+			<div class="large-2 medium-2 small-2 row">
 				<label>N&uacute;mero para asignar el c&oacute;digo (cero para que sea aut&oacute;matico)
 					<input id="codigo-asignar" type="text" required="required" onchange="buscarArticulo()"/>
 				</label>
 				
 			</div>
-			<div class="large-6 medium-6 small-6 columns">		
+			<div class="large-3 medium-3 small-3 row">		
  			<label> C&oacute;digo Art&iacute;culo <input id="codigo"
  				type="text" readonly="readonly" name="codigo" />		
  				</label>		
   			</div>
-			<div class="large-6 medium-6 small-6 columns">
+			<div class="large-6 medium-6 small-6 row">
 				<label>Referencia Oficina 
 					<input id="referencia" type="text" name="referencia" required="required" />
 				</label>
 			</div>
-			<div class="large-6 medium-6 small-6 columns">
+			<div class="large-12 medium-12 small-12 row">
 				<label>Referencia Vendedor
 					 <input id="refvendedor" type="text" name="refvendedor"	required="required" />
 				</label>
 			</div>
-			<div class="large-6 medium-6 small-6 columns">
+			<div class="large-4 medium-4 small-4 row">
 				<label>Marca 
 					<input id="marca" type="text" name="marca" required="required" />
 				</label>
 			</div>
-			<div class="large-12 medium-6 small-6 columns">
+			<div class="large-4 medium-4 small-4 row">
 				<label>Uso 
 					<input id="uso" type="text" name="uso" required="required" />
 				</label>

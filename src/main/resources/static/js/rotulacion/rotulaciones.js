@@ -73,5 +73,4 @@ $(document).ready(function() {
 					head.css("top", "");
 				}
 	});
-	$("table").on("click","tr", clicFila);
 });
