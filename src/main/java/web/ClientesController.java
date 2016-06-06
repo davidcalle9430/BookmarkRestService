@@ -48,5 +48,9 @@ public class ClientesController
 	public String actualizarClientesReferenciaEspecialCrear(){
 		return "clientes/actualizarClientesReferenciaEspecialCrear";
 	}
+	@RequestMapping(value="/actualizarespeciales/")
+	public String actualizarPreciosClientesEspeciales(){
+		return "clientes/actualizarPrecioEspecial";
+	}
 
 }

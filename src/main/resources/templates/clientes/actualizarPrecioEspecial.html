@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="header :: header">
+</head>
+<body class="main-form" ng-app="clientesEspeciales"
+	ng-controller="ClientesEspecialesController">
+	<nav th:replace="navJM :: navJM"></nav>
+
+	<h1>Actualizar Precio Especial</h1>
+
+	<div class="	large-offset-1 medium-offset-1 small-offset-1 large-4 medium-4 small-4
+				 columns">
+		<label>C&oacute;digo Cliente <input id="codigo" type="text" required="required" ng-model="cliente.codigo" ng-blur="buscar()"
+		 name="codigo" /></label>
+	</div>
+	<div class="large-7 medium-7 small-7
+				 columns">
+		<label>Nombre <input id="nombre" type="text" required="required" ng-model="cliente.nombre"
+			name="nombre" /></label>
+	</div>
+	
+	
+	<table>
+		<thead>
+			<tr>
+				<th style="width:20%;">C&oacute;digo</th>
+				<th style="width:20%;">RazSoc</th>
+				<th style="width:20%;">Art&iacute;culo</th>
+				<th style="width:20%;">Referencia</th>
+				<th style="width:20%;">Precio</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="x in cliente.productos">
+    			<td>{{ x.codigo }}</td>
+    			<td>{{ x.clientes.razsoc }}</td>
+    			<td>{{ x.articulo }}</td>
+    			<td>{{ x.referencia }}</td>
+    			<td><input type="number" ng-model="x.precio" ng-blur="editar(x)"/></td>
+  			</tr>
+		</tbody>
+	</table>
+
+
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/clientes/actualizarPrecioEspecial.js"></script>
+</body>
+</html>

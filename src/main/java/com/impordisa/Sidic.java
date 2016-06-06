@@ -89,6 +89,7 @@ import sidic.entities.Zonas;
 import projections.BasesTipoOperacion;
 import projections.ClienteFactura;
 import projections.ClienteRotulacion;
+import projections.EspeciaClienteConverter;
 import projections.ProveedorCiudad;
 import projections.RolesyMenusProjection;
 /**
@@ -285,11 +286,12 @@ class CustomRestMvcConfiguration {
 			    config.exposeIdsFor(Tipooperacionbases.class);
 			    
 			    // registro de proyecciones
-			    config.getProjectionConfiguration().addProjection(ClienteRotulacion.class);
-			    config.getProjectionConfiguration().addProjection(ClienteFactura.class);
-			    config.getProjectionConfiguration().addProjection(RolesyMenusProjection.class);
-			    config.getProjectionConfiguration().addProjection(ProveedorCiudad.class);
-			    config.getProjectionConfiguration().addProjection(BasesTipoOperacion.class);
+			    config.getProjectionConfiguration().addProjection( ClienteRotulacion.class );
+			    config.getProjectionConfiguration().addProjection( ClienteFactura.class );
+			    config.getProjectionConfiguration().addProjection( RolesyMenusProjection.class );
+			    config.getProjectionConfiguration().addProjection( ProveedorCiudad.class );
+			    config.getProjectionConfiguration().addProjection( BasesTipoOperacion.class );
+			    config.getProjectionConfiguration().addProjection( EspeciaClienteConverter.class );
 			}
 
 			@Override
