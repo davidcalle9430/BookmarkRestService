@@ -64,7 +64,7 @@ public class Especia implements Serializable {
 	}
 
 
-	public double getArticulo() {
+	public Long getArticulo() {
 		return articulo;
 	}
 
