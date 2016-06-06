@@ -1,12 +1,9 @@
-/**
- * 
- */
-
 var app = angular.module( 'clientesEspeciales' , []);
+/**
+ * funciton controladora de la pagina con el mismo nombre
+ */
 app.controller('ClientesEspecialesController', function($scope,$http) { 
-	$scope.cliente = {};
-	$scope.cliente.codigo = "";
-	$scope.cliente.productos = []
+	$scope.cliente = {}; $scope.cliente.codigo = ""; $scope.cliente.productos = []
 	$scope.buscar = function(){
 		var promesa = $http.get("/api/especia/search/findByCodigo?codigo="+$scope.cliente.codigo+"&projection=cliente");
 		promesa.success(function(data, status, headers, config) {
