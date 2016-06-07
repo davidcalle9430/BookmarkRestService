@@ -97,4 +97,20 @@ public class ClientesRestController {
 	}
 	
 	
+	@RequestMapping( value = "/api/clientes/actualizar/activo", method = RequestMethod.POST , produces="application/json" )
+	public ResponseEntity<?> actualizarVendedorActivo( @RequestBody Clientes porCambiar ){
+		Clientes cliente = clienteRepository.findOne( porCambiar.getCodigo() );
+		cliente.setActivo( porCambiar.getActivo() );
+		Vendedor vendedor = vendedorRespository.findOne( porCambiar.getVendedor().getCodigo() );
+		if( vendedor == null ){ return new ResponseEntity<>( HttpStatus.BAD_REQUEST ); }
+		cliente.setVendedor( vendedor );
+		try{
+			clienteRepository.save( cliente );
+			return new ResponseEntity<>( HttpStatus.ACCEPTED );
+		}catch( Exception e){
+			e.printStackTrace();
+			return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
+		}
+	}
+	
 }

@@ -63,4 +63,11 @@ public class ClientesController
 	public String actualizarVendedoresEnArchivoDeClientes(){
 		return "clientes/actualizarVendedores";
 	}
+	
+	
+	@RequestMapping( value ="/mnuactdescljm/")
+	public String activarDesactivarClientes(){
+		return "clientes/activadesactiva";
+	}
+	
 }
