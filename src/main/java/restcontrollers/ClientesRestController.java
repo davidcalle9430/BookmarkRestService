@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import repositories.ClientesRepository;
 import repositories.CorrerRepository;
 import repositories.EspeciaRepository;
+import repositories.VendedorRepository;
 import sidic.entities.Clientes;
 import sidic.entities.Correr;
 import sidic.entities.Especia;
 import sidic.entities.EspeciaPK;
+import sidic.entities.Vendedor;
 
 
 @RestController
@@ -31,6 +33,10 @@ public class ClientesRestController {
 	
 	@Autowired
 	private ClientesRepository clienteRepository;
+	
+	@Autowired
+	private VendedorRepository vendedorRespository;
+	
 	
 	/**
 	 * funcion que se encarga de cambiar el precio de una especial
@@ -55,7 +61,7 @@ public class ClientesRestController {
 	 */
 	@RequestMapping( value = "/api/especial/lista", method = RequestMethod.POST , produces="application/json" )
 	public ResponseEntity<?> actualizarEspecial( @RequestBody List<Especia> especiales ){
-		for (Especia especia : especiales) {
+		for ( Especia especia : especiales ) {
 			especiaRepo.save( especia );
 		}
 		return new ResponseEntity<>( HttpStatus.ACCEPTED );
@@ -68,6 +74,21 @@ public class ClientesRestController {
 		real.setCodcorr( correria );
 		try{
 			clienteRepository.save( real );
+			return new ResponseEntity<>( HttpStatus.ACCEPTED );
+		}catch( Exception e){
+			e.printStackTrace();
+			return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
+		}
+	}
+	
+	@RequestMapping( value = "/api/clientes/actualizar/vendedor", method = RequestMethod.POST , produces="application/json" )
+	public ResponseEntity<?> actualizarVendedor( @RequestBody Clientes porCambiar ){
+		Clientes cliente = clienteRepository.findOne( porCambiar.getCodigo() );
+		Vendedor vendedor = vendedorRespository.findOne( porCambiar.getVendedor().getCodigo() );
+		if( vendedor == null ){ return new ResponseEntity<>( HttpStatus.BAD_REQUEST ); }
+		cliente.setVendedor( vendedor );
+		try{
+			clienteRepository.save( cliente );
 			return new ResponseEntity<>( HttpStatus.ACCEPTED );
 		}catch( Exception e){
 			e.printStackTrace();

@@ -90,6 +90,7 @@ import projections.BasesTipoOperacion;
 import projections.ClienteFactura;
 import projections.ClienteRotulacion;
 import projections.ClienteRotulacionCorrerciaConverter;
+import projections.ClienteVendedorProjection;
 import projections.EspeciaClienteConverter;
 import projections.ProveedorCiudad;
 import projections.RolesyMenusProjection;
@@ -294,6 +295,7 @@ class CustomRestMvcConfiguration {
 			    config.getProjectionConfiguration().addProjection( BasesTipoOperacion.class );
 			    config.getProjectionConfiguration().addProjection( EspeciaClienteConverter.class );
 			    config.getProjectionConfiguration().addProjection( ClienteRotulacionCorrerciaConverter.class );
+			    config.getProjectionConfiguration().addProjection( ClienteVendedorProjection.class );
 			}
 
 			@Override
