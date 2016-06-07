@@ -1,5 +1,6 @@
 package restcontrollers;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,12 @@ public class ClientesRestController {
 	@Autowired
 	private EspeciaRepository especiaRepo;
 	
-	@RequestMapping( value = "/api/especia", method = RequestMethod.PUT , produces="application/json" )
+	/**
+	 * funcion que se encarga de cambiar el precio de una especial
+	 * @param cliente
+	 * @return
+	 */
+	@RequestMapping( value = "/api/especial", method = RequestMethod.PUT , produces="application/json" )
 	public ResponseEntity<?> guardarCambioPrecio( @RequestBody Especia cliente){
 		Especia especia = especiaRepo.findOne( new EspeciaPK( cliente.getCodigo() , cliente.getArticulo() ) );
 		if( especia == null ){
@@ -29,6 +35,19 @@ public class ClientesRestController {
 		}
 		especia.setPrecio( cliente.getPrecio() );
 		especiaRepo.save( especia );
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+	}
+	
+	/**
+	 * funcion que se encarga de acutalizar una lista de especiales
+	 * @param especiales
+	 * @return
+	 */
+	@RequestMapping( value = "/api/especial/lista", method = RequestMethod.POST , produces="application/json" )
+	public ResponseEntity<?> actualizarEspecial( @RequestBody List<Especia> especiales ){
+		for (Especia especia : especiales) {
+			especiaRepo.save( especia );
+		}
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 }

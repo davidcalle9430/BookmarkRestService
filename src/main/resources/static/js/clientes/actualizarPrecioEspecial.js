@@ -2,8 +2,10 @@ var app = angular.module( 'clientesEspeciales' , []);
 /**
  * funciton controladora de la pagina con el mismo nombre
  */
-app.controller('ClientesEspecialesController', function($scope,$http) { 
-	$scope.cliente = {}; $scope.cliente.codigo = ""; $scope.cliente.productos = []
+app.controller('ClientesEspecialesController', function( $scope , $http ) { 
+	
+	$scope.cliente = {}; $scope.cliente.codigo = ""; $scope.cliente.productos = [];
+	
 	$scope.buscar = function(){
 		var promesa = $http.get("/api/especia/search/findByCodigo?codigo="+$scope.cliente.codigo+"&projection=cliente");
 		promesa.success(function(data, status, headers, config) {
@@ -15,9 +17,10 @@ app.controller('ClientesEspecialesController', function($scope,$http) {
 	        alert("Error al cargar!");
 		});
 	}
+	
 	$scope.editar = function( producto ){
 		var producto = JSON.parse( JSON.stringify( producto ) );
-		var url = "/api/especia";
+		var url = "/api/especial";
 		var promesa = $http.put( url , producto );
 		promesa.success(function(data, status, headers, config) {
 			console.log("Actualización correcta");
@@ -26,6 +29,7 @@ app.controller('ClientesEspecialesController', function($scope,$http) {
 	        console.log("Error al actualizar");
 	        console.log(data)
 		});
-		
 	}
+	
+	
 });

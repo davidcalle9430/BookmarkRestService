@@ -96,9 +96,15 @@ public class Especia implements Serializable {
 
     public void setClientes(Clientes clientes) {
         this.clientes = clientes;
-   
     }
     
+
+	@Override
+	public String toString() {
+		return "Especia [codigo=" + codigo + ", articulo=" + articulo + ", referencia=" + referencia + ", precio="
+				+ precio + "]";
+	}
+
 
 	@Override
 	public int hashCode() {

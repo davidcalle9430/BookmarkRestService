@@ -31,6 +31,16 @@ function obtenerNumeroAPartirDeCodigo(codigo)
 }
 
 /**
+ * funcion que retorna el codigo si el digito de verificacion
+ * @param chequeo
+ * @returns
+ */
+function obtenerCodigoReal( chequeo ){
+	var str1 = chequeo.substring( 0, 3 );
+	var str2 = chequeo.substring( 4, 7 );
+	return parseInt( str1 + str2 )
+}
+/**
  * Retorna el checksum que tiene un codigo
  */
 function darCheckSumDeCodigo(codigo)
@@ -74,7 +84,7 @@ function obtenerCheckSum(numero)
 	var quinto = Math.floor( ( numero % 100000 ) / 10000 );
 	var sexto = Math.floor( ( numero % 1000000 ) / 100000 );	
 	var check = 10 -  ( ( ( primero + tercero + quinto ) + (2*(segundo + cuarto + sexto ) ) ) % 10 ) ;
-	return check;
+	return check % 10;
 }
 
 /**
