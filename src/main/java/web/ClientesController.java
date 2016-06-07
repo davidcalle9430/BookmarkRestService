@@ -57,4 +57,10 @@ public class ClientesController
 	public String inclusionRefEspecial(){
 		return "clientes/agregarEspecial";
 	}
+	
+	
+	@RequestMapping( value = "/mnuactvenjm/")
+	public String actualizarVendedoresEnArchivoDeClientes(){
+		return "clientes/actualizarVendedores";
+	}
 }
