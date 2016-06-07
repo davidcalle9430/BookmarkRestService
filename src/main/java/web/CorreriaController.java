@@ -14,8 +14,8 @@ public class CorreriaController {
 		return "correrias/correrias";
 	}
 	/**
-	 * metodo encargado de mostrar el formulario  de nueva correría
-	 * @return referencia el template de nueva correría
+	 * metodo encargado de mostrar el formulario  de nueva correrï¿½a
+	 * @return referencia el template de nueva correrï¿½a
 	 */
 	@RequestMapping(value="/mnuactcorrjm/nuevo/")
 	public String nuevaCorreria(){
@@ -23,11 +23,16 @@ public class CorreriaController {
 	}
 	
 	/**
-	 * metodo encargado de mostrar el formulario  de nueva correría
-	 * @return referencia el template de nueva correría
+	 * metodo encargado de mostrar el formulario  de nueva correrï¿½a
+	 * @return referencia el template de nueva correrï¿½a
 	 */
 	@RequestMapping(value="/mnuactcorrjm/editar/")
 	public String editarCorreria(){
 		return "correrias/correriaseditar";
+	}
+	
+	@RequestMapping(value="/mnuactcorrclijm/")
+	public String revisarCorreriasEnArchivoClientes(){
+		return "correrias/revisarArchivoClientes";
 	}
 }
