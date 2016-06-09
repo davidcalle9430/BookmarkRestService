@@ -17,6 +17,8 @@ public interface CarteraRepository extends JpaRepository<Cartera, CarteraPK>{
 	public List<Cartera> findByCarteraPK_Codigo(Long codigo);
 	public List<Cartera> findByCarteraPK_Factura(Long factura);
 	
+	public Cartera findOneByCarteraPK_CodigoAndCarteraPK_Factura( Long codigo , Long factura );
+	
 	@RestResource(path="encontrarPorFacturaCodigoFecha", rel="encontrarPorFacturaCodigoFecha")
 	public Cartera findOneByCarteraPK_facturaAndCarteraPK_CodigoAndCarteraPK_Fecha(@Param("factura")Long factura,@Param("codigo") Long codigo,@DateTimeFormat(pattern = "yyyy-MM-dd") @Param("fecha")Date fecha);
 	

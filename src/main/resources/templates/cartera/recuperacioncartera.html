@@ -18,14 +18,14 @@
 		</div>
 		
 		<div class="row">
-			<div class="large-4 medium-4 small-4 columns">
+			<div class="large-2 medium-2 small-2 columns end">
 				<label>Fecha dd/mm/aaaa <input ng-model="cartera.fecha" type="text" ng-change="obtenerFactura()"  />
 				</label>
 			</div>
 		</div>
 		
 		<div class="row">
-			<div class="large-4 medium-4 small-4 columns">
+			<div class="large-1 medium-1 small-1 columns">
 				<label>Cliente <input type="text" ng-model="cartera.cliente" ng-model-options="{updateOn: 'blur'}"  ng-change="obtenerCliente()"/>
 				</label>
 			</div>
@@ -35,13 +35,74 @@
 			</div>
 		</div>
 		
-		<div class="row">
-			<div class="">
-				<button type="submit" class="button large-3 submit"
-					style="float: right">Guardar cambios</button>
+		<br/>
+		<center ng-hide="escoderFormPago"><label> Datos de la Factura </label></center>
+		<div ng-hide="escoderFormPago" class="row" style="border-top: 1px solid black;">
+		
+			<div class="large-6 medium-6 small-6 columns">
+				<label>Saldo de esa facutura o cuenta <input readonly="readonly" type="text" ng-model="cartera.saldo"/>
+				</label>
+			</div>
+		</div>
+		<div class="row" ng-hide="escoderFormPago">
+			<div class="large-6 medium-6 small-6 columns">
+				<label>Las notas D&eacute;bito suman <input readonly="readonly" type="text" ng-model="cartera.notad"/>
+				</label>
+			</div>
+		</div>
+		
+		<div class="row" ng-hide="escoderFormPago">
+			<div class="large-6 medium-6 small-6 columns end">
+				<label>Las notas Cr&eacute;dito suman <input readonly="readonly" type="text"  ng-model="cartera.notac"/>
+				</label>
+			</div>
+		</div>
+		
+		<br/>
+		<center ng-hide="escoderFormPago"><label> Pagos </label></center>
+		<div class="row" style="border-top: 1px solid black;" ng-hide="escoderFormPago">
+			<div class="large-6 medium-6 small-6 columns">
+				<label>Fecha de Pago <input type="text" ng-model="cartera.fechapago"/>
+				</label>
+			</div>
+		</div>
+		
+		
+		<div class="row" ng-hide="escoderFormPago">
+			<div class="large-6 medium-6 small-6 columns">
+				<label> Cantidad pagada sobre el saldo 
+				<input type="text"  ng-change="validarPagado()" ng-model="cartera.cant" />
+				</label>
+			</div>
+		</div>
+		
+		<div class="row" ng-hide="escoderFormPago">
+			<div class="large-6 medium-6 small-6 columns end">
+				<label> Cantidad pagada sobre las notas d&eacute;bito <input type="text" ng-model="cartera.cantdeb"  />
+				</label>
+			</div>
+		</div>
+		
+		<div class="row" ng-hide="escoderFormPago">
+			<div class="large-6 medium-6 small-6 columns end">
+				<label> Cantidad pagada sobre las notas cr&eacute;dito <input type="text" ng-model="cartera.cantcre"  ng-change="pagarCredito()"/>
+				</label>
 			</div>
 		</div>
 	
+		<div class="row" style="border-top: 1px solid black;" ng-hide="esconderTextArea">
+			<div class="large-12 medium-12 small-12 columns">
+				<label>Observaciones <textarea type="text" ng-model="cartera.observac"></textarea>
+				</label>
+			</div>
+		</div>
+		
+		<div class="row" >
+			<div class="">
+				<button ng-click="guardar()" class="button large-3 submit"
+					style="float: right">Guardar cambios</button>
+			</div>
+		</div>
 	</form>	
 	
    	<footer th:replace="footer :: footer"></footer>
