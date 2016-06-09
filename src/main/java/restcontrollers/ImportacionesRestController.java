@@ -19,7 +19,7 @@ import sidic.entities.Importaciones;
  */
 
 @RestController
-public class ImportacionesController {
+public class ImportacionesRestController {
 	
 	@RequestMapping(value="/api/importaciones/")
 	public List<Importaciones> darImportaciones(){
