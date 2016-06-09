@@ -22,7 +22,7 @@ import repositories.CarteraRepository;
  */
 
 @RestController
-public class CarteraController 
+public class CarteraRestController 
 {
 
 	

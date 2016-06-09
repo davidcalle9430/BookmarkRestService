@@ -30,7 +30,7 @@ import sidic.entities.Usuarios;
  *
  */
 @RestController
-public class UsuariosController {
+public class UsuariosRestController {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	@PersistenceContext
