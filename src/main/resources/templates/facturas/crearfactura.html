@@ -40,7 +40,7 @@
 		<div class="row">
 			<div class="large-4 medium-4 small-4 columns">
 		      <label>Almac&eacute;n
-		        <input id="almacen" name="almacen" type="text" required="required" />
+		        <input id="almacen" class="input-tooltip" name="almacen" type="text" required="required" />
 		      </label>
 	    	</div>
 			<div class="large-4 medium-4 small-4 columns">
@@ -153,7 +153,7 @@
 		<div class="row" >
 			<div class="large-2 columns" style="float: right;">
 				<label>Cantidad Total:
-					<input id="totalCantidad" value="0" name="totalCantidad" readonly="readonly" type="text" />
+					<input id="totalCantidad"  value="0" name="totalCantidad" readonly="readonly" type="text" />
 				</label>
 			</div>
 			<div class="large-2 columns">
@@ -175,6 +175,7 @@
 		</div>
 	</form>		
    	<footer th:replace="footer :: footer"></footer>
+   	<script src="https://code.jquery.com/ui/1.12.0-rc.2/jquery-ui.min.js"   integrity="sha256-55Jz3pBCF8z9jBO1qQ7cIf0L+neuPTD1u7Ytzrp2dqo="   crossorigin="anonymous"></script>
    	<script type="text/javascript" src="/static/js/facturas/crearFactura.js"></script>
 </body>
 </html>

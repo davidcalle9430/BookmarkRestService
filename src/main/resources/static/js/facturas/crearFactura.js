@@ -14,10 +14,10 @@ var porXX = 1;
 var porYY = 1;
 var porZZ = 1;
 
-$(document).ready(function()
-{
+$(document).ready(function(){
 	iniciarFormulario();
 })
+
 
 /**
  * Se encarga de inicar lo componentes del formualrio y revisar si llega el código
@@ -111,9 +111,7 @@ function verificarTipoPrecio()
  * Se encarga de verificar que el tipo 
  * de cambia-precio sea S ó N
  * */
-function verificarTipoCambiaPrecio()
-{
-
+function verificarTipoCambiaPrecio(){
 	$("#cambia-precios").on( "change",
 	function(ev) 
 	{

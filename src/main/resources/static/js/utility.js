@@ -275,3 +275,31 @@ function deleteForObject(url, todo, error){
 		error : error
 	});
 }
+
+/**
+ * Funcion que activa el tooltip*
+ * *tooltip: texto que aparece encima del elemento cuando se pasa el cursor encima.  
+ */
+$(function() {
+	/**
+	 * Función que activa y agrega a cada uno de los elementos <input/> la propiedad "title"
+	 * necesaria para hacer funcionar el "tooltip"
+	 * */
+	$('input:text').each(function(){
+		console.log('entra');
+		$(this).attr('title',"");
+	})
+    $( document ).tooltip();
+});
+
+
+
+
+/**
+ * Función que hace dinámico el cambio del texto en el tooltip* a medida que se escribe en el elemento <input/>
+ * */
+$('input:text').on('keyup change keypress keydown mouseenter mouseleave', function () {
+	var text = $(this).val();
+	$(this).attr('title',text);
+	$(".ui-tooltip-content").text(text);
+});
