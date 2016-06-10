@@ -283,4 +283,4 @@ function deleteForObject(url, todo, error){
  */
 function isNumber(n) {
 	  return !isNaN(parseFloat(n)) && isFinite(n);
-	}
+}

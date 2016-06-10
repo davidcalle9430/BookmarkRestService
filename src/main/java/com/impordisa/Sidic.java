@@ -62,6 +62,7 @@ import sidic.entities.Articulo;
 import sidic.entities.Cardex;
 import sidic.entities.Cardexi;
 import sidic.entities.Cartera;
+import sidic.entities.Causales;
 import sidic.entities.Ciudades;
 import sidic.entities.Clientes;
 import sidic.entities.Correr;
@@ -286,7 +287,7 @@ class CustomRestMvcConfiguration {
 			    config.exposeIdsFor(Proveedores.class); 
 			    config.exposeIdsFor(Tipooperacion.class);
 			    config.exposeIdsFor(Tipooperacionbases.class);
-			    
+			    config.exposeIdsFor( Causales.class );
 			    // registro de proyecciones
 			    config.getProjectionConfiguration().addProjection( ClienteRotulacion.class );
 			    config.getProjectionConfiguration().addProjection( ClienteFactura.class );

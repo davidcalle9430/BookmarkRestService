@@ -10,9 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import sidic.entities.Cardex;
 
-@RepositoryRestResource
-( path="/cardex" , itemResourceRel = "cardex", collectionResourceRel ="cardex")
-
+@RepositoryRestResource( path="/cardex" , itemResourceRel = "cardex", collectionResourceRel ="cardex")
 public interface CardexRepository extends JpaRepository<Cardex,Integer>
 {
 	//@Query("select c from Cardex c where ndoc = ?0 and fecha = ?1")

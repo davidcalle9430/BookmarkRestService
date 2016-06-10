@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="header :: header">
+</head>
+<body class="main-form" ng-app="Ajustes"
+	ng-controller="AjustesController">
+	
+	<nav th:replace="navJM :: navJM"></nav>
+
+	<h1>Notas D&eacute;bito y Cr&eacute;dito - Cartera</h1>
+	
+	<table>
+		<thead>
+			<tr>
+				<th style="width:6%;">Factura</th>
+				<th style="width:4%;">Tipo</th>
+				<th style="width:8%;">Fecha</th>
+				<th style="width:8%;">C&oacute;digo</th>
+				<th style="width:25%;">Raz&oacute;n Social</th>
+				<th style="width:10%;">Valor</th>
+				<th style="width:10%;">IVA</th>
+				<th style="width:4%;">NAT</th>
+				<th style="width:6%;">Causal</th>
+				<th style="width:18%;">Nombre</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="cartera in carteras">
+    			<td><input type="text" ng-model="cartera.factura" /> </td>
+    			<td><input type="text" ng-model="cartera.tipo"/></td>
+    			<td><input type="text" ng-model="cartera.fecha"/></td>
+    			<td><input type="text" ng-model="cartera.codigo" ng-model-options="{updateOn: 'blur'}" ng-change="cambioCodigoCliente( cartera )"/></td>
+    			<td><input type="text" ng-model="cartera.razsoc"/></td>
+    			<td><input type="text" ng-model="cartera.valor"/> </td>
+    			<td><input type="text" ng-model="cartera.iva" ng-model-options="{updateOn: 'blur'}" ng-change="validarIva( cartera )"/></td>
+    			<td><input type="text" ng-model="cartera.nat"/></td>
+    			<td><input type="text" ng-model="cartera.causal" ng-model-options="{updateOn: 'blur'}" ng-change="validarCausal( cartera )"/></td>
+    			<td><input type="text" ng-model="cartera.nombre" ng-keydown="agregarFila( $event , cartera )"/></td>
+  			</tr>
+		</tbody>
+	</table>
+	<div class="row">
+		<button id="crear" style="float: right;" ng-click="incorporar()" 
+				class="button large-3 submit">Actualizar</button>
+		</div>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/ajustes/notasdecartera.js"></script>
+</body>
+</html>
