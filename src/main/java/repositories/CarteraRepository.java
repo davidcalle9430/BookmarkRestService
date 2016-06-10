@@ -11,6 +11,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import sidic.entities.Cartera;
 import sidic.entities.CarteraPK;
+
+
 @RepositoryRestResource( path="/carteras" , itemResourceRel = "cartera", collectionResourceRel ="carteras")
 public interface CarteraRepository extends JpaRepository<Cartera, CarteraPK>{
 	
