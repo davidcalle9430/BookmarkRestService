@@ -292,9 +292,6 @@ $(function() {
     $( document ).tooltip();
 });
 
-
-
-
 /**
  * Función que hace dinámico el cambio del texto en el tooltip* a medida que se escribe en el elemento <input/>
  * */
@@ -303,3 +300,13 @@ $('input:text').on('keyup change keypress keydown mouseenter mouseleave', functi
 	$(this).attr('title',text);
 	$(".ui-tooltip-content").text(text);
 });
+
+/**
+ * funcion que revisa si una cadena es un entero
+ * tomada de http://stackoverflow.com/questions/9716468/is-there-any-function-like-isnumeric-in-javascript-to-validate-numbers
+ * @param n
+ * @returns
+ */
+function isNumber(n) {
+   return !isNaN(parseFloat(n)) && isFinite(n);
+}

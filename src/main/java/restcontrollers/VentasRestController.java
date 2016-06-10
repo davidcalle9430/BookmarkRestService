@@ -22,7 +22,7 @@ import sidic.entities.VentasseguimientoOrg;
  */
 
 @RestController
-public class VentasController 
+public class VentasRestController 
 {
 	@Autowired
 	private VentasOrganizacionRepository ventasRepository;

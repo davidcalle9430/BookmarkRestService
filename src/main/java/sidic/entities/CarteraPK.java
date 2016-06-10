@@ -60,7 +60,7 @@ public class CarteraPK implements Serializable {
         this.fecha = fecha;
     }
 
-    public double getFactura() {
+    public Long getFactura() {
         return factura;
     }
 

@@ -33,7 +33,7 @@ import sidic.entities.Especia;;
  *
  */
 @RestController
-public class ArticulosController 
+public class ArticulosRestController 
 {
 	
 	
