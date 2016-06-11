@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import repositories.CarteraRepository;
+import repositories.NFactRepository;
+import resultclasses.NotaDCVentasDTO;
 import resultclasses.NotasCarteraDTO;
 import sidic.entities.Cartera;
+import sidic.entities.Nfact;
 
 
 /**
@@ -25,6 +28,9 @@ public class AjustesRestController {
 	
 	@Autowired
 	private CarteraRepository carteraRespository;
+	
+	@Autowired
+	private NFactRepository nfactRepository;
 	
 	
 	
@@ -82,6 +88,29 @@ public class AjustesRestController {
 			}
 			carteraRespository.save( carteraAGuardar );
 		}
+		return new ResponseEntity<>( HttpStatus.ACCEPTED );
+	}
+	
+	
+	@RequestMapping( value = "/api/ajustes/notadebcredacumventas/")
+	public ResponseEntity<?> notaDebCredAcumuladoVentas( @RequestBody List< NotaDCVentasDTO > notas ){
+		Nfact nfact = nfactRepository.findOne( 1 );
+		for (NotaDCVentasDTO nota : notas) {
+			if( nota.getNat().equalsIgnoreCase( "C" ) ){
+				if( nota.getTipo().equalsIgnoreCase( "I" ) ){
+					nfact.setAcumiva( nfact.getAcumiva() - nota.getValor() );
+				}else{
+					nfact.setAcumsiniva( nfact.getAcumsiniva() - nota.getValor() );
+				}
+			}else{
+				if( nota.getTipo().equalsIgnoreCase("I") ){
+					nfact.setAcumiva( nfact.getAcumiva() + nota.getValor() );
+				}else{
+					nfact.setAcumsiniva( nfact.getAcumsiniva() + nota.getValor() );
+				}
+			}
+		}
+		nfactRepository.save( nfact );
 		return new ResponseEntity<>( HttpStatus.ACCEPTED );
 	}
 }

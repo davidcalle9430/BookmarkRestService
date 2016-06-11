@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="header :: header">
+</head>
+<body class="main-form" ng-app="Ajustes"
+	ng-controller="AjustesController">
+	
+	<nav th:replace="navJM :: navJM"></nav>
+
+	<h1>Notas D&eacute;bito y Cr&eacute;dito - Cartera</h1>
+	
+	<table>
+		<thead>
+			<tr>
+				<th style="width:15%;">Tipo</th>
+				<th style="width:15%;">Valor</th>
+				<th style="width:15%;">NAT</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="cartera in carteras">
+    			<td><input type="text" ng-model="cartera.tipo"  ng-model-options="{updateOn: 'blur'}" ng-change="validarFila( cartera )"/> </td>
+    			<td><input type="text" ng-model="cartera.valor" ng-model-options="{updateOn: 'blur'}" ng-change="validarFila( cartera )"/></td>
+    			<td><input type="text" ng-model="cartera.nat" ng-model-options="{updateOn: 'blur'}" ng-change="validarFila( cartera )"  ng-keydown="agregarFila( $event , cartera )"/></td>
+  			</tr>
+		</tbody>
+	</table>
+	<div class="row">
+		<button id="crear" style="float: right;" ng-click="incorporar()" 
+				class="button large-3 submit">Actualizar</button>
+		</div>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/ajustes/notasdebitocreditoacumventas.js"></script>
+</body>
+</html>
