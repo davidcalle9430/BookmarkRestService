@@ -286,10 +286,9 @@ $(function() {
 	 * necesaria para hacer funcionar el "tooltip"
 	 * */
 	$('input:text').each(function(){
-		console.log('entra');
 		$(this).attr('title',"");
 	})
-    $( document ).tooltip();
+   // $( document ).tooltip();
 });
 
 /**
