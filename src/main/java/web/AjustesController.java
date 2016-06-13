@@ -16,4 +16,10 @@ public class AjustesController {
 	public String notasDebitoCreditoAcumVentas(){
 		return "ajustes/notasdebitocreditoacumventas";
 	}
+	
+	@RequestMapping( value = "/mnundcrvjm/" )
+	public String notasDCReporteVentas(){
+		return "ajustes/notasdcreporteventas";
+	}
+	
 }

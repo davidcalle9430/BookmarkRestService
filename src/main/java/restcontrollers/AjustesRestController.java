@@ -1,5 +1,6 @@
 package restcontrollers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import repositories.CarteraRepository;
 import repositories.NFactRepository;
+import repositories.NotdecreRepository;
 import resultclasses.NotaDCVentasDTO;
 import resultclasses.NotasCarteraDTO;
 import sidic.entities.Cartera;
 import sidic.entities.Nfact;
+import sidic.entities.Notdecre;
 
 
 /**
@@ -32,7 +35,34 @@ public class AjustesRestController {
 	@Autowired
 	private NFactRepository nfactRepository;
 	
+	@Autowired
+	private NotdecreRepository notdecreRepository;
 	
+	@RequestMapping( value ="/api/ajustes/reporteventas/" , method = RequestMethod.POST )
+	public ResponseEntity<?> reporteDeVentas( @RequestBody List< NotasCarteraDTO > carteras ){
+	
+		for (NotasCarteraDTO nota : carteras) {
+			Notdecre notaCredito = new Notdecre();
+			notaCredito.setFecha( new Date() );
+			notaCredito.setCliente( (double)nota.getCodigo() );
+			notaCredito.setFactura( (double) nota.getFactura() );
+			if( nota.getNat().equalsIgnoreCase("D")){
+				notaCredito.setValDeb( nota.getValor() );
+				notaCredito.setValCre( 0.0 );
+			}else{
+				notaCredito.setValCre( nota.getValor() );
+				notaCredito.setValDeb( 0.0 );
+			}
+			notaCredito.setIva( nota.getIva() );
+			notaCredito.setCantidad( 0.0 );
+			notaCredito.setCodigo( 0.0 );
+			notaCredito.setPrecio( 0.0 );
+			notaCredito.setDescue( 0.0 );
+			notaCredito.setCausal( nota.getCausal() );
+			notdecreRepository.save( notaCredito );
+		}
+		return new ResponseEntity<>( HttpStatus.ACCEPTED );
+	}
 	
 	@RequestMapping(value="/api/ajustes/notasdecartera" , method = RequestMethod.POST )
 	public ResponseEntity<?> notasDeCartera( @RequestBody List< NotasCarteraDTO > carteras ){
