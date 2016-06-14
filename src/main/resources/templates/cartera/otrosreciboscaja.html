@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+	<title>Cartera</title>
+</head>
+<body class="main-form" ng-app="Cartera" ng-controller="CarteraController">
+	<nav th:replace="navJM :: navJM"></nav>
+	<h1> Otros Recibos de Caja </h1>
+	<center> <label> Recibo de Caja </label> </center>
+	<div class="row"
+		style="border-top: 1px solid black;">
+
+		<div class="large-4 medium-4 small-4 columns">
+			<label>Fecha <input type="text" ng-model="cartera.fecha" />
+			</label>
+		</div>
+		<div class="large-4 medium-4 small-4 columns end">
+			<label>N&uacute;mero <input  type="text" ng-model="cartera.numero" />
+			</label>
+		</div>
+	</div>
+	&nbsp;
+	<center> <label> Datos Generales </label> </center>
+	<div class="row"
+		style="border-top: 1px solid black;">
+
+		<div class="large-4 medium-4 small-4 columns">
+			<label>C&eacute;dula/Nit <input type="text" ng-model="cartera.fecha" />
+			</label>
+		</div>
+		<div class="large-4 medium-4 small-4 columns end">
+			<label>C&oacute;digo <input  type="text" ng-model="cartera.numero" />
+			</label>
+		</div>
+	</div>
+	<div class="row">
+
+		<div class="large-8 medium-8 small-8 columns">
+			<label>Nombre / Raz.Social <input type="text" ng-model="cartera.fecha" />
+			</label>
+		</div>
+	</div>
+	&nbsp;
+	<center> <label> Detalle </label> </center>
+	<div class="row"
+		style="border-top: 1px solid black;">
+
+		<div class="large-4 medium-4 small-4 columns">
+			<label>Valor <input type="text" ng-model="cartera.fecha" />
+			</label>
+		</div>
+		<div class="large-4 medium-4 small-4 columns end">
+			<label>Tipo Recibo de Caja<select  type="text" ng-model="cartera.numero" ></select>
+			</label>
+		</div>
+	</div>
+	
+	&nbsp;
+	<center> <label> Obervaciones </label> </center>
+	<div class="row"
+		style="border-top: 1px solid black;">
+
+		<div class="large-12 medium-12 small-12 columns">
+			<label> Concepto <input type="text" ng-model="cartera.fecha" />
+			</label>
+		</div>
+		<div class="large-12 medium-12 small-12 columns end">
+			<label> Descripci&iacute;on <input  type="text" ng-model="cartera.numero" />
+			</label>
+		</div>
+	</div>
+	<div class="row" >
+			<div class="">
+				<button ng-click="guardar()" class="button large-3 submit"
+					style="float: right">Guardar </button>
+			</div>
+		</div>
+	<footer th:replace="footer :: footer"></footer>
+   	<!-- <div th:replace="seguridad2 :: seguridad2"></div>  -->
+   	<script src="/static/js/cartera/otrosreciboscaja.js"></script>
+</body>
+</html>

@@ -12,5 +12,9 @@ public class CarteraController {
 		return "cartera/recuperacioncartera";
 	}
 	
+	@RequestMapping( value = "/MnuOtrosReccaja/")
+	public String otrosRecibosCaja(){
+		return "cartera/otrosreciboscaja";
+	}
 	
 }
