@@ -29,8 +29,7 @@ public class RecibosCaja implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(nullable = false, precision = 22)
-    private Double nrorecibocaja;
+    private Long nrorecibocaja;
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     private Integer cliente;
@@ -67,15 +66,15 @@ public class RecibosCaja implements Serializable {
     public RecibosCaja() {
     }
 
-    public RecibosCaja(Double nrorecibocaja) {
+    public RecibosCaja(Long nrorecibocaja) {
         this.nrorecibocaja = nrorecibocaja;
     }
 
-    public Double getNrorecibocaja() {
+    public Long getNrorecibocaja() {
         return nrorecibocaja;
     }
 
-    public void setNrorecibocaja(Double nrorecibocaja) {
+    public void setNrorecibocaja(Long nrorecibocaja) {
         this.nrorecibocaja = nrorecibocaja;
     }
 
