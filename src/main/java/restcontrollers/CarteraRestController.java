@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import sidic.entities.Cartera;
+import sidic.entities.Nfact;
 import sidic.entities.RecibosCaja;
 import repositories.CarteraRepository;
+import repositories.NFactRepository;
 import repositories.RecibosCajaRepository;
 import resultclasses.OtroReciboCajaDTO;
 
@@ -35,6 +37,9 @@ public class CarteraRestController
 	
 	@Autowired
 	private RecibosCajaRepository reciboCajaRepository;
+	
+	@Autowired
+	private NFactRepository nfactRepository;
 	
 	
 	@RequestMapping(value="/api/cartera/")
@@ -80,6 +85,7 @@ public class CarteraRestController
 		}else{
 			recibo.setCliente( 0 );
 		}
+		
 		recibo.setValorrecibo( Double.parseDouble( reciboCaja.getValor() ) );
 		recibo.setNc( 0.0 );
 		recibo.setPagadomas( 0.0 );
@@ -88,7 +94,20 @@ public class CarteraRestController
 		recibo.setReteiva( 0.0 );
 		recibo.setRetefte( 0.0 );
 		recibo.setTotal( Double.parseDouble( reciboCaja.getValor( ) ) );
+		recibo.setDescripcion( reciboCaja.getDescripcion() );
+		recibo.setNd( 0.0 );
+		recibo.setSaldo( 0.0 );
+		recibo.setRetcree( 0.0 );
+		recibo.setTiporecibo( Integer.parseInt( reciboCaja.getTipo() ) );
+		recibo.setNombre( reciboCaja.getCodigo() +"-"+ reciboCaja.getRazsoc() );
+		recibo.setConcepto( reciboCaja.getConcepto() );
+		
+		Nfact nfact = nfactRepository.findOne( 1 ); 
+		nfact.setRecibocaja( nfact.getRecibocaja() + 1 );
+		
+		nfactRepository.save( nfact );
 		reciboCajaRepository.save( recibo );
+		
 		return new ResponseEntity<>( HttpStatus.ACCEPTED );
 	}
 	

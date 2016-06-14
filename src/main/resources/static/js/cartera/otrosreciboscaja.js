@@ -59,10 +59,24 @@ app.controller('CarteraController', function($scope,$http) {
 				$scope.cartera.codigo = data.codigo; 
 		    });
 			prom.error(function(data, status, headers, config) {
-		        alert("No se encontro la cedula");
+		        alert("No se encontro la cédula");
 			})
 		});
 	}
 	
+	
+	$scope.guardar = function(){
+		var dto = JSON.parse( JSON.stringify( $scope.cartera ) );
+		console.log( dto );
+		dto.tipo = dto.tipo.codigo;
+		dto.fecha = formatearFechaISO( dto.fecha );
+		var promesa = $http.post( "/api/cartera/otrosreciboscaja/" , dto );
+		promesa.success( function( data , status , headers , config ) {
+			alert( "Actualización completa ");
+	    });
+		promesa.error(function(data, status, headers, config) {
+	        alert("Error al actualizar");
+		});
+	}
 	cargarFormulario();
 });
