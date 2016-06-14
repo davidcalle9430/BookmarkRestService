@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<div th:fragment="seguridad2">
+
+
+
+
+		<div class="reveal full" id="password-modal" data-reveal="data-reveal" 
+			>
+		<div class="row">
+				<h1>Ingresa la contrase&ntilde;a.</h1>
+				<style>
+					* {
+						color: black;
+					}
+				</style>
+				<input type="password" id="seg-password" />
+				<button type="button" class="button"
+					onclick="seguridadvalidarContra2()">Validar</button>
+				<button type="button" class="alert  button"
+					onclick="window.location.href='/'">Salir</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="/static/js/seguridad.js">
+		</script>
+	</div>
+</body>
+</html>

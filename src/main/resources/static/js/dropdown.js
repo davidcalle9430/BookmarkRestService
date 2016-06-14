@@ -1,5 +1,5 @@
 /**
- * Archivo que arregla los tamaños de el tercer nivel de las listas basado en la anchura del padre
+ * Archivo que arregla los tamaños de el tercer nivel de las listas basado en el ancho del padre
  */
 
 var lists = $("nav ul ul");
