@@ -12,11 +12,11 @@
 		style="border-top: 1px solid black;">
 
 		<div class="large-4 medium-4 small-4 columns">
-			<label>Fecha <input type="text" ng-model="cartera.fecha" />
+			<label>Fecha <input readonly="readonly" type="text" ng-model="cartera.fecha"/>
 			</label>
 		</div>
 		<div class="large-4 medium-4 small-4 columns end">
-			<label>N&uacute;mero <input  type="text" ng-model="cartera.numero" />
+			<label>N&uacute;mero <input  type="text" ng-model="cartera.numero" readonly="readonly"/>
 			</label>
 		</div>
 	</div>
@@ -26,18 +26,19 @@
 		style="border-top: 1px solid black;">
 
 		<div class="large-4 medium-4 small-4 columns">
-			<label>C&eacute;dula/Nit <input type="text" ng-model="cartera.fecha" />
+			<label>C&eacute;dula/Nit 
+				<input type="text" ng-model-options="{updateOn: 'blur'}" ng-change="buscarCliente()" ng-model="cartera.cedula" />
 			</label>
 		</div>
 		<div class="large-4 medium-4 small-4 columns end">
-			<label>C&oacute;digo <input  type="text" ng-model="cartera.numero" />
+			<label>C&oacute;digo <input  type="text" ng-model="cartera.codigo" />
 			</label>
 		</div>
 	</div>
 	<div class="row">
 
 		<div class="large-8 medium-8 small-8 columns">
-			<label>Nombre / Raz.Social <input type="text" ng-model="cartera.fecha" />
+			<label>Nombre / Raz.Social <input type="text" ng-model="cartera.razsoc" />
 			</label>
 		</div>
 	</div>
@@ -47,11 +48,14 @@
 		style="border-top: 1px solid black;">
 
 		<div class="large-4 medium-4 small-4 columns">
-			<label>Valor <input type="text" ng-model="cartera.fecha" />
+			<label>Valor <input type="text" ng-model="cartera.valor" />
 			</label>
 		</div>
 		<div class="large-4 medium-4 small-4 columns end">
-			<label>Tipo Recibo de Caja<select  type="text" ng-model="cartera.numero" ></select>
+			<label>Tipo Recibo de Caja
+			<select type="text" ng-model="cartera.tipo" 
+					ng-options=" causal.label  for causal in causales.causales">
+			</select>
 			</label>
 		</div>
 	</div>
@@ -62,11 +66,11 @@
 		style="border-top: 1px solid black;">
 
 		<div class="large-12 medium-12 small-12 columns">
-			<label> Concepto <input type="text" ng-model="cartera.fecha" />
+			<label> Concepto <input type="text" ng-model="cartera.concepto" />
 			</label>
 		</div>
 		<div class="large-12 medium-12 small-12 columns end">
-			<label> Descripci&iacute;on <input  type="text" ng-model="cartera.numero" />
+			<label> Descripc&iacute;on <input  type="text" ng-model="cartera.descripcion" />
 			</label>
 		</div>
 	</div>

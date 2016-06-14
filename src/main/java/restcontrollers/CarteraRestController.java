@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import sidic.entities.Cartera;
+import sidic.entities.RecibosCaja;
 import repositories.CarteraRepository;
+import repositories.RecibosCajaRepository;
+import resultclasses.OtroReciboCajaDTO;
 
 /**
  * Clase que se encarga de extender la funcionalidad de spring data 
@@ -29,6 +32,10 @@ public class CarteraRestController
 {
 	@Autowired
 	private CarteraRepository carteraRepository;
+	
+	@Autowired
+	private RecibosCajaRepository reciboCajaRepository;
+	
 	
 	@RequestMapping(value="/api/cartera/")
 	public Page<Cartera> todosLosArticulos(@RequestParam(defaultValue="0") Integer pagina)
@@ -59,6 +66,30 @@ public class CarteraRestController
 		}catch( Exception e ){
 			return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
 		}
+	}
+	
+	@RequestMapping( value="/api/cartera/otrosreciboscaja/")
+	public ResponseEntity<?> otrosReciboCaja( @RequestBody OtroReciboCajaDTO reciboCaja  ){
+		
+		RecibosCaja recibo = new RecibosCaja();
+		recibo.setNrorecibocaja( reciboCaja.getNumero( ) );
+		recibo.setFecha( reciboCaja.getFecha() );
+		
+		if( reciboCaja.getCodigo() != null ){
+			recibo.setCliente( Integer.parseInt( reciboCaja.getCodigo( ) ) );
+		}else{
+			recibo.setCliente( 0 );
+		}
+		recibo.setValorrecibo( Double.parseDouble( reciboCaja.getValor() ) );
+		recibo.setNc( 0.0 );
+		recibo.setPagadomas( 0.0 );
+		recibo.setPagadomenos( 0.0 );
+		recibo.setReteica( 0.0 );
+		recibo.setReteiva( 0.0 );
+		recibo.setRetefte( 0.0 );
+		recibo.setTotal( Double.parseDouble( reciboCaja.getValor( ) ) );
+		reciboCajaRepository.save( recibo );
+		return new ResponseEntity<>( HttpStatus.ACCEPTED );
 	}
 	
 	

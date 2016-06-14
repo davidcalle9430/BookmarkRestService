@@ -63,6 +63,7 @@ import sidic.entities.Cardex;
 import sidic.entities.Cardexi;
 import sidic.entities.Cartera;
 import sidic.entities.Causales;
+import sidic.entities.Causalreciboscaja;
 import sidic.entities.Ciudades;
 import sidic.entities.Clientes;
 import sidic.entities.Correr;
@@ -78,6 +79,7 @@ import sidic.entities.Niveles;
 import sidic.entities.Opciones;
 import sidic.entities.Plazos;
 import sidic.entities.Proveedores;
+import sidic.entities.RecibosCaja;
 import sidic.entities.Rolessss;
 import sidic.entities.Rolesymenus;
 import sidic.entities.TextosFacturas;
@@ -95,6 +97,7 @@ import projections.ClienteVendedorProjection;
 import projections.EspeciaClienteConverter;
 import projections.ProveedorCiudad;
 import projections.RolesyMenusProjection;
+
 /**
  * Clase encargade de arrancar la aplicación haciendo un escaneo de los
  * componentes que necesita para la configuración
@@ -131,7 +134,7 @@ class StaticResourceConfiguration extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/static/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS).setCachePeriod(0);
+		registry.addResourceHandler("/static/**").addResourceLocations( CLASSPATH_RESOURCE_LOCATIONS ).setCachePeriod(0);
 	}
 }
 
@@ -174,10 +177,13 @@ class BookingCommandLineRunner implements CommandLineRunner {
 
 @Configuration
 class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
+	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
 	@Autowired
 	private RolesYMenusRepository rolesYMenusRepository;
+	
 	@Autowired
 	private RolesRepository rolesRepository;
 
@@ -259,35 +265,37 @@ class CustomRestMvcConfiguration {
 			@Override
 			public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 				config.setBasePath("/api");
-				config.exposeIdsFor(Articulo.class);
-				config.exposeIdsFor(Cardexi.class);
-				config.exposeIdsFor(Cardex.class);
-				config.exposeIdsFor(Cartera.class);
-				config.exposeIdsFor(Ciudades.class);
-				config.exposeIdsFor(Clientes.class);
-				config.exposeIdsFor(Correr.class);
-				config.exposeIdsFor(Empresas.class);
-				config.exposeIdsFor(Especia.class);
-				config.exposeIdsFor(Genero.class);
-				config.exposeIdsFor(Importaciones.class);
-				config.exposeIdsFor(Lineas.class);
-				config.exposeIdsFor(Menus.class);
-				config.exposeIdsFor(Nfact.class);
-				config.exposeIdsFor(Niveles.class);
-				config.exposeIdsFor(Opciones.class);
-				config.exposeIdsFor(Plazos.class);
-				config.exposeIdsFor(Rolessss.class);
-				config.exposeIdsFor(Rolesymenus.class);
-				config.exposeIdsFor(TextosFacturas.class);
-			    config.exposeIdsFor(Usuarios.class);
-			    config.exposeIdsFor(Vendedor.class);
-			    config.exposeIdsFor(VentasseguimientoOrg.class);
-			    config.exposeIdsFor(Zonas.class);
-			    config.exposeIdsFor(NfactLog.class);
-			    config.exposeIdsFor(Proveedores.class); 
-			    config.exposeIdsFor(Tipooperacion.class);
-			    config.exposeIdsFor(Tipooperacionbases.class);
+				config.exposeIdsFor( Articulo.class );
+				config.exposeIdsFor( Cardexi.class );
+				config.exposeIdsFor( Cardex.class );
+				config.exposeIdsFor( Cartera.class );
+				config.exposeIdsFor( Ciudades.class );
+				config.exposeIdsFor( Clientes.class );
+				config.exposeIdsFor( Correr.class );
+				config.exposeIdsFor( Empresas.class );
+				config.exposeIdsFor( Especia.class );
+				config.exposeIdsFor( Genero.class );
+				config.exposeIdsFor( Importaciones.class );
+				config.exposeIdsFor( Lineas.class );
+				config.exposeIdsFor( Menus.class );
+				config.exposeIdsFor( Nfact.class );
+				config.exposeIdsFor( Niveles.class );
+				config.exposeIdsFor( Opciones.class );
+				config.exposeIdsFor( Plazos.class );
+				config.exposeIdsFor( Rolessss.class );
+				config.exposeIdsFor( Rolesymenus.class );
+				config.exposeIdsFor( TextosFacturas.class );
+			    config.exposeIdsFor( Usuarios.class );
+			    config.exposeIdsFor( Vendedor.class );
+			    config.exposeIdsFor( VentasseguimientoOrg.class );
+			    config.exposeIdsFor( Zonas.class );
+			    config.exposeIdsFor( NfactLog.class );
+			    config.exposeIdsFor( Proveedores.class ); 
+			    config.exposeIdsFor( Tipooperacion.class );
+			    config.exposeIdsFor( Tipooperacionbases.class );
 			    config.exposeIdsFor( Causales.class );
+			    config.exposeIdsFor( Causalreciboscaja.class );
+			    config.exposeIdsFor( RecibosCaja.class );
 			    // registro de proyecciones
 			    config.getProjectionConfiguration().addProjection( ClienteRotulacion.class );
 			    config.getProjectionConfiguration().addProjection( ClienteFactura.class );
@@ -306,12 +314,11 @@ class CustomRestMvcConfiguration {
 				EspeciaConverter espcia = new EspeciaConverter();
 				NivelesPKConverter nivelesConverter = new NivelesPKConverter();
 				BasesConverter basesConverter = new BasesConverter();
-				conversionService.addConverter(usuarioPKConverter);
-				conversionService.addConverter(espcia);
-				conversionService.addConverter(nivelesConverter);
-				conversionService.addConverter(basesConverter);
+				conversionService.addConverter( usuarioPKConverter );
+				conversionService.addConverter( espcia );
+				conversionService.addConverter( nivelesConverter );
+				conversionService.addConverter( basesConverter );
 			}
-
 		};
 	}
 }
@@ -322,10 +329,13 @@ class CustomRestMvcConfiguration {
  * */
 @Configuration
 class RequestFilter extends OncePerRequestFilter {
+	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
 	@Autowired
 	private RolesYMenusRepository rolesYMenusRepository;
+	
 	@Autowired
 	private MenusRepository menusRepository;
 
