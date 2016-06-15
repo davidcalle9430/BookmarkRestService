@@ -319,3 +319,20 @@ input, select {
 	border-radius: 25px;
 	padding: 0.5em;
 }
+
+/* Crear factura */
+
+	#crear-factura input{
+		font-size: 3vh !important;
+		height: 7vh !important;
+	}
+	
+	#crear-factura select{
+		-webkit-appearance:none;
+		-moz-appearance:none;
+		appearance:none;
+		padding-top: 0;
+		padding-bottom: 0;
+		font-size: 3vh !important;
+		height: 7vh !important;
+	}
