@@ -319,3 +319,24 @@ input, select {
 	border-radius: 25px;
 	padding: 0.5em;
 }
+
+/*
+	Remover flechas de input tpe number
+*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+/**
+Quitar estilos de input type date
+*/
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-inner-spin-button{
+    display: none;
+}
