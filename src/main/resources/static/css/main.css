@@ -107,6 +107,10 @@ body {
 	color: #fff;
 }
 
+textarea {
+	min-height: 100px;
+}
+
 span {
 	color: black;
 }
