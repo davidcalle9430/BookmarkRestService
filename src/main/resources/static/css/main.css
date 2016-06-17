@@ -320,6 +320,26 @@ input, select {
 	padding: 0.5em;
 }
 
+	Remover flechas de input tpe number
+*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+/**
+Quitar estilos de input type date
+*/
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-inner-spin-button{
+    display: none;
+}
+
 /* Crear factura */
 
 	#crear-factura input{
@@ -336,3 +356,5 @@ input, select {
 		font-size: 3vh !important;
 		height: 7vh !important;
 	}
+
+/*
