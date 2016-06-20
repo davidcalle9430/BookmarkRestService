@@ -1,5 +1,5 @@
 var app = angular.module( 'Facturacion' , []);
-var Jmq = true; // como esta opcion solo aparce ene l menú JM, jmq siempre es verdadero
+var Jmq = false ; // como esta opcion solo aparce en el menu impordisa
 // si tan solo el anterior desarrollador tuviera algo de orden o documentación
 /**
  * funcion controladora de la pagina con el mismo nombre

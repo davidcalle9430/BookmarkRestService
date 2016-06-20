@@ -34,7 +34,7 @@ public class Cardex implements Serializable {
     private Integer consec;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "CODIGO")
-    private Double codigo;
+    private Long codigo;
     @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
@@ -64,11 +64,11 @@ public class Cardex implements Serializable {
         this.consec = consec;
     }
 
-    public Double getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Double codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 

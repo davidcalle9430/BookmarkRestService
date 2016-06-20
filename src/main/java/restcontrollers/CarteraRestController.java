@@ -1,5 +1,7 @@
 package restcontrollers;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -123,22 +125,37 @@ public class CarteraRestController
 	@RequestMapping( value="/api/cartera/articulosFactura/", method = RequestMethod.GET )
 	public List< ArticuloFacturaDTO > darArticulosFactura( 
 			@RequestParam(name="ndoc") Long ndoc ,
-			@DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(name="fecha") Date fecha ){
+			@DateTimeFormat(pattern = "yyyy-MM-dd") 
+				@RequestParam(name="fecha") Date fecha ){
 		
-		Query q = em.createQuery(
-				 "select new "
-				+ "resultclasses.ArticuloFacturaDTO( a.codigo , g.nombre , a.referencia , a.precio * c.cantidad )"
-				+ "From Articulo a, Cardex c, Genero g "
-				+ "Where a.codigo = c.codigo and a.codigo/1000 = g.codigo "
-				+ "and c.ndoc = :ndoc "
-				+ "and c.fecha = :fecha "
-				+ "order by c.consec" 
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String format = formatter.format( fecha );
+		
+		
+		//toca native query porque por alguna razon no sirve jpql, ver commit anterior
+		Query q = em.createNativeQuery(""
+				+ "select  a.codigo , g.nombre , a.referencia , a.precio * c.cantidad AS precio "
+				+ "From Articulo a, Cardex c, Genero g  "
+				+ "Where a.codigo = c.codigo and  FLOOR( a.codigo / 1000 ) = g.codigo "
+				+ "and c.ndoc =  :ndoc and c.fecha =  STR_TO_DATE( :fecha , '%Y-%m-%d') "
+				+ "order by c.consec "
 				);
-		q.setParameter( "ndoc", ndoc );
-		q.setParameter( "fecha" , fecha );
+		System.out.println("TE ODIO QUERY");
+		q.setParameter( "ndoc" , ndoc );
+		q.setParameter( "fecha" , format );
 		@SuppressWarnings("unchecked")
-		List<ArticuloFacturaDTO> res
-			= q.getResultList();
+		List<Object[]> resultados  = q.getResultList();
+		List<ArticuloFacturaDTO> res= new ArrayList<>();
+		
+		for (Object[] objects : resultados) {
+			ArticuloFacturaDTO cf = new ArticuloFacturaDTO();
+			cf.setCodigo(objects[0]!=null?(long)Double.parseDouble(objects[0].toString()):null);
+			cf.setNombre(objects[1]!=null? objects[1].toString(): null );
+			cf.setReferencia( objects[2] != null ? objects[3].toString():null );
+			cf.setValor(objects[3]!=null? Double.parseDouble(objects[3].toString()):null);
+			res.add(cf);
+		}
 		return res;
 	}
 }
