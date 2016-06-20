@@ -32,18 +32,31 @@
 				<label> &nbsp;<input type="text" ng-model="viewHolder.razsoc" /></label>
 			</div>
 		</div>
-		<div class="row">
-			<div class="large-12 columns">
-				<textarea class="big-textarea" placeholder="" ng-model="viewHolder.info" ></textarea>
-			</div>
-		</div>
+			<table>
+				<thead>
+					<tr>
+						<th style="width: 20%;">C&oacute;digo</th>
+						<th style="width: 20%;">Nombre</th>
+						<th style="width: 20%;">Referencia</th>
+						<th style="width: 20%;">Valor</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr ng-repeat="producto in viewHolder.productos">
+						<td><input type="text" ng-model="producto.codigo" /></td>
+						<td><input type="text" ng-model="producto.nombre" /></td>
+						<td><input type="text" ng-model="producto.referencia" /></td>
+						<td><input type="number" ng-model="producto.valor" /></td>
+					</tr>
+				</tbody>
+			</table>
 		<div class="row">
 			<div class="large-2 large-offset-9 columns">
 				<a href="#" class="button">Anular factura</a>
 			</div>
 		</div>
 	</form>
-
 	<footer th:replace="footer :: footer"></footer>
 	<script src="/static/js/facturas/anularfactura.js"></script>
 </body>

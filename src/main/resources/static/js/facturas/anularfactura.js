@@ -5,7 +5,8 @@ var Jmq = false ; // como esta opcion solo aparce en el menu impordisa
  * funcion controladora de la pagina con el mismo nombre
  */
 app.controller('FacturacionController', function($scope,$http) { 
-	$scope.viewHolder = {};
+	$scope.viewHolder = {};//esta varibale view holder funciona como la fachada que se muesra a la vista
+	$scope.viewHolder.productos = [];
 	
 	$scope.validarFactura = function(){
 		if($scope.viewHolder.numFactura == null || $scope.viewHolder.numFactura == ""){
@@ -30,21 +31,32 @@ app.controller('FacturacionController', function($scope,$http) {
 		promesa.error( function( data, status, headers, config ) {
 	        alert("No se encotró el Cliente");
 		});
-		// como siempre es JMQ, se imite todo lo relacionado a JMQ = False
-		var tmpFact = $scope.viewHolder.numFactura + 100000;
+		// como no es JMQ, se omite todo lo relacionado a JMQ = true
+		var tmpFact = $scope.viewHolder.numFactura;
 		
-		var promesa = $http.get( "/api/carteras/search/encontrarPorFacturaCodigoFecha?"
+		var promesa = $http.get( "/api/cartera/encontrarPorCodigoFechaFactura/?"
 				+"factura=" + tmpFact + "&" 
 				+"codigo=" + codigo + "&"
 				+"fecha=" + formatearFechaISO( $scope.viewHolder.fecha ) );
 		
 		promesa.success( function(data, status, headers, config ) {
 			// no se hace anda con los datos, la idea solo es verificar que exista
+			//ahora se hace el segundo query al coontrolador rest de cartera
+			var prod = $http.get( "/api/cartera/articulosFactura/?"
+					+"ndoc=" + tmpFact + "&" 
+					+"fecha=" + formatearFechaISO( $scope.viewHolder.fecha ) );	
+			prod.success( function(data, status, headers, config ) {
+				$scope.viewHolder.productos = data;
+			});
+			
+			prod.error( function( data, status, headers, config ) {
+		        alert("Ningún articulo facturado con la factura");
+			});
 			
 		} );
 		promesa.error( function( data, status, headers, config ) {
 	        alert("Factura ya registrada o anulada");
-	        window.location.href = "/jm/";
+	        //window.location.href = "/jm/";
 		});
 		
 		

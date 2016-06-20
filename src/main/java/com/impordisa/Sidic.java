@@ -360,10 +360,10 @@ class RequestFilter extends OncePerRequestFilter {
 	}
 	public boolean necesitaCambioPassword(SecurityContextImpl sci){
 		if (sci != null) {
-			UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
-			Usuarios elected = usuarioRepository.findOneByUsuario(cud.getUsername());
+			UserDetails cud = ( UserDetails ) sci.getAuthentication( ).getPrincipal( );
+			Usuarios elected = usuarioRepository.findOneByUsuario( cud.getUsername( ) );
 			SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-			LocalDate fechaPassword = LocalDate.parse( DATE_FORMAT.format(elected.getFechapassword()) );
+			LocalDate fechaPassword = LocalDate.parse( DATE_FORMAT.format( elected.getFechapassword( ) ) );
 			fechaPassword = fechaPassword.plusDays(new Long(elected.getMaxdias()));
 			LocalDate fechaActual = LocalDate.now();
 			if(fechaActual.isAfter(fechaPassword)){

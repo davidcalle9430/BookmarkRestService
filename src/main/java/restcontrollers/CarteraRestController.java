@@ -1,6 +1,8 @@
 package restcontrollers;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +14,7 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -141,7 +144,6 @@ public class CarteraRestController
 				+ "and c.ndoc =  :ndoc and c.fecha =  STR_TO_DATE( :fecha , '%Y-%m-%d') "
 				+ "order by c.consec "
 				);
-		System.out.println("TE ODIO QUERY");
 		q.setParameter( "ndoc" , ndoc );
 		q.setParameter( "fecha" , format );
 		@SuppressWarnings("unchecked")
@@ -152,10 +154,38 @@ public class CarteraRestController
 			ArticuloFacturaDTO cf = new ArticuloFacturaDTO();
 			cf.setCodigo(objects[0]!=null?(long)Double.parseDouble(objects[0].toString()):null);
 			cf.setNombre(objects[1]!=null? objects[1].toString(): null );
-			cf.setReferencia( objects[2] != null ? objects[3].toString():null );
+			cf.setReferencia( objects[2] != null ? objects[2].toString():null );
 			cf.setValor(objects[3]!=null? Double.parseDouble(objects[3].toString()):null);
 			res.add(cf);
 		}
 		return res;
+	}
+	
+	@RequestMapping( value="/api/cartera/encontrarPorCodigoFechaFactura/", method = RequestMethod.GET , produces = "application/json" )
+	public Cartera encontrarPorCodigoFechaFactura(
+			@Param("factura")Long factura ,
+			@Param("codigo")Long codigo ,
+			@DateTimeFormat(pattern = "yyyy-MM-dd") @Param("fecha") Date fecha) throws ParseException{
+		
+		// creacion de la siguente fecha, es decir un dia despues
+		Date diaSiguiente = fecha;
+		SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+		LocalDate localFecha = LocalDate.parse( DATE_FORMAT.format( fecha ) ); // esto se hace para sumarle un dia
+		localFecha = localFecha.plusDays( 1l );
+		diaSiguiente = DATE_FORMAT.parse( localFecha.toString() );
+		
+		//fin de creacion de fechas
+		Query q = em.createQuery(""
+				+ "select c "
+				+ "from Cartera c "
+				+ "where c.carteraPK.codigo = :codigo "
+				+ "and c.carteraPK.factura = :factura "
+				+ "and c.carteraPK.fecha between :inicio and :fin");
+		q.setParameter( "factura" , factura );
+		q.setParameter( "codigo" , codigo );
+		q.setParameter( "inicio" , fecha );
+		q.setParameter( "fin" , diaSiguiente );
+		Cartera c = (Cartera) q.getSingleResult( );
+		return c;
 	}
 }
