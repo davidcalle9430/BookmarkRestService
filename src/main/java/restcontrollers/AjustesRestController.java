@@ -1,7 +1,14 @@
 package restcontrollers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,6 +45,9 @@ public class AjustesRestController {
 	@Autowired
 	private NotdecreRepository notdecreRepository;
 	
+	@PersistenceContext
+	private EntityManager em;
+	
 	@RequestMapping( value ="/api/ajustes/reporteventas/" , method = RequestMethod.POST )
 	public ResponseEntity<?> reporteDeVentas( @RequestBody List< NotasCarteraDTO > carteras ){
 	
@@ -65,7 +75,7 @@ public class AjustesRestController {
 	}
 	
 	@RequestMapping(value="/api/ajustes/notasdecartera" , method = RequestMethod.POST )
-	public ResponseEntity<?> notasDeCartera( @RequestBody List< NotasCarteraDTO > carteras ){
+	public ResponseEntity<?> notasDeCartera( @RequestBody List< NotasCarteraDTO > carteras ) throws ParseException{
 
 		for (NotasCarteraDTO cartera : carteras){
 			if( cartera.getTipo().equalsIgnoreCase("J")){
@@ -73,11 +83,29 @@ public class AjustesRestController {
 			}else if( cartera.getTipo().equalsIgnoreCase("C")){	
 				cartera.setFactura( cartera.getFactura() + 300000 );
 			}
-			Cartera carteraAGuardar = carteraRespository.findOneByCarteraPK_facturaAndCarteraPK_CodigoAndCarteraPK_Fecha( 
-					(long)cartera.getFactura() , 
-					(long)cartera.getCodigo() , 
-					cartera.getFecha()  
-			);
+			
+			
+			
+			Date diaSiguiente = cartera.getFecha( );
+			SimpleDateFormat DATE_FORMAT = new SimpleDateFormat( "yyyy-MM-dd" );
+			LocalDate localFecha = LocalDate.parse( 
+					DATE_FORMAT.format( cartera.getFecha( ) ) ); // esto se hace para sumarle un dia
+			
+			localFecha = localFecha.plusDays( 1l );
+			diaSiguiente = DATE_FORMAT.parse( localFecha.toString() );
+			
+			//fin de creacion de fechas
+			Query q = em.createQuery(""
+					+ "select c "
+					+ "from Cartera c "
+					+ "where c.carteraPK.codigo = :codigo "
+					+ "and c.carteraPK.factura = :factura "
+					+ "and c.carteraPK.fecha between :inicio and :fin");
+			q.setParameter( "factura" , cartera.getFactura() );
+			q.setParameter( "codigo" , cartera.getCodigo() );
+			q.setParameter( "inicio" , cartera.getFecha() );
+			q.setParameter( "fin" , diaSiguiente );
+			Cartera carteraAGuardar = (Cartera) q.getSingleResult( );
 			
 			if( cartera.getNat().equals("D") ){
 				carteraAGuardar.setNotad( carteraAGuardar.getNotad() + cartera.getValor() );

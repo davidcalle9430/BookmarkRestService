@@ -44,13 +44,13 @@
 
 				<tbody>
 					<tr ng-repeat="producto in viewHolder.productos">
-						<td><input type="text" ng-model="producto.codigo" /></td>
-						<td><input type="text" ng-model="producto.nombre" /></td>
-						<td><input type="text" ng-model="producto.referencia" /></td>
-						<td><input type="number" ng-model="producto.valor" /></td>
+						<td>{{producto.codFormateado}}</td>
+						<td>{{producto.nombre}}</td>
+						<td>{{producto.referencia}}</td>
+						<td>{{producto.valor}}</td>
 					</tr>
 				</tbody>
-			</table>
+			</table>	
 		<div class="row">
 			<div class="large-2 large-offset-9 columns">
 				<a href="#" class="button">Anular factura</a>

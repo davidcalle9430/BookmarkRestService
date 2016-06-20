@@ -24,10 +24,10 @@ function zeroPad(num, places)
 /**
  * Función encargada de obtener el nùmero que representa el código
  */
-function obtenerNumeroAPartirDeCodigo(codigo)
+function obtenerNumeroAPartirDeCodigo( codigo )
 {
 	var numeros = codigo.toString( );
-	return parseInt( numeros.substring( 0, 3 ) + numeros.substring( 3, 6 ));
+	return parseInt( numeros.substring( 0 , 3 ) + numeros.substring( 3 , 6 ) );
 }
 
 /**

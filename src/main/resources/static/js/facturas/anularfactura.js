@@ -47,6 +47,10 @@ app.controller('FacturacionController', function($scope,$http) {
 					+"fecha=" + formatearFechaISO( $scope.viewHolder.fecha ) );	
 			prod.success( function(data, status, headers, config ) {
 				$scope.viewHolder.productos = data;
+				for( var i = 0 ; i < data.length ; i++ ){
+					$scope.viewHolder.productos[ i ].codFormateado 
+						=  darCodigoFormateado( data[ i ].codigo );
+				}
 			});
 			
 			prod.error( function( data, status, headers, config ) {
