@@ -62,8 +62,24 @@ app.controller('FacturacionController', function($scope,$http) {
 	        alert("Factura ya registrada o anulada");
 	        //window.location.href = "/jm/";
 		});
-		
-		
+	}
+	
+	$scope.anular = function(){
+		if ( !confirm('Seguro que desea eliminar la factura') ) {
+		    return;
+		} else {
+		    var facturaPk = {};
+		    facturaPk.factura = $scope.viewHolder.numFactura;
+		    facturaPk.codigo = $scope.viewHolder.codigoCliente;
+		    facturaPk.fecha = $scope.viewHolder.fecha;
+		    var promesa = $http.post( "/api/factura/anular/" , facturaPk );
+			promesa.success( function( data, status, headers, config ) {
+				alert("Factura anulada");
+			} );
+			promesa.error( function( data, status, headers, config ) {
+		        alert("Error al anular la factura");
+			});
+		}
 		
 	}
 	

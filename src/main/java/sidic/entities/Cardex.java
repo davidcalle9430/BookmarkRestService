@@ -27,25 +27,33 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Cardex implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @GeneratedValue
     @Id
     @Basic(optional = false)
     @Column(name = "consec")
     private Integer consec;
+    
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "CODIGO")
     private Long codigo;
+    
     @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
+    
     @Column(name = "TIPO")
     private String tipo;
+    
     @Column(name = "DOCUMENTO")
     private String documento;
+    
     @Column(name = "CANTIDAD")
     private Long cantidad;
+    
     @Column(name = "NDOC")
     private Long ndoc;
+    
     @Column(name = "SALDO")
     private Double saldo;
 

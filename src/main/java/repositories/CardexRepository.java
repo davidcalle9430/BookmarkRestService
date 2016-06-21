@@ -1,6 +1,7 @@
 package repositories;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
@@ -15,5 +16,12 @@ public interface CardexRepository extends JpaRepository<Cardex,Integer>
 {
 	//@Query("select c from Cardex c where ndoc = ?0 and fecha = ?1")
 	@RestResource
-	public Cardex findOneByndocAndFecha(@Param("ndoc")Long ndoc,@DateTimeFormat(pattern = "yyyy-MM-dd")@Param("fecha") Date fecha);
+	public Cardex findOneByndocAndFecha(
+			@Param("ndoc")Long ndoc,
+			@DateTimeFormat(pattern = "yyyy-MM-dd")@Param("fecha") Date fecha);
+	
+	@RestResource
+	public List<Cardex> findAllByndocAndFecha(
+			@Param("ndoc")Long ndoc,
+			@DateTimeFormat(pattern = "yyyy-MM-dd") @Param("fecha") Date fecha);
 }
