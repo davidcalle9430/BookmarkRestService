@@ -30,12 +30,12 @@ public class ValorizacionInventarioPK implements Serializable {
     private Date fecha;
     @Basic(optional = false)
     @Column(nullable = false)
-    private double linea;
+    private Long linea;
 
     public ValorizacionInventarioPK() {
     }
 
-    public ValorizacionInventarioPK(Date fecha, double linea) {
+    public ValorizacionInventarioPK(Date fecha, Long linea) {
         this.fecha = fecha;
         this.linea = linea;
     }
@@ -48,11 +48,11 @@ public class ValorizacionInventarioPK implements Serializable {
         this.fecha = fecha;
     }
 
-    public double getLinea() {
+    public Long getLinea() {
         return linea;
     }
 
-    public void setLinea(double linea) {
+    public void setLinea(Long linea) {
         this.linea = linea;
     }
 
@@ -60,7 +60,7 @@ public class ValorizacionInventarioPK implements Serializable {
     public int hashCode() {
         int hash = 0;
         hash += (fecha != null ? fecha.hashCode() : 0);
-        hash += (int) linea;
+        hash +=  linea.intValue();
         return hash;
     }
 

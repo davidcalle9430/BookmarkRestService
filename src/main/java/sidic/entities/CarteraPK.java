@@ -27,10 +27,12 @@ public class CarteraPK implements Serializable {
 	@Basic(optional = false)
     @Column(nullable = false, name="CODIGO")
     private Long codigo;
+	
     @Basic(optional = false)
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
+    
     @Basic(optional = false)
     @Column(nullable = false)
     private Long factura;

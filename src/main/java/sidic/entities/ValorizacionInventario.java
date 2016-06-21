@@ -27,7 +27,7 @@ public class ValorizacionInventario implements Serializable {
     protected ValorizacionInventarioPK valorizacionInventarioPK;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(precision = 22)
-    private Double tiporeg;
+    private Long tiporeg;
     @Column(length = 100)
     private String nomlinea;
     @Column(precision = 22)
@@ -44,7 +44,7 @@ public class ValorizacionInventario implements Serializable {
         this.valorizacionInventarioPK = valorizacionInventarioPK;
     }
 
-    public ValorizacionInventario(Date fecha, double linea) {
+    public ValorizacionInventario(Date fecha, Long linea) {
         this.valorizacionInventarioPK = new ValorizacionInventarioPK(fecha, linea);
     }
 
@@ -56,11 +56,11 @@ public class ValorizacionInventario implements Serializable {
         this.valorizacionInventarioPK = valorizacionInventarioPK;
     }
 
-    public Double getTiporeg() {
+    public Long getTiporeg() {
         return tiporeg;
     }
 
-    public void setTiporeg(Double tiporeg) {
+    public void setTiporeg(Long tiporeg) {
         this.tiporeg = tiporeg;
     }
 

@@ -39,13 +39,15 @@ public class ArticulosRestController
 	
 	@Autowired
 	private EspeciaRepository especiaRepository;
+	
 	@Autowired
 	private ArticuloRepository articuloRepository;
+	
 	@PersistenceContext
 	private EntityManager em;
 	
 	/**
-	 * query sin aprametros debido a errrores por los caracteres especiales
+	 * query sin parametros debido a errrores por los caracteres especiales
 	 * @param ndoc
 	 * @param fecha
 	 * @return
