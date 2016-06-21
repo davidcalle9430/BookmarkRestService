@@ -20,6 +20,14 @@ ALTER TABLE clientes
 MODIFY 
 CODIGO INTEGER;
 
+ALTER TABLE importaciones 
+CHANGE COLUMN consec consec 
+int(10) NOT NULL AUTO_INCREMENT;
+
+
+/**
+ * fin de alter tables, lo que va en adelante son queries que pueden ser utiles en el futuro
+ */
 SELECT g.nombre, a.referencia, a.precio, a.codigo
 FROM articulo a JOIN genero g on LEFT(LPAD(a.codigo,6,'0'),3) = LPAD(g.codigo,3,'0');
 
@@ -45,6 +53,3 @@ where a.codigo = cardex.codigo
 	and str_to_date('2002-01-03', '%Y-%m-%d')
 order by cardex.consec;
 
-ALTER TABLE importaciones 
-CHANGE COLUMN consec consec 
-int(10) NOT NULL AUTO_INCREMENT;

@@ -24,7 +24,6 @@ public class Genero implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(nullable = false, precision = 22)
     private Long codigo;
     @Column(length = 35)
     private String nombre;

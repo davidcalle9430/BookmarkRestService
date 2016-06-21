@@ -106,9 +106,9 @@ import projections.RolesyMenusProjection;
  * @since 2015-12-14
  */
 @SpringBootApplication
-@EntityScan(basePackages = { "entities", "sidic.entities" })
-@EnableJpaRepositories(basePackages = { "repositories" })
-@ComponentScan(basePackages = { "com.impordisa", "restcontrollers", "web" , "projections"})
+@EntityScan(basePackages = { "entities", "sidic.entities" } )
+@EnableJpaRepositories(basePackages = { "repositories" } )
+@ComponentScan(basePackages = { "com.impordisa" , "restcontrollers", "web" , "projections" , "services" } )
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @EnableAutoConfiguration
 public class Sidic {
@@ -157,12 +157,18 @@ class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 		registry.setOrder( Ordered.HIGHEST_PRECEDENCE );
 	}
 }
-
+/**
+ * clase cuyo método run se ejecuta cuando el servidor empieza a correr
+ * se deja para su posterior uso
+ * @author david
+ *
+ */
 @Component
 class BookingCommandLineRunner implements CommandLineRunner {
+	
 	@Override
 	public void run(String... arg0) throws Exception {
-		System.gc();
+		System.gc( );
 	}
 }
 
@@ -191,7 +197,10 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 	public void init(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService());
 	}
-
+	/**
+	 * funcionalidad de inciio de sesión
+	 * @return
+	 */
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return new UserDetailsService() {
@@ -200,7 +209,7 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 				Usuarios usuario = null;
 				try {
-					usuario = usuarioRepository.findOneByUsuario(username);
+					usuario = usuarioRepository.findOneByUsuario( username );
 				} catch (Exception e) {
 					e.printStackTrace();
 					throw new UsernameNotFoundException("El usuario " + username + " No existe");
@@ -210,16 +219,16 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 					Set<String> roles = new HashSet<>();
 					rolesUsuario.forEach(rol -> {
 						Rolessss rolActual = rolesRepository
-								.findOneByRolessssPK_codigo(rol.getRolesymenusPK().getRol());
+								.findOneByRolessssPK_codigo( rol.getRolesymenusPK( ).getRol( ) );
 						if(rolActual  != null){
-							roles.add(rolActual.getNombre());
+							roles.add( rolActual.getNombre( ) );
 						}
 						
 					});
 					String[] arregloDeRoles = new String[roles.size()];
 					List<GrantedAuthority> rolesSeguridad = AuthorityUtils
-							.createAuthorityList(roles.toArray(arregloDeRoles));
-					return new User(username, usuario.getPassword(), true, true, true, true, rolesSeguridad);
+							.createAuthorityList(roles.toArray( arregloDeRoles ) );
+					return new User( username, usuario.getPassword(), true, true, true, true, rolesSeguridad );
 				} else {
 					throw new UsernameNotFoundException("Nombre de Usuario no Encontrado");
 				}
@@ -254,7 +263,15 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 }
-
+/**
+ * clase de configuracion del api rest
+ * se encarga de exponer los ids de las clases necesarias
+ * tambien de agregar los convertidores de llave primaria a string
+ * esto es para representar el identificador de un objeto como un string que se pueda
+ * poner en una url
+ * @author david
+ *
+ */
 @Configuration
 class CustomRestMvcConfiguration {
 
@@ -325,7 +342,8 @@ class CustomRestMvcConfiguration {
 
 /**
  *  Filtro encargado de la seguridad extra de la aplicación
- *   
+ *  Se hace seguridad por controlador web
+ *  para el api la seguridad es solo de inciio de sesión
  * */
 @Configuration
 class RequestFilter extends OncePerRequestFilter {
@@ -360,10 +378,10 @@ class RequestFilter extends OncePerRequestFilter {
 	}
 	public boolean necesitaCambioPassword(SecurityContextImpl sci){
 		if (sci != null) {
-			UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
-			Usuarios elected = usuarioRepository.findOneByUsuario(cud.getUsername());
+			UserDetails cud = ( UserDetails ) sci.getAuthentication( ).getPrincipal( );
+			Usuarios elected = usuarioRepository.findOneByUsuario( cud.getUsername( ) );
 			SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-			LocalDate fechaPassword = LocalDate.parse( DATE_FORMAT.format(elected.getFechapassword()) );
+			LocalDate fechaPassword = LocalDate.parse( DATE_FORMAT.format( elected.getFechapassword( ) ) );
 			fechaPassword = fechaPassword.plusDays(new Long(elected.getMaxdias()));
 			LocalDate fechaActual = LocalDate.now();
 			if(fechaActual.isAfter(fechaPassword)){
@@ -372,6 +390,8 @@ class RequestFilter extends OncePerRequestFilter {
 		}
 		return false;
 	}
+	
+	
 	/**
 	 * método que se encarga de hacer un filtrado de los request que llegan al serviodr y decide si tiene
 	 * los permisos suficientes para que la sesión actual acceda al controlador

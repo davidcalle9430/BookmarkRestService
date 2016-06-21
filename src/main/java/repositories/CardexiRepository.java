@@ -16,5 +16,12 @@ import sidic.entities.Cardexi;
 public interface CardexiRepository extends JpaRepository<Cardexi, Integer> 
 { 
 	@RestResource
-	public List<Cardexi> findOneByNdocAndFecha(@Param("ndoc")Long ndoc ,@DateTimeFormat(pattern = "yyyy-MM-dd")@Param("fecha") Date fecha);
+	public List<Cardexi> findOneByNdocAndFecha(
+			@Param("ndoc")Long ndoc ,
+			@DateTimeFormat(pattern = "yyyy-MM-dd")@Param("fecha") Date fecha);
+	
+	@RestResource
+	public List<Cardexi> findAllByndocAndFecha(
+			@Param("ndoc")Long ndoc,
+			@DateTimeFormat(pattern = "yyyy-MM-dd") @Param("fecha") Date fecha);
 }

@@ -33,41 +33,59 @@ public class Venthist implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "CODCORR")
     private Double codcorr;
+    
     @Column(name = "CLIENTE")
-    private Double cliente;
+    private Long cliente;
+    
     @Column(name = "PRECIO")
     private Double precio;
+    
     @Column(name = "FACTURA")
-    private Double factura;
+    private Long factura;
+    
     @Column(name = "CANTIDAD")
     private Double cantidad;
+    
     @Column(name = "CODIGO")
     private Double codigo;
+    
     @Column(name = "COSTOIMP")
     private Double costoimp;
+    
     @Column(name = "COSTOJM")
     private Double costojm;
+    
     @Column(name = "COSTOPRO")
     private Double costopro;
+    
     @Column(name = "COSTOPROIM")
     private Double costoproim;
+    
     @Column(name = "DEVOLIMP")
     private Double devolimp;
+    
     @Column(name = "DEVOLJM")
     private Double devoljm;
+    
     @Column(name = "VALORD")
     private Double valord;
+    
     @Column(name = "VALORC")
     private Double valorc;
+    
     @Column(name = "LINEA")
     private Double linea;
+    
     @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
+    
     @Column(name = "DESCUE")
     private Double descue;
+    
     @Column(name = "IMOJM")
     private String imojm;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -97,11 +115,11 @@ public class Venthist implements Serializable {
         this.codcorr = codcorr;
     }
 
-    public Double getCliente() {
+    public Long getCliente() {
         return cliente;
     }
 
-    public void setCliente(Double cliente) {
+    public void setCliente(Long cliente) {
         this.cliente = cliente;
     }
 
@@ -113,11 +131,11 @@ public class Venthist implements Serializable {
         this.precio = precio;
     }
 
-    public Double getFactura() {
+    public Long getFactura() {
         return factura;
     }
 
-    public void setFactura(Double factura) {
+    public void setFactura(Long factura) {
         this.factura = factura;
     }
 
