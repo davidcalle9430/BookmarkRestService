@@ -18,7 +18,7 @@ input {
 	height: 35px !important;
 	font-size: 15px !important;
 }
-
+	
 option {
 	height: 30px !important;
 	font-size: 15px !important;
@@ -32,7 +32,7 @@ select {
 h1 {
 	color: black;
 	margin: 2vmin 0 2vmin 0;
-	font-size: 4vmin;
+	font-size: 1.5em;
 }
 
 table {
@@ -333,7 +333,7 @@ input[type="number"] {
 
 
 /**
-Quitar estilos de input type date
+	Quitar estilos de input type date
 */
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="date"]::-webkit-inner-spin-button{
@@ -343,7 +343,7 @@ input[type="date"]::-webkit-inner-spin-button{
 /* Crear factura */
 
 	#crear-factura input{
-		font-size: 3vh !important;
+		font-size: 2.5vh !important;
 		height: 7vh !important;
 	}
 	
@@ -353,8 +353,20 @@ input[type="date"]::-webkit-inner-spin-button{
 		appearance:none;
 		padding-top: 0;
 		padding-bottom: 0;
-		font-size: 3vh !important;
+		font-size: 2.5vh !important;
 		height: 7vh !important;
+	}
+	
+	#crear-factura h1{
+		font-size: 1.5em !important;
+	}
+	
+	#crear-factura table tr th{
+		font-size: 3vh;
+	}
+	
+	#crear-factura label{
+		font-size: 2vh !important;
 	}
 
 /*

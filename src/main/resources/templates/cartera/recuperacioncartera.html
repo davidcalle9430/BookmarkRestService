@@ -9,21 +9,17 @@
 	<h1> Recuperaci&oacute;n de Cartera </h1>
 	<form onkeypress="return event.keyCode != 13;">
 		<div class="row">
-			<div class="large-3 medium-3 small-3 columns">
+			<div class="large-4 medium-4 small-4 columns">
 				<label>N&uacute;mero de la Factura <input ng-model="cartera.numero" type="text" /></label>
 			</div>
-			<div class="large-3 medium-3 small-3 columns end">
+			<div class="large-4 medium-4 small-4 columns">
 				<label>[I/J/C] <input ng-model="cartera.tipo" type="text" ng-change="validarTipo()" /></label>
 			</div>
-		</div>
-		
-		<div class="row">
-			<div class="large-2 medium-2 small-2 columns end">
+			<div class="large-4 medium-4 small-4 columns">
 				<label>Fecha dd/mm/aaaa <input ng-model="cartera.fecha" type="text" ng-change="obtenerFactura()"  />
 				</label>
 			</div>
 		</div>
-		
 		<div class="row">
 			<div class="large-1 medium-1 small-1 columns">
 				<label>Cliente <input type="text" ng-model="cartera.cliente" ng-model-options="{updateOn: 'blur'}"  ng-change="obtenerCliente()"/>

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:tiles="http://www.thymeleaf.org">
-<head th:replace="header :: header">
+<head th:replace="header :: header"	>
 </head>
 <body id="crear-factura" class="main-form">
 	<nav th:replace="nav :: nav"></nav>
 	<h1 >Crear Factura</h1>
 	<form>
 		<div class="row" style="border-bottom: 5px solid black;">
-			<div class="large-6 medium-6 small-6
-			 columns">
+			<div class="large-6 medium-6 small-6 columns">
 			     <label>Factura
 			        <input id="factura" name="factura" readonly="readonly" type="number" />
 			     </label>
@@ -164,12 +163,10 @@
 		</div>
 		
 		<div class="row">
-			<div class="large-2 large-offset-9 columns">
+			<div class="large-2 large-offset-8 columns">
 			  <a class="button" style="width: 100%;" onclick="agregarFila();">Agregar producto</a>
 			</div>
-		</div>
-		<div class="row">
-			<div class="large-2 large-offset-9 columns">
+			<div class="large-2 columns">
 			  <button type="submit" onclick="comprar ();" class="button success" style="width: 100%;" >Aceptar</button>
 			</div>
 		</div>
