@@ -42,6 +42,7 @@ import repositories.GeneroRepository;
 import repositories.NFactRepository;
 import repositories.RecibosCajaRepository;
 import repositories.VentasHistoricasRepository;
+import resultclasses.AnularFacturaDTO;
 import resultclasses.ArticuloFacturaDTO;
 import resultclasses.OtroReciboCajaDTO;
 import services.CarteraService;
@@ -160,7 +161,7 @@ public class CarteraRestController
 	}
 	
 	@RequestMapping( value="/api/cartera/articulosFactura/", method = RequestMethod.GET )
-	public List< ArticuloFacturaDTO > darArticulosFactura( 
+	public ResponseEntity< List< ArticuloFacturaDTO >> darArticulosFactura( 
 			@RequestParam(name="ndoc") Long ndoc ,
 			@DateTimeFormat(pattern = "yyyy-MM-dd") 
 				@RequestParam(name="fecha") Date fecha ){
@@ -182,6 +183,11 @@ public class CarteraRestController
 		q.setParameter( "fecha" , format );
 		@SuppressWarnings("unchecked")
 		List<Object[]> resultados  = q.getResultList();
+		
+		if( resultados.size()  == 0 ){
+			return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
+		}
+		
 		List<ArticuloFacturaDTO> res= new ArrayList<>();
 		
 		for (Object[] objects : resultados) {
@@ -192,11 +198,11 @@ public class CarteraRestController
 			cf.setValor(objects[3]!=null? Double.parseDouble(objects[3].toString()):null);
 			res.add(cf);
 		}
-		return res;
+		return new ResponseEntity<>( res , HttpStatus.ACCEPTED );
 	}
 	
 	@RequestMapping( value="/api/cartera/encontrarPorCodigoFechaFactura/", method = RequestMethod.GET , produces = "application/json" )
-	public Cartera encontrarPorCodigoFechaFactura(
+	public ResponseEntity<Cartera> encontrarPorCodigoFechaFactura(
 			@Param("factura")Long factura ,
 			@Param("codigo")Long codigo ,
 			@DateTimeFormat(pattern = "yyyy-MM-dd") @Param("fecha") Date fecha) throws ParseException{
@@ -204,14 +210,27 @@ public class CarteraRestController
 				codigo,
 				fecha, 
 				factura);
-		return carteraService.encontrarCartera( carteraPk );
+		Cartera respuesta =  carteraService.encontrarCartera( carteraPk );
+		if( respuesta == null ){
+			return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
+		}
+		return new ResponseEntity<Cartera>( respuesta , HttpStatus.ACCEPTED );
 	}
 	
 	// se llama cuando jmq = false
 	@RequestMapping( value="/api/factura/anular/", method = RequestMethod.POST , produces = "application/json" )
-	public ResponseEntity<?> anularFactura( @RequestBody CarteraPK cartera ) throws ParseException{
+	public ResponseEntity<?> anularFactura( @DateTimeFormat(pattern = "yyyy-MM-dd") 
+		@RequestBody AnularFacturaDTO anularDTO ) throws ParseException{
+		
+		System.out.println( anularDTO );
+		
+		CarteraPK cartera = new CarteraPK( 
+				anularDTO.getCodigo(),
+				new SimpleDateFormat("yyyy-MM-dd").parse(anularDTO.getFecha()),
+				anularDTO.getFactura() );
 		System.out.println( cartera );
 		double Ac1 , Ac2;
+		
 		List<Cardex> cardexs = cardexRepository.findAllByndocAndFecha( 
 						cartera.getFactura() , 
 						cartera.getFecha() );
@@ -223,8 +242,10 @@ public class CarteraRestController
 			articuloRepository.save( articulo );
 			//Actualiza cantidades JM
 			Genero genero = generoRepository.findOne( cardex.getCodigo()  / 1000 );
-			genero.setCantdispjm( genero.getCantdispjm() + cardex.getCantidad() );
-			generoRepository.save( genero );
+			if( genero != null ){
+				genero.setCantdispjm( genero.getCantdispjm() + cardex.getCantidad() );
+				generoRepository.save( genero );
+			}
 			//insertar un registro en cardex
 			Date fechaActual = DateBuilder.crearFechaSinHora();
 			Cardex nuevo = new Cardex();
@@ -246,9 +267,12 @@ public class CarteraRestController
 		
 		for (Cardexi cardexi : cardexis) {
 			//Actualiza cantidades JM
+
 			Genero genero = generoRepository.findOne( cardexi.getCodigo()  / 1000 );
-			genero.setCantdisp( genero.getCantdisp() + cardexi.getCantidad() );
-			generoRepository.save( genero );
+			if( genero != null ){
+				genero.setCantdisp( genero.getCantdisp() + cardexi.getCantidad() );
+				generoRepository.save( genero );
+			}
 			Date fechaActual = DateBuilder.crearFechaSinHora();
 			Cardexi nuevo = new Cardexi();
 			nuevo.setCodigo( cardexi.getCodigo( ) );
@@ -262,7 +286,9 @@ public class CarteraRestController
 			
 		}
 		//modifica cartera
-		Cartera carteraAEditar = carteraService.encontrarCartera( cartera );
+		Cartera carteraAEditar = carteraService.encontrarCartera( new CarteraPK( cartera.getCodigo() ,
+				cartera.getFecha() ,
+				cartera.getFactura() ) );
 
 		if( carteraAEditar == null || carteraAEditar.getSubtot() == null ){
 			System.out.println("No se econtro la cartera");

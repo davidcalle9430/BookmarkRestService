@@ -1,10 +1,11 @@
-var app = angular.module( 'Facturacion' , []);
+var app = angular.module( 'Facturacion' , [] );
 var Jmq = false ; // como esta opcion solo aparce en el menu impordisa
 // si tan solo el anterior desarrollador tuviera algo de orden o documentación
 /**
- * funcion controladora de la pagina con el mismo nombre
+ * funcion controladora de la vista con el mismo nombre
  */
-app.controller('FacturacionController', function( $scope , s$http) { 
+app.controller('FacturacionController', function( $scope , $http ) { 
+	
 	$scope.viewHolder = {};//esta varibale view holder funciona como la fachada que se muesra a la vista
 	$scope.viewHolder.productos = [];
 	
@@ -45,12 +46,14 @@ app.controller('FacturacionController', function( $scope , s$http) {
 			var prod = $http.get( "/api/cartera/articulosFactura/?"
 					+"ndoc=" + tmpFact + "&" 
 					+"fecha=" + formatearFechaISO( $scope.viewHolder.fecha ) );	
+			
+			
 			prod.success( function(data, status, headers, config ) {
 				//$scope.viewHolder.productos = data;
 				for( var i = 0 ; i < data.length ; i++ ){
 					data[ i ].codFormateado 
 						=  darCodigoFormateado( data[ i ].codigo );
-					$scope.viewHolder.productos.push( data[ i ]);
+					$scope.viewHolder.productos.push( data[ i ] );
 				}
 			});
 			
@@ -73,8 +76,6 @@ app.controller('FacturacionController', function( $scope , s$http) {
 		    facturaPk.factura = $scope.viewHolder.numFactura;
 		    facturaPk.codigo = $scope.viewHolder.codigoCliente;
 		    facturaPk.fecha = formatearFechaISO( $scope.viewHolder.fecha );
-		    alert( facturaPk.fecha );
-		    return;
 		    var promesa = $http.post( "/api/factura/anular/" , facturaPk );
 			promesa.success( function( data, status, headers, config ) {
 				alert("Factura anulada");
