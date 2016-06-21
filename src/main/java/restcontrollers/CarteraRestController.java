@@ -210,6 +210,7 @@ public class CarteraRestController
 	// se llama cuando jmq = false
 	@RequestMapping( value="/api/factura/anular/", method = RequestMethod.POST , produces = "application/json" )
 	public ResponseEntity<?> anularFactura( @RequestBody CarteraPK cartera ) throws ParseException{
+		System.out.println( cartera );
 		double Ac1 , Ac2;
 		List<Cardex> cardexs = cardexRepository.findAllByndocAndFecha( 
 						cartera.getFactura() , 
@@ -242,6 +243,7 @@ public class CarteraRestController
 				cardexiRepository.findAllByndocAndFecha( 
 						cartera.getFactura() , 
 						cartera.getFecha() );
+		
 		for (Cardexi cardexi : cardexis) {
 			//Actualiza cantidades JM
 			Genero genero = generoRepository.findOne( cardexi.getCodigo()  / 1000 );
@@ -263,6 +265,7 @@ public class CarteraRestController
 		Cartera carteraAEditar = carteraService.encontrarCartera( cartera );
 
 		if( carteraAEditar == null || carteraAEditar.getSubtot() == null ){
+			System.out.println("No se econtro la cartera");
 			Ac1 = 0;
 		}else{
 			Ac1 = carteraAEditar.getSubtot( );

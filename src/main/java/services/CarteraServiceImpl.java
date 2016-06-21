@@ -44,9 +44,12 @@ public class CarteraServiceImpl implements CarteraService {
 		q.setParameter( "codigo" , carteraPk.getCodigo() );
 		q.setParameter( "inicio" , carteraPk.getFecha() );
 		q.setParameter( "fin" , diaSiguiente );
-
-		Cartera cartera = (Cartera) q.getSingleResult( );
-		return cartera;
+		try{
+			Cartera cartera = (Cartera) q.getSingleResult();
+			return cartera;
+		}catch( Exception e ){
+			return null;
+		}
 	}
 
 }

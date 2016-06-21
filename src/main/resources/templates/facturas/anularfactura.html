@@ -43,7 +43,7 @@
 				</thead>
 
 				<tbody>
-					<tr ng-repeat="producto in viewHolder.productos">
+					<tr ng-repeat="producto in viewHolder.productos track by $index">
 						<td>{{producto.codFormateado}}</td>
 						<td>{{producto.nombre}}</td>
 						<td>{{producto.referencia}}</td>

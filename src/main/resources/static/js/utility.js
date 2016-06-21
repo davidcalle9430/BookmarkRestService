@@ -139,7 +139,7 @@ function formatearFecha( fecha )
 
 /**
  * Función que convierte @fecha en
- * el formato ISO yyyy/mm/dd.
+ * el formato ISO yyyy-mm-dd.
  */
 function formatearFechaISO( fecha )
 {

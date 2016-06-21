@@ -7,16 +7,16 @@
 	
 	<nav th:replace="navJM :: navJM"></nav>
 
-	<h1>Actualizar Vendedor</h1>
+	<h1>Actualizar Estado en Archivo Clientes</h1>
 	
 	<table>
 		<thead>
 			<tr>
 				<th style="width:20%;">Ciudad</th>
-				<th style="width:20%;">RazSoc</th>
-				<th style="width:20%;">C&oacute;digo</th>
-				<th style="width:20%;">Vendedor</th>
-				<th style="width:20%;">Activo</th>
+				<th style="width:50%;">RazSoc</th>
+				<th style="width:10%;">C&oacute;digo</th>
+				<th style="width:10%;">Vendedor</th>
+				<th style="width:10%;">Activo</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,7 +25,7 @@
     			<td><input type="text" readonly="readonly" ng-model="cliente.razsoc" /> </td>
     			<td><input type="text" readonly="readonly" ng-model="cliente.codigo" /> </td>
     			<td><input type="text" readonly="readonly" ng-model="cliente.vendedor.codigo" /> </td>
-    			<td><input type="text" ng-model="cliente.activo" ng-model-options="{updateOn: 'blur'}"  ng-change="actualizar( cliente )" ng-pattern="(S|N)"/></td>
+    			<td><input type="text" ng-model="cliente.activo" ng-model-options="{updateOn: 'blur'}"  ng-change="actualizar( cliente )"/></td>
   			</tr>
 		</tbody>
 	</table>

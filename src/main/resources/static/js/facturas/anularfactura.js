@@ -4,7 +4,7 @@ var Jmq = false ; // como esta opcion solo aparce en el menu impordisa
 /**
  * funcion controladora de la pagina con el mismo nombre
  */
-app.controller('FacturacionController', function($scope,$http) { 
+app.controller('FacturacionController', function( $scope , s$http) { 
 	$scope.viewHolder = {};//esta varibale view holder funciona como la fachada que se muesra a la vista
 	$scope.viewHolder.productos = [];
 	
@@ -46,10 +46,11 @@ app.controller('FacturacionController', function($scope,$http) {
 					+"ndoc=" + tmpFact + "&" 
 					+"fecha=" + formatearFechaISO( $scope.viewHolder.fecha ) );	
 			prod.success( function(data, status, headers, config ) {
-				$scope.viewHolder.productos = data;
+				//$scope.viewHolder.productos = data;
 				for( var i = 0 ; i < data.length ; i++ ){
-					$scope.viewHolder.productos[ i ].codFormateado 
+					data[ i ].codFormateado 
 						=  darCodigoFormateado( data[ i ].codigo );
+					$scope.viewHolder.productos.push( data[ i ]);
 				}
 			});
 			
@@ -71,7 +72,9 @@ app.controller('FacturacionController', function($scope,$http) {
 		    var facturaPk = {};
 		    facturaPk.factura = $scope.viewHolder.numFactura;
 		    facturaPk.codigo = $scope.viewHolder.codigoCliente;
-		    facturaPk.fecha = $scope.viewHolder.fecha;
+		    facturaPk.fecha = formatearFechaISO( $scope.viewHolder.fecha );
+		    alert( facturaPk.fecha );
+		    return;
 		    var promesa = $http.post( "/api/factura/anular/" , facturaPk );
 			promesa.success( function( data, status, headers, config ) {
 				alert("Factura anulada");
