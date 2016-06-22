@@ -6,6 +6,8 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Service;
 
+import resultclasses.ArticuloGeneroCostoDTO;
+
 @Service
 public class ArticuloServiceImpl implements ArticuloService {
 
@@ -35,6 +37,28 @@ public class ArticuloServiceImpl implements ArticuloService {
 				+ "from Articulo a ");
 		Double res = (Double) q.getSingleResult(); 
 		return  res;
+	}
+
+
+	@Override
+	public ArticuloGeneroCostoDTO darArticuloConGeneroCosto( Long codigo ) {
+		System.out.println("se busca un codigo " + codigo );
+		Query q = em.createQuery(" "
+				+ "select new resultclasses.ArticuloGeneroCostoDTO( "
+				+ "g.nombre , a.referencia , "
+				+ "a.costprom , a.invimppas, "
+				+ "a.ultcomp , a.ultcostpr ) "
+				+ "from Articulo a , Genero g "
+				+ "where FUNCTION( 'FLOOR' , a.codigo / 1000 ) = g.codigo "
+				+ "and a.codigo = :codigo");
+		q.setParameter( "codigo" , codigo );
+		try{
+			ArticuloGeneroCostoDTO res = ( ArticuloGeneroCostoDTO ) q.getSingleResult( );
+			return res;
+		}catch( Exception e ){
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

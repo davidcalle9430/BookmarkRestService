@@ -28,56 +28,82 @@ public class Articulo implements Serializable {
     @Id
     @Basic(optional = false)
     private Long codigo;
+    
     @Column(length = 35)
     private String referencia;
+    
     @Column(length = 15)
     private String uso;
+    
     @Column(length = 18)
     private String modelo1;
+    
     @Column(length = 18)
     private String modelo2;
+
     @Column(length = 18)
     private String modelo3;
+    
     @Column(length = 11)
     private String marca;
+    
     @Column(precision = 22)
     private Double precio;
+    
     @Column(precision = 22)
     private Double cantdisp;
+    
     @Column(length = 17)
     private String procedenc;
+    
     @Column(precision = 22)
     private Double ultcostpr;
+    
     @Column(precision = 22)
     private Double costprom;
+    
     @Column(precision = 22)
     private Double ultcostjm;
+    
     @Column(precision = 22)
     private Double costjm;
+    
     @Column(precision = 22)
     private Double ultcomp;
+    
     @Column(precision = 22)
     private Double cosultcom;
+    
     @Column(precision = 22)
     private Double invimppas;
+    
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecsaldado;
+    
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecultimp;
+    
     @Column(precision = 22)
     private Double invimpante;
+    
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecanteimp;
+    
     @Column(precision = 22)
     private Double costpromim;
+    
     @Column(precision = 22)
     private Double ultcosproi;
+    
     @Column(length = 1)
     private String modif;
+    
     @Column(length = 30)
     private String refcorta;
+    
     @Column(length = 50)
     private String refvendedor;
+    
     @Column(length = 50)
     private String modelvendedor;
 
