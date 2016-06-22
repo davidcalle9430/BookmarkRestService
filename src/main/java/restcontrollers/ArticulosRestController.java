@@ -9,13 +9,17 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import resultclasses.ArticuloGenero;
+import resultclasses.ArticuloGeneroCostoDTO;
 import resultclasses.CardexFactura;
 import resultclasses.ClienteArticuloEspecial;
 import resultclasses.Proveedor;
+import services.ArticuloService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,6 +47,9 @@ public class ArticulosRestController
 	@Autowired
 	private ArticuloRepository articuloRepository;
 	
+	@Autowired
+	private ArticuloService articuloService;
+	
 	@PersistenceContext
 	private EntityManager em;
 	
@@ -53,14 +60,15 @@ public class ArticulosRestController
 	 * @return
 	 */
 	@RequestMapping(value="/prueba/")
-	public List<CardexFactura> test(@RequestParam("numerodoc")Long ndoc, @RequestParam("fecha")String fecha)
-	{
+	public List<CardexFactura> test(@RequestParam("numerodoc")Long ndoc, @RequestParam("fecha")String fecha){
+		
 		Query query = em.createNativeQuery("select a.codigo, g.nombre, a.referencia, a.precio*cardex.cantidad as valor from articulo a, cardex, genero g where a.codigo = cardex.codigo 	and LEFT(LPAD(a.codigo,6,'0'),3) = LPAD(g.codigo,3,'0') and ndoc = "+ndoc+" and str_to_date('"+fecha+"', '%Y\\-%m\\-%d') order by cardex.consec");
 		@SuppressWarnings("unchecked")
+		
 		List<Object[]> resultados = query.getResultList();
 		ArrayList<CardexFactura> cfList = new ArrayList<>();
-		for (Object[] objects : resultados) 
-		{
+		
+		for (Object[] objects : resultados) {
 			CardexFactura cf = new CardexFactura();
 			cf.setCodigo(objects[0]!=null?(long)Double.parseDouble(objects[0].toString()):null);
 			cf.setNombre(objects[1]!=null?objects[1].toString():null);
@@ -105,8 +113,7 @@ public class ArticulosRestController
 	 * @return
 	 */
 	@RequestMapping(value="/api/articulos/")
-	public Page<Articulo> todosLosArticulos(@RequestParam(defaultValue="0") Integer pagina)
-	{
+	public Page<Articulo> todosLosArticulos(@RequestParam(defaultValue="0") Integer pagina){
 		Page<Articulo> pages = articuloRepository.findAll(new PageRequest(pagina, 30));
 		return pages;
 	}
@@ -133,8 +140,7 @@ public class ArticulosRestController
 	 */
 	@RequestMapping(value="/api/proveedores/")
 	@SuppressWarnings("unchecked")
-	public List<Proveedor> darProveedores()
-	{
+	public List<Proveedor> darProveedores(){
 		Query q = em.createQuery("select new resultclasses.Proveedor( count(a) as numReg, procedenc ) from Articulo a group by a.procedenc");
 		return q.getResultList();
 	}
@@ -144,12 +150,24 @@ public class ArticulosRestController
 	 */
 	@RequestMapping(value="/api/articulos/{id}/especial", method = RequestMethod.GET,produces="application/json")
 	public Articulo darArticuloEspecial(@PathVariable Long id, @RequestParam Long idCliente){
-			Especia	especia = especiaRepository.findOneByCodigoAndArticulo(idCliente, id );
-			Articulo actual = articuloRepository.findOne(id);
+			Especia	especia = especiaRepository.findOneByCodigoAndArticulo( idCliente , id );
+			Articulo actual = articuloRepository.findOne( id );
 			if(especia != null){
-				actual.setReferencia(especia.getReferencia());
-				actual.setPrecio(especia.getPrecio());
+				actual.setReferencia( especia.getReferencia( ) );
+				actual.setPrecio( especia.getPrecio( ) );
 			}
 			return actual;
+	}
+	
+	@RequestMapping( value = "/api/articulos/generocosto/{codigo}/")
+	public ResponseEntity< ArticuloGeneroCostoDTO > darCostoConGenero( @PathVariable Long codigo ){
+		
+		ArticuloGeneroCostoDTO res = articuloService
+				.darArticuloConGeneroCosto( codigo );
+		
+		if( res != null ){
+			return new ResponseEntity<ArticuloGeneroCostoDTO>( res , HttpStatus.ACCEPTED );
+		}
+		return new ResponseEntity<ArticuloGeneroCostoDTO>( HttpStatus.BAD_REQUEST );
 	}
 }
