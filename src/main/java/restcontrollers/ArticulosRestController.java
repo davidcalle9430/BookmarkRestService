@@ -37,8 +37,7 @@ import sidic.entities.Especia;;
  *
  */
 @RestController
-public class ArticulosRestController 
-{
+public class ArticulosRestController {
 	
 	
 	@Autowired
@@ -63,9 +62,10 @@ public class ArticulosRestController
 	public List<CardexFactura> test(@RequestParam("numerodoc")Long ndoc, @RequestParam("fecha")String fecha){
 		
 		Query query = em.createNativeQuery("select a.codigo, g.nombre, a.referencia, a.precio*cardex.cantidad as valor from articulo a, cardex, genero g where a.codigo = cardex.codigo 	and LEFT(LPAD(a.codigo,6,'0'),3) = LPAD(g.codigo,3,'0') and ndoc = "+ndoc+" and str_to_date('"+fecha+"', '%Y\\-%m\\-%d') order by cardex.consec");
-		@SuppressWarnings("unchecked")
 		
+		@SuppressWarnings("unchecked")
 		List<Object[]> resultados = query.getResultList();
+		
 		ArrayList<CardexFactura> cfList = new ArrayList<>();
 		
 		for (Object[] objects : resultados) {
@@ -108,7 +108,7 @@ public class ArticulosRestController
 	}
 	
 	/**
-	 * funcíon que retorna los artoculos paginados
+	 * funcíon que retorna los articulos paginados
 	 * @param pagina
 	 * @return
 	 */

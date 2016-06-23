@@ -13,8 +13,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
 
+import resultclasses.AjustarCostoJMDTO;
 import resultclasses.Compra;
 import resultclasses.Pedido;
+import sidic.entities.Articulo;
 import sidic.entities.Genero;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,14 +38,13 @@ import repositories.ImportacionesRepository;
  *
  */
 @RestController
-public class ComprasRestController 
-{
+public class ComprasRestController {
 	
 	@PersistenceContext
 	private EntityManager em;
 	
 	@Autowired 
-	private ArticuloRepository controArticulo;
+	private ArticuloRepository articuloRepository;
 	
 	@Autowired 
 	private CardexRepository controCardex;
@@ -54,6 +55,7 @@ public class ComprasRestController
 	@Autowired 
 	private GeneroRepository controGenero;
 	
+	
 	/**
 	 * Método que se encarga de recorrer una lista de @Compra para actualizar 
 	 * el objeto @Género y @Articulo asociado y agregar un nueo registro 
@@ -63,31 +65,25 @@ public class ComprasRestController
 	 * @return Código de estado Http.
 	 * **/
 	@RequestMapping(value="/api/comprar/", method = RequestMethod.PUT )
-	public ResponseEntity<?> comprar( @RequestBody List<Compra> compras)
-	{
-		for (Compra compra : compras) 
-		{
+	public ResponseEntity<?> comprar( @RequestBody List<Compra> compras){
+		for (Compra compra : compras) {
 			Genero genero = controGenero.findOne( (long) Math.floor(compra.getArticulo().getCodigo()/1000 ));
 			
-			controArticulo.save( compra.getArticulo( ) );
+			articuloRepository.save( compra.getArticulo( ) );
 			controCardex.save( compra.getCardex( ) );
 			
-			if( genero != null )
-			{
-				if( genero.getCantdispjm() == null )
-				{
+			if( genero != null ){
+				if( genero.getCantdispjm() == null ){
 					genero.setCantdispjm( compra.getArticulo( ).getUltcomp() );
 				}
-				else
-				{
+				else{
 					genero.setCantdispjm( genero.getCantdispjm( ) + compra.getArticulo().getUltcomp( ) );
 				}
 				
 				controGenero.save( genero );
 			}
 			
-			if( compra.getImportacion() != null )
-			{
+			if( compra.getImportacion() != null ){
 				controImport.save(compra.getImportacion());
 			}
 		}
@@ -97,8 +93,7 @@ public class ComprasRestController
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/api/obtenerPedidos/", method = RequestMethod.PUT )
-	public List<Pedido> obtenerImportaciones( @RequestBody Map<String,String> params )
-	{
+	public List<Pedido> obtenerImportaciones( @RequestBody Map<String,String> params ){
 		Query q;
 		DateFormat formatter;
 
@@ -109,8 +104,7 @@ public class ComprasRestController
 		Double venta;
 		Double utilidad;
 		
-		if ( params.get("nDoc") != null )
-		{
+		if ( params.get("nDoc") != null ){
 			q = em.createQuery("select new resultclasses.Pedido ( "
 					+ "max(i.fecha) as fecha, "
 					+ "i.ndoc,sum(i.costojm*i.cantidad) as costo, "
@@ -118,17 +112,14 @@ public class ComprasRestController
 					+ "from Importaciones i where i.ndoc = :nDoc")
 				.setParameter("nDoc", Double.parseDouble( params.get( "nDoc" ) ) );
 		}
-		else
-		{
+		else{
 			formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-			try 
-			{
+			try {
 				fechaInicio = formatter.parse( params.get( "fechaInicio" ) );
 				fechaFin = formatter.parse( params.get( "fechaFin" ) );
 			} 
-			catch (ParseException e) 
-			{
+			catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -145,8 +136,7 @@ public class ComprasRestController
 		
 		pedidos = q.getResultList();
 		
-		for (Pedido pedido : pedidos ) 
-		{
+		for (Pedido pedido : pedidos ) {
 			costo = pedido.getCosto();
 			venta = pedido.getVenta();
 			utilidad = ( ( ( costo / venta ) - 1 ) * 100 ) * ( -1 );
@@ -155,4 +145,17 @@ public class ComprasRestController
 		
 		return pedidos;
 	}
+	
+	@RequestMapping( value ="/api/compras/ajustarcostojm/")
+	public ResponseEntity<?> ajustarCostoJM( @RequestBody List<AjustarCostoJMDTO> articulos ){
+		for (AjustarCostoJMDTO dto : articulos) {
+			Articulo articulo = articuloRepository.findOne( dto.getCodigo() );
+			articulo.setCostjm( dto.getNvocosto() );
+			articulo.setCostprom( 
+					( ( articulo.getInvimppas() - articulo.getUltcomp() ) * articulo.getUltcostpr() + dto.getNvocosto() ) / articulo.getInvimppas()   );
+			articuloRepository.save( articulo );
+		}
+		return new ResponseEntity<>( HttpStatus.ACCEPTED );
+	}
+	
 }

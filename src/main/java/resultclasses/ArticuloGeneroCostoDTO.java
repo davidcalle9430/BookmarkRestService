@@ -13,15 +13,14 @@ public class ArticuloGeneroCostoDTO {
 	private Double ultcomp;
 	
 	private Double ultcostpr;
-
 	
+	private Double cosultcom;
+
 	public ArticuloGeneroCostoDTO(){}
 	
 	
-	
-	
 	public ArticuloGeneroCostoDTO(String nombre, String referencia, Double costprom, Double invimppas, Double ultcomp,
-			Double ultcostpr) {
+			Double ultcostpr, Double cosultcom ) {
 		super();
 		this.nombre = nombre;
 		this.referencia = referencia;
@@ -29,9 +28,16 @@ public class ArticuloGeneroCostoDTO {
 		this.invimppas = invimppas;
 		this.ultcomp = ultcomp;
 		this.ultcostpr = ultcostpr;
+		this.cosultcom = cosultcom;
 	}
 
+	public Double getCosultcom() {
+		return cosultcom;
+	}
 
+	public void setCosultcom(Double cosultcom) {
+		this.cosultcom = cosultcom;
+	}
 
 
 	public String getNombre() {
