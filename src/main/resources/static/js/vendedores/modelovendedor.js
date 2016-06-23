@@ -105,9 +105,9 @@ var columnas = 9; // numero de columnas de la tabla
  * funcion que se ejecuta cuando el documento esta listo
  */
 $(document).ready(function() {
-			tabla();
-			$("body").append($("<style>", {text : "td{ width:" +90 / columnas + "vw; max-width:90vw;	}"}))
-			$(window).scroll(function() {
+			//	tabla();
+			//$("body").append($("<style>", {text : "td{ width:" +90 / columnas + "vw; max-width:90vw;	}"}))
+			/*$(window).scroll(function() {
 				if(head.position().top -$(this).scrollTop() < 0 ){
 					head.css("position", "fixed");
 					head.css("top", "0px");
@@ -126,6 +126,6 @@ $(document).ready(function() {
 					head.css("position", "");
 					head.css("top", "");
 				}
-			});
+			});*/
 			$("table").on("click","tr", clicFila);
 });

@@ -12,23 +12,67 @@
 		  <a id="nuevo" class="button" style="width: 100%;">Nuevo</a>
 		</div>
 	</div>
+	
+	
 	<table>
 		<thead>
 			<tr>
-				<th style="width:11.111%;">CodArt</th>
-				<th style="width:11.111%;">Referencia Oficina</th>
-				<th style="width:11.111%;">Modelo Oficina1</th>
-				<th style="width:11.111%;">Modelo Oficina2</th>
-				<th style="width:11.111%;">Modelo Oficina3</th>
-				<th style="width:11.111%;">Marca Art&iacute;culo</th>
-				<th style="width:11.111%;">Disp</th>
-				<th style="width:11.111%;">Referencia Vendedor</th>
-				<th style="width:11.111%;">Modelo Vendedor</th>
+				<th >CodArt</th>
+				<th>Ref.Of</th>
+				<th>Mod. Of.1</th>
+				<th>Mod. Of.2</th>
+				<th>Mod. Of.3</th>
+				<th>Marca </th>
+				<th>Disp</th>
+				<th>Ref. Vend.</th>
+				<th>Mod. Vend.</th>
 			</tr>
 		</thead>
 		<tbody>
+		<tr th:each="prod : ${articulos}" >
+		    <td th:text="${prod.codigo}" class="codigo"></td>
+		    <td th:text="${prod.referencia}"></td>
+		    <td th:text="${prod.modelo1}"></td>
+		    <td th:text="${prod.modelo2}"></td>
+		    <td th:text="${prod.modelo3}"></td>
+		    <td th:text="${prod.marca}"></td>
+		    <td th:text="${prod.cantdisp}"></td>
+		    <td th:text="${prod.refvendedor}"></td>
+		    <td th:text="${prod.modelvendedor}"></td>
+		</tr>
 		</tbody>
 	</table>
+	
+	<style>
+
+table {
+    display: flex;
+    flex-flow: column;
+    height: 60vh;
+    width: 80%;
+}
+table thead {
+    /* head takes the height it requires, 
+    and it's not scaled when table is resized */
+    flex: 0 0 auto;
+    width: calc(100% - 0.9em);
+}
+table tbody {
+    /* body takes all the remaining available space */
+    flex: 1 1 auto;
+    display: block;
+    overflow-y: scroll;
+}
+table tbody tr {
+    width: 100%;
+}
+table thead, table tbody tr {
+    display: table;
+    table-layout: fixed;
+}
+		
+	</style>
+	
    	<footer th:replace="footer :: footer"></footer>
    	<script src="/static/js/vendedores/modelovendedor.js"></script>
 </body>
