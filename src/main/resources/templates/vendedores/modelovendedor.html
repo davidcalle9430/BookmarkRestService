@@ -6,6 +6,7 @@
 </head>
 <body class="main-form">
 	<nav th:replace="navJM :: navJM"></nav>
+	<link rel="stylesheet" href="/static/css/tabla.css"/>
 	<h1> Vendedor / Representante </h1>
 	<div class="row">
 		<div class="large-2 large-offset-9 columns">
@@ -13,19 +14,18 @@
 		</div>
 	</div>
 	
-	
 	<table>
 		<thead>
 			<tr>
 				<th >CodArt</th>
-				<th>Ref.Of</th>
-				<th>Mod. Of.1</th>
-				<th>Mod. Of.2</th>
-				<th>Mod. Of.3</th>
+				<th>Ref Oficina</th>
+				<th>Modelo Oficina 1</th>
+				<th>Modelo Oficina 2</th>
+				<th>Modelo Oficina 3</th>
 				<th>Marca </th>
 				<th>Disp</th>
-				<th>Ref. Vend.</th>
-				<th>Mod. Vend.</th>
+				<th>Referencia Vendedor</th>
+				<th>Modelo Vendedor</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -43,37 +43,12 @@
 		</tbody>
 	</table>
 	
-	<style>
 
-table {
-    display: flex;
-    flex-flow: column;
-    height: 60vh;
-    width: 80%;
-}
-table thead {
-    /* head takes the height it requires, 
-    and it's not scaled when table is resized */
-    flex: 0 0 auto;
-    width: calc(100% - 0.9em);
-}
-table tbody {
-    /* body takes all the remaining available space */
-    flex: 1 1 auto;
-    display: block;
-    overflow-y: scroll;
-}
-table tbody tr {
-    width: 100%;
-}
-table thead, table tbody tr {
-    display: table;
-    table-layout: fixed;
-}
-		
-	</style>
 	
    	<footer th:replace="footer :: footer"></footer>
+   	
+   	<div th:replace="seguridad2 :: seguridad2"></div>
+   	
    	<script src="/static/js/vendedores/modelovendedor.js"></script>
 </body>
 </html>

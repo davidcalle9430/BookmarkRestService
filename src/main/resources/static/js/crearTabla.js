@@ -4,38 +4,36 @@
  * recibe el atributo de la lista de propiedades que se quiere usar
  */
 
-function cargarEncabezados(lista, propiedades, aMostrar) {
-	var primero = lista[0];
-	var tr = $("<thead>");
-	for (atributo in primero) {
-		if (propiedades.indexOf(atributo) != -1) {
-			var th = $("<th>");
-			th.css("width", 90/5+"vw");
-			th.html(aMostrar[propiedades.indexOf(atributo)]);
-			tr.append(th);
-		}
-	}
-	var tabla = $("table").first();
-	tabla.append(tr);
-	head = $("thead");
-}
-function cargarTabla(lista, propiedades, aMostrar, indice) {
-	if (indice == 0) {
-		cargarEncabezados(lista, propiedades, aMostrar);
-		dobleClic(manejador);
-	}
-	var tabla = $("table").first();
+function cargarTabla( lista ) {
+	
+	dobleClic( manejador );
+	
+	var tabla = $( "table" ).first( );
 	for (var i = 0; i < lista.length; i++) {
-		var elemento = lista[i];
-		var tr = $("<tr>");
-		for (atributo in elemento) {
-			if (propiedades.indexOf(atributo) != -1) {
-				var td = $("<td>");
-				td.html(elemento[atributo]);
-				tr.append(td);
-			}
-		}
-		tabla.append(tr);
+		var elemento = lista[ i ];
+		var tr = $( "<tr>" );
+		
+		var codigo = $( "<td>" );
+		var razSoc = $( "<td>" );
+		var direccion = $( "<td>" );
+		var telefono = $( "<td>" );
+		var ciudad = $( "<td>" );
+		var nit = $( "<td>" );
+		
+		codigo.html( elemento[ 'codigo' ] );
+		razSoc.html( elemento[ 'razsoc' ] );
+		direccion.html( elemento[ 'direccion' ] );
+		telefono.html( elemento[ 'telefono' ] );
+		ciudad.html( elemento[ 'ciudad' ].ciudad );
+		nit.html( elemento[ 'nit' ] );
+		
+		tr.append( codigo );
+		tr.append( razSoc );
+		tr.append( direccion );
+		tr.append( telefono );
+		tr.append( ciudad );
+		tr.append( nit )
+		tabla.append( tr );
 	}
 }
 
@@ -43,28 +41,13 @@ function cargarTabla(lista, propiedades, aMostrar, indice) {
  * Función encargada de traer los clientes por ajax
  */
 
-function cargarClientes(indice, loader) {
-	if (indice <= tamMax || tamMax == null) {
+function cargarClientes( ) {
 		$.ajax({
-			url : "/api/clientes/?page=" + indice + "&sort=codigo",
+			url : "/api/clientes/?sort=codigo&size=9999999&projection=factura",
 			success : function(data) {
-				console.log("página " + indice)
-				cargarTabla(data._embedded.clientes, [ "codigo", "razsoc",
-						"direccion", "telefono", "ciudad", "nit" ], [ "Código",
-						"Razón Social", "Dirección", "Teléfono", "Ciudad",
-						" NIT" ], indice);
-				loader.css({
-					display : "none"
-				});
-				tamMax = data.page.totalPages;
-				if (paginaActual <= tamMax) {
-					paginaActual++;
-					alFinal = false;
-				}
-
+				cargarTabla( data._embedded.clientes );
 			}
 		})
-	}
 }
 
 /*
@@ -72,15 +55,17 @@ function cargarClientes(indice, loader) {
  * 
  */
 
-function dobleClic(manejador) {
-	console.log("entra al manejador");
-	$("body").on("click","tr", manejador);
+function dobleClic( manejador ) {
+	
+	$("body").on( "click" , "tr" , manejador );
 
 }
+
 var manejador = function() {
 	var hijos = $(this).children();
 	console.log(hijos);
-	window.location = "editar/?codigo="+ hijos[0].innerHTML;
+	window.location = "editar/?codigo=" 
+		+ hijos[0].innerHTML;
 }
 
 /**
@@ -88,47 +73,12 @@ var manejador = function() {
  * 
  * 
  */
-var tamMax = null; // variable que guarda el tamaño máximo de la página
-var paginaActual = 0;
-var alFinal = false; // variable que determina si está al final de la pagina
-var columnas = 5;
-var head = $("thead");
 $(document).ready(function() {
+	
 	var body = $("body").first();
-	var table = $("<table>", {
-		id : "tabla"
-	});
-	var tabla = $("table").first();
-	var loader = $(".loader").first();
-	loader.css({
-		display : "block"
-	});
-	body.append(table);
+	
 	var tablaDom = $("table").first();
-	cargarClientes(paginaActual, loader);
-	$(window).scroll(
-		function() {
-			if ($(window).scrollTop() + $(window).height() > $(
-					document).height() - 50) {
-				if (!alFinal) {
-					alFinal = true;
-					cargarClientes(paginaActual, loader, tamMax);
-					
-				}
-			}
-			if(head.position().top -$(this).scrollTop() < 0 ){
-				head.css("position", "fixed");
-				head.css("top", "0px");
-				head.css("width", "90vw");
-				head.find("th").each(function(el){
-					$(this).css("width", 90 / columnas + "vw")
-				});
-				$('table').find('td').each(function(el){
-					$(this).css("width", 90 / columnas + "vw")
-				});
-			}else{
-				head.css("position", "");
-			}
-		}
-	);
+	
+	cargarClientes(  );
+	
 });
