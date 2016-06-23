@@ -47,7 +47,7 @@ public class ArticuloServiceImpl implements ArticuloService {
 				+ "select new resultclasses.ArticuloGeneroCostoDTO( "
 				+ "g.nombre , a.referencia , "
 				+ "a.costprom , a.invimppas, "
-				+ "a.ultcomp , a.ultcostpr ) "
+				+ "a.ultcomp , a.ultcostpr , a.cosultcom ) "
 				+ "from Articulo a , Genero g "
 				+ "where FUNCTION( 'FLOOR' , a.codigo / 1000 ) = g.codigo "
 				+ "and a.codigo = :codigo");
@@ -56,9 +56,7 @@ public class ArticuloServiceImpl implements ArticuloService {
 			ArticuloGeneroCostoDTO res = ( ArticuloGeneroCostoDTO ) q.getSingleResult( );
 			return res;
 		}catch( Exception e ){
-			e.printStackTrace();
 			return null;
 		}
 	}
-
 }

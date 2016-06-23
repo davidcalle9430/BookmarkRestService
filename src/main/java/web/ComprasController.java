@@ -31,5 +31,10 @@ public class ComprasController
 		return "compras/calcularcostojm";
 	}
 	
+	@RequestMapping( value = "/mnucorcosjm/" )
+	public String corregirCostoJM(){
+		return "compras/corregircostojm";
+	}
+	
 }
 

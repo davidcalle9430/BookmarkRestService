@@ -118,7 +118,7 @@ public class Sidic {
 }
 
 /**
- * Manejador de recursos estáticos Clase encargada de configurar cómo se manejan
+ *Clase encargada de configurar cómo se manejan
  * los archivos estáticos
  *
  * @author David Calle
@@ -326,11 +326,11 @@ class CustomRestMvcConfiguration {
 
 			@Override
 			public void configureConversionService(ConfigurableConversionService conversionService) {
-				super.configureConversionService(conversionService);
-				UsuarioPKConverter usuarioPKConverter = new UsuarioPKConverter();
-				EspeciaConverter espcia = new EspeciaConverter();
-				NivelesPKConverter nivelesConverter = new NivelesPKConverter();
-				BasesConverter basesConverter = new BasesConverter();
+				super.configureConversionService( conversionService );
+				UsuarioPKConverter usuarioPKConverter = new UsuarioPKConverter( );
+				EspeciaConverter espcia = new EspeciaConverter( );
+				NivelesPKConverter nivelesConverter = new NivelesPKConverter( );
+				BasesConverter basesConverter = new BasesConverter( );
 				conversionService.addConverter( usuarioPKConverter );
 				conversionService.addConverter( espcia );
 				conversionService.addConverter( nivelesConverter );
@@ -403,7 +403,7 @@ class RequestFilter extends OncePerRequestFilter {
 		SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		String URI = request.getRequestURI();
 		String nombreMenu = "";
-		if(URI.split("/").length > 1){ // se valida que el uri no sea origen /
+		if( URI.split("/").length > 1 ){ // se valida que el uri no sea origen /
 			nombreMenu = URI.split("/")[1];
 		}
 		boolean cambio = necesitaCambioPassword(sci);

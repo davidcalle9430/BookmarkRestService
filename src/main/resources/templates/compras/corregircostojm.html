@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="header :: header">
+</head>
+<body class="main-form" ng-app="Compras"
+	ng-controller="ComprasController">
+	
+	<nav th:replace="navJM :: navJM"></nav>
+
+	<h1>Corregir Costo JM</h1>
+	
+	<table>
+		<thead>
+			<tr>
+				<th style="width:13%;">C&oacute;digo</th>
+				<th style="width:30%;">Nombre</th>
+				<th style="width:30%;">Referencia</th>
+				<th style="width:13%;">ConsultCom</th>
+				<th style="width:13%;">NvoCosto</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="compra in compras.lista">
+    			<td><input type="text"  ng-model="compra.codigo"   ng-model-options="{updateOn: 'blur'}"  ng-change="cargar( compra )" /> </td>
+    			<td><input type="text"  ng-model="compra.nombre" /> </td>
+    			<td><input type="text"  ng-model="compra.referencia" /> </td>
+    			<td><input type="text"  ng-model="compra.cosultcom" /> </td>
+    			<td><input type="text"  ng-model="compra.nvocosto" ng-keydown="agregarFila( $event , compra )"/></td>
+  			</tr>
+		</tbody>
+	</table>
+	<div class="row">
+		<button id="crear" style="float: right;" ng-click="incorporar()" 
+				class="button large-3 submit">Actualizar</button>
+	</div>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/compras/corregircostojm.js"></script>
+</body>
+</html>
