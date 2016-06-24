@@ -1,4 +1,5 @@
 var app = angular.module( 'Correrias' , []);
+
 /**
  * funciton controladora de la pagina con el mismo nombre
  */
@@ -24,5 +25,9 @@ app.controller('CorreriaController', function($scope,$http) {
 	        alert("Error al actualizar");
 		});
 	} 
+	 angular.element( document ).ready( function ( ) {
+		 $scope.cargar();
+	 });
+	
 	$scope.cargar();
 });

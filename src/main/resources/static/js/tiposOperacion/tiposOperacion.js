@@ -5,27 +5,11 @@ $(document).ready(function(){
 /**
  * Se encarga de inicar lo compnentes del formualrio.
  * */
-function iniciarFormulario()
-{
-	crearEncabezados();
-	cargarTiposOperacion();
-	$("table").on("click","tr", clicFila );	
-}
-
-/**
- * Función encargada de crear los encabezados de la tabla.
- */
-function crearEncabezados() 
-{
-	var tabla = $("#tiposOperacion").first();
-	var tr = $("<tr>");
-	var codigo = $("<th>", {text :"Código"});
-	var nombre = $("<th>", { text : "Nombre" });
+function iniciarFormulario(){
 	
-	tr.append(codigo);
-	tr.append(nombre);
+	cargarTiposOperacion( );
+	$( "table" ).on("click","tr", clicFila );	
 	
-	tabla.append(tr);
 }
 
 

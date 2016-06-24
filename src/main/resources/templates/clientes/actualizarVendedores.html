@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head th:replace="header :: header">
-</head>
+<head th:replace="header :: header"> </head>
+
 <body class="main-form" ng-app="Correrias"
 	ng-controller="CorreriaController">
 	
 	<nav th:replace="navJM :: navJM"></nav>
+	
+	<link rel="stylesheet" href="/static/css/tabla.css"/>
 
 	<h1>Actualizar Vendedor</h1>
 	
 	<table>
 		<thead>
 			<tr>
-				<th style="width:30%;">Ciudad</th>
-				<th style="width:40%;">RazSoc</th>
-				<th style="width:10%;">C&oacute;digo</th>
-				<th style="width:10%;">Vendedor</th>
-				<th style="width:10%;">Activo</th>
+				<th style="width:20%;">Ciudad</th>
+				<th style="width:20%;">RazSoc</th>
+				<th style="width:20%;">C&oacute;digo</th>
+				<th style="width:20%;">Vendedor</th>
+				<th style="width:20%;">Activo</th>
 			</tr>
 		</thead>
 		<tbody>
