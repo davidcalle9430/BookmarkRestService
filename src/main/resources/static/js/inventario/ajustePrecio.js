@@ -41,7 +41,6 @@ function iniciarFormulario()
 		var celda = $("#codigo");
 		celda.val( getCodigo );
 		var trSelec = $( celda ).parent( ).parent( );
-		alert( getCodigo );
 		celda.attr( "readonly" , "readonly" );
 		$("#botAgregaFila").attr("style","display:none");	
 		obtenerAtributosArticulo( trSelec );
