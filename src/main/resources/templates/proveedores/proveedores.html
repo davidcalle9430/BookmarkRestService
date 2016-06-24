@@ -8,20 +8,20 @@
 
 <body class="main-form">
 	<nav th:replace="navJM :: navJM"></nav>
+	
 	<h1>Proveedores</h1>
+	
+	<link rel="stylesheet" href="/static/css/tabla.css"/>
+	
 	<table id="lineas">
-	<thead>
-	<tr>
-		<th style="width:50%;">Procedencia</th>
-		<th style="width:50%;">Referencias</th>
-	</tr>
-	</thead>
-		
+		<thead>
+			<tr>
+				<th style="width:50%;">Procedencia</th>
+				<th style="width:50%;">Referencias</th>
+			</tr>
+		</thead>
 	</table>
 	<footer th:replace="footer :: footer"></footer>
 	<script src="/static/js/proveedores/proveedores.js" type="text/javascript"></script>
-	  <script>
-    		$(document).foundation();
-  	  </script>
 </body>
 </html>

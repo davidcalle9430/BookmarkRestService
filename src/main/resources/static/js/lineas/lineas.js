@@ -8,40 +8,12 @@ $(document).ready(function(){
  * */
 function iniciarFormulario()
 {
-	crearEncabezados();
 	cargarLineas();
-	$("table").on("click","tr", clicFila );	
+	$("table").on( "click" , "tr" , clicFila );	
+	
 }
 
-/**
- * Función encargada de crear los encabezados de la tabla.
- */
-function crearEncabezados() 
-{
-	var tabla = $("#lineas").first();
-	var tr = $("<tr>");
-	var codigo = $("<th>", {text :"Línea"});
-	codigo.css("width","16.6%");
-	var rango1 = $("<th>", { text : "Rango 1" });
-	rango1.css("width","16.6%");
-	var rango2 = $("<th>", { text : "Rango 2" });
-	rango2.css("width","16.6%");
-	var estado = $("<th>", { text : "Estado" });
-	estado.css("width","16.6%");
-	var descripcion = $("<th>", { text : "Descripción" });
-	descripcion.css("width","16.6%");
-	var permiterefespecial = $("<th>", { text: "Permite Referencia Especial" });
-	permiterefespecial.css("width","16.6%");
-	
-	tr.append(codigo);
-	tr.append(rango1);
-	tr.append(rango2);
-	tr.append(estado);
-	tr.append(descripcion);
-	tr.append(permiterefespecial);
-	
-	tabla.append(tr);
-}
+
 
 
 /**
@@ -49,7 +21,7 @@ function crearEncabezados()
  */
 function cargarLineas() 
 {
-	getForObject(null, "/api/lineas", llenarTabla );
+	getForObject(null, "/api/lineas?size=9999999", llenarTabla );
 }
 
 /**

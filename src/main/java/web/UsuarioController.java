@@ -21,11 +21,13 @@ public class UsuarioController {
 	public String vistaCrearUsuario(){
 		return "vistacrearusuario";
 	}
+	
 	@RequestMapping(value = "/configuracion/usuarios/", method = RequestMethod.GET)
 	public String verTodosLosUsuarios(){
 		return "vistausuarios";
 	}
-	@RequestMapping(value="/configuracion/editarusuario/", method = RequestMethod.GET)
+	
+	@RequestMapping(value="/configuracion/editarusuario/", method = RequestMethod.GET )
 	public String editarUsuario(){
 		return "vistaeditarusuario";
 	}
@@ -36,17 +38,17 @@ public class UsuarioController {
 		return "usuarios/cambiarcredenciales";
 	}
 
-	@RequestMapping(value="/mnuusuarios/", method = RequestMethod.GET)
+	@RequestMapping(value="/mnuusuarios/", method = RequestMethod.GET )
 	public String usuarios(){
 		return "usuarios/usuarios";
 	}
 	
-	@RequestMapping(value="/mnuusuarios/nuevo/", method = RequestMethod.GET)
+	@RequestMapping(value="/mnuusuarios/nuevo/", method = RequestMethod.GET )
 	public String usuariosCrear(){
 		return "usuarios/usuariosnuevo";
 	}
 	
-	@RequestMapping(value="/mnuusuarios/editar/", method = RequestMethod.GET)
+	@RequestMapping(value="/mnuusuarios/editar/", method = RequestMethod.GET )
 	public String usuariosEditar(){
 		return "usuarios/usuarioseditar";
 	}

@@ -3,8 +3,12 @@ package web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
 public class InventarioController {
+	
+
+	
 	@RequestMapping(value="/mnuajcandcjm/")
 	public String ajustarCantidadesCodigo(){
 		return "inventario/ajustarcantidadescodigo";
@@ -27,13 +31,16 @@ public class InventarioController {
    }
    
    @RequestMapping(value="/mnuajupsi/")
-   public String ajustarPreciosSecuencial(){
+   public String ajustarPreciosSecuencial( ){
+	   
 	   return "inventario/ajustarpreciossecuencial";
+	   
    }
    
    @RequestMapping(value="/mnuactpjm/")
-   public String actualizarPorcentajes(){
-	   return "inventario/actualizarPorcentajes";
+   public String actualizarPorcentajes( ){
+	   
+	   return "inventario/actualizarPorcentajes";  
    }
 }
 

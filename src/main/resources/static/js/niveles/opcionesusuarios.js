@@ -6,7 +6,7 @@ var alFinal = false; // variable que verifica que esté al final del  window
  */
 function ajaxCall() {
 	$.ajax({
-		url : '/api/opcionesniveles/?page=' + pagina,
+		url : '/api/opcionesniveles/?size=999999page=' + pagina,
 		success : function(data) {
 			crearFila(data);
 			alFinal = false;
@@ -56,26 +56,8 @@ function clicFila(){
 var head = $("thead"); // busca los headers de la tabla
 var columnas = 4; // numero de columnas de la tabla
 $(document).ready(function() {
+	
 			ajaxCall();
-			$("body").append($("<style>", {text : "td{width:" +100 / columnas + "vw;	}"}))
-			$(window).scroll(function() {
-						if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
-							if (!alFinal) {
-								alFinal = true;
-								ajaxCall();
-							}
-						}
-						if(head.position().top -$(this).scrollTop() < 0 ){
-							head.css("position", "fixed");
-							head.css("top", "0px");
-							head.css("width", "90vw");
-							head.find("th").each(function(el){
-								$(this).css("width", 100 / columnas + "vw")
-							});
-						}else{
-							head.css("position", "");
-							head.css("top", "");
-						}
-			});
+			
 			$("table").on("click","tr", clicFila);
 });

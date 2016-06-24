@@ -16,61 +16,43 @@ function crearFila(articulos) {
 		var ColumnaPrecio = $("<td>", {
 			text : articulos[i].precio
 		});
+		
 		var fila = $("<tr>");
-		fila.append(ColumnaCodigo);
-		fila.append(ColumnaNombre);
-		fila.append(ColumnaReferencia);
-		fila.append(ColumnaPrecio);
+		fila.append( ColumnaCodigo );
+		fila.append( ColumnaNombre );
+		fila.append( ColumnaReferencia );
+		fila.append( ColumnaPrecio );
+		
 		$('tbody').append(fila);
 	}
 }
 
 function nAjax(){
+	
 	$.ajax({
 		url : '/api/articulos/search/articulosgeneros',
-		success : function(data) {
-			crearFila(data);
+		success : function( data ) {
+			crearFila( data );
 			alFinal=false;
 			pagina++;
-			$(".loader").css("display", "none");
-			$("table").css("display","table");
+			$( ".loader" ).css( "display" , "none" );
+			$( "table" ).css( "display" , "flex" );
 		},
 		error : function(data) {
 			console.log('fail');
 		}
-	})
+	});
+	
 }
 var head = $("thead"); // busca los headers de la tabla
 var columnas = 4; // numero de columnas de la tabla
-$(document).ready(
-		function() {
+
+$( document ).ready( function() {
+			 
 			nAjax();
-			$(window).scroll(
-					function() {
-						if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
-							if (!alFinal) {
-								alFinal = true;
-								//nAjax();
-							}
-						}
-						if(head.position().top -$(this).scrollTop() < 0 ){
-							head.css("position", "fixed");
-							head.css("top", "0px");
-							head.css("width", "90vw");
-							head.find("th").each(function(el){
-								$(this).css("width", 90 / columnas + "vw")
-							});
-							$('table').find("td").each(function(el){
-								$(this).css("width", 90 / columnas + "vw")
-							});
-						}else{
-							head.css("position", "");
-							head.css("top", "");
-						}
-					});
-			
+						
 			$('table').on('click','tr', function(){
 				var hijos = $(this).children();
 				window.location = "/mnuajupi/?codigo="+hijos[0].innerHTML;
-			})
-		})
+			});
+});

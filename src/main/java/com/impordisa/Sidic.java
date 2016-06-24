@@ -376,6 +376,7 @@ class RequestFilter extends OncePerRequestFilter {
 		}
 		return false;
 	}
+	
 	public boolean necesitaCambioPassword(SecurityContextImpl sci){
 		if (sci != null) {
 			UserDetails cud = ( UserDetails ) sci.getAuthentication( ).getPrincipal( );
@@ -406,14 +407,17 @@ class RequestFilter extends OncePerRequestFilter {
 		if( URI.split("/").length > 1 ){ // se valida que el uri no sea origen /
 			nombreMenu = URI.split("/")[1];
 		}
+		//se valida si el usuario necesita cambiar de password
 		boolean cambio = necesitaCambioPassword(sci);
 		 if(cambio){
 			 if(!URI.equals("/") && !URI.equals("/logout/") && !URI.equals("/mnucampass/") && !nombreMenu.equals("static") && !nombreMenu.equals("api") ){ //urls que no se ven afectadas
 				 response.sendRedirect("/mnucampass/");
 				 filterChain.doFilter(request, response); // se redirige a credenciales porque necesita cambiar la contrasenia
+				 //si necesita password se redirige siempre a la pantalla de cambiar contrasenia
 				 return;
 			 }	 
 		 }
+		// se le quita la seguridad a las paginas de no tienen seguridad alguna
 		if(URI.equals("/") || URI.equals("/inicio/") || URI.equals("/login") || URI.equals("/jm/")){ // No se logrò confugirar la ruta / por lo que se redirige a /inicio/
 			if(URI.equals("/")){
 				response.sendRedirect("/inicio/");
@@ -421,15 +425,16 @@ class RequestFilter extends OncePerRequestFilter {
 			filterChain.doFilter(request, response);
 			return;
 		}
-		
+		 //se le quita la seguridad por roles al api, esto es una decision del jefe
 		boolean esApi = nombreMenu.equals("api") || nombreMenu.equals("static") || nombreMenu.equals("jm"); // se busca que no haga request a archivos estàticos ni al api
+		
 		if (!esApi) {
 			if (sci != null) {
 				UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
 				Usuarios elected = usuarioRepository.findOneByUsuario(cud.getUsername());
 				boolean permitido = false;			
 				if (!esApi) {
-					permitido = validarPermiso(URI, elected);
+					permitido = validarPermiso( URI , elected );
 					if (!permitido) {
 						response.sendError(500, "El rol del usuario actual no tiene los permisos suficientes" );
 						return;

@@ -93,8 +93,8 @@ public class PrincipalServiceImpl implements PrincipalService {
 		Double v1_total = total != null ? total : 0;
 		List< ValorizacionInventario > valorInv = valorizacionInventarioRepository.findAllByValorizacionInventarioPK_FechaAndValorizacionInventarioPK_LineaAndTiporeg(
 				DateBuilder.crearFechaSinHora() ,
-				99999l,
-				6l);
+				99999l ,
+				6l );
 		valorizacionInventarioRepository.delete( valorInv );
 		//crear una nueva valorizacion
 		ValorizacionInventario valorizacionNueva = new ValorizacionInventario();

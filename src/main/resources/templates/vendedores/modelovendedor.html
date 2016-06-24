@@ -6,30 +6,49 @@
 </head>
 <body class="main-form">
 	<nav th:replace="navJM :: navJM"></nav>
+	<link rel="stylesheet" href="/static/css/tabla.css"/>
 	<h1> Vendedor / Representante </h1>
 	<div class="row">
 		<div class="large-2 large-offset-9 columns">
 		  <a id="nuevo" class="button" style="width: 100%;">Nuevo</a>
 		</div>
 	</div>
+	
 	<table>
 		<thead>
 			<tr>
-				<th style="width:11.111%;">CodArt</th>
-				<th style="width:11.111%;">Referencia Oficina</th>
-				<th style="width:11.111%;">Modelo Oficina1</th>
-				<th style="width:11.111%;">Modelo Oficina2</th>
-				<th style="width:11.111%;">Modelo Oficina3</th>
-				<th style="width:11.111%;">Marca Art&iacute;culo</th>
-				<th style="width:11.111%;">Disp</th>
-				<th style="width:11.111%;">Referencia Vendedor</th>
-				<th style="width:11.111%;">Modelo Vendedor</th>
+				<th >CodArt</th>
+				<th>Ref Oficina</th>
+				<th>Modelo Oficina 1</th>
+				<th>Modelo Oficina 2</th>
+				<th>Modelo Oficina 3</th>
+				<th>Marca </th>
+				<th>Disp</th>
+				<th>Referencia Vendedor</th>
+				<th>Modelo Vendedor</th>
 			</tr>
 		</thead>
 		<tbody>
+		<tr th:each="prod : ${articulos}" >
+		    <td th:text="${prod.codigo}" class="codigo"></td>
+		    <td th:text="${prod.referencia}"></td>
+		    <td th:text="${prod.modelo1}"></td>
+		    <td th:text="${prod.modelo2}"></td>
+		    <td th:text="${prod.modelo3}"></td>
+		    <td th:text="${prod.marca}"></td>
+		    <td th:text="${prod.cantdisp}"></td>
+		    <td th:text="${prod.refvendedor}"></td>
+		    <td th:text="${prod.modelvendedor}"></td>
+		</tr>
 		</tbody>
 	</table>
+	
+
+	
    	<footer th:replace="footer :: footer"></footer>
+   	
+   	<div th:replace="seguridad2 :: seguridad2"></div>
+   	
    	<script src="/static/js/vendedores/modelovendedor.js"></script>
 </body>
 </html>

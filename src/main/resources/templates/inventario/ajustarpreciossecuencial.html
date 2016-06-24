@@ -5,23 +5,29 @@
 	<title>Ajustar precios secuencialmente</title>
 </head>
 <body class="main-form">
+
 	<nav th:replace="navJM :: navJM"></nav>
+	
+	<link rel="stylesheet" href="/static/css/tabla.css"/>
+	
 	<h1>Ajustar precios secuencialmente</h1>
-	<div class="loader"></div>
-	<table style="display: none;">
+		
+	<table>
 		<thead>
 			<tr>
 				<th style="width:25%;">Código</th>
 				<th style="width:25%;">Nombre</th>
 				<th style="width:25%;">Referencia</th>
-				<th style="width:25%;">Estado</th>
+				<th style="width:25%;">Precio</th>
 			</tr>
 		</thead>
 		<tbody>
+
 		</tbody>
 	</table>
 
 	<footer th:replace="footer :: footer"></footer>
 	<script src="/static/js/inventario/ajustarPreciosSecuencial.js"></script>
+	
 </body>
 </html>
