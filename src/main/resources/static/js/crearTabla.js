@@ -10,6 +10,7 @@ function cargarTabla( lista ) {
 	
 	var tabla = $( "table" ).first( );
 	for (var i = 0; i < lista.length; i++) {
+		
 		var elemento = lista[ i ];
 		var tr = $( "<tr>" );
 		
