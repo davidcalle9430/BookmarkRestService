@@ -49,6 +49,7 @@ function darCheckSumDeCodigo(codigo){
  * @returns {String}
  */
 function formatearCodigo( numero ){
+	
 	numero = parseInt( numero );
 	var inicio = Math.floor( numero / 10000);
 	var fin = Math.floor( numero / 10 ) % 1000;
@@ -77,7 +78,7 @@ function darCodigoFormateado( numero ){
  * @param codigo: Codigo, CON formato, del articulo al que se le calcula el digito de verificación.  
  */
 function obtenerCheckSumConFormato( codigo ){
-	var numero = obtenerNumeroAPartirDeCodigo(codigo);
+	var numero = obtenerNumeroAPartirDeCodigo( codigo );
 	return obtenerCheckSum(numero);
 }
 
