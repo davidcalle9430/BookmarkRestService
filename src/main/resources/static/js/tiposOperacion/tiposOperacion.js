@@ -1,14 +1,18 @@
+
 $(document).ready(function(){
+	
 	iniciarFormulario();
-})
+	
+});	
 
 /**
- * Se encarga de inicar lo compnentes del formualrio.
+ * Se encarga de inicar lo compnentes del formulario.
  * */
-function iniciarFormulario(){
+function iniciarFormulario( ){
 	
 	cargarTiposOperacion( );
-	$( "table" ).on("click","tr", clicFila );	
+	
+	$( "table" ).on( "click" , "tr" , clicFila );	
 	
 }
 

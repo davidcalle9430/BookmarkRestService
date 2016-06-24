@@ -5,13 +5,19 @@
 	<title>Vendedor / Representante</title>
 </head>
 <body class="main-form">
+	
 	<nav th:replace="navJM :: navJM"></nav>
+	
+	
+	<link rel="stylesheet" href="/static/css/tabla.css"/>
+	
 	<h1> Vendedor / Representante </h1>
 	<div class="row">
 		<div class="large-2 large-offset-9 columns">
 		  <a id="nuevo" class="button" style="width: 100%;">Nuevo</a>
 		</div>
 	</div>
+	
 	<table>
 		<thead>
 			<tr>
@@ -26,8 +32,10 @@
 		<tbody>
 		</tbody>
 	</table>
+   	
    	<footer th:replace="footer :: footer"></footer>
    	<script src="/static/js/vendedores/vendedores.js"></script>
+
 </body>
 </html>
 

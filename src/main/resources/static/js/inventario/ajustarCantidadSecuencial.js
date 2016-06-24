@@ -36,56 +36,16 @@ var clicFila = function(){
 }
 
 /**
- * Función encargada de crear los encabezados de la tabla.
- */
-function crearEncabezados() {
-	// codigo nombre ingles, nombre español, tipo, con iva
-	var tabla = $("#articulos").first();
-	var tr = $("<thead>");
-	var thCodigo = $("<th>", { text : "Código"});
-	var thNombre = $("<th>", { text : "Nombre "});
-	var thCantDisp = $("<th>", {text : "Cant. Disp."});
-	tr.append(thCodigo);
-	tr.append(thNombre);
-	tr.append(thCantDisp);
-	
-	tabla.append(tr);
-	head = $("thead");
-}
-
-
-/**
- * Función encargdaa de cargar una nueva página de ariculos en la tabla.
+ * Función encargada de cargar una nueva página de ariculos en la tabla.
  */
 function agregarFila() {
-	getForObject({page : pagina}, "/api/generos", cargarNombres);
+	getForObject( { size : 9999999 } , "/api/generos", cargarNombres);
 }
 var head = $("thead"); // busca los headers de la tabla
 var columnas = 3; // numero de columnas de la tabla
 $(document).ready(function(){
-	crearEncabezados();
+
 	agregarFila();
-	$(window).scroll(function() {
-		if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
-			if (!alFinal) {
-				alFinal = true;
-				agregarFila();
-			}
-		}
-		if(head.position().top -$(this).scrollTop() < 0 ){
-			head.css("position", "fixed");
-			head.css("top", "0px");
-			head.css("width", "90vw");
-			head.find("th").each(function(el){
-				$(this).css("width", 100 / columnas + "vw")
-			});
-			$('table').find("td").each(function(el){
-				$(this).css("width", 100 / columnas + "vw")
-			});
-		}else{
-			head.css("position", "");
-			head.css("top", "");
-		}
-	});
-	$("table").on("click","tr", clicFila);
+	
+	$( "table" ).on( "click" , "tr" , clicFila );
 })

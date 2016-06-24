@@ -5,7 +5,7 @@ table {
     display: flex;
     flex-flow: column;
     height: 60vh;
-    width: 80%;
+    width: 90%;
 }
 table thead {
     /* head takes the height it requires, 
