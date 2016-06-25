@@ -112,4 +112,20 @@ public class PrincipalServiceImpl implements PrincipalService {
 		
 	}
 
+	@Override
+	public void acumVentas() {
+		Nfact nfact = nfactRepository.findOne( 1 );
+		
+		if( nfact == null ){
+			nfact = new Nfact( 1 );
+			nfact.setAcumiva( 0.0 );
+			nfact.setAcumsiniva( 0.0 );
+			nfact.setMes( (double) DateBuilder.getMonth( DateBuilder.crearFechaSinHora() ) );
+			nfactRepository.save( nfact );
+		}else{
+			
+		}
+		
+	}
+
 }

@@ -58,6 +58,7 @@ import repositories.MenusRepository;
 import repositories.RolesRepository;
 import repositories.RolesYMenusRepository;
 import repositories.UsuarioRepository;
+import services.PrincipalService;
 import sidic.entities.Articulo;
 import sidic.entities.Cardex;
 import sidic.entities.Cardexi;
@@ -166,9 +167,16 @@ class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 @Component
 class BookingCommandLineRunner implements CommandLineRunner {
 	
+	@Autowired
+	private PrincipalService principalService;
+	
 	@Override
 	public void run(String... arg0) throws Exception {
 		System.gc( );
+		principalService.acumVentasMes( );
+		principalService.valorizacion( );
+		principalService.acumVentas( );
+		System.out.println( "Fin funcionalidades de inicio " );
 	}
 }
 
