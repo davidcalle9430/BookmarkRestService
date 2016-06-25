@@ -1,6 +1,6 @@
 # Impordisa - Sidic
 
-Aplicación web creada usando Spring Boot, HTML5, CSS3 y Javascript.
+Aplicación web creada usando Spring Boot, Jasper Reports, HTML5, CSS3 y Javascript.
 
 # Dependencias de Ejecución
 
@@ -9,16 +9,28 @@ Aplicación web creada usando Spring Boot, HTML5, CSS3 y Javascript.
 
 # Dependencias de Desarrollador
 
-* Spring Tool Suite, IDE basado en ecplise que viene con todas las herramientas necesarias para trabajar con Spring.
+* [Spring Tool Suite](https://spring.io/tools), IDE basado en ecplise que viene con todas las herramientas necesarias para trabajar con Spring.
+* Git
 
 # ¿ Cómo ejecutar la aplicación ?
 
-Si se usa eclipse la aplicación se puede ejecutar como cualquier aplicación Java. Sin embargo, en caso de usarlo se puede ejecutar utilizando el archivo mvnw.
+Si se usa Spring Tool Suite la aplicación se puede ejecutar como cualquier aplicación Java. Sin embargo, en caso de no usarlo se puede ejecutar utilizando el archivo mvnw.
 
 ```sh
 $  ./mvnw spring-boot:run
 ```
 
+Para generar el jar. El archivo compilado queda almacenado en la carpeta target. Para más información ver [Documentación](http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html)
+
+```sh
+$  ./mvnw package
+```
+
+Para ejecutar el archivo jar
+
+```sh
+$  java -jar {NOMBRE_DEL_JAR}
+```
 
 #Explicación General de la Arquitectura
 
@@ -32,13 +44,13 @@ El programa se divide en dos partes principaples, el backend y el frontend.
 * Frontend se encuentra en la carpeta src/main/resources
 * Backend se encuentra en la carpeta src/main/java
 
-## src/main/java
+## Backend
 
 La carpeta se divide en diferentes paquetes, cada uno de estos tiene una responsabilidad diferente
 
 ### com.impordisa
 
-En este paquete se encuentra el archivo de que ejecuta y configura la aplicación.
+En este paquete se encuentra el archivo de que ejecuta y configura la aplicación. Estre sus responsabilidades está la creación de los filtros de seguridad personalizados basado en el nombre del menú y el inicio de sesión. 
 
 ### conveterts
 
@@ -76,7 +88,7 @@ Este paquete contiene clases estáticas con métodos de utilidad
 
 Este paquete contiene los controladores web de la aplicación; en este caso los controladores se limitan a enrutar al template adecuado y no acceden a la lógica de negocio.
 
-## src/main/resources
+## Frontend
 
 Esta carpeta contiene los archivos estáticos de la aplicación
 
