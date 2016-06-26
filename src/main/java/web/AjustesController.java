@@ -27,5 +27,10 @@ public class AjustesController {
 		return "ajustes/esteban";
 	}
 	
+	@RequestMapping( value  = "/mnuajpresjm/" )
+	public String ajustarPreciosAPartirdeArticulo( ){
+		return "ajustes/ajustarprecioaarituclo";
+	}
+	
 	
 }

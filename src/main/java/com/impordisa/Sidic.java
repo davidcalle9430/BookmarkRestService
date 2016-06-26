@@ -113,9 +113,13 @@ import projections.RolesyMenusProjection;
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @EnableAutoConfiguration
 public class Sidic {
+	
 	public static void main(String[] args) {
+		
 		SpringApplication.run(Sidic.class, args);
+		
 	}
+	
 }
 
 /**

@@ -25,7 +25,7 @@ app.controller('EstebanController', function( $scope , $http ) {
 			$scope.persona.textos = data._embedded.textosFactura;
 	    });
 		promesa.error( function(data, status, headers, config) {
-	        alert("error")
+	        alert("error");
 		});
 	}
 	

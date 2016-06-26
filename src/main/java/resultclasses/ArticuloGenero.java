@@ -4,7 +4,8 @@ package resultclasses;
  * Clase intenmediaria que sirve para almacenar objetos, que se envía en un request HTTP 
  * cuando la fucnionalidad exige la actualización recurrente de varias tablas,
  * con el fin de modificarlos en la base de datos consumiento el api.
- * **/
+ * 
+ **/
 public class ArticuloGenero 
 {
 
@@ -15,6 +16,18 @@ public class ArticuloGenero
 	
 	public ArticuloGenero(){}
 	
+	
+	
+	public ArticuloGenero(Long codigo, String nombre, String referencia, Double precio) {
+		super();
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.referencia = referencia;
+		this.precio = precio;
+	}
+
+
+
 	public Long getCodigo() 
 	{
 		return codigo;
