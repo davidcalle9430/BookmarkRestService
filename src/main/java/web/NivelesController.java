@@ -21,8 +21,14 @@ public class NivelesController {
 	public String opcionesUsuarios(){
 		return "niveles/opcionesusuarios";
 	}
+	
 	@RequestMapping(value="/mnunivelopc/nuevo/")
 	public String opcionesUsuariosCrear(){
 		return "niveles/opcionesusuarioscrear";
+	}
+	
+	@RequestMapping(value="/mnunivelopc/editar/")
+	public String opcionesUsuariosEliminar(){
+		return "niveles/opcionesusuarioseliminar";
 	}
 }

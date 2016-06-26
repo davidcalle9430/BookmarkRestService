@@ -18,8 +18,8 @@ function ajaxCall() {
 	})
 }
 /**
- * función que se encarg de crear una fila para cada uno de los niveles
- * @param niveles, referencia a lista de niveles a crear
+ * función que se encarga de crear una fila para cada uno de los niveles
+ * @param niveles, referencia a lista de niveles a crear.
  */
 function crearFila(niveles) {
 	console.log(niveles);
