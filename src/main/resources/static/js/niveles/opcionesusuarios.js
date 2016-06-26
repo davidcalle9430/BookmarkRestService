@@ -26,12 +26,15 @@ function crearFila(niveles) {
 	for (var i = 0; i < niveles.length; i++) {
 		var tr = $("<tr>");
 		var columnaNivel = $('<td>', {
+			class: 'nivel',
 			text : niveles[i].nivel
 		});
 		var columnaNombre = $('<td>', {
+			class: 'nombre',
 			text : niveles[i].nombre
 		});
 		var columnaCodigoMenu = $('<td>', {
+			class: 'codmenu',
 			text : niveles[i].codMenu
 		});
 		var columnaNombreMenu = $('<td>', {
@@ -50,7 +53,10 @@ function crearFila(niveles) {
  */
 function clicFila(){
 	var hijos = $(this).children();
-	window.location = "editar/?codigo="+hijos[0].innerHTML;
+	var rol = $(this).find('.nivel').text();
+	var codMenu = $(this).find('.codmenu').text();
+	var registro = rol+"_"+codMenu;
+	window.location = "confirmar-eliminacion/?registro="+registro;
 }
 
 var head = $("thead"); // busca los headers de la tabla
