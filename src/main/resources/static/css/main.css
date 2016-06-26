@@ -346,29 +346,33 @@ input[type="date"]::-webkit-inner-spin-button{
 
 /* Crear factura */
 
-	#crear-factura input{
-		font-size: 2.5vh !important;
-		height: 7vh !important;
-	}
-	
-	#crear-factura select{
-		-webkit-appearance:none;
-		-moz-appearance:none;
-		appearance:none;
-		padding-top: 0;
-		padding-bottom: 0;
-		font-size: 2.5vh !important;
-		height: 7vh !important;
-	}
-	
-	#crear-factura h1{
-		font-size: 1.5em !important;
-	}
-	
-	#crear-factura table tr th{
-		font-size: 3vh;
-	}
-	
-	#crear-factura label{
-		font-size: 2vh !important;
-	}
+#crear-factura input{
+	font-size: 2.5vh !important;
+	height: 7vh !important;
+}
+
+#crear-factura select{
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	appearance:none;
+	padding-top: 0;
+	padding-bottom: 0;
+	font-size: 2.5vh !important;
+	height: 7vh !important;
+}
+
+#crear-factura h1{
+	font-size: 1.5em !important;
+}
+
+#crear-factura table tr th{
+	font-size: 3vh;
+}
+
+#crear-factura label{
+	font-size: 2vh !important;
+}
+
+.mayusc{
+	text-transform: uppercase;
+}

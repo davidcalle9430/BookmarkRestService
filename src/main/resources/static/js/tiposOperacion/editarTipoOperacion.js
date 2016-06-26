@@ -33,14 +33,12 @@ function cargarSiguienteCodigo (codigoActual){
 function iniciarFormulario()
 {
 	var codTipoOperacion = get("codigo");
+	
 	if( codTipoOperacion != null && codTipoOperacion != "" )
 	{
 		getForObject( null,"/api/tipoOperaciones/"+codTipoOperacion, llenarFormulario );	
 		agregarTipoOPeracion = false;
-	}
-	
-	else
-	{
+	}else{
 		$.ajax({
 			url : "/api/tipoOperaciones/search/obtenerMaxTipoOperacion",
 			success : function(data)
@@ -58,6 +56,7 @@ function iniciarFormulario()
 	
 }
 
+
 function editarTipoOperacion ( ev )
 {
 	ev.preventDefault();	
@@ -67,13 +66,13 @@ function editarTipoOperacion ( ev )
 	
 	if( agregarTipoOPeracion )
 	{
-		postForObject(tipoOperacionSelec, "/api/tipoOperaciones/", 
+		alert( " se agrega " + JSON.stringify( tipoOperacionSelec ) );
+		postForObject( tipoOperacionSelec , "/api/tipoOperaciones/", 
 				function(data){alert("Se ha agregado el tipo de operación No. "+ zeroPad( data.codigo , 3) + " con éxito!");location.href = "/tipoOperacion/";},
 				function(data){alert("Error al agregar el nuevo tipo de operación  No. "+ zeroPad( data.codigo , 3)+"!!");location.href = "/tipoOperacion/";} );
 	}
 	else
 	{	
-		//console.log(tipoOperacionSelec);
 		$.ajax(
 				{
 					type : "put",

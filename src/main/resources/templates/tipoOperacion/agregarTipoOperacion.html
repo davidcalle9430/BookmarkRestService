@@ -20,21 +20,11 @@
 		</div>
 		<div class="row">
 			<div class="">
-				<button type="submit" class="button large-3 submit"
+				<button onclick = "agregar()" class="button large-3 submit"
 					style="float: right">Guardar cambios</button>
 			</div>
 		</div>
 	</form>
-
-	<form id="eliminar" name="eliminar">
-		<div class="row">
-			<div class="">
-				<button type="submit" class="button large-3 submit alert"
-					style="float: right">Eliminar</button>
-			</div>
-		</div>
-	</form>
-	
 	<footer th:replace="footer :: footer"></footer>
 	<script src="/static/js/tiposOperacion/editarTipoOperacion.js"></script>
 </body>
