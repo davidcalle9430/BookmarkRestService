@@ -52,6 +52,7 @@ public class ArticulosRestController {
 	@PersistenceContext
 	private EntityManager em;
 	
+	
 	/**
 	 * query sin parametros debido a errrores por los caracteres especiales
 	 * @param ndoc
@@ -169,5 +170,15 @@ public class ArticulosRestController {
 			return new ResponseEntity<ArticuloGeneroCostoDTO>( res , HttpStatus.ACCEPTED );
 		}
 		return new ResponseEntity<ArticuloGeneroCostoDTO>( HttpStatus.BAD_REQUEST );
+	}
+	
+	@RequestMapping( value = "/api/articulos/genero/{codigo}/" , produces = "application/json" )
+	public ResponseEntity< List< ArticuloGenero > > darArticulosPorGenero( @PathVariable Long codigo ){
+		
+		List< ArticuloGenero > res = articuloService.darArticulosGenero( codigo );
+		if( res == null ){
+			return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
+		}
+		return new ResponseEntity<>( res , HttpStatus.ACCEPTED );
 	}
 }
