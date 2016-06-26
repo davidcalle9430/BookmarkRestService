@@ -93,8 +93,8 @@ public class PrincipalServiceImpl implements PrincipalService {
 		Double v1_total = total != null ? total : 0;
 		List< ValorizacionInventario > valorInv = valorizacionInventarioRepository.findAllByValorizacionInventarioPK_FechaAndValorizacionInventarioPK_LineaAndTiporeg(
 				DateBuilder.crearFechaSinHora() ,
-				99999l,
-				6l);
+				99999l ,
+				6l );
 		valorizacionInventarioRepository.delete( valorInv );
 		//crear una nueva valorizacion
 		ValorizacionInventario valorizacionNueva = new ValorizacionInventario();
@@ -109,6 +109,22 @@ public class PrincipalServiceImpl implements PrincipalService {
 		valorizacionNueva.setNomcorr( "." );
 		valorizacionNueva.setValor( v1_total );
 		valorizacionInventarioRepository.save( valorizacionNueva );
+		
+	}
+
+	@Override
+	public void acumVentas() {
+		Nfact nfact = nfactRepository.findOne( 1 );
+		
+		if( nfact == null ){
+			nfact = new Nfact( 1 );
+			nfact.setAcumiva( 0.0 );
+			nfact.setAcumsiniva( 0.0 );
+			nfact.setMes( (double) DateBuilder.getMonth( DateBuilder.crearFechaSinHora() ) );
+			nfactRepository.save( nfact );
+		}else{
+			
+		}
 		
 	}
 

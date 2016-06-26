@@ -34,8 +34,10 @@ public class DateBuilder {
 	}
 	
 	public static String getNombreMes( Date fecha ){
+		
 		int month = getMonth( fecha );
-		switch (month) {
+		
+		switch ( month ) {
 		case 1:
 			return "Enero";
 		case 2:

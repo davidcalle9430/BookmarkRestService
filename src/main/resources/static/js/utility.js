@@ -3,20 +3,18 @@
  * Función encargada de verificar si un código se encuentra en el formato correcto (000-000-0).
  * @para codigo: Código al que se le verificará el formato.
  */
-function verificarFormatoCodigo( codigo )
-{
+function verificarFormatoCodigo( codigo ){
 	var re = /^[0-9][0-9][0-9][0-9]{3,3}[0-9]$/;  
     return re.test(codigo);
 }
 
 /**
- * Función encargada de formatear los nùmeros con una mínima cantidad de digistos
+ * Función encargada de formatear los nùmeros con una mínima cantidad de digitos
  * Tomada de
  * http://stackoverflow.com/questions/2998784/how-to-output-integers-with-leading-zeros-in-javascript
  * función encargada de formatear con ceros
  */
-function zeroPad(num, places)
-{
+function zeroPad(num, places){
 	var zero = places - num.toString().length + 1;
 	return Array(+(zero > 0 && zero)).join("0") + num;
 }
@@ -24,14 +22,13 @@ function zeroPad(num, places)
 /**
  * Función encargada de obtener el nùmero que representa el código
  */
-function obtenerNumeroAPartirDeCodigo( codigo )
-{
+function obtenerNumeroAPartirDeCodigo( codigo ){
 	var numeros = codigo.toString( );
 	return parseInt( numeros.substring( 0 , 3 ) + numeros.substring( 3 , 6 ) );
 }
 
 /**
- * funcion que retorna el codigo si el digito de verificacion
+ * funcion que retorna el codigo sin el digito de verificacion
  * @param chequeo
  * @returns
  */
@@ -43,31 +40,45 @@ function obtenerCodigoReal( chequeo ){
 /**
  * Retorna el checksum que tiene un codigo
  */
-function darCheckSumDeCodigo(codigo)
-{
+function darCheckSumDeCodigo(codigo){
 	return codigo.toString()[6];
+}
+/**
+ * funcion que formatea el numero
+ * @param numero
+ * @returns {String}
+ */
+function formatearCodigo( numero ){
+	
+	numero = parseInt( numero );
+	var inicio = Math.floor( numero / 10000);
+	var fin = Math.floor( numero / 10 ) % 1000;
+	var codigo = zeroPad( inicio, 3 ) + "-" + zeroPad( fin, 3 ) +"-";
+	codigo += numero % 10;
+	return codigo;
+	
 }
 
 /**
  * Función encargada de obtener el nùmero escrito como un codigo valido
  */
-function darCodigoFormateado( numero )
-{
+function darCodigoFormateado( numero ){
+	
 	numero = parseInt(numero);
 	var inicio = Math.floor(numero / 1000);
 	var fin = numero % 1000;
 	var codigo = zeroPad( inicio, 3 ) + "-" + zeroPad( fin, 3 ) +"-";
 	codigo += obtenerCheckSum( numero )
 	return codigo;
+	
 }
 
 /**
  * Función encargada de calcular un checksum a partir de un código.
  * @param codigo: Codigo, CON formato, del articulo al que se le calcula el digito de verificación.  
  */
-function obtenerCheckSumConFormato( codigo )
-{
-	var numero = obtenerNumeroAPartirDeCodigo(codigo);
+function obtenerCheckSumConFormato( codigo ){
+	var numero = obtenerNumeroAPartirDeCodigo( codigo );
 	return obtenerCheckSum(numero);
 }
 
@@ -75,8 +86,7 @@ function obtenerCheckSumConFormato( codigo )
  * Función encargada de calcular un checksum a partir de un código.
  * @param codigo: Codigo, SIN formato, del articulo al que se le calcula el digito de verificación.  
  */
-function obtenerCheckSum(numero)
-{
+function obtenerCheckSum(numero){
 	var primero = numero % 10;
 	var segundo = Math.floor( ( numero % 100 ) / 10 );
 	var tercero = Math.floor( ( numero % 1000 ) / 100 );
@@ -90,8 +100,7 @@ function obtenerCheckSum(numero)
 /**
  * función encargada de serializar un formulario y volverlo un objeto JS
  */
-$.fn.serializeObject = function()
-{
+$.fn.serializeObject = function(){
    var o = {};
    var a = this.serializeArray();
    $.each(a, function() {
@@ -118,8 +127,7 @@ $.ajaxSetup({
  * Da el valor de llave con nombre name de los parámetros GET de la URL
  * Obtenido de http://stackoverflow.com/questions/831030/how-to-get-get-request-parameters-in-javascript  usuario Rafael
  */
-function get(name)
-{
+function get(name){
 	   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
 	      return decodeURIComponent(name[1]);
 }
@@ -128,8 +136,8 @@ function get(name)
  * Función que convierte @fecha en
  * el formato dd/mm/yyyy.
  */
-function formatearFecha( fecha )
-{
+function formatearFecha( fecha ){
+	
 	var fechaActual = fecha.split("-");
 	var dd = fechaActual[2];
     var mm = fechaActual[1];
@@ -157,15 +165,15 @@ function formatearFechaISO( fecha )
 function darFechaActual()
 {
 	var fecha = new Date();
-	var dd = zeroPad(fecha.getDate(), 2);
-    var mm = zeroPad(fecha.getMonth()+1, 2);
-    var yyyy = fecha.getFullYear();
+	var dd = zeroPad( fecha.getDate() , 2 );
+    var mm = zeroPad( fecha.getMonth() + 1 , 2 );
+    var yyyy = fecha.getFullYear( );
     return ""+yyyy+"-"+mm+"-"+dd;
 }
 
 /**
  * Función que se encarga de poner en un input type text
- * con nombre llace, el valor valor
+ * con nombre llave, el valor valor
  */
 function llenarDatoFormulario(llave, valor)
 {
@@ -174,14 +182,13 @@ function llenarDatoFormulario(llave, valor)
 }
 
 /**
- * función que funciona como un wrapper para los requet ajax
+ * función que funciona como un wrapper para los request ajax
  * @param object, objecto a agregar
  * @param url, URI que identifica el recurso
  * @param todo, función  asociada a la creación exitossa
  * @param error, función asociada al error
  */
-function getForObject(object, url, toDo)
-{
+function getForObject(object, url, toDo){
 	if(object != null){
 		url = url + "?" + $.param(object)
 	}
@@ -197,14 +204,13 @@ function getForObject(object, url, toDo)
 }
 
 /**
- * función que funciona como un wrapper para los requet ajax
+ * función que funciona como un wrapper para los request ajax
  * @param object, objecto a agregar
  * @param url, URI que identifica el recurso
  * @param todo, función  asociada a la creación exitossa
  * @param error, función asociada al error
  */
-function getForObject(object, url, toDo,error)
-{
+function getForObject(object, url, toDo,error){
 	if(object != null){
 		url = url + "?" + $.param(object);
 	}
@@ -221,14 +227,13 @@ function getForObject(object, url, toDo,error)
 }
 
 /**
- * función que funciona como un wrapper para los requet ajax
+ * función que funciona como un wrapper para los request ajax
  * @param1 object, objecto a agregar
  * @param url, URI que identifica el recurso
  * @param todo, función  asociada a la creación exitossa
  * @param error, función asociada al error
  */
-function postForObject(object, url, todo, error)
-{
+function postForObject(object, url, todo, error){
 	$.ajax({
 		type : "post",
 		url : url,
@@ -249,10 +254,8 @@ function postForObject(object, url, todo, error)
  * @param todo, función  asociada a la creación exitossa
  * @param error, función asociada al error
  */
-function putForObject(object, url, todo, error)
-{
-	$.ajax(
-	{
+function putForObject(object, url, todo, error){
+	$.ajax({
 		type : "put",
 		url : url,
 		data : JSON.stringify(object),
@@ -266,8 +269,7 @@ function putForObject(object, url, todo, error)
 }
 
 function deleteForObject(url, todo, error){
-	$.ajax(
-	{
+	$.ajax({
 		type : "delete",
 		url : url,
 	    contentType: 'application/json; charset=utf-8',

@@ -48,7 +48,7 @@ public class AjustesRestController {
 	@PersistenceContext
 	private EntityManager em;
 	
-	@RequestMapping( value ="/api/ajustes/reporteventas/" , method = RequestMethod.POST )
+	@RequestMapping( value = "/api/ajustes/reporteventas/" , method = RequestMethod.POST )
 	public ResponseEntity<?> reporteDeVentas( @RequestBody List< NotasCarteraDTO > carteras ){
 	
 		for (NotasCarteraDTO nota : carteras) {

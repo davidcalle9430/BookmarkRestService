@@ -6,10 +6,15 @@
 </head>
 <body class="main-form">
 	<nav th:replace="navJM :: navJM"></nav>
+	
+	<link rel="stylesheet" href="/static/css/tabla.css"/>
+	
 	<h1> Correr&iacute;as </h1>
+	
 	<div class="row">
 		<a class="large button boton boton-derecha" href="nuevo/">Nuevo</a>
 	</div>
+	
 	<table>
 		<thead>
 			<tr>
@@ -21,7 +26,9 @@
 		<tbody>
 		</tbody>
 	</table>
+	
    	<footer th:replace="footer :: footer"></footer>
+   	
    	<script src="/static/js/correrias/correrias.js"></script>
 </body>
 </html>

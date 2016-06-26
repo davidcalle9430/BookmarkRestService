@@ -1,6 +1,6 @@
-function tabla(){
+function tabla( ){
 	$.ajax({
-		url:'/api/vendedores',
+		url:'/api/vendedores?size=99999',
 		success:function(data){
 			llenar(data._embedded.vendedores);
 		},
@@ -31,6 +31,7 @@ function llenar(vendedores){
 		var observacion_1 = $('<td>',{
 			text: vendedores[i].observaci1
 		});
+		
 		var fila = $('<tr>');
 		fila.append(codigo);
 		fila.append(nombre);
@@ -38,6 +39,7 @@ function llenar(vendedores){
 		fila.append(direccion);
 		fila.append(telefonos);
 		fila.append(observacion_1);
+		
 		$('tbody').append(fila);
 	}
 }
@@ -54,23 +56,8 @@ $('#nuevo').click(function(){
 var head = $("thead"); // busca los headers de la tabla
 var columnas = 6; // numero de columnas de la tabla
 $(document).ready(function() {
-			tabla();
-			$("body").append($("<style>", {text : "td{width:" +90 / columnas + "vw;	}"}))
-			$(window).scroll(function() {
-				if(head.position().top -$(this).scrollTop() < 0 ){
-					head.css("position", "fixed");
-					head.css("top", "0px");
-					head.css("width", "90vw");
-					head.find("th").each(function(el){
-						$(this).css("width", 90 / columnas + "vw")
-					});
-					$('table').find("td").each(function(el){
-						$(this).css("width", 90 / columnas + "vw")
-					});
-				}else{
-					head.css("position", "");
-					head.css("top", "");
-				}
-			});
+	
+			tabla( );
+						
 			$("table").on("click","tr", clicFila);
 });

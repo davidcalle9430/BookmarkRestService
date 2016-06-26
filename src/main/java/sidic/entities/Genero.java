@@ -25,24 +25,34 @@ public class Genero implements Serializable {
     @Id
     @Basic(optional = false)
     private Long codigo;
+    
     @Column(length = 35)
     private String nombre;
+    
     @Column(precision = 22)
     private Double ultcod;
+    
     @Column(precision = 22)
     private Double cantdisp;
+    
     @Column(precision = 22)
     private Double cantdispjm;
+    
     @Column(precision = 22)
     private Double cantdispf;
+    
     @Column(precision = 22)
     private Double porcprec;
+    
     @Column(precision = 22)
     private Double costprom;
+    
     @Column(length = 22)
     private String nombrei;
+    
     @Column(length = 1)
     private String tipart;
+    
     @Column(length = 1)
     private String iva;
 

@@ -35,15 +35,15 @@ function iniciarFormulario()
 {
 	obtenerFilaSelec();
 	capturarTab();
-	var getCodigo = get("codigo");
+	var getCodigo = get( "codigo" );
 	if( getCodigo != null && getCodigo != "")
 	{
 		var celda = $("#codigo");
-		celda.val(getCodigo);
-		var trSelec = $(celda).parent().parent();
-		celda.attr("readonly","readonly");
+		celda.val( getCodigo );
+		var trSelec = $( celda ).parent( ).parent( );
+		celda.attr( "readonly" , "readonly" );
 		$("#botAgregaFila").attr("style","display:none");	
-		obtenerAtributosArticulo(trSelec);
+		obtenerAtributosArticulo( trSelec );
 	}
 	$("form").submit(guardarCambios);	
 }
@@ -108,11 +108,10 @@ function obtenerAtributosArticulo( trSelec)
 	$(trSelec).find("#referencia").val("");
 	$(trSelec).find("#precio").val("");
 	$(trSelec).find("#nPrecio").val("");
-	if( verificarFormatoCodigo( codigoConFormato ) )
+	if( true )
 	{
-		var codigoSelec = obtenerNumeroAPartirDeCodigo(codigoConFormato);
-		if( obtenerCheckSum( codigoSelec ) == darCheckSumDeCodigo( codigoConFormato ) )
-		{
+		var codigoSelec = obtenerCodigoReal( codigoConFormato );
+		if( obtenerCheckSum( codigoSelec ) == codigoConFormato[ 8 ] ){
 			$(trSelec).find("#codigo").val( darCodigoFormateado( codigoSelec ) );
 			$.ajax
 			({
@@ -127,13 +126,11 @@ function obtenerAtributosArticulo( trSelec)
 				}
 			});
 		}
-		else
-		{
+		else{
 			alert("El dígito de verificación es incorrecto!!");
 		}
 	}
-	else
-	{
+	else{
 		alert("Este código no coincide con el formato: 000-000-0");
 		$(trSelec).find("#codigo").val("000-000-0");
 	}

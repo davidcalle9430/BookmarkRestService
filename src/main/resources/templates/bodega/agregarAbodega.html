@@ -6,22 +6,31 @@
 <body class="main-form">
 	<nav th:replace="nav :: nav"></nav>
 	<h1>Agregar a bodega</h1>
+	<link rel="stylesheet" href="/static/css/tabla.css"/>
 	<form>
 		<table>
-			<tr>
-				<th style="width:20%;">C&oacute;digo</th>
-				<th style="width:20%;">Nombre</th>
-				<th style="width:20%;">Cantidad</th>
-				<th style="width:20%;">Documento</th>
-				<th style="width:20%;">NDoc</th>
-			</tr>
-			<tr>
-				<td><input type="number" id="codigo"></input></td>
-				<td><input type="text" id="nombre" readonly="readonly"></input></td>
-				<td><input type="number" id="cantidad" required="required"></input></td>
-				<td><input type="text" id="doc" required="required"></input></td>
-				<td><input type="number" id="nDoc" required="required"></input></td>
-			</tr>
+			<thead>
+			
+				<tr>
+					<th style="width:20%;">C&oacute;digo</th>
+					<th style="width:20%;">Nombre</th>
+					<th style="width:20%;">Cantidad</th>
+					<th style="width:20%;">Documento</th>
+					<th style="width:20%;">NDoc</th>
+				</tr>
+				
+			</thead>
+			<tbody>
+			
+				<tr>
+					<td><input type="number" id="codigo"></input></td>
+					<td><input type="text" id="nombre" readonly="readonly"></input></td>
+					<td><input type="number" id="cantidad" required="required"></input></td>
+					<td><input type="text" id="doc" required="required"></input></td>
+					<td><input type="number" id="nDoc" required="required"></input></td>
+				</tr>
+				
+			</tbody>
 		</table>
 		<div class="row">
 			<div class="large-2 medium-2 small-2 large-offset-9 columns">
@@ -34,6 +43,7 @@
 			</div>
 		</div>
 	</form>	
+	
 	<footer th:replace="footer :: footer"></footer>
 	<script src="/static/js/bodega/agregarAbodega.js"></script>
 </body>

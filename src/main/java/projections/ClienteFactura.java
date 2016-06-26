@@ -15,11 +15,12 @@ public interface ClienteFactura
 	Correr getCodcorr();
 	Lineas getLinea();
 	Vendedor getVendedor();
-	Ciudades getCiudad();
+	String getTelefono();
 	String getRazsoc();
 	String getDireccion();
 	String getCamref();
 	String getCc();
+	Ciudades getCiudad();
 	String getNit();
 	String getProptario();
 }

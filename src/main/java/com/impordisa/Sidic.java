@@ -58,6 +58,7 @@ import repositories.MenusRepository;
 import repositories.RolesRepository;
 import repositories.RolesYMenusRepository;
 import repositories.UsuarioRepository;
+import services.PrincipalService;
 import sidic.entities.Articulo;
 import sidic.entities.Cardex;
 import sidic.entities.Cardexi;
@@ -112,13 +113,17 @@ import projections.RolesyMenusProjection;
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @EnableAutoConfiguration
 public class Sidic {
+	
 	public static void main(String[] args) {
+		
 		SpringApplication.run(Sidic.class, args);
+		
 	}
+	
 }
 
 /**
- * Manejador de recursos estáticos Clase encargada de configurar cómo se manejan
+ *Clase encargada de configurar cómo se manejan
  * los archivos estáticos
  *
  * @author David Calle
@@ -166,9 +171,16 @@ class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 @Component
 class BookingCommandLineRunner implements CommandLineRunner {
 	
+	@Autowired
+	private PrincipalService principalService;
+	
 	@Override
 	public void run(String... arg0) throws Exception {
 		System.gc( );
+		principalService.acumVentasMes( );
+		principalService.valorizacion( );
+		principalService.acumVentas( );
+		System.out.println( "Fin funcionalidades de inicio " );
 	}
 }
 
@@ -326,11 +338,11 @@ class CustomRestMvcConfiguration {
 
 			@Override
 			public void configureConversionService(ConfigurableConversionService conversionService) {
-				super.configureConversionService(conversionService);
-				UsuarioPKConverter usuarioPKConverter = new UsuarioPKConverter();
-				EspeciaConverter espcia = new EspeciaConverter();
-				NivelesPKConverter nivelesConverter = new NivelesPKConverter();
-				BasesConverter basesConverter = new BasesConverter();
+				super.configureConversionService( conversionService );
+				UsuarioPKConverter usuarioPKConverter = new UsuarioPKConverter( );
+				EspeciaConverter espcia = new EspeciaConverter( );
+				NivelesPKConverter nivelesConverter = new NivelesPKConverter( );
+				BasesConverter basesConverter = new BasesConverter( );
 				conversionService.addConverter( usuarioPKConverter );
 				conversionService.addConverter( espcia );
 				conversionService.addConverter( nivelesConverter );
@@ -376,6 +388,7 @@ class RequestFilter extends OncePerRequestFilter {
 		}
 		return false;
 	}
+	
 	public boolean necesitaCambioPassword(SecurityContextImpl sci){
 		if (sci != null) {
 			UserDetails cud = ( UserDetails ) sci.getAuthentication( ).getPrincipal( );
@@ -403,17 +416,20 @@ class RequestFilter extends OncePerRequestFilter {
 		SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		String URI = request.getRequestURI();
 		String nombreMenu = "";
-		if(URI.split("/").length > 1){ // se valida que el uri no sea origen /
+		if( URI.split("/").length > 1 ){ // se valida que el uri no sea origen /
 			nombreMenu = URI.split("/")[1];
 		}
+		//se valida si el usuario necesita cambiar de password
 		boolean cambio = necesitaCambioPassword(sci);
 		 if(cambio){
 			 if(!URI.equals("/") && !URI.equals("/logout/") && !URI.equals("/mnucampass/") && !nombreMenu.equals("static") && !nombreMenu.equals("api") ){ //urls que no se ven afectadas
 				 response.sendRedirect("/mnucampass/");
 				 filterChain.doFilter(request, response); // se redirige a credenciales porque necesita cambiar la contrasenia
+				 //si necesita password se redirige siempre a la pantalla de cambiar contrasenia
 				 return;
 			 }	 
 		 }
+		// se le quita la seguridad a las paginas de no tienen seguridad alguna
 		if(URI.equals("/") || URI.equals("/inicio/") || URI.equals("/login") || URI.equals("/jm/")){ // No se logrò confugirar la ruta / por lo que se redirige a /inicio/
 			if(URI.equals("/")){
 				response.sendRedirect("/inicio/");
@@ -421,15 +437,16 @@ class RequestFilter extends OncePerRequestFilter {
 			filterChain.doFilter(request, response);
 			return;
 		}
-		
+		 //se le quita la seguridad por roles al api, esto es una decision del jefe
 		boolean esApi = nombreMenu.equals("api") || nombreMenu.equals("static") || nombreMenu.equals("jm"); // se busca que no haga request a archivos estàticos ni al api
+		
 		if (!esApi) {
 			if (sci != null) {
 				UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
 				Usuarios elected = usuarioRepository.findOneByUsuario(cud.getUsername());
 				boolean permitido = false;			
 				if (!esApi) {
-					permitido = validarPermiso(URI, elected);
+					permitido = validarPermiso( URI , elected );
 					if (!permitido) {
 						response.sendError(500, "El rol del usuario actual no tiene los permisos suficientes" );
 						return;

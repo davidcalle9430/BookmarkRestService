@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="header :: header">
+</head>
+<body class="main-form" ng-app="Ajustes"
+	ng-controller="AjustesController">
+	
+	<nav th:replace="navJM :: navJM"></nav>
+	
+	<link rel="stylesheet" href="/static/css/tabla.css"/>
+	
+	<h1> Actualiza precios secuencialmente </h1>
+
+	<div class="large-offset-1 medium-offset-1 small-offset-1 large-4 medium-4 small-4
+				 columns">
+		<label>C&oacute;digo Art&iacute;culo <input id="codigo" type="text" required="required" ng-model="genero.codigo" ng-blur="buscar()"
+		 name="codigo" /></label>
+	</div>
+	<div class="large-7 medium-7 small-7
+				 columns">
+		<label> &nbsp; <input id="nombre" type="text" required="required" ng-model="genero.nombre" readonly="readonly"
+			name="nombre" /></label>
+	</div>
+	
+	
+	<table>
+		<thead>
+			<tr>
+				<th>C&oacute;digo</th>
+				<th>Nombre</th>
+				<th>Referencia</th>
+				<th>Precio</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="x in genero.articulos">
+    			<td><input type="text" ng-model="x.codigo" readonly="readonly" /> </td>
+    			<td><input type="text" ng-model="x.nombre" readonly="readonly"/></td>
+    			<td><input type="text" ng-model="x.referencia" readonly="readonly"/></td>
+    			<td><input type="number" ng-model="x.precio" ng-model-options="{updateOn: 'blur'}"  ng-change="actualizarFila( x )"/></td>
+  			</tr>
+		</tbody>
+	</table>
+
+		<div class="row">
+		<button id="crear" style="float: right;" ng-click="actualizar()" 
+				class="button large-3 submit">Actualizar</button>
+		</div>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/ajustes/ajustarprecioaarticulo.js"></script>
+</body>
+</html>

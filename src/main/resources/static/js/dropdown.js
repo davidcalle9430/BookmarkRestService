@@ -3,10 +3,12 @@
  */
 
 var lists = $("nav ul ul");
-lists.each(function(index){
-	var tam = $(this).width();
-	var subLists = $(this).find("ul");
-	subLists.each(function(index){
-		$(this).css({left : tam - 170});
+lists.each( function( index ){
+	
+	var tam = $( this ).width( );
+	var subLists = $( this ).find( "ul" );
+	
+	subLists.each( function( index ){
+		$( this ).css( { left : tam - 170 } );
 	});
 });

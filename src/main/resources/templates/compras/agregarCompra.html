@@ -6,8 +6,12 @@
 <body class="main-form">
 	<nav th:replace="navJM :: navJM"></nav>
 	<h1>Compras</h1>
+	
+	<link rel="stylesheet" href="/static/css/tabla.css"/>
+	
 	<form>
 		<table>
+			<thead>
 			<tr>
 				<th style="width:11%;">C&oacute;digo</th>
 				<th style="width:11%;">Nombre</th>
@@ -19,6 +23,8 @@
 				<th style="width:11%;">NDoc</th>
 				<th style="width:11%;">Precio</th>
 			</tr>
+			</thead>
+			<tbody>
 			<tr>
 				<td><input type="text" id="codigo"></input></td>
 				<td><input type="text" id="nombre" readonly="readonly"></input></td>
@@ -30,6 +36,7 @@
 				<td><input type="number" id="nDoc" required="required"></input></td>
 				<td><input type="number" id="precio"></input></td>
 			</tr>
+			</tbody>
 		</table>
 		<div class="row">
 			<div class="large-2 large-offset-9 columns">

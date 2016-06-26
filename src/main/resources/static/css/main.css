@@ -323,7 +323,7 @@ input, select {
 	border-radius: 25px;
 	padding: 0.5em;
 }
-
+/*
 	Remover flechas de input tpe number
 */
 input[type="number"]::-webkit-outer-spin-button,
@@ -372,5 +372,3 @@ input[type="date"]::-webkit-inner-spin-button{
 	#crear-factura label{
 		font-size: 2vh !important;
 	}
-
-/*

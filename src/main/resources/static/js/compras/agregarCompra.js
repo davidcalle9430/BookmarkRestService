@@ -29,12 +29,10 @@ function iniciarFormulario()
  * */
 function capturarTab()
 {
-	$("table").on("keydown", "#precio", 
-	function(ev) 
-	{
+	$("table").on( "keydown" , "#precio", 
+	function(ev) {
 		var code = ev.keyCode || ev.which;
-		if (code == '9') 
-		{
+		if (code == '9') {
 			agregarFila();
 		}
 		var trSelec = $(this).parent().parent();
@@ -45,7 +43,7 @@ function capturarTab()
  * Función encargada de crear una nueva fila con campos vacios.
  * */
 function agregarFila()
- {
+{
 	 var nuevaFila= $("<tr>");
 	 
 	 var columnaCodigo= $("<td>");
@@ -89,7 +87,7 @@ function agregarFila()
 	 nuevaFila.append(columnaNdoc);
 	 nuevaFila.append(columnaPrecio);
 	 
-	 $("table").append(nuevaFila);
+	 $("table tbody").append(nuevaFila);
  }
 
 /**
