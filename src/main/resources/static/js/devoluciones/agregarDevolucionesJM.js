@@ -64,10 +64,10 @@ function agregarFila()
 	 var valorColumnaNombre= $("<input>",{id:"nombre", type:"text", readonly:"readonly"});
 	 var valorColumnaReferencia= $("<input>",{id:"referencia", type:"text",readonly:"readonly"});
 	 var valorColumnaFactura= $("<input>",{id:"factura", type:"number", required:"required"});
-	 var valorColumnaTipo= $("<input>",{id:"tipo", type:"number", required:"required"});
+	 var valorColumnaTipo= $("<input>",{id:"tipo", type:"number", required:"required", "class":"mayusc"});
 	 var valorColumnaFecha= $("<input>",{id:"fecha", type:"number", required:"required"});
 	 var valorColumnaCliente= $("<input>",{id:"cliente", type:"text", required:"required"});
-	 var valorColumnaDoc= $("<input>",{id:"doc", type:"text", required:"required"});
+	 var valorColumnaDoc= $("<input>",{id:"doc", type:"text", required:"required", "class" : "mayusc" } );
 	 var valorColumnaNdoc= $("<input>",{id:"nDoc", type:"number", required:"required"});
 	 var valorColumnaCantidad= $("<input>",{id:"cantidad", type:"number"});
 

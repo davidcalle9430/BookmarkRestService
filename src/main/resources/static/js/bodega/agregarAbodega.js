@@ -58,7 +58,7 @@ function agregarFila()
 	 var valorColumnaCodigo= $("<input>",{id:"codigo", type:"number"});
 	 var valorColumnaNombre= $("<input>",{id:"nombre", type:"text", readonly:"readonly"});
 	 var valorColumnaCantidad= $("<input>",{id:"cantidad", type:"number", required:"required"});
-	 var valorColumnaDoc= $("<input>",{id:"doc", type:"text", required:"required"});
+	 var valorColumnaDoc= $("<input>",{id:"doc", type:"text", required:"required", "class":"mayusc" });
 	 var valorColumnaNdoc= $("<input>",{id:"nDoc", type:"number", required:"required"});
 
 	 columnaCodigo.append(valorColumnaCodigo);

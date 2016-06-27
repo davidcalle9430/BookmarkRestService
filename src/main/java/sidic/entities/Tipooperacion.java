@@ -98,3 +98,4 @@ public class Tipooperacion implements Serializable {
     }
     
 }
+	

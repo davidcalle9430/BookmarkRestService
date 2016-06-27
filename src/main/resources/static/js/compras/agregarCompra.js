@@ -63,7 +63,7 @@ function agregarFila()
 	 var valorColumnaCantidad= $("<input>",{id:"cantidad", type:"number", required:"required"});
 	 var valorColumnaCostoJm= $("<input>",{id:"costoJm", type:"number", required:"required"});
 	 var valorColumnaCostoIm= $("<input>",{id:"costoIm", type:"number", required:"required"});
-	 var valorColumnaDoc= $("<input>",{id:"doc", type:"text", required:"required"});
+	 var valorColumnaDoc= $("<input>",{id:"doc", type:"text", required:"required" , "class":"masyusc" });
 	 var valorColumnaNdoc= $("<input>",{id:"nDoc", type:"number", required:"required"});
 	 var valorColumnaPrecio= $("<input>",{id:"precio", type:"number"});
 

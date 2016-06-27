@@ -2,8 +2,8 @@
  * 
  */
 function actualizar(){
-		var articulo = $("#articulo").val();
-		var cliente = $("#cliente").val();
+		var articulo = $("#articulo").val( );
+		var cliente = $("#cliente").val( );
 		getForObject({codigo : cliente, articulo : articulo}, "/api/especia/search/findOneByCodigoAndArticulo", function(articulo){
 			$("#referencia").val(articulo.referencia);
 			$("#precio").val(articulo.precio);
@@ -33,7 +33,9 @@ function cargarClientes(){
 		var select = $("#cliente");
 		clientes = clientes._embedded.clientes;
 		clientes.forEach(function(cliente){
-			select.append($("<option>", {value : cliente.codigo, text: cliente.razsoc}));
+			select.append(
+					$("<option>", {value : cliente.codigo, text: zeroPad( cliente.codigo , 6 ) + " " + cliente.razsoc})
+					);
 		});
 	});
 	$("form").submit(function(ev){
@@ -55,7 +57,10 @@ function cargarArticulos(){
 		var select = $("#articulo");
 		articulos = articulos._embedded.articulos;
 		articulos.forEach(function(articulo){
-			select.append($("<option>", {value : articulo.codigo, text: articulo.referencia}));
+			select.append(
+					$("<option>", 
+							{ value : articulo.codigo, text: articulo.codigo + " " + articulo.referencia}
+					));
 		});
 	});
 }

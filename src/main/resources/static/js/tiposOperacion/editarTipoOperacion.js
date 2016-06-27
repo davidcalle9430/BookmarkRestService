@@ -66,7 +66,6 @@ function editarTipoOperacion ( ev )
 	
 	if( agregarTipoOPeracion )
 	{
-		alert( " se agrega " + JSON.stringify( tipoOperacionSelec ) );
 		postForObject( tipoOperacionSelec , "/api/tipoOperaciones/", 
 				function(data){alert("Se ha agregado el tipo de operación No. "+ zeroPad( data.codigo , 3) + " con éxito!");location.href = "/tipoOperacion/";},
 				function(data){alert("Error al agregar el nuevo tipo de operación  No. "+ zeroPad( data.codigo , 3)+"!!");location.href = "/tipoOperacion/";} );

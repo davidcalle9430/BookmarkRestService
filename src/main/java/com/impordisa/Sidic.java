@@ -293,6 +293,7 @@ class CustomRestMvcConfiguration {
 		return new RepositoryRestConfigurerAdapter() {
 			@Override
 			public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+				
 				config.setBasePath("/api");
 				config.exposeIdsFor( Articulo.class );
 				config.exposeIdsFor( Cardexi.class );
@@ -325,19 +326,22 @@ class CustomRestMvcConfiguration {
 			    config.exposeIdsFor( Causales.class );
 			    config.exposeIdsFor( Causalreciboscaja.class );
 			    config.exposeIdsFor( RecibosCaja.class );
+			    
 			    // registro de proyecciones
-			    config.getProjectionConfiguration().addProjection( ClienteRotulacion.class );
-			    config.getProjectionConfiguration().addProjection( ClienteFactura.class );
-			    config.getProjectionConfiguration().addProjection( RolesyMenusProjection.class );
-			    config.getProjectionConfiguration().addProjection( ProveedorCiudad.class );
-			    config.getProjectionConfiguration().addProjection( BasesTipoOperacion.class );
-			    config.getProjectionConfiguration().addProjection( EspeciaClienteConverter.class );
-			    config.getProjectionConfiguration().addProjection( ClienteRotulacionCorrerciaConverter.class );
-			    config.getProjectionConfiguration().addProjection( ClienteVendedorProjection.class );
+			    
+			    config.getProjectionConfiguration( ).addProjection( ClienteRotulacion.class );
+			    config.getProjectionConfiguration( ).addProjection( ClienteFactura.class );
+			    config.getProjectionConfiguration( ).addProjection( RolesyMenusProjection.class );
+			    config.getProjectionConfiguration( ).addProjection( ProveedorCiudad.class );
+			    config.getProjectionConfiguration( ).addProjection( BasesTipoOperacion.class );
+			    config.getProjectionConfiguration( ).addProjection( EspeciaClienteConverter.class );
+			    config.getProjectionConfiguration( ).addProjection( ClienteRotulacionCorrerciaConverter.class );
+			    config.getProjectionConfiguration( ).addProjection( ClienteVendedorProjection.class );
 			}
 
 			@Override
 			public void configureConversionService(ConfigurableConversionService conversionService) {
+				
 				super.configureConversionService( conversionService );
 				UsuarioPKConverter usuarioPKConverter = new UsuarioPKConverter( );
 				EspeciaConverter espcia = new EspeciaConverter( );
@@ -347,6 +351,7 @@ class CustomRestMvcConfiguration {
 				conversionService.addConverter( espcia );
 				conversionService.addConverter( nivelesConverter );
 				conversionService.addConverter( basesConverter );
+				
 			}
 		};
 	}
@@ -371,15 +376,16 @@ class RequestFilter extends OncePerRequestFilter {
 
 	public boolean validarPermiso(String URI, Usuarios usuario) {
 		String nombreMenu = URI.split("/")[1]; // se parte la url en trozos y se obtine el primer valor
-		Menus menu = menusRepository.findOneByMenusPK_menu(nombreMenu);
+		Menus menu = menusRepository.findOneByMenusPK_menu( nombreMenu );
 		if(menu == null){
 			return true;
 		}
 		String reggex = "(.)*" + menu.getMenusPK().getMenu() + "(.)*";
-		if (URI.matches(reggex)) { // a final de cuentas, un rol viene siendo lo // mismo que un nivel
-			List<Rolesymenus> rolXmenu = rolesYMenusRepository.findAllByRolesymenusPK_Menu(menu.getMenusPK().getMenu());
-			for (Rolesymenus rolymenu : rolXmenu) {
-				Long comparador = new Long(usuario.getNivel());
+		if ( URI.matches( reggex ) ) { // a final de cuentas, un rol viene siendo lo // mismo que un nivel
+			List<Rolesymenus> rolXmenu = rolesYMenusRepository.findAllByRolesymenusPK_Menu( menu.getMenusPK( ).getMenu( ) );
+			for ( Rolesymenus rolymenu : rolXmenu ) {
+				
+				Long comparador = new Long( usuario.getNivel() );
 				if(rolymenu.getRolesymenusPK().getRol().equals(comparador)){
 					return true;
 				}
