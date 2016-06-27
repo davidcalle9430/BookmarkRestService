@@ -287,16 +287,19 @@ $(function() {
 	 * Función que activa y agrega a cada uno de los elementos <input/> la propiedad "title"
 	 * necesaria para hacer funcionar el "tooltip"
 	 * */
-	$('input:text').each(function(){
-		$(this).attr('title',"");
-	})
-   // $( document ).tooltip();
+   $( document ).tooltip();
+	
+});
+
+$('body').on( 'mouseenter' , 'input', function() {
+	$( this ).attr( 'title' , $( this ).val( ) );
+	$( document ).tooltip( );
 });
 
 /**
  * Función que hace dinámico el cambio del texto en el tooltip* a medida que se escribe en el elemento <input/>
  * */
-$('input:text').on('keyup change keypress keydown mouseenter mouseleave', function () {
+$('input:text').on('keyup change keypress keydown mouseenter mouseleave change', function () {
 	var text = $(this).val();
 	$(this).attr('title',text);
 	$(".ui-tooltip-content").text(text);
