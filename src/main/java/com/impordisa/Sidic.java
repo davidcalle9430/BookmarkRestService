@@ -18,6 +18,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.boot.context.embedded.ErrorPage;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -28,6 +31,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -433,7 +437,7 @@ class RequestFilter extends OncePerRequestFilter {
 			 }	 
 		 }
 		// se le quita la seguridad a las paginas de no tienen seguridad alguna
-		if(URI.equals("/") || URI.equals("/inicio/") || URI.equals("/login") || URI.equals("/jm/")){ // No se logrò confugirar la ruta / por lo que se redirige a /inicio/
+		if(URI.equals("/") || URI.equals("/inicio/") || URI.equals("/login") || URI.equals("/jm/") || URI.matches("/errores*")){ // No se logrò confugirar la ruta / por lo que se redirige a /inicio/
 			if(URI.equals("/")){
 				response.sendRedirect("/inicio/");
 			}
@@ -451,7 +455,7 @@ class RequestFilter extends OncePerRequestFilter {
 				if (!esApi) {
 					permitido = validarPermiso( URI , elected );
 					if (!permitido) {
-						response.sendError(500, "El rol del usuario actual no tiene los permisos suficientes" );
+						response.sendError(401, "El rol del usuario actual no tiene los permisos suficientes" );
 						return;
 					}
 				}	
@@ -459,4 +463,23 @@ class RequestFilter extends OncePerRequestFilter {
 		}
 		filterChain.doFilter(request, response);
 	}
+}
+
+
+
+
+@Component
+class CustomizationBean implements EmbeddedServletContainerCustomizer {
+
+  @Override
+  public void customize(ConfigurableEmbeddedServletContainer container) {
+	  Set<ErrorPage> s = new HashSet<>(); 
+	  ErrorPage ep = new ErrorPage(HttpStatus.UNAUTHORIZED, "/errores/401");
+	  s.add(ep);
+	  ep = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/errores/500");
+	  s.add(ep);
+	  ep = new ErrorPage(HttpStatus.NOT_FOUND, "/errores/404");
+	  s.add(ep);
+	  container.setErrorPages(s);
+  }
 }
