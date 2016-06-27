@@ -5,12 +5,12 @@
 </head>
 <body class="main-form" ng-app="opciones-usuario-eliminar" ng-controller="appController">
 	<nav th:replace="navJM :: navJM"></nav>
-	<h1>{{titulo}}</h1>
+	<h1>Eliminar menú</h1>
 	<h1>Esta seguro que desea eliminar la entrada?</h1>
 	<div class="row">
 		<div class="medium-offset-5 columns">
-			<a href="#" class="button">Cancelar</a>
-			<a href="#" class="button alert">Eliminar</a>
+			<a href="#" ng-click="cancelar()" class="button">Cancelar</a>
+			<a href="#" ng-click="eliminar()" class="button alert">Eliminar</a>
 		</div>
 	</div>
    	<footer th:replace="footer :: footer"></footer>

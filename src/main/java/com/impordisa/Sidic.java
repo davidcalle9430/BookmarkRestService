@@ -53,6 +53,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import converters.BasesConverter;
 import converters.EspeciaConverter;
 import converters.NivelesPKConverter;
+import converters.RolesYMenusConverter;
 import converters.UsuarioPKConverter;
 import repositories.MenusRepository;
 import repositories.RolesRepository;
@@ -347,11 +348,13 @@ class CustomRestMvcConfiguration {
 				EspeciaConverter espcia = new EspeciaConverter( );
 				NivelesPKConverter nivelesConverter = new NivelesPKConverter( );
 				BasesConverter basesConverter = new BasesConverter( );
+				RolesYMenusConverter rolesYMenusConverter = new RolesYMenusConverter();
 				conversionService.addConverter( usuarioPKConverter );
 				conversionService.addConverter( espcia );
 				conversionService.addConverter( nivelesConverter );
 				conversionService.addConverter( basesConverter );
-				
+				conversionService.addConverter( rolesYMenusConverter );
+
 			}
 		};
 	}
