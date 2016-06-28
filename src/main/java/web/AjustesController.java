@@ -23,8 +23,8 @@ public class AjustesController {
 	}
 	
 	@RequestMapping( value = "/CalCostoImpordisa/")
-	public String esteban( ){
-		return "ajustes/esteban";
+	public String calcularcostoimpordisa( ){
+		return "ajustes/calcularcostoimpordisa";
 	}
 	
 	

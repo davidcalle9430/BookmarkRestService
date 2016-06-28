@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author david
  */
 @Entity
+@Table(name="tipooperacion")
 @XmlRootElement
 public class Tipooperacion implements Serializable {
 

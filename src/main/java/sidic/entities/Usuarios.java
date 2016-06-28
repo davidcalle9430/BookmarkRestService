@@ -18,6 +18,7 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -31,6 +32,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author david
  */
 @Entity
+@Table(name="usuarios")
 @XmlRootElement
 @IdClass(UsuariosPK.class)
 public class Usuarios implements Serializable {

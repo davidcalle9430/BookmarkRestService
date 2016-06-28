@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -16,6 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author david
  */
 @Entity
+@Table(name="ventasseguimiento")
 @XmlRootElement
 public class Ventasseguimiento implements Serializable {
 
