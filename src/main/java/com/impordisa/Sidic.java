@@ -3,6 +3,7 @@ package com.impordisa;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -55,6 +56,11 @@ import converters.EspeciaConverter;
 import converters.NivelesPKConverter;
 import converters.RolesYMenusConverter;
 import converters.UsuarioPKConverter;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 import repositories.MenusRepository;
 import repositories.RolesRepository;
 import repositories.RolesYMenusRepository;
@@ -99,6 +105,7 @@ import projections.ClienteVendedorProjection;
 import projections.EspeciaClienteConverter;
 import projections.ProveedorCiudad;
 import projections.RolesyMenusProjection;
+import reports.datasources.ExampleDataSource;
 
 /**
  * Clase encargade de arrancar la aplicación haciendo un escaneo de los
@@ -181,7 +188,17 @@ class BookingCommandLineRunner implements CommandLineRunner {
 		principalService.acumVentasMes( );
 		principalService.valorizacion( );
 		principalService.acumVentas( );
-		System.out.println( "Fin funcionalidades de inicio " );
+		
+		JasperReport jasperReport;
+		JasperPrint jasperPrint;
+		jasperReport = JasperCompileManager
+				.compileReport("src/main/resources/reports/invoice.jrxml");
+		/*CustomJRDataSource<City> dataSource = new CustomJRDataSource<City>()
+				.initBy(cities);*/
+		jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(),
+				new ExampleDataSource() );
+		JasperExportManager.exportReportToPdfFile(jasperPrint,
+				"src/main/resources/static/jasper/report.pdf");
 	}
 }
 

@@ -31,7 +31,6 @@ import sidic.entities.Notdecre;
 /**
  * clase que expone los servicios web de las funcionalidades de ajustes
  * @author david
- *
  */
 @RestController
 public class AjustesRestController {
@@ -52,10 +51,12 @@ public class AjustesRestController {
 	public ResponseEntity<?> reporteDeVentas( @RequestBody List< NotasCarteraDTO > carteras ){
 	
 		for (NotasCarteraDTO nota : carteras) {
+			
 			Notdecre notaCredito = new Notdecre();
 			notaCredito.setFecha( new Date() );
 			notaCredito.setCliente( (double)nota.getCodigo() );
 			notaCredito.setFactura( (double) nota.getFactura() );
+			
 			if( nota.getNat().equalsIgnoreCase("D")){
 				notaCredito.setValDeb( nota.getValor() );
 				notaCredito.setValCre( 0.0 );
@@ -63,6 +64,7 @@ public class AjustesRestController {
 				notaCredito.setValCre( nota.getValor() );
 				notaCredito.setValDeb( 0.0 );
 			}
+			
 			notaCredito.setIva( nota.getIva() );
 			notaCredito.setCantidad( 0.0 );
 			notaCredito.setCodigo( 0.0 );
@@ -70,6 +72,7 @@ public class AjustesRestController {
 			notaCredito.setDescue( 0.0 );
 			notaCredito.setCausal( nota.getCausal() );
 			notdecreRepository.save( notaCredito );
+			
 		}
 		return new ResponseEntity<>( HttpStatus.ACCEPTED );
 	}
@@ -156,19 +159,29 @@ public class AjustesRestController {
 		for (NotaDCVentasDTO nota : notas) {
 			if( nota.getNat().equalsIgnoreCase( "C" ) ){
 				if( nota.getTipo().equalsIgnoreCase( "I" ) ){
+					
 					nfact.setAcumiva( nfact.getAcumiva() - nota.getValor() );
+					
 				}else{
+					
 					nfact.setAcumsiniva( nfact.getAcumsiniva() - nota.getValor() );
+					
 				}
 			}else{
 				if( nota.getTipo().equalsIgnoreCase("I") ){
+					
 					nfact.setAcumiva( nfact.getAcumiva() + nota.getValor() );
+					
 				}else{
+					
 					nfact.setAcumsiniva( nfact.getAcumsiniva() + nota.getValor() );
+					
 				}
 			}
 		}
+		
 		nfactRepository.save( nfact );
+		
 		return new ResponseEntity<>( HttpStatus.ACCEPTED );
 	}
 }
