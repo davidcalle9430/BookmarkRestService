@@ -4,6 +4,8 @@ import java.util.List;
 
 import resultclasses.ArticuloGenero;
 import resultclasses.ArticuloGeneroCostoDTO;
+import resultclasses.CalcularCostoIMDTO;
+
 
 public interface ArticuloService {
 	
@@ -12,6 +14,7 @@ public interface ArticuloService {
 	public Double darTotal();
 	
 	public ArticuloGeneroCostoDTO darArticuloConGeneroCosto( Long codigo );
+	public CalcularCostoIMDTO darCalcularCostoIMDTO (Long codigo);
 	
 	public List< ArticuloGenero > darArticulosGenero( Long codigoGenero );
 	

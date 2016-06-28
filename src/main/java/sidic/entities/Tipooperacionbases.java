@@ -11,6 +11,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -18,6 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author david
  */
 @Entity
+@Table(name="tipooperacionbases")
 @XmlRootElement
 public class Tipooperacionbases implements Serializable {
 

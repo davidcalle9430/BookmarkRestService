@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import resultclasses.ArticuloGenero;
 import resultclasses.ArticuloGeneroCostoDTO;
+import resultclasses.CalcularCostoIMDTO;
 
 @Service
 public class ArticuloServiceImpl implements ArticuloService {
@@ -45,7 +46,6 @@ public class ArticuloServiceImpl implements ArticuloService {
 
 	@Override
 	public ArticuloGeneroCostoDTO darArticuloConGeneroCosto( Long codigo ) {
-
 		Query q = em.createQuery(" "
 				+ "select new resultclasses.ArticuloGeneroCostoDTO( "
 				+ "g.nombre , a.referencia , "
@@ -84,4 +84,25 @@ public class ArticuloServiceImpl implements ArticuloService {
 			return null;
 		}
 	}
+
+	public CalcularCostoIMDTO darCalcularCostoIMDTO(Long codigo) {
+		
+		Query q = em.createQuery(" "
+				+ "select new resultclasses.CalcularCostoIMDTO( "
+				+ "g.nombre , a.referencia , "
+				+ "a.costprom , a.invimppas, "
+				+ "a.ultcomp , a.ultcosproi ) "
+				+ "from Articulo a , Genero g "
+				+ "where FUNCTION( 'FLOOR' , a.codigo / 1000 ) = g.codigo "
+				+ "and a.codigo = :codigo");
+		q.setParameter( "codigo" , codigo );
+		try{
+			CalcularCostoIMDTO res = ( CalcularCostoIMDTO ) q.getSingleResult( );
+			return res;
+		}catch( Exception e ){
+			return null;
+		}
+	}
+	
+
 }

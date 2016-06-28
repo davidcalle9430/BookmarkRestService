@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -17,6 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author david
  */
 @Entity
+@Table(name="genero")
 @XmlRootElement
 public class Genero implements Serializable {
 

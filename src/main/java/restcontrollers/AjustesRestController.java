@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,11 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 import repositories.CarteraRepository;
 import repositories.NFactRepository;
 import repositories.NotdecreRepository;
+import resultclasses.CalcularCostoIMDTO;
 import resultclasses.NotaDCVentasDTO;
 import resultclasses.NotasCarteraDTO;
 import sidic.entities.Cartera;
 import sidic.entities.Nfact;
 import sidic.entities.Notdecre;
+import services.ArticuloService;
 
 
 /**
@@ -45,8 +48,22 @@ public class AjustesRestController {
 	@Autowired
 	private NotdecreRepository notdecreRepository;
 	
+	@Autowired
+	private ArticuloService articuloService;
+	
 	@PersistenceContext
 	private EntityManager em;
+	
+	@RequestMapping( value = "/api/ajustes/articulo/{codigo}/" , method = RequestMethod.GET )
+	public ResponseEntity<CalcularCostoIMDTO> darCostoIM( @PathVariable Long codigo){
+		CalcularCostoIMDTO calcIM = articuloService.darCalcularCostoIMDTO(codigo);
+		if(calcIM == null){
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);		
+		}
+		return new ResponseEntity<>(calcIM,HttpStatus.ACCEPTED);
+		
+	}
+	
 	
 	@RequestMapping( value = "/api/ajustes/reporteventas/" , method = RequestMethod.POST )
 	public ResponseEntity<?> reporteDeVentas( @RequestBody List< NotasCarteraDTO > carteras ){

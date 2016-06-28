@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="header :: header"> </head>
+
+<body class="main-form" ng-app="calccostim" ng-controller="calccostimController" >
+
+	<nav th:replace="navJM :: navJM"></nav>
+	
+	<h1 style="color:black;"> C&aacute;lculo Costo IM </h1>
+	<div class="row">
+			<div class="large-3 medium-3 small-3 columns">
+				<label>C&oacute;digo <input ng-model = "codigo" ng-change = "cargarCodigo()" ng-model-options="{updateOn: 'blur'}" id="codigo" type="text" name="codigo" 
+				 required="required"  />
+				</label>
+			</div>
+			<div class="large-6 medium-6 small-6 columns end">
+				<label>&nbsp;<input id="nada" ng-model = "nombre" type="text" name="codigo" onchange="verificar()"
+				 required="required" readonly="readonly" />
+				</label>
+			</div>
+	</div>
+	<div class="row">
+			<div class="large-3 medium-3 small-3 columns">
+				<label>CostPromim<input ng-model = "AA"  type="text" name="ciudad"
+					required="required"  /></label>
+			</div>
+			<div class="large-3 medium-3 small-3 columns end">
+				<label>invimpas<input ng-model = "B" type="text" name="ciudad"
+					required="required"  /></label>
+			</div>
+	</div>
+	<div class="row">
+			<div class="large-3 medium-3 small-3 columns">
+				<label>ultcomp<input ng-model = "C" type="text" name="ciudad"
+					required="required"  /></label>
+			</div>
+			<div class="large-3 medium-3 small-3 columns end">
+				<label>ultcostproi<input id="ciudad" ng-model = "D" type="text" name="ciudad"
+					required="required"  /></label>
+			</div>
+	</div>
+	<div class="row">
+			<div class="large-3 medium-3 small-3 columns">
+				<label>nuevoCostPromim<input id="ciudad" ng-model = "A" type="text" name="ciudad"
+					required="required"  /></label>
+			</div>
+			<div class="large-3 medium-3 small-3 columns end">
+				<label>Costo a Digitar<input id="ciudad" ng-model = "Y" type="text" name="ciudad"
+					required="required"  /></label>
+			</div>
+	</div>
+	<div class="row">
+			<div class="large-3 medium-3 small-3 columns" style="color:black;">
+				<p>Si digita el CostPromim el sistema calcula el costo a digitar. No olvidar colocar cero(0) a Costo a digitar</p>
+			</div>
+			<div class="large-3 medium-3 small-3 columns end" style="color:black;">
+				<p>Si digita el Costo a Digitar el sistema calcula el Costo Promedio Impordisa. No olvidar colocar cero(0) a nuevo Cto Prom</p>
+			</div>
+			
+
+	</div>
+	<div class="row">
+			<div class="">
+				<button type="submit" class="button large-3 submit" style="float: right" ng-click = "darClick()">Calcular</button>
+		</div>
+	</div>
+	
+	<footer th:replace="footer :: footer"></footer>
+	
+	<script src="/static/js/ajustes/calcularcostoimpordisa.js"> </script>
+	
+</body>
+</html>
