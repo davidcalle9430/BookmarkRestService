@@ -1,7 +1,4 @@
 target/*
-/target/
-<<<<<<< HEAD
-**log.log
-=======
 src/main/resources/application.properties
->>>>>>> CalcCostoImporvisa
+src/main/resources/static/reports/*
+reports/*

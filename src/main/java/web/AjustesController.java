@@ -13,12 +13,12 @@ public class AjustesController {
 	}
 	
 	@RequestMapping( value = "/mnundcavjm/" )
-	public String notasDebitoCreditoAcumVentas(){
+	public String notasDebitoCreditoAcumVentas( ){
 		return "ajustes/notasdebitocreditoacumventas";
 	}
 	
 	@RequestMapping( value = "/mnundcrvjm/" )
-	public String notasDCReporteVentas(){
+	public String notasDCReporteVentas( ){
 		return "ajustes/notasdcreporteventas";
 	}
 	
