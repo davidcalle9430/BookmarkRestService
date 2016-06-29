@@ -8,10 +8,15 @@ import sidic.entities.TipooperacionbasesPK;
 
 @Projection(name="tipo", types = {Tipooperacionbases.class})
 public interface BasesTipoOperacion {
+	
 	TipooperacionbasesPK getTipooperacionbasesPK();
+	
 	Double getBase();
+	
 	Double getPorcentaje();
+	
 	String getTipo();
+	
 	Tipooperacion getTipooperacion1();
 	
 }
