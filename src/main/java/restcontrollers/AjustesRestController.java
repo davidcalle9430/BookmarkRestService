@@ -19,12 +19,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import repositories.ArticuloRepository;
 import repositories.CarteraRepository;
 import repositories.NFactRepository;
 import repositories.NotdecreRepository;
 import resultclasses.CalcularCostoIMDTO;
+import resultclasses.AjustarCostoJMDTO;
 import resultclasses.NotaDCVentasDTO;
 import resultclasses.NotasCarteraDTO;
+import sidic.entities.Articulo;
 import sidic.entities.Cartera;
 import sidic.entities.Nfact;
 import sidic.entities.Notdecre;
@@ -38,6 +41,10 @@ import services.ArticuloService;
  */
 @RestController
 public class AjustesRestController {
+
+
+	@Autowired
+	private ArticuloRepository articuloRepository;
 	
 	@Autowired
 	private CarteraRepository carteraRespository;
@@ -186,6 +193,28 @@ public class AjustesRestController {
 			}
 		}
 		nfactRepository.save( nfact );
+		return new ResponseEntity<>( HttpStatus.ACCEPTED );
+	}
+	
+	
+	
+	
+	
+	@RequestMapping( value = "/api/ajustes/corCostoImpordisa/" , method = RequestMethod.POST )
+	public ResponseEntity<?> corCostoImpordisa( @RequestBody List< AjustarCostoJMDTO > articulos ){
+		for (AjustarCostoJMDTO arti : articulos) {
+			Articulo art = articuloRepository.findOne(arti.getCodigo());
+			art.setCosultcom(arti.getNvocosto());
+			if(art.getUltcosproi() == null){
+				art.setUltcosproi(0.0);
+			}
+
+			Double resultado = ((art.getInvimppas()-art.getUltcomp())*art.getUltcosproi()+arti.getNvocosto()* art.getUltcomp())/art.getInvimppas();
+			art.setCostpromim(resultado);
+			articuloRepository.save(art);
+			
+		}
+		
 		return new ResponseEntity<>( HttpStatus.ACCEPTED );
 	}
 }
