@@ -98,6 +98,17 @@ function obtenerCheckSum(numero){
 }
 
 /**
+ * Recibe el código formateado digitado para verificar si corresponde a los valores
+ * 
+ * */
+function verificarCheckSum(codigo){
+	var codreal = obtenerCodigoReal(codigo);
+	var checksum = darCodigoFormateado(codreal);
+	return codigo == checksum;
+	
+}
+
+/**
  * función encargada de serializar un formulario y volverlo un objeto JS
  */
 $.fn.serializeObject = function(){

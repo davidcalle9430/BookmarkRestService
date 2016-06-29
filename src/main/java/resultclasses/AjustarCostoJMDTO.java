@@ -51,6 +51,12 @@ public class AjustarCostoJMDTO {
 	public void setNvocosto(Double nvocosto) {
 		this.nvocosto = nvocosto;
 	}
+
+	@Override
+	public String toString() {
+		return "AjustarCostoJMDTO [codigo=" + codigo + ", nombre=" + nombre + ", referencia=" + referencia
+				+ ", cosultcom=" + cosultcom + ", nvocosto=" + nvocosto + "]";
+	}
 	
 	
 	

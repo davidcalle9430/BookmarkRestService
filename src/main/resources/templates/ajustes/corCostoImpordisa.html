@@ -1,20 +1,48 @@
 <!DOCTYPE html>
 <html>
 
-<head th:replace="header :: header"> </head>
+<head th:replace="header :: header">
+</head>
 
-<body class="main-form" ng-app="corccostim" ng-controller="corccostimController" >
+<body class="main-form" ng-app="corccostim"	ng-controller="corccostimController">
 
 	<nav th:replace="navJM :: navJM"></nav>
+	<link rel="stylesheet" href="/static/css/tabla.css" />
+
+	<h1 style="color: black;">Correcci&oacute;n costo &uacute;ltimacompra - IMPORDISA</h1>
+	<table>
+		<thead>
+			<tr>
+				<th style="width: 20%;">C&oacute;digo</th>
+				<th style="width: 20%;">Nombre</th>
+				<th style="width: 20%;">Referencia</th>
+				<th style="width: 20%;">Consultcon</th>
+				<th style="width: 20%;">Nvocosto</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="fila in vista.lista">
+				<td><input type="text" ng-model="fila.codigoFormateado"
+					ng-model-options="{updateOn: 'blur'}"
+					ng-change="actualizar( fila )" /></td>
+				<td><input type="text" ng-model="fila.nombre"/></td>
+				<td><input type="text" ng-model="fila.referencia"/></td>
+				<td><input type="text" ng-model="fila.consultcon"/></td>
+				<td><input type="text" ng-model="fila.nvocosto"	ng-model-options="{updateOn: 'blur'}" ng-keydown= "agregarFila($event)" /></td>
+			</tr>
+		</tbody>
+	</table>
 	
-	<h1 style="color:black;"> Correcci&oacute;n costo &uacute;ltima compra - IMPORDISA </h1>
 	<div class="row">
-		
+				<button type="submit" class="button large-3 submit" style="float: right" ng-click = "clickCargar()">Cargar</button>
 	</div>
 	
+
 	<footer th:replace="footer :: footer"></footer>
-	
-	<script src="/static/js/ajustes/calcularcostoimpordisa.js"> </script>
-	
+
+	<script src="/static/js/ajustes/corCostoImpordisa.js">
+		
+	</script>
+
 </body>
 </html>

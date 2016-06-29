@@ -27,7 +27,7 @@ public class AjustesController {
 		return "ajustes/calcularcostoimpordisa";
 	}
 	
-	@RequestMapping( value = "/mnuajcdddddducjm/")
+	@RequestMapping( value = "/mnuajcucjm/")
 	public String corregircostoimpordisa( ){
 		return "ajustes/corCostoImpordisa";
 	}
