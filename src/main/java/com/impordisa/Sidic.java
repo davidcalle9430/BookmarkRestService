@@ -13,7 +13,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.table.DefaultTableModel;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -56,11 +58,14 @@ import converters.EspeciaConverter;
 import converters.NivelesPKConverter;
 import converters.RolesYMenusConverter;
 import converters.UsuarioPKConverter;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 import repositories.MenusRepository;
 import repositories.RolesRepository;
 import repositories.RolesYMenusRepository;
@@ -122,9 +127,9 @@ import reports.datasources.ExampleDataSource;
 @EnableAutoConfiguration
 public class Sidic {
 	
-	public static void main(String[] args) {
+	public static void main( String[] args ) {
 		
-		SpringApplication.run(Sidic.class, args);
+		SpringApplication.run( Sidic.class , args );
 		
 	}
 	
@@ -179,8 +184,12 @@ class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 @Component
 class BookingCommandLineRunner implements CommandLineRunner {
 	
+	final static Logger logger = Logger.getLogger(BookingCommandLineRunner.class);
+	
 	@Autowired
 	private PrincipalService principalService;
+	
+	DefaultTableModel tableModel;
 	
 	@Override
 	public void run(String... arg0) throws Exception {
@@ -188,18 +197,41 @@ class BookingCommandLineRunner implements CommandLineRunner {
 		principalService.acumVentasMes( );
 		principalService.valorizacion( );
 		principalService.acumVentas( );
-		
-		JasperReport jasperReport;
-		JasperPrint jasperPrint;
-		jasperReport = JasperCompileManager
-				.compileReport("src/main/resources/reports/invoice.jrxml");
-		/*CustomJRDataSource<City> dataSource = new CustomJRDataSource<City>()
-				.initBy(cities);*/
-		jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(),
-				new ExampleDataSource() );
-		JasperExportManager.exportReportToPdfFile(jasperPrint,
-				"src/main/resources/static/jasper/report.pdf");
+		logger.info("Acumulacion de ventas");
+		SimpleReport();
 	}
+ 
+    public void SimpleReport() {
+        JasperPrint jasperPrint = null;
+        TableModelData();
+        try {
+            JasperReport report = JasperCompileManager.compileReport("src/main/resources/reports/invoice.jrxml");
+            jasperPrint = JasperFillManager.fillReport( report , new HashMap(),
+                    new JRTableModelDataSource(tableModel));
+            JasperExportManager.exportReportToPdfFile( jasperPrint ,
+    				"reports/report.pdf");
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }        
+    }
+    
+    private void TableModelData() {
+        String[] columnNames = {"Id", "Name", "Department", "Email"};
+        String[][] data = {
+            {"111", "G Conger", " Orthopaedic", "jim@wheremail.com"},
+            {"222", "A Date", "ENT", "adate@somemail.com"},
+            {"333", "R Linz", "Paedriatics", "rlinz@heremail.com"},
+            {"444", "V Sethi", "Nephrology", "vsethi@whomail.com"},
+            {"555", "K Rao", "Orthopaedics", "krao@whatmail.com"},
+            {"666", "V Santana", "Nephrology", "vsan@whenmail.com"},
+            {"777", "J Pollock", "Nephrology", "jpol@domail.com"},
+            {"888", "H David", "Nephrology", "hdavid@donemail.com"},
+            {"999", "P Patel", "Nephrology", "ppatel@gomail.com"},
+            {"101", "C Comer", "Nephrology", "ccomer@whymail.com"}
+        };
+        tableModel = new DefaultTableModel(data, columnNames);
+    }
+ 
 }
 
 /**
@@ -280,9 +312,17 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/static/css/**");
-		web.ignoring().antMatchers("/static/js/**");
-		web.ignoring().antMatchers("/static/foundation-6/**");
+		
+		web
+			.ignoring()
+			.antMatchers("/static/css/**");
+		web
+			.ignoring()
+			.antMatchers("/static/js/**");
+		
+		web
+			.ignoring()
+			.antMatchers("/static/foundation-6/**");
 	}
 
 	@Override
@@ -423,7 +463,7 @@ class RequestFilter extends OncePerRequestFilter {
 			LocalDate fechaPassword = LocalDate.parse( DATE_FORMAT.format( elected.getFechapassword( ) ) );
 			fechaPassword = fechaPassword.plusDays(new Long(elected.getMaxdias()));
 			LocalDate fechaActual = LocalDate.now();
-			if(fechaActual.isAfter(fechaPassword)){
+			if(fechaActual.isAfter( fechaPassword ) ){
 				return true;
 			}
 		}

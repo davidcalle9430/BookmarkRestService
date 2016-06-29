@@ -24,12 +24,15 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Zonas implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Basic(optional = false)
     @Column(nullable = false, length = 3)
     private String zona;
+    
     @Column(length = 50)
     private String nombre;
+    
     @OneToMany(mappedBy = "zona")
     private List<Clientes> clientesList;
 
