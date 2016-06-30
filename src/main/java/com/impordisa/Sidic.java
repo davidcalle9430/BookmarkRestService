@@ -65,7 +65,6 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
-import net.sf.jasperreports.view.JasperViewer;
 import repositories.MenusRepository;
 import repositories.RolesRepository;
 import repositories.RolesYMenusRepository;
@@ -102,6 +101,7 @@ import sidic.entities.Usuarios;
 import sidic.entities.Vendedor;
 import sidic.entities.VentasseguimientoOrg;
 import sidic.entities.Zonas;
+import utility.DateBuilder;
 import projections.BasesTipoOperacion;
 import projections.ClienteFactura;
 import projections.ClienteRotulacion;
@@ -110,7 +110,6 @@ import projections.ClienteVendedorProjection;
 import projections.EspeciaClienteConverter;
 import projections.ProveedorCiudad;
 import projections.RolesyMenusProjection;
-import reports.datasources.ExampleDataSource;
 
 /**
  * Clase encargade de arrancar la aplicación haciendo un escaneo de los
@@ -206,10 +205,17 @@ class BookingCommandLineRunner implements CommandLineRunner {
         TableModelData();
         try {
             JasperReport report = JasperCompileManager.compileReport("src/main/resources/reports/invoice.jrxml");
-            jasperPrint = JasperFillManager.fillReport( report , new HashMap(),
+            
+            HashMap<String, Object> data = new HashMap<>();
+            
+            data.put( "fecha" , "Hoy es!!" );
+            
+            jasperPrint = JasperFillManager.fillReport( report , data ,
                     new JRTableModelDataSource(tableModel));
+            
             JasperExportManager.exportReportToPdfFile( jasperPrint ,
     				"reports/report.pdf");
+            
         } catch (JRException ex) {
             ex.printStackTrace();
         }        

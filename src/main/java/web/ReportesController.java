@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ReportesController {
 
 	public final static String REPORTS_PATH = "reports/"; //ruta del archivo
-	public final static String EXCEL_EXTENSION = ".xls";
+	public final static String XLS_EXTENSION = ".xls";
 	public final static String PDF_EXTENSION = ".pdf";
 	
 	/**
@@ -29,5 +29,9 @@ public class ReportesController {
 	@ResponseBody
 	public FileSystemResource getFile( @PathVariable("file_name") String fileName) {
 	    return new FileSystemResource(  REPORTS_PATH + fileName ); 
+	}
+	
+	public String listadoClienteReferenciaEspecial( ){
+		return "reportes/listadoClientesReferenciaEspecial";
 	}
 }
