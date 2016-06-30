@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author david
  */
 @Entity
-@Table(name="cliente")
+@Table(name="clientes")
 @XmlRootElement
 public class Clientes implements Serializable {
 

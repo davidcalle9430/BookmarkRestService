@@ -17,17 +17,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ReportesController {
 
 	public final static String REPORTS_PATH = "reports/"; //ruta del archivo
-	public final static String EXCEL_EXTENSION = ".xls";
+	public final static String XLS_EXTENSION = ".xls";
 	public final static String PDF_EXTENSION = ".pdf";
 	
 	/**
-	 * funcion encargada de servir el archivo estático para descarga
+	 * funcion encargada de servir el archivo estï¿½tico para descarga
 	 * @param fileName, nombre del archivo a descagar
 	 * @return
 	 */
-	@RequestMapping(value = "/reports/{file_name}/", method = RequestMethod.GET)
+	@RequestMapping(value = "/reportes/{file_name}/", method = RequestMethod.GET)
 	@ResponseBody
 	public FileSystemResource getFile( @PathVariable("file_name") String fileName) {
 	    return new FileSystemResource(  REPORTS_PATH + fileName ); 
 	}
+	
+	@RequestMapping(value = "/clienterefenciaespecial/", method = RequestMethod.GET)
+	public String reporteClientesRefenciaEspecial( ){
+		return "reportes/clientesReferenciaEspecial";
+	}
+	
 }
