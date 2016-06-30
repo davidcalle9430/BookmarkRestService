@@ -15,6 +15,7 @@ public interface ArticuloService {
 	public Double darTotal( );
 	
 	public ArticuloGeneroCostoDTO darArticuloConGeneroCosto( Long codigo );
+	
 	public CalcularCostoIMDTO darCalcularCostoIMDTO (Long codigo);
 	
 	public List< ArticuloGenero > darArticulosGenero( Long codigoGenero );

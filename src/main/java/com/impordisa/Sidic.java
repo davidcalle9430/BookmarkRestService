@@ -186,7 +186,7 @@ class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 @Component
 class BookingCommandLineRunner implements CommandLineRunner {
 	
-	final static Logger logger = Logger.getLogger(BookingCommandLineRunner.class);
+	final static Logger logger = Logger.getLogger( BookingCommandLineRunner.class );
 	
 	@Autowired
 	private PrincipalService principalService;
@@ -201,32 +201,9 @@ class BookingCommandLineRunner implements CommandLineRunner {
 		principalService.acumVentasMes( );
 		principalService.valorizacion( );
 		principalService.acumVentas( );
-		logger.info("Acumulacion de ventas");
-		SimpleReport();
+		logger.info("Acumulacion de ventas terminado");
 	}
- 
-    public void SimpleReport() {
-       /* JasperPrint jasperPrint = null;
-        try {
-            JasperReport report = JasperCompileManager.compileReport("src/main/resources/reports/listadoClientesReferenciaEspecial.jrxml");
-            
-            HashMap<String, Object> data = new HashMap<>();
-            
-            
-            ListadoClientesReferenciaEspecialDS ds = new ListadoClientesReferenciaEspecialDS(
-            		articuloService.darClientesEspeciales() );
-            
-            jasperPrint = JasperFillManager.fillReport( report , data ,
-                    ds );
-            
-            JasperExportManager.exportReportToPdfFile( jasperPrint ,
-    				"reports/report.pdf");
-            
-        } catch (JRException ex) {
-            ex.printStackTrace();
-        }*/        
-    }
- 
+
 }
 
 /**
