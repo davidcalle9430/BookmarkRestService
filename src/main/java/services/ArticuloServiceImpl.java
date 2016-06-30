@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import resultclasses.ArticuloGenero;
 import resultclasses.ArticuloGeneroCostoDTO;
 import resultclasses.CalcularCostoIMDTO;
+import resultclasses.ClienteArticuloEspecial;
 
 @Service
 public class ArticuloServiceImpl implements ArticuloService {
@@ -102,6 +104,29 @@ public class ArticuloServiceImpl implements ArticuloService {
 		}catch( Exception e ){
 			return null;
 		}
+	}
+
+
+	@Override
+	public List<ClienteArticuloEspecial> darClientesEspeciales() {
+		Query query = em.createQuery("select e.codigo, c.razsoc, e.articulo, e.referencia, e.precio"
+				+ "					  from Articulo a, Especia e, Clientes c"
+				+ "					  where a.codigo = e.articulo and e.codigo = c.codigo"
+				+ "                   order by e.codigo, e.articulo");
+		@SuppressWarnings("unchecked")
+		List<Object[]> resultado = query.getResultList();
+		List<ClienteArticuloEspecial> retorno = new ArrayList<>();
+		for (Object[] fila : resultado) 
+		{
+			ClienteArticuloEspecial cas = new ClienteArticuloEspecial();
+			cas.setArticulo((Long) ((fila[2] != null)? fila[2]: null));
+			cas.setCodigo((Long) ((fila[0] != null)? fila[0]: null));
+			cas.setPrecio((Double) ((fila[4] != null)? fila[4]: null));
+			cas.setRazonSocial((String)  ((fila[1] != null)? fila[1]: null));
+			cas.setReferencia((String)((fila[3] != null)? fila[3]: null));
+			retorno.add(cas);
+		}
+		return retorno;
 	}
 	
 

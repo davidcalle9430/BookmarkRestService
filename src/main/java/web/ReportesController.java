@@ -31,7 +31,4 @@ public class ReportesController {
 	    return new FileSystemResource(  REPORTS_PATH + fileName ); 
 	}
 	
-	public String listadoClienteReferenciaEspecial( ){
-		return "reportes/listadoClientesReferenciaEspecial";
-	}
 }

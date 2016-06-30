@@ -31,6 +31,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -69,6 +70,7 @@ import repositories.MenusRepository;
 import repositories.RolesRepository;
 import repositories.RolesYMenusRepository;
 import repositories.UsuarioRepository;
+import services.ArticuloService;
 import services.PrincipalService;
 import sidic.entities.Articulo;
 import sidic.entities.Cardex;
@@ -101,7 +103,6 @@ import sidic.entities.Usuarios;
 import sidic.entities.Vendedor;
 import sidic.entities.VentasseguimientoOrg;
 import sidic.entities.Zonas;
-import utility.DateBuilder;
 import projections.BasesTipoOperacion;
 import projections.ClienteFactura;
 import projections.ClienteRotulacion;
@@ -110,6 +111,7 @@ import projections.ClienteVendedorProjection;
 import projections.EspeciaClienteConverter;
 import projections.ProveedorCiudad;
 import projections.RolesyMenusProjection;
+import reports.datasources.ListadoClientesReferenciaEspecialDS;
 
 /**
  * Clase encargade de arrancar la aplicación haciendo un escaneo de los
@@ -121,9 +123,10 @@ import projections.RolesyMenusProjection;
 @SpringBootApplication
 @EntityScan(basePackages = { "entities", "sidic.entities" } )
 @EnableJpaRepositories(basePackages = { "repositories" } )
-@ComponentScan(basePackages = { "com.impordisa" , "restcontrollers", "web" , "projections" , "services" } )
+@ComponentScan(basePackages = { "com.impordisa" , "restcontrollers", "web" , "projections" , "services" , "background" } )
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @EnableAutoConfiguration
+@EnableAsync
 public class Sidic {
 	
 	public static void main( String[] args ) {
@@ -188,7 +191,9 @@ class BookingCommandLineRunner implements CommandLineRunner {
 	@Autowired
 	private PrincipalService principalService;
 	
-	DefaultTableModel tableModel;
+	@Autowired
+	private ArticuloService articuloService;
+	
 	
 	@Override
 	public void run(String... arg0) throws Exception {
@@ -201,41 +206,25 @@ class BookingCommandLineRunner implements CommandLineRunner {
 	}
  
     public void SimpleReport() {
-        JasperPrint jasperPrint = null;
-        TableModelData();
+       /* JasperPrint jasperPrint = null;
         try {
-            JasperReport report = JasperCompileManager.compileReport("src/main/resources/reports/invoice.jrxml");
+            JasperReport report = JasperCompileManager.compileReport("src/main/resources/reports/listadoClientesReferenciaEspecial.jrxml");
             
             HashMap<String, Object> data = new HashMap<>();
             
-            data.put( "fecha" , "Hoy es!!" );
+            
+            ListadoClientesReferenciaEspecialDS ds = new ListadoClientesReferenciaEspecialDS(
+            		articuloService.darClientesEspeciales() );
             
             jasperPrint = JasperFillManager.fillReport( report , data ,
-                    new JRTableModelDataSource(tableModel));
+                    ds );
             
             JasperExportManager.exportReportToPdfFile( jasperPrint ,
     				"reports/report.pdf");
             
         } catch (JRException ex) {
             ex.printStackTrace();
-        }        
-    }
-    
-    private void TableModelData() {
-        String[] columnNames = {"Id", "Name", "Department", "Email"};
-        String[][] data = {
-            {"111", "G Conger", " Orthopaedic", "jim@wheremail.com"},
-            {"222", "A Date", "ENT", "adate@somemail.com"},
-            {"333", "R Linz", "Paedriatics", "rlinz@heremail.com"},
-            {"444", "V Sethi", "Nephrology", "vsethi@whomail.com"},
-            {"555", "K Rao", "Orthopaedics", "krao@whatmail.com"},
-            {"666", "V Santana", "Nephrology", "vsan@whenmail.com"},
-            {"777", "J Pollock", "Nephrology", "jpol@domail.com"},
-            {"888", "H David", "Nephrology", "hdavid@donemail.com"},
-            {"999", "P Patel", "Nephrology", "ppatel@gomail.com"},
-            {"101", "C Comer", "Nephrology", "ccomer@whymail.com"}
-        };
-        tableModel = new DefaultTableModel(data, columnNames);
+        }*/        
     }
  
 }

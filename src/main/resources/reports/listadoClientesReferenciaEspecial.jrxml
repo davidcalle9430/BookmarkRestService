@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-06-29T22:58:52 -->
+<!-- 2016-06-29T23:51:13 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoClientesReferenciaEspecial" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="71fb9dad-33b3-4149-9e6a-04a8c3e35428">
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
+	<field name="CodigoNombre" class="java.lang.String"/>
+	<field name="Referencia" class="java.lang.String"/>
+	<field name="Precio" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -24,14 +27,14 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="81" splitType="Stretch">
+		<band height="34" splitType="Stretch">
 			<textField>
 				<reportElement x="50" y="10" width="100" height="20" uuid="02111656-0655-4dfd-bbfe-da8593de12e2"/>
 				<textFieldExpression><![CDATA["Fecha || "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="170" y="10" width="100" height="20" uuid="00c8138f-fc74-44bd-8659-dcfddb5b78e2"/>
-				<textFieldExpression><![CDATA[DATE( )]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Hoy día pues"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="290" y="10" width="100" height="20" uuid="50c2d2e5-b88c-47e1-9986-d9839f0d2944"/>
@@ -44,18 +47,47 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="200" height="18" uuid="c58f9d06-2aec-4251-88ef-ca31a2e083a5"/>
+				<text><![CDATA[CodigoNombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="10" width="130" height="19" uuid="65842bbd-f0f1-434f-b56e-3960baa977e3"/>
+				<text><![CDATA[Referencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="10" width="80" height="18" uuid="7b27332c-e2bc-4b73-8fd1-d4572e0ded09"/>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="-1" y="0" width="202" height="20" uuid="d844cada-1aa4-4208-9fc1-dcdf62a72235"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CodigoNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="94" height="19" uuid="14399970-e399-41e0-b6f9-1218079fd56c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Referencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="69" height="20" uuid="b5b0fe03-9b8f-48c6-ba51-c218427028f6"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Precio}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="23" splitType="Stretch"/>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
