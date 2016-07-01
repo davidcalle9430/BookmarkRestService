@@ -18,6 +18,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * por Ahora creo que la i al final hace referencia a que es el cardex del inventario
  * @author david
@@ -28,25 +30,35 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Cardexi implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "consec")
     private Long consec;
+    
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "CODIGO")
     private Long codigo;
+    
+    @JsonFormat( pattern = "yyyy-MM-dd" )
     @Column(name = "FECHA")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal( TemporalType.TIMESTAMP )
     private Date fecha;
+    
     @Column(name = "TIPO")
     private String tipo;
+    
     @Column(name = "DOCUMENTO")
     private String documento;
+    
     @Column(name = "CANTIDAD")
     private Double cantidad;
+    
     @Column(name = "NDOC")
     private Long ndoc;
+    
     @Column(name = "SALDO")
     private Long saldo;
 
