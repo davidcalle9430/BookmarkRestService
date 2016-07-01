@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form">
+	<nav th:replace="nav :: nav"></nav>
+	<h1 style="color: black">Consulta Informaci&oacute;n de Ar&iacute;culo</h1>
+	<form id="form" method="get" action="/mnucarti/mostrar/">
+		<div class="row">
+			<div class="large-offset-3 medium-offset-3 small-offset-3 large-6 
+				medium-6 small-6 columns end">
+				<label>C&oacute;digo a Consultar
+					<select id="generos" name="articulo"> </select>
+				</label>
+			</div>
+		</div>
+	<div class="row">
+		<div class="">
+			<button type="submit" class="button large-3 submit"
+				style="float: right">Consultar</button>
+		</div>
+	</div>
+	</form>
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/reportes/impordisa/consultainfoarticulos.js"></script>
+</body>
+</html>
