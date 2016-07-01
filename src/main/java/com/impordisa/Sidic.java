@@ -3,7 +3,6 @@ package com.impordisa;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,7 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.table.DefaultTableModel;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,18 +57,10 @@ import converters.EspeciaConverter;
 import converters.NivelesPKConverter;
 import converters.RolesYMenusConverter;
 import converters.UsuarioPKConverter;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import repositories.MenusRepository;
 import repositories.RolesRepository;
 import repositories.RolesYMenusRepository;
 import repositories.UsuarioRepository;
-import services.ArticuloService;
 import services.PrincipalService;
 import sidic.entities.Articulo;
 import sidic.entities.Cardex;
@@ -111,7 +101,6 @@ import projections.ClienteVendedorProjection;
 import projections.EspeciaClienteConverter;
 import projections.ProveedorCiudad;
 import projections.RolesyMenusProjection;
-import reports.datasources.ListadoClientesReferenciaEspecialDS;
 
 /**
  * Clase encargade de arrancar la aplicación haciendo un escaneo de los
@@ -190,9 +179,6 @@ class BookingCommandLineRunner implements CommandLineRunner {
 	
 	@Autowired
 	private PrincipalService principalService;
-	
-	@Autowired
-	private ArticuloService articuloService;
 	
 	
 	@Override

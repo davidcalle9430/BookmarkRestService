@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form" ng-app="CardexArt" ng-controller="CardexArtController">
+	<nav th:replace="nav :: nav"></nav>
+	
+	<link rel="stylesheet" href="/static/css/tabla.css"/>
+	
+	<h1 style="color: black">Consulta Kardex Ar&iacute;culo</h1>
+
+	<div class="large-offset-1 medium-offset-1 small-offset-1 large-4 medium-4 small-4
+				 columns">
+		<label>C&oacute;digo  <input id="codigo" type="text" required="required" ng-model="genero.codigo" ng-blur="buscar()"
+		 name="codigo" /></label>
+	</div>
+	<div class="large-7 medium-7 small-7
+				 columns">
+		<label>Nombre <input id="nombre" type="text" required="required" ng-model="genero.nombre"
+			name="nombre" /></label>
+	</div>
+	
+	<table>
+		<thead>
+			<tr>
+				<th style="width:20%;">Fecha</th>
+				<th style="width:20%;">Detalle</th>
+				<th style="width:20%;">Entrada</th>
+				<th style="width:20%;">Salida</th>
+				<th style="width:20%;">Saldo</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="x in lista">
+    			<td>{{ x.fecha }}</td>
+    			<td>{{ x.documento }}</td>
+    			<td>{{ x.entrada }}</td>
+    			<td>{{ x.salida}}</td>
+    			<td>{{ x.saldo }}</td>
+  			</tr>
+		</tbody>
+	</table>
+	<div class="row">
+			<div class="large-4 medium-4 small-4 columns">
+				<button type="button" class="button" ng-click = "anterior( )" > Anterior </button>
+			</div>
+			<div class="large-4 medium-4 small-4 columns">
+				<button type="button" class="button" ng-click = "siguiente( )" > Siguiente </button>
+			</div>
+	</div>
+
+	<footer th:replace="footer :: footer"></footer>
+	<script src="/static/js/reportes/impordisa/consultacardexarticulomostrar.js"></script>
+</body>
+</html>
