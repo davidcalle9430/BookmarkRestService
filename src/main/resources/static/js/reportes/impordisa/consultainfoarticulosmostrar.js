@@ -1,5 +1,5 @@
-var app = angular.module('CardexArt' , [] );
-app.controller('CardexArtController' , function( $scope , $http ) { 
+var app = angular.module('Art' , [] );
+app.controller('ArtController' , function( $scope , $http ) { 
 
 	var articulo = get( 'articulo' );
 	
@@ -35,11 +35,11 @@ app.controller('CardexArtController' , function( $scope , $http ) {
 
 	function cargarArticulo(){
 		
-		var prom = $http.get( "/api/generos/" +genero+ "/" );
+		var prom = $http.get( "/api/articulos/informacion/" + $scope.articulo.codigo + "/" );
 		
 		prom.success(function(data, status, headers, config) {
-			$scope.genero.nombre = data.nombre;
-			cargarTabla( );
+			console.log( data );
+			$scope.articulo = data;
 	    });
 		
 		prom.error( function( data , status , headers , config ) {

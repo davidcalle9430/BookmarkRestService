@@ -7,12 +7,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import repositories.ArticuloRepository;
 import resultclasses.ArticuloGenero;
 import resultclasses.ArticuloGeneroCostoDTO;
 import resultclasses.CalcularCostoIMDTO;
 import resultclasses.ClienteArticuloEspecial;
+import resultclasses.InformacionArticuloDTO;
+import sidic.entities.Articulo;
+import utility.DateBuilder;
 
 @Service
 public class ArticuloServiceImpl implements ArticuloService {
@@ -20,6 +25,9 @@ public class ArticuloServiceImpl implements ArticuloService {
 	@PersistenceContext
 	private EntityManager em;
 	
+	
+	@Autowired
+	private ArticuloRepository articuloRepository;
 	
 	@Override
 	public Double darSumaDisponibleRango( Double inicio , Double fin ) {
@@ -127,6 +135,59 @@ public class ArticuloServiceImpl implements ArticuloService {
 			retorno.add(cas);
 		}
 		return retorno;
+	}
+
+
+	@Override
+	public InformacionArticuloDTO darInformacionArticulo(Long codigo) {
+		
+		Query q = em.createQuery(" "
+				+ "select new resultclasses.InformacionArticuloDTO( "
+				+ "a.cantdisp, a.costprom , "
+				+ "a.costpromim , a.codigo , "
+				+ "a.precio , g.nombre , "
+				+ "a.ultcosproi , a.referencia , a.uso , "
+				+ "a.marca , a.procedenc , "
+				+ "a.modelo1 , a.modelo2 , a.modelo3 ) "
+				+ "from Articulo a , Genero g "
+				+ "where FUNCTION( 'FLOOR' , a.codigo / 1000 ) = g.codigo "
+				+ "and a.codigo = :codigo");
+		
+		q.setParameter( "codigo" , codigo );
+		
+		try {
+			
+		
+			InformacionArticuloDTO res = (InformacionArticuloDTO) 
+									q.getSingleResult();
+			return res;
+		}catch( Exception e ){
+			return null;
+		}
+		
+	}
+
+
+	@Override
+	public Double darRotacion( Long codigo ) {
+		
+		Double rotacion = 0.0; 
+		
+		Articulo a = articuloRepository.findOne( codigo );
+		
+		a.setInvimppas( a.getInvimppas( ) == null ? 0 : a.getInvimppas()  );
+		a.setCantdisp( a.getCantdisp( ) == null ? 0 : a.getCantdisp() );
+		
+		if( a.getFecsaldado().equals( a.getFecultimp() ) 
+				|| DateBuilder.darFechaFormateada( DateBuilder.crearFechaSinHora()	 )
+					.equals( DateBuilder.darFechaFormateada( a.getFecultimp() ) ) ){
+			
+		}else{
+			
+		}
+		
+
+		return null;
 	}
 	
 

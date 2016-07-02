@@ -9,6 +9,12 @@ import java.util.Date;
 public class DateBuilder {
 
 	
+	public static String darFechaFormateada( Date fecha ){
+		SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+		String res = DATE_FORMAT.format( fecha );
+		return res;
+	}
+	
 	public static Date crearFechaSinHora(){
 		Date hoy = new Date();
 		SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
