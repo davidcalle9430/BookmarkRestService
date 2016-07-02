@@ -6,6 +6,7 @@ import resultclasses.ArticuloGenero;
 import resultclasses.ArticuloGeneroCostoDTO;
 import resultclasses.CalcularCostoIMDTO;
 import resultclasses.ClienteArticuloEspecial;
+import resultclasses.InformacionArticuloDTO;
 
 
 public interface ArticuloService {
@@ -21,5 +22,9 @@ public interface ArticuloService {
 	public List< ArticuloGenero > darArticulosGenero( Long codigoGenero );
 	
 	public List<ClienteArticuloEspecial> darClientesEspeciales();
+	
+	public InformacionArticuloDTO darInformacionArticulo( Long codigo );
+
+	public Double darRotacion( Long codigo );
 	
 }

@@ -5,9 +5,16 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class DateBuilder {
 
+	
+	public static String darFechaFormateada( Date fecha ){
+		SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+		String res = DATE_FORMAT.format( fecha );
+		return res;
+	}
 	
 	public static Date crearFechaSinHora(){
 		Date hoy = new Date();
@@ -19,6 +26,17 @@ public class DateBuilder {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	/**
+	 * metodo tomado de http://stackoverflow.com/questions/20165564/calculating-days-between-two-dates-with-in-java
+	 * @param d1
+	 * @param d2
+	 * @return
+	 */
+	public static long getDifferenceDays(Date d1, Date d2) {
+	    long diff = d2.getTime() - d1.getTime();
+	    return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 	}
 	
 	public static int getMonth( Date fecha ){

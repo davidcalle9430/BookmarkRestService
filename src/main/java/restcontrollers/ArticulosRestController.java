@@ -12,6 +12,7 @@ import resultclasses.ArticuloGenero;
 import resultclasses.ArticuloGeneroCostoDTO;
 import resultclasses.CardexFactura;
 import resultclasses.ClienteArticuloEspecial;
+import resultclasses.InformacionArticuloDTO;
 import resultclasses.Proveedor;
 import services.ArticuloService;
 
@@ -119,6 +120,10 @@ public class ArticulosRestController {
 		return pages;
 	}
 	
+	
+	
+	
+	
 	@RequestMapping(value="/api/articulos/search/articulosgeneros")
 	public List<ArticuloGenero> darArticulosGenero(){
 		List<Object[]> resultado = articuloRepository.darArticulosGenero();
@@ -139,7 +144,7 @@ public class ArticulosRestController {
 	 * función que retorna una lista de proveedores
 	 * @return lista de proveedores
 	 */
-	@RequestMapping(value="/api/proveedores/")
+	@RequestMapping( value = "/api/proveedores/" )
 	@SuppressWarnings("unchecked")
 	public List<Proveedor> darProveedores(){
 		Query q = em.createQuery("select new resultclasses.Proveedor( count(a) as numReg, procedenc ) from Articulo a group by a.procedenc");
@@ -181,4 +186,19 @@ public class ArticulosRestController {
 		}
 		return new ResponseEntity<>( res , HttpStatus.ACCEPTED );
 	}
+	
+	@RequestMapping( value = "/api/articulos/informacion/{codigo}/" )
+	public ResponseEntity< InformacionArticuloDTO > darinformacionArticulo( 
+			@PathVariable Long codigo ){
+		
+		InformacionArticuloDTO res = articuloService
+										.darInformacionArticulo( codigo );
+		
+		if( res != null ){
+			return new ResponseEntity<>( res , HttpStatus.ACCEPTED );
+		}
+		
+		return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
+	}
+	
 }
