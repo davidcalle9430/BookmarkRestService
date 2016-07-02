@@ -8,18 +8,106 @@
 	<nav th:replace="nav :: nav"></nav>
 	
 	<h1 style="color: black">Consulta Kardex Ar&iacute;culo</h1>
-
-	<div class="large-offset-1 medium-offset-1 small-offset-1 large-4 medium-4 small-4
-				 columns">
-		<label>C&oacute;digo  <input id="codigo" type="text" required="required" ng-model="genero.codigo" ng-blur="buscar()"
-		 name="codigo" /></label>
+	<div class="row border-box">
+		<div class="large-offset-1 medium-offset-1 small-offset-1 large-4 medium-4 small-4
+					 columns">
+			<label>C&oacute;digo  <input id="codigo" type="text" required="required" ng-model="articulo.codigo" ng-change="buscar()"
+			 name="codigo" /></label>
+		</div>
+		<div class="large-7 medium-7 small-7
+					 columns">
+			<div class="large-6 medium-6 small-6
+					 columns">
+				<label>Precio <input id="codigo" type="text"
+					required="required" ng-model="articulo.precio" 
+					/></label>
+			</div>
+			<div class="large-6 medium-6 small-6
+					 columns">
+				<label>Costo JM <input id="codigo" type="text"
+					required="required" ng-model="articulo.costojm"
+					/></label>
+			</div>
+			<div class="large-12 medium-12 small-12
+					 columns">
+				<label>Cantidad Disponible <input id="codigo" type="text"
+					required="required" ng-model="articulo.cantdisp" 
+					 /></label>
+			</div>
+			<div class="large-12 medium-12 small-12
+					 columns">
+				<label>Rotaci&oacute;n Mensual <input id="codigo" type="text"
+					required="required" ng-model="articulo.rotacion" 
+					/></label>
+			</div>
+		</div>	
 	</div>
-	<div class="large-7 medium-7 small-7
-				 columns">
-		<label>Nombre <input id="nombre" type="text" required="required" ng-model="genero.nombre"
-			name="nombre" /></label>
-	</div>
+	&nbsp;
 	
+	<div class="row border-box">
+			<div class="large-7 medium-7 small-7
+					 columns">
+				<label> Nombre <input id="codigo" type="text"
+					required="required" ng-model="articulo.nombre"
+					/></label>
+			</div>
+			<div class="large-5 medium-5 small-5
+					 columns">
+				<label> Costo <input id="codigo" type="text"
+					required="required" ng-model="articulo.costo" 
+					/></label>
+			</div>
+			
+			
+			<div class="large-7 medium-7 small-7
+					 columns">
+				<label> Referencia <input id="codigo" type="text"
+					required="required" ng-model="articulo.referencia"
+					/></label>
+			</div>
+			<div class="large-5 medium-5 small-5
+					 columns">
+				<label> Uso <input id="codigo" type="text"
+					required="required" ng-model="articulo.uso" 
+					/></label>
+			</div>
+			
+			<div class="large-6 medium-6 small-6
+					 columns">
+				<label> Marca <input id="codigo" type="text"
+					required="required" ng-model="articulo.marca"
+					/></label>
+			</div>
+			<div class="large-6	 medium-6 small-6
+					 columns">
+				<label> Procedencia <input id="codigo" type="text"
+					required="required" ng-model="articulo.procedencia" 
+					/></label>
+			</div>
+			
+			
+			<div class="large-4 medium-4 small-4
+					 columns">
+				<label> Modelo:  <input id="codigo" type="text"
+					required="required" ng-model="articulo.modelo1"
+					/></label>
+			</div>
+			<div class="large-4 medium-4 small-4
+					 columns">
+				<label> &nbsp; <input id="codigo" type="text"
+					required="required" ng-model="articulo.modelo2"
+					/></label>
+			</div>
+			
+			<div class="large-4 medium-4 small-4
+					 columns">
+				<label> &nbsp; <input id="codigo" type="text"
+					required="required" ng-model="articulo.modelo3" 
+					/></label>
+			</div>
+			
+	</div>
+	&nbsp;
 	<div class="row">
 			<div class="large-4 medium-4 small-4 columns">
 				<button type="button" class="button" ng-click = "anterior( )" > Anterior </button>
