@@ -30,7 +30,7 @@ public class InformacionArticuloDTO {
 	
 	private String modelo3;
 	
-	private Double rotacion;
+	private Integer rotacion;
 
 	public InformacionArticuloDTO() {
 		super();
@@ -174,13 +174,13 @@ public class InformacionArticuloDTO {
 
 
 
-	public Double getRotacion() {
+	public Integer getRotacion() {
 		return rotacion;
 	}
 
 
 
-	public void setRotacion(Double rotacion) {
+	public void setRotacion(Integer rotacion) {
 		this.rotacion = rotacion;
 	}
 
