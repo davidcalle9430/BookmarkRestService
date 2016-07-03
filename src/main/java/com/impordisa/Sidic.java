@@ -428,9 +428,8 @@ class RequestFilter extends OncePerRequestFilter {
 		return false;
 	}
 	
-	
 	/**
-	 * método que se encarga de hacer un filtrado de los request que llegan al serviodr y decide si tiene
+	 * metodo que se encarga de hacer un filtrado de los request que llegan al serviodr y decide si tiene
 	 * los permisos suficientes para que la sesión actual acceda al controlador
 	 * también se encarga de revisar si un usuario necesita cmabio de contrasenia
 	 */

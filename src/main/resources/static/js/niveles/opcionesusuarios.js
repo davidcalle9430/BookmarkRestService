@@ -22,7 +22,6 @@ function ajaxCall() {
  * @param niveles, referencia a lista de niveles a crear.
  */
 function crearFila(niveles) {
-	console.log(niveles);
 	for (var i = 0; i < niveles.length; i++) {
 		var tr = $("<tr>");
 		var columnaNivel = $('<td>', {
