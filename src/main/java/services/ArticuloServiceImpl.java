@@ -2,7 +2,6 @@ package services;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -93,9 +92,11 @@ public class ArticuloServiceImpl implements ArticuloService {
 				+ "and g.codigo = :codigo");
 		q.setParameter( "codigo" , codigoGenero );
 		try{
+			
 			@SuppressWarnings("unchecked")
 			List< ArticuloGenero > res = q.getResultList();
 			return res;
+			
 		}catch( Exception e ){
 			e.printStackTrace();
 			return null;
