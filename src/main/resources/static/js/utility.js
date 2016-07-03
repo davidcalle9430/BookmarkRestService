@@ -315,9 +315,7 @@ $(document).ready(function(){
 /**
  * Función que hace dinámico el cambio del texto en el tooltip* a medida que se escribe en el elemento <input/>
  */
-$('input:text').on('keyup change keypress keydown mouseenter mouseleave', function () {
-	$(document).foundation();
-	console.log('entra');
+$('body').on('keyup change keypress keydown mouseenter mouseleave', 'input:text', function () {
 	var text = $(this).val();
 	if( text == '')
 		text = 'Completa este campo';
