@@ -3082,8 +3082,6 @@ table.hover tr:nth-of-type(even):hover {
 
 .has-tip {
   border-bottom: dotted 1px #8a8a8a;
-  font-weight: bold;
-  position: relative;
   display: inline-block;
   cursor: help; }
 
@@ -3095,7 +3093,7 @@ table.hover tr:nth-of-type(even):hover {
   position: absolute;
   z-index: 10;
   top: calc(100% + 0.6495rem);
-  max-width: 10rem !important;
+  max-width: 50vw !important;
   border-radius: 0; }
   .tooltip::before {
     content: '';

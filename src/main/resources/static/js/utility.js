@@ -290,30 +290,36 @@ function deleteForObject(url, todo, error){
 }
 
 /**
- * Funcion que activa el tooltip*
- * *tooltip: texto que aparece encima del elemento cuando se pasa el cursor encima.  
+ * Funcion que agrega en los inputs las propiedades necesarias para la creacion del tooltip*
+ * tooltip: texto de ayuda que aparece al colocar el mouse encima de un elemento.
  */
-$(function() {
-	/**
-	 * Función que activa y agrega a cada uno de los elementos <input/> la propiedad "title"
-	 * necesaria para hacer funcionar el "tooltip"
-	 * */
-   $( document ).tooltip();
-	
-});
-
-$('body').on( 'mouseenter' , 'input', function() {
-	$( this ).attr( 'title' , $( this ).val( ) );
-	$( document ).tooltip( );
+$('body').on( 'mouseenter', function() {
+	$( 'input:text' ).attr( 'data-tooltip' , '' );
+	$( 'input:text' ).attr( 'aria-haspopup' , 'true' );
+	$( 'input:text' ).addClass( 'has-tip' );
+	$( 'input:text' ).attr( 'title' , $( this ).val( ) );
+	$(document).foundation();
 });
 
 /**
- * Función que hace dinámico el cambio del texto en el tooltip* a medida que se escribe en el elemento <input/>
+ * Agrega las propiedades necesarias para el funcionamiento del tooltip en los elementos input
  * */
-$('input:text').on('keyup change keypress keydown mouseenter mouseleave change', function () {
+$(document).ready(function(){
+	$('input:text').attr( 'data-tooltip' , '' );
+	$('input:text').attr( 'aria-haspopup' , 'true' );
+	$('input:text').addClass( 'has-tip' );
+	$('input:text').attr( 'title' , '' );
+	$(document).foundation();
+})
+
+/**
+ * Función que hace dinámico el cambio del texto en el tooltip* a medida que se escribe en el elemento <input/>
+ */
+$('body').on('keyup change keypress keydown mouseenter mouseleave', 'input:text', function () {
 	var text = $(this).val();
-	$(this).attr('title',text);
-	$(".ui-tooltip-content").text(text);
+	if( text == '')
+		text = 'Completa este campo';
+	$('.tooltip').text(text);
 });
 
 /**
