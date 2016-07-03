@@ -29,5 +29,9 @@ public class ReportesImpordisaController {
 		return "reportes/impordisa/consultainfoarticulosmostrar";
 	}
 	
+	@RequestMapping( value = "/mmnulcosijm/" , method = RequestMethod.GET )
+	public String costoDeVentas( ){
+		return "reportes/impordisa/costodeventas";
+	}
 	
 }

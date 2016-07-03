@@ -28,30 +28,40 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Costodeventas implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Column(name = "fechai")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechai;
+    
     @Column(name = "fechaf")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaf;
+    
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "LINEA")
     private Double linea;
+    
     @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
+    
     @Column(name = "CODIGO")
     private Double codigo;
+    
     @Column(name = "NOMBRE")
     private String nombre;
+    
     @Column(name = "REFERENCIA")
     private String referencia;
     @Column(name = "CANTIDAD")
     private Double cantidad;
+    
     @Column(name = "COSTOPROIM")
     private Double costoproim;
+    
     @Column(name = "costvent")
     private Double costvent;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -59,6 +69,7 @@ public class Costodeventas implements Serializable {
     private Integer id;
 
     public Costodeventas() {
+    	
     }
 
     public Costodeventas(Integer id) {

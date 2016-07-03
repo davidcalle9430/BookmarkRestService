@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+</head>
+<body class="main-form" ng-app="CostoVentas" ng-controller="CostoVentasController">
+	<nav th:replace="nav :: nav"></nav>
+	
+	<h1 style="color: black"> Costo de Ventas </h1>
+	
+	<form id="form" method="get" action="/mmnulcosijm/mostrar/">
+	<div class="row">
+		<div class="large-6 
+			medium-6 small-6 columns end">
+			<label>Periodo a calcular desde 
+				<input id="fecha" type="text" ng-model="form.desde" ng-model-options="{updateOn: 'blur'}" ng-change ="validarDesde( )" /></label>
+		</div>
+		
+		<div class="large-6 
+			medium-6 small-6 columns end">
+			<label>hasta dd/mm/yyyy
+				<input id="fecha" type="text" ng-model="form.hasta" ng-model-options="{updateOn: 'blur'}" ng-change ="validarHasta( )"/>			
+				</label>
+		</div>
+	</div>
+	<div class="row">
+	
+		<div class="large-6  small-6 medium-6 columns">
+			<label>l&iacute;nea
+				<select id="lineas" name="linea" ng-model="linea"> 
+					<option ng-repeat = "linea in form.lineas" value="{{ linea.linea}}" > {{ formatearLinea( linea ) }}  </option>
+				</select>
+			</label>
+		</div>
+		
+		<fieldset class="large-6 small-6 medium-6 columns">
+			 <label>todas</label>
+		    <input id="todas" type="checkbox" ng-model="todas" ng-change = "todasLasLineas( )" /><label></label>
+		</fieldset>
+		
+	</div>
+	&nbsp;
+	<div class="row">
+		<fieldset class="large-6 small-6 medium-6 columns">
+		    <input type="checkbox" ng-model="rangos"  ng-change="hablitarRangos(  )" />
+		    <label >Rangos</label>
+		</fieldset>
+		<fieldset class="large-6 small-6 medium-6 columns">
+		    <input type="checkbox" ng-model="codigosVarios" ng-change="habilitarCodigo( )"/>
+		    <label >Codigos Varios</label>
+		</fieldset>
+	</div>
+	
+	<div class="row">
+	
+		 <fieldset ng-hide="esconderRango" class="large-5 small-5 medium-5 columns border-box">
+		    <legend style="color: black; font-size: 0.8em;">Rangos</legend>
+		    
+		    <div class = "large-6 small-6 medium-6 columns">
+		    	<input id="checkbox3" type="text" ng-model="form.inicial" 
+		    		ng-model-options="{updateOn: 'blur'}" ng-change ="validarNumero( form.inicial )"/>
+		    	<label for="checkbox3"> Inicial </label>
+		    </div>
+		    <div class = "large-6 small-6 medium-6 columns">
+		    	<input id="checkbox3" type="text" ng-model="form.final" ng-model-options="{updateOn: 'blur'}" ng-change ="validarNumero( form.final )"/>
+		    	<label for="checkbox3"> Final </label>
+		    </div>
+  		</fieldset>
+		
+		
+		 <fieldset ng-hide="esconderCodigo" class="large-5 small-5 medium-5 columns border-box">
+		    <legend style="color: black; font-size: 0.8em;">C&oacute;digo</legend>
+		    
+		    <div class = "large-12 small-12 medium-12 columns">
+		    	<input id="checkbox3" type="text"
+		    	 ng-model="form.codigo" ng-model-options="{updateOn: 'blur'}" ng-change ="validarNumero( form.codigo )"/>
+		    </div>
+		    
+  		</fieldset>
+		
+	</div>
+
+	&nbsp;
+	
+	<div class="row" ng-hide = "esconderConsulta" > 
+		<div class="small-12 medium-12 large-12 columns">
+			<label> Costo de ventas
+				<input type = "text" />
+			</label>
+		</div>
+	</div>
+	
+	&nbsp;
+	<div class="row">
+		<div class="large-5 small-5 medium-5 columns">
+			<button type = "button" class="button large-3 submit" ng-click = "consultar( )" >Consultar</button>
+		</div>
+		<div class="large-5 small-5 medium-5 columns">
+			<button type="button" class="button large-3 submit">Informe</button>
+		</div>
+	</div>
+	</form>
+	
+	<footer th:replace="footer :: footer"></footer>
+	
+	<script src="/static/js/reportes/impordisa/costodeventas.js"></script>
+</body>
+</html>
